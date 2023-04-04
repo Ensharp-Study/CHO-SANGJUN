@@ -7,7 +7,13 @@ namespace Starpoint
 
         public static void InputMenuNumber()
         {
-            Console.Write("Menu : 번호를 입력하세요: ");
+            Console.WriteLine("+------------------<MENU>------------------+");
+            Console.WriteLine("|              1. 피라미드                 |");
+            Console.WriteLine("|              2.역피라미드                |");
+            Console.WriteLine("|              3. 모래시계                 |");
+            Console.WriteLine("|              4. 마름모                   |");
+            Console.WriteLine("+------------------------------------------+");
+            Console.Write("[Menu] 번호를 입력하세요: ");
             string number = Console.ReadLine();
             Console.Clear();
             if ((int.Parse(number) != 1) && (int.Parse(number) != 2) && (int.Parse(number) != 3) && (int.Parse(number) != 4))
@@ -82,9 +88,11 @@ namespace Starpoint
             int selectendoragain;
 
             Console.WriteLine();
-            Console.WriteLine("메뉴로 돌아가기");
-            Console.WriteLine("1: 다시하기");
-            Console.WriteLine("2: 종료하기");
+            Console.WriteLine("-----------------------");
+            Console.WriteLine("     메뉴로 돌아가기   ");
+            Console.WriteLine("      1: 다시하기      ");
+            Console.WriteLine("      2: 종료하기      ");
+            Console.WriteLine("-----------------------");
             selectendoragain = int.Parse(Console.ReadLine());
 
             if (selectendoragain == 1)

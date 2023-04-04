@@ -94,10 +94,11 @@ namespace Starpoint
             Console.WriteLine("      2: 종료하기      ");
             Console.WriteLine("-----------------------");
             selectendoragain = int.Parse(Console.ReadLine());
-
+            
+            Console.Clear();
+            
             if (selectendoragain == 1)
             {
-                Console.Clear();
                 Program.Main();
             }
             else if (selectendoragain == 2)

@@ -19,6 +19,19 @@ namespace Starpoint
         }
 
     }
+    class Enternumber
+    {
+        public static int InputLineNumber()
+        {
+            Console.Write("줄 갯수를 입력하세요: ");
+            string number = Console.ReadLine();
+            int convertednumber = int.Parse(number);
+            Console.Clear();
+            return convertednumber;
+
+
+        }
+    }
 
     class WrongInput
     {
@@ -61,7 +74,223 @@ namespace Starpoint
             EndProgram.EndOrAgain();
         }
     }
-    
+    class StarPrint
+    {
+        public static void Pyramid()
+        {
+            int i, j;
+            int linenumber = Enternumber.InputLineNumber();
+
+            for (i = 0; i < linenumber; i++)
+            {
+                for (j = 0; j < ((2 * linenumber - 1) - (2 * i + 1)) / 2; j++)
+                {
+                    Console.Write(" ");
+                }
+                for (j = 0; j < (2 * i + 1); j++)
+                {
+                    Console.Write("*");
+                }
+                for (j = 0; j < ((2 * linenumber - 1) - (2 * i + 1)) / 2; j++)
+                {
+                    Console.Write(" ");
+                }
+                Console.WriteLine();
+            }
+        }
+
+        public static void InvertedPyramid()
+        {
+            int i, j;
+            int linenumber = Enternumber.InputLineNumber();
+
+            for (i = 0; i < linenumber; i++)
+            {
+                for (j = 0; j < i; j++)
+                {
+                    Console.Write(" ");
+                }
+                for (j = 0; j < ((2 * linenumber - 1) - 2 * i); j++)
+                {
+                    Console.Write("*");
+                }
+                for (j = 0; j < i; j++)
+                {
+                    Console.Write(" ");
+                }
+                Console.WriteLine();
+            }
+        }
+
+        public static void Hourglass()
+        {
+            int i, j;
+            int linenumber = Enternumber.InputLineNumber();
+
+            if (linenumber % 2 == 0)
+            {
+                linenumber /= 2;
+                for (i = 0; i < linenumber; i++)
+                {
+                    for (j = 0; j < i; j++)
+                    {
+                        Console.Write(" ");
+                    }
+                    for (j = 0; j < ((2 * linenumber - 1) - 2 * i); j++)
+                    {
+                        Console.Write("*");
+                    }
+                    for (j = 0; j < i; j++)
+                    {
+                        Console.Write(" ");
+                    }
+                    Console.WriteLine();
+                }
+
+                for (i = 0; i < linenumber; i++)
+                {
+                    for (j = 0; j < ((2 * linenumber - 1) - (2 * i + 1)) / 2; j++)
+                    {
+                        Console.Write(" ");
+                    }
+                    for (j = 0; j < (2 * i + 1); j++)
+                    {
+                        Console.Write("*");
+                    }
+                    for (j = 0; j < ((2 * linenumber - 1) - (2 * i + 1)) / 2; j++)
+                    {
+                        Console.Write(" ");
+                    }
+                    Console.WriteLine();
+                }
+            }
+
+            else
+            {
+                linenumber = linenumber / 2 + 1;
+                for (i = 0; i < linenumber; i++)
+                {
+                    for (j = 0; j < i; j++)
+                    {
+                        Console.Write(" ");
+                    }
+                    for (j = 0; j < ((2 * linenumber - 1) - 2 * i); j++)
+                    {
+                        Console.Write("*");
+                    }
+                    for (j = 0; j < i; j++)
+                    {
+                        Console.Write(" ");
+                    }
+                    Console.WriteLine();
+                }
+
+                for (i = 1; i < linenumber; i++)
+                {
+                    for (j = 0; j < ((2 * linenumber - 1) - (2 * i + 1)) / 2; j++)
+                    {
+                        Console.Write(" ");
+                    }
+                    for (j = 0; j < (2 * i + 1); j++)
+                    {
+                        Console.Write("*");
+                    }
+                    for (j = 0; j < ((2 * linenumber - 1) - (2 * i + 1)) / 2; j++)
+                    {
+                        Console.Write(" ");
+                    }
+                    Console.WriteLine();
+                }
+            }
+
+        }
+
+        public static void Rhombus()
+        {
+            int i, j;
+            int linenumber = Enternumber.InputLineNumber();
+
+            if (linenumber % 2 == 0)
+            {
+                linenumber /= 2;
+
+                for (i = 0; i < linenumber; i++)
+                {
+                    for (j = 0; j < ((2 * linenumber - 1) - (2 * i + 1)) / 2; j++)
+                    {
+                        Console.Write(" ");
+                    }
+                    for (j = 0; j < (2 * i + 1); j++)
+                    {
+                        Console.Write("*");
+                    }
+                    for (j = 0; j < ((2 * linenumber - 1) - (2 * i + 1)) / 2; j++)
+                    {
+                        Console.Write(" ");
+                    }
+                    Console.WriteLine();
+                }
+
+                for (i = 0; i < linenumber; i++)
+                {
+                    for (j = 0; j < i; j++)
+                    {
+                        Console.Write(" ");
+                    }
+                    for (j = 0; j < ((2 * linenumber - 1) - 2 * i); j++)
+                    {
+                        Console.Write("*");
+                    }
+                    for (j = 0; j < i; j++)
+                    {
+                        Console.Write(" ");
+                    }
+                    Console.WriteLine();
+                }
+            }
+
+            else
+            {
+                linenumber = linenumber / 2 + 1;
+
+                for (i = 0; i < linenumber; i++)
+                {
+                    for (j = 0; j < ((2 * linenumber - 1) - (2 * i + 1)) / 2; j++)
+                    {
+                        Console.Write(" ");
+                    }
+                    for (j = 0; j < (2 * i + 1); j++)
+                    {
+                        Console.Write("*");
+                    }
+                    for (j = 0; j < ((2 * linenumber - 1) - (2 * i + 1)) / 2; j++)
+                    {
+                        Console.Write(" ");
+                    }
+                    Console.WriteLine();
+                }
+
+                for (i = 1; i < linenumber; i++)
+                {
+                    for (j = 0; j < i; j++)
+                    {
+                        Console.Write(" ");
+                    }
+                    for (j = 0; j < ((2 * linenumber - 1) - 2 * i); j++)
+                    {
+                        Console.Write("*");
+                    }
+                    for (j = 0; j < i; j++)
+                    {
+                        Console.Write(" ");
+                    }
+                    Console.WriteLine();
+                }
+            }
+
+        }
+
+    }
 
     class Program
     {

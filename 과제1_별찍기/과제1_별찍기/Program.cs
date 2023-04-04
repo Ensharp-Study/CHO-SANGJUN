@@ -20,6 +20,48 @@ namespace Starpoint
 
     }
 
+    class WrongInput
+    {
+        public static void WrongMemuNumber()
+        {
+            Console.WriteLine("잘못된 입력입니다. 다시 입력하세요.");
+            Program.Main();
+        }
+        public static void WrongEndOrAgainNumber()
+        {
+            Console.WriteLine("잘못된 입력입니다. 다시 입력하세요.");
+            EndProgram.EndOrAgain();
+        }
+
+    }
+
+    class SelectShape
+    {
+
+        public static void TypeOfShape(int number)
+        {
+            if (number == 1)
+            {
+                StarPrint.Pyramid();
+            }
+
+            else if (number == 2)
+            {
+                StarPrint.InvertedPyramid();
+            }
+
+            else if (number == 3)
+            {
+                StarPrint.Hourglass();
+            }
+            else if (number == 4)
+            {
+                StarPrint.Rhombus();
+            }
+            EndProgram.EndOrAgain();
+        }
+    }
+    
 
     class Program
     {

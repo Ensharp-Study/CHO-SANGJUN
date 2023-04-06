@@ -21,5 +21,6 @@ public partial class Ui
         Console.WriteLine("*                                               *");
         Console.WriteLine("*                                               *");
         Console.WriteLine("*************************************************");
+        
     }
 }

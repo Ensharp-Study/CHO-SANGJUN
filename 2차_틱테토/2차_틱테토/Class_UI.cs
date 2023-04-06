@@ -15,8 +15,8 @@ public partial class Ui
         Console.WriteLine("*                                               *");
         Console.WriteLine("*             2. USER VS USER                   *");
         Console.WriteLine("*                                               *");
-        Console.Write("*             [메뉴 입력]:"); 
-        Console.WriteLine("{0}               *",int.Parse(Console.ReadLine()));
+        Console.WriteLine("*             [메뉴 입력]:                      *"); 
+        Console.WriteLine("                                                *");
         Console.WriteLine("*                                               *");
         Console.WriteLine("*                                               *");
         Console.WriteLine("*                                               *");

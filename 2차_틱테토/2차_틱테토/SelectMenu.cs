@@ -16,7 +16,7 @@ public partial class SelectMenu
         }
 		else*/ if (menu_number == 2)
 		{
-            gamePlay.PlayWithUser();
+            gamePlay.PlayWithUser(0,0);
         }
 		else
 		{

@@ -1,8 +1,9 @@
 ﻿using System;
 
-public class GamePlay
+public partial class GamePlay
 {
     string[,] room = new string [3, 3] { { "1", "2", "3" }, { "4", "5", "6" }, { "7", "8", "9" } };
+
     /*public void PlayWithComputer()
     {
         int i;
@@ -61,13 +62,14 @@ public class GamePlay
         }
     }
 
-    public void PlayWithUser()
+    public void PlayWithUser(int a, int b)
     {
-       
+        
         string user1_num="0";
         string user2_num="0";
         string win_user ="NONE";
 
+        int result1=0, result2=0;   
         int i, j;
         int cnt=0;
 
@@ -99,13 +101,14 @@ public class GamePlay
                 Console.WriteLine();
             }
 
-            int result1 = JudgeWinner("O");
-            if(result1 == 1)
+            result1 = JudgeWinner("O");
+            if (result1 == 1)
             {
                 win_user = "user1";
                 break;
             }
             if (cnt == 9) break;
+
 
             user2_num = Console.ReadLine(); //user 2
             
@@ -133,7 +136,7 @@ public class GamePlay
                 Console.WriteLine();
             }
 
-            int result2 = JudgeWinner("X");
+            result2 = JudgeWinner("X");
             if (result2 == 1)
             {
                 win_user = "user2";
@@ -142,6 +145,7 @@ public class GamePlay
 
             if (cnt == 9) break;
         }
+
         if(win_user == "NONE")
         {
             if( cnt == 9)
@@ -153,6 +157,15 @@ public class GamePlay
                 //예외처리
             }
         }
-        Console.WriteLine(win_user);
+        
+        //Console.WriteLine(win_user);
+
+        ScreenBoard screenBoard = new ScreenBoard();
+        int DoOrNOt = screenBoard.PrintScreenBoard(result1+a, result2+b);
+        if(DoOrNOt == 1)
+        {
+            GamePlay gamePlay = new GamePlay();
+            gamePlay.PlayWithUser(result1 + a, result2 + b);
+        }
     }
 }

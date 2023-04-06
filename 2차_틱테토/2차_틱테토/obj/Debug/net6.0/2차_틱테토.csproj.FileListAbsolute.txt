@@ -1,0 +1,15 @@
+C:\Users\junch\OneDrive\바탕 화면\en#\2차_틱테토\2차_틱테토\obj\Debug\net6.0\2차_틱테토.csproj.AssemblyReference.cache
+C:\Users\junch\OneDrive\바탕 화면\en#\2차_틱테토\2차_틱테토\obj\Debug\net6.0\2차_틱테토.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\junch\OneDrive\바탕 화면\en#\2차_틱테토\2차_틱테토\obj\Debug\net6.0\2차_틱테토.AssemblyInfoInputs.cache
+C:\Users\junch\OneDrive\바탕 화면\en#\2차_틱테토\2차_틱테토\obj\Debug\net6.0\2차_틱테토.AssemblyInfo.cs
+C:\Users\junch\OneDrive\바탕 화면\en#\2차_틱테토\2차_틱테토\obj\Debug\net6.0\2차_틱테토.csproj.CoreCompileInputs.cache
+C:\Users\junch\OneDrive\바탕 화면\en#\2차_틱테토\2차_틱테토\bin\Debug\net6.0\2차_틱테토.exe
+C:\Users\junch\OneDrive\바탕 화면\en#\2차_틱테토\2차_틱테토\bin\Debug\net6.0\2차_틱테토.deps.json
+C:\Users\junch\OneDrive\바탕 화면\en#\2차_틱테토\2차_틱테토\bin\Debug\net6.0\2차_틱테토.runtimeconfig.json
+C:\Users\junch\OneDrive\바탕 화면\en#\2차_틱테토\2차_틱테토\bin\Debug\net6.0\2차_틱테토.dll
+C:\Users\junch\OneDrive\바탕 화면\en#\2차_틱테토\2차_틱테토\bin\Debug\net6.0\2차_틱테토.pdb
+C:\Users\junch\OneDrive\바탕 화면\en#\2차_틱테토\2차_틱테토\obj\Debug\net6.0\2차_틱테토.dll
+C:\Users\junch\OneDrive\바탕 화면\en#\2차_틱테토\2차_틱테토\obj\Debug\net6.0\refint\2차_틱테토.dll
+C:\Users\junch\OneDrive\바탕 화면\en#\2차_틱테토\2차_틱테토\obj\Debug\net6.0\2차_틱테토.pdb
+C:\Users\junch\OneDrive\바탕 화면\en#\2차_틱테토\2차_틱테토\obj\Debug\net6.0\2차_틱테토.genruntimeconfig.cache
+C:\Users\junch\OneDrive\바탕 화면\en#\2차_틱테토\2차_틱테토\obj\Debug\net6.0\ref\2차_틱테토.dll

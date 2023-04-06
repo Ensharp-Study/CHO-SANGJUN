@@ -5,7 +5,7 @@ namespace Starpoint // 별찍기 네임스페이스 생성
     class ChooseMenu //메뉴 선택 관련 클래스 생성
     {
 
-        public static void InputMenuNumber() //메뉴판 출력 및 번호 입력받는 메소드 생성
+        public static void InputMenuNumber() //메뉴판 출력 및 번호 입력받는 메소드 생성 //UI, 함수, 예외처리 다 따로따로 함수로 만들기
         {
             Console.WriteLine("+------------------<MENU>------------------+");
             Console.WriteLine("|              1. 피라미드                 |");
@@ -14,9 +14,10 @@ namespace Starpoint // 별찍기 네임스페이스 생성
             Console.WriteLine("|              4. 마름모                   |");
             Console.WriteLine("+------------------------------------------+");
             Console.Write("[Menu] 번호를 입력하세요: "); // 메뉴판 출력
+            
             string number = Console.ReadLine(); //메뉴판 번호 입력받기
             Console.Clear(); // 콘솔창 다음 화면으로 
-            if ((int.Parse(number) != 1) && (int.Parse(number) != 2) && (int.Parse(number) != 3) && (int.Parse(number) != 4)) //메뉴 번호 제외 하고 다른 입력값이 들어온 경우 (예외처리) 
+            if ((int.Parse(number) != 1) && (int.Parse(number) != 2) && (int.Parse(number) != 3) && (int.Parse(number) != 4)) //메뉴 번호 제외 하고 다른 입력값이 들어온 경우 (예외처리) //논리연산자
             {
                 WrongInput.WrongMemuNumber(); // WrongInput에서 메뉴 번호 잘못입력받은 경우 처리하는 메소드 WrongMenuNumber 호출
                 return; // 잘못된 정보를 입력했을때 밑의 메소드 호출을 부르면 루프가 형성되기 때문에 return 처리
@@ -59,7 +60,7 @@ namespace Starpoint // 별찍기 네임스페이스 생성
     class SelectShape //별찍기의 모양을 정해주는 클래스
     {
 
-        public static void TypeOfShape(int number) //메뉴판에서 입력받은 정수를 인수로 하고 모양의 타입을 확인하고 해당 메소드를 호출하는 메소드 
+        public static void TypeOfShape(int number) //메뉴판에서 입력받은 정수를 인수로 하고 모양의 타입을 확인하고 해당 메소드를 호출하는 메소드 //메소드 겹치지 않게
         {
             if (number == 1) //메뉴판 1번
             {
@@ -251,7 +252,7 @@ namespace Starpoint // 별찍기 네임스페이스 생성
             int i, j;
             int linenumber = Enternumber.InputLineNumber();
 
-            if (linenumber % 2 == 0) //줄 개수가 짝수인 경우
+            if (linenumber % 2 == 0) //줄 개수가 짝수인 경우 //if 문안에 간략화 >함수
             {
                 linenumber /= 2; //상단부와 하단부를 나누기 위해 절반으로 나누기
 
@@ -333,7 +334,7 @@ namespace Starpoint // 별찍기 네임스페이스 생성
 
     }
 
-    class Program 
+    class Program //의미있는 걸로 네이밍
     {
         public static void Main() // 메인 함수 생성
         {
@@ -342,3 +343,8 @@ namespace Starpoint // 별찍기 네임스페이스 생성
     }
 
 }
+//static 말고, 객체 지향적으로 코딩
+//스위치 문
+//접근 제한자 
+//UI 신경쓰기
+//

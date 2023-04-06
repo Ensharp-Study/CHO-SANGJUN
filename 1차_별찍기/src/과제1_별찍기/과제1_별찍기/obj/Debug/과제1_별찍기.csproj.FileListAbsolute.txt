@@ -6,3 +6,11 @@ C:\Users\junch\OneDrive\바탕 화면\en#\과제1_별찍기\과제1_별찍기\ob
 C:\Users\junch\OneDrive\바탕 화면\en#\과제1_별찍기\과제1_별찍기\obj\Debug\과제1_별찍기.csproj.CoreCompileInputs.cache
 C:\Users\junch\OneDrive\바탕 화면\en#\과제1_별찍기\과제1_별찍기\obj\Debug\과제1_별찍기.exe
 C:\Users\junch\OneDrive\바탕 화면\en#\과제1_별찍기\과제1_별찍기\obj\Debug\과제1_별찍기.pdb
+C:\Users\junch\OneDrive\바탕 화면\en#\1차_별찍기\src\과제1_별찍기\과제1_별찍기\bin\Debug\과제1_별찍기.exe.config
+C:\Users\junch\OneDrive\바탕 화면\en#\1차_별찍기\src\과제1_별찍기\과제1_별찍기\bin\Debug\과제1_별찍기.exe
+C:\Users\junch\OneDrive\바탕 화면\en#\1차_별찍기\src\과제1_별찍기\과제1_별찍기\bin\Debug\과제1_별찍기.pdb
+C:\Users\junch\OneDrive\바탕 화면\en#\1차_별찍기\src\과제1_별찍기\과제1_별찍기\obj\Debug\과제1_별찍기.csproj.AssemblyReference.cache
+C:\Users\junch\OneDrive\바탕 화면\en#\1차_별찍기\src\과제1_별찍기\과제1_별찍기\obj\Debug\과제1_별찍기.csproj.SuggestedBindingRedirects.cache
+C:\Users\junch\OneDrive\바탕 화면\en#\1차_별찍기\src\과제1_별찍기\과제1_별찍기\obj\Debug\과제1_별찍기.csproj.CoreCompileInputs.cache
+C:\Users\junch\OneDrive\바탕 화면\en#\1차_별찍기\src\과제1_별찍기\과제1_별찍기\obj\Debug\과제1_별찍기.exe
+C:\Users\junch\OneDrive\바탕 화면\en#\1차_별찍기\src\과제1_별찍기\과제1_별찍기\obj\Debug\과제1_별찍기.pdb

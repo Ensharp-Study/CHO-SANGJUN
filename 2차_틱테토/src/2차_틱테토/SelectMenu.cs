@@ -3,10 +3,11 @@
 public partial class SelectMenu
 {
 	int menu_number;
+
 	public void Method()
 	{	
 		menu_number = int.Parse(Console.ReadLine());
-        
+        Console.Clear();
 		GamePlay gamePlay = new GamePlay();
         
 		if (menu_number == 1)

@@ -9,12 +9,12 @@ public partial class SelectMenu
         
 		GamePlay gamePlay = new GamePlay();
         
-		/*if (menu_number == 1)
+		if (menu_number == 1)
 		{
 			gamePlay.PlayWithComputer();
 
         }
-		else*/ if (menu_number == 2)
+		else if (menu_number == 2)
 		{
             gamePlay.PlayWithUser(0,0);
         }

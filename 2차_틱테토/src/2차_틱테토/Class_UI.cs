@@ -22,7 +22,7 @@ public partial class Ui
         Console.WriteLine("                             *                                               *");
         Console.WriteLine("                             *                                               *");
         Console.WriteLine("                             *************************************************");
-        Console.Write("                                           ▶메뉴 입력:    ");
+        Console.Write("                                        ▶메뉴 입력:    ");
 
     }
 
@@ -100,4 +100,13 @@ public partial class Ui
 
     }
     
+    public void WrongMenuNumInput()
+    {
+        Console.Write("                                        ▷잘못된 입력입니다. 다시 입력하세요: ");
+    }
+
+    public void WrongBoardNumInput()
+    {
+        Console.Write("                                        ▷잘못된 입력입니다. 다시 입력하세요: ");
+    }
 }

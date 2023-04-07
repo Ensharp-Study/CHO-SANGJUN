@@ -2,20 +2,25 @@
 
 public partial class SelectMenu
 {
-	int menu_number;
+	string menu_number;
+	int int_menu_number;
 
-	public void Method()
+    public void MenuFinder()
 	{	
-		menu_number = int.Parse(Console.ReadLine());
+		string menu_number = Console.ReadLine();
+        ExceptionHandling exceptionHandling = new ExceptionHandling();
+		exceptionHandling.SelectMenuWrong_Fix(menu_number);
         Console.Clear();
 		GamePlay gamePlay = new GamePlay();
         
-		if (menu_number == 1)
+		int_menu_number = int.Parse(menu_number);
+
+		if (int_menu_number == 1)
 		{
 			gamePlay.PlayWithComputer(0,0);
 
         }
-		else if (menu_number == 2)
+		else if (int_menu_number == 2)
 		{
             gamePlay.PlayWithUser(0,0);
         }

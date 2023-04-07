@@ -9,7 +9,7 @@ namespace Game
             Ui menu_ui = new Ui();
             menu_ui.PrintMenuUi();
             SelectMenu selectmenu = new SelectMenu();
-            selectmenu.Method();
+            selectmenu.MenuFinder();
             
 
         } 

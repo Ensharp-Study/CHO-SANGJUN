@@ -25,13 +25,14 @@ public partial class GamePlay
         string not_same_index ="0";
         int findroom;
         int result1 = 0, result2 = 0;
+        ExceptionHandling exceptionHandling = new ExceptionHandling();
 
 
         while (true) { //사용자 선공, 컴퓨터 후공
             //사용자 입력
             Console.Write("                                        ▶ [USER] 번호를 입력하세요:  ");
             user_num = Console.ReadLine();
-            Console.Clear();
+            exceptionHandling.PutNumberWrong_Fix(user_num);
 
             for (i = 0; i < 3; i++)
             {
@@ -43,6 +44,7 @@ public partial class GamePlay
                         room[i, j] = "O"; //사용자가 입력한 칸 O로 표기
                         cnt1++; //다음 인덱스로 표시하기 위해 1 증가
                         
+                        Console.Clear();
                         ui.PrintGameBoard(room); //보드판 출력
                         
                         //밑의 내용은 프로그램 종료 조건이다. (이기거나, 비기거나 -> 9칸이 다 찼을때)
@@ -311,12 +313,14 @@ public partial class GamePlay
         int result1=0, result2=0;   
         int i, j;
         int cnt=0;
-
+        ExceptionHandling exceptionHandling = new ExceptionHandling();
+        
         while (true)
         {
             Console.Write("                                        ▶ [USER1] 번호를 입력하세요:  ");
             user1_num = Console.ReadLine();    //user 1
-            
+            exceptionHandling.PutNumberWrong_Fix(user1_num);
+
             for (i = 0; i < 3; i++)
             {
                 for (j = 0; j < 3; j++)
@@ -342,7 +346,8 @@ public partial class GamePlay
 
             Console.Write("                                        ▶ [USER2] 번호를 입력하세요:  ");
             user2_num = Console.ReadLine(); //user 2
-            
+            exceptionHandling.PutNumberWrong_Fix(user2_num);
+
             for (i = 0; i < 3; i++)
             {
                 for (j = 0; j < 3; j++)
@@ -370,13 +375,9 @@ public partial class GamePlay
 
         if(win_user == "NONE")
         {
-            if( cnt == 9)
+            if( cnt >= 9)
             {
                 win_user = "DRAW";
-            }
-            else
-            {
-                //예외처리
             }
         }
 

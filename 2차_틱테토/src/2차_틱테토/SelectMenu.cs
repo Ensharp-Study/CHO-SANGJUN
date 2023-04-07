@@ -12,7 +12,7 @@ public partial class SelectMenu
         
 		if (menu_number == 1)
 		{
-			gamePlay.PlayWithComputer();
+			gamePlay.PlayWithComputer(0,0);
 
         }
 		else if (menu_number == 2)

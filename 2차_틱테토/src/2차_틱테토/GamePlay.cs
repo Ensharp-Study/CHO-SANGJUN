@@ -6,11 +6,11 @@ public partial class GamePlay
     string[,] room = new string [3, 3] { { "1", "2", "3" }, { "4", "5", "6" }, { "7", "8", "9" } }; //보드판 배열로 정의
     string[,] win_case = new string[8, 3] { { "1", "2", "3" }, { "4", "5", "6" }, { "7", "8", "9" }, { "1", "4", "7" }, { "2", "5", "8" }, { "3", "6", "9" }, { "1", "5", "9" }, { "3", "5", "7" } };
     //이기는 케이스 배열로 정리
-
+    int result1 = 0, result2 = 0;
 
     Ui ui = new Ui();
 
-    public void PlayWithComputer() //컴퓨터 VS USER
+    public void PlayWithComputer(int return_result1, int return_result2) //컴퓨터 VS USER
     {
         int i, j, k,l,m;
         int[] user_choice = new int[5];
@@ -24,7 +24,8 @@ public partial class GamePlay
         int same_num_count=0;
         string not_same_index ="0";
         int findroom;
-   
+        int result1 = 0, result2 = 0;
+
 
         while (true) { //사용자 선공, 컴퓨터 후공
             //사용자 입력
@@ -165,7 +166,7 @@ public partial class GamePlay
                                     result = JudgeWinner("X");
                                     if ((result == 1))
                                     {
-                                        win_user = "user";
+                                        win_user = "computer";
                                         break;
                                     }
                                     if (cnt1 + cnt2 == 9)
@@ -180,7 +181,7 @@ public partial class GamePlay
                             result = JudgeWinner("X");
                             if ((result == 1))
                             {
-                                win_user = "user";
+                                win_user = "computer";
                                 break;
                             }
                             if (cnt1 + cnt2 == 9)
@@ -196,7 +197,7 @@ public partial class GamePlay
                     result = JudgeWinner("X");
                     if ((result == 1))
                     {
-                        win_user = "user";
+                        win_user = "computer";
                         break;
                     }
                     if (cnt1 + cnt2 == 9)
@@ -224,6 +225,22 @@ public partial class GamePlay
             //여기까지
 
 
+        }
+        if(win_user == "computer")
+        {
+            result1 += 1;
+        }
+        else if(win_user == "user")
+        {
+            result2 += 1;
+        }
+
+        ScreenBoard screenBoard = new ScreenBoard();
+        int DoOrNOt = screenBoard.PrintComputerScreenBoard(result1 + return_result1, result2 + return_result2);
+        if (DoOrNOt == 1)
+        {
+            GamePlay gamePlay = new GamePlay();
+            gamePlay.PlayWithComputer(result1 + return_result1, result2 + return_result2);
         }
     }
 
@@ -284,7 +301,7 @@ public partial class GamePlay
         }
     }
 
-    public void PlayWithUser(int a, int b)
+    public void PlayWithUser(int return_result1, int return_result2)
     {
         
         string user1_num="0";
@@ -362,15 +379,13 @@ public partial class GamePlay
                 //예외처리
             }
         }
-        
-        //Console.WriteLine(win_user);
 
         ScreenBoard screenBoard = new ScreenBoard();
-        int DoOrNOt = screenBoard.PrintScreenBoard(result1+a, result2+b);
+        int DoOrNOt = screenBoard.PrintUserScreenBoard(result1+ return_result1, result2 + return_result2);
         if(DoOrNOt == 1)
         {
             GamePlay gamePlay = new GamePlay();
-            gamePlay.PlayWithUser(result1 + a, result2 + b);
+            gamePlay.PlayWithUser(result1 + return_result1, result2 + return_result2);
         }
     }
 }

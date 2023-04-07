@@ -64,7 +64,7 @@ public partial class Ui
 
     }
         
-    public void PrintScoreBoardUi(int user1, int user2)
+    public void PrintUserScoreBoardUi(int user1, int user2)
     {
 
             Console.WriteLine("                             *************************************************");
@@ -76,6 +76,19 @@ public partial class Ui
         Console.WriteLine("           *");
         Console.WriteLine("                             *                                               *");
             Console.WriteLine("                             *************************************************");
+    }
+    public void PrintComputerScoreBoardUi(int user1, int user2)
+    {
+
+        Console.WriteLine("                             *************************************************");
+        Console.WriteLine("                             *                                               *");
+        Console.WriteLine("                             *                 SCREEN BOARD                  *");
+        Console.WriteLine("                             *                                               *");
+        Console.Write("                             *");
+        Console.Write("             [USER] {0}: [COMPUTER] {1} ", user1, user2);
+        Console.WriteLine("           *");
+        Console.WriteLine("                             *                                               *");
+        Console.WriteLine("                             *************************************************");
     }
 
     public void DoItAgain()

@@ -6,8 +6,8 @@ namespace Game
     public class TicTacToe {
         public static void Main(string[] args)
         {
-            SelectMenu selectmenu = new SelectMenu();
-            selectmenu.MenuFinder();
+            SelectingMenu selectingMenu = new SelectingMenu();
+            selectingMenu.MenuFinder();
             
         } 
     }

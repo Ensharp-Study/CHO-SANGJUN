@@ -140,8 +140,4 @@ public partial class Ui
         Console.Write("                                            ▷선택 : ");
     }
 
-    public void Print()
-    {
-
-    }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Intrinsics.X86;
 
-public partial class SelectMenu
+public partial class SelectingMenu
 {
 	string menuNumber;
 	int intMenuNumber;
@@ -23,7 +23,7 @@ public partial class SelectMenu
             string menuNumber = Console.ReadLine(); //메뉴 번호 입력받기
 			intMenuNumber = int.Parse(menuNumber);
 
-			exceptionHandling.SelectMenuWrong_Fix(menuNumber); //예외처리
+			exceptionHandling.SelectMenuWrongFix(menuNumber); //예외처리
 			Console.Clear();
 
 

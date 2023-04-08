@@ -3,19 +3,19 @@
 public partial class ExceptionHandling
 {
 
-    public void SelectMenuWrong_Fix(string menu_number) 
+    public void SelectMenuWrongFix(string menuNumber) 
     {
         Ui ui = new Ui(); // (메소드 밖에 선언하면 안되는 이유 찾아보기)
-        SelectMenu selectMenu = new SelectMenu();
+        SelectingMenu selectMenu = new SelectingMenu();
 
-        if ( (menu_number != "1") && (menu_number != "2") && (menu_number != "3") && (menu_number != "4"))
+        if ( (menuNumber != "1") && (menuNumber != "2") && (menuNumber != "3") && (menuNumber != "4"))
         {
             ui.WrongMenuNumInput();
             selectMenu.MenuFinder();
         }
         
     }
-    public void PutNumberWrong_Fix(string number)
+    public void PutNumberWrongFix(string number)
     {
         Ui ui = new Ui();
         

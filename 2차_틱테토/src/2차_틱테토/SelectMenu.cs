@@ -2,32 +2,46 @@
 
 public partial class SelectMenu
 {
-	string menu_number;
-	int int_menu_number;
+	string menuNumber;
+	int intMenuNumber;
+	
 
-    public void MenuFinder()
-	{	
-		string menu_number = Console.ReadLine();
-        ExceptionHandling exceptionHandling = new ExceptionHandling();
-		exceptionHandling.SelectMenuWrong_Fix(menu_number);
-        Console.Clear();
-		GamePlay gamePlay = new GamePlay();
-        
-		int_menu_number = int.Parse(menu_number);
+    ExceptionHandling exceptionHandling = new ExceptionHandling();
+    GamePlay gamePlay = new GamePlay();
+	Ui ui = new Ui();	
+    public void MenuFinder() // 메뉴 고르기
+	{
+		int judgingEnd;
 
-		if (int_menu_number == 1)
+		while (true)
 		{
-			gamePlay.PlayWithComputer(0,0);
+            ui.PrintMenuUi();
+            string menuNumber = Console.ReadLine(); //메뉴 번호 입력받기
+			intMenuNumber = int.Parse(menuNumber);
 
-        }
-		else if (int_menu_number == 2)
-		{
-            gamePlay.PlayWithUser(0,0);
-        }
-		else
-		{
-			
-			//에외 처리
+			exceptionHandling.SelectMenuWrong_Fix(menuNumber); //예외처리
+			Console.Clear();
+
+
+			if (intMenuNumber == 1)
+			{
+                judgingEnd = gamePlay.PlayWithComputer(0, 0);
+				if (judgingEnd == 1)
+				{
+					break;
+				}
+			}
+			else if (intMenuNumber == 2)
+			{
+				gamePlay.PlayWithUser(0, 0);
+			}
+			else if (intMenuNumber == 3)
+			{
+				//프로그램 종료 위해 while 탈출
+				ui.PrintEndSign();
+                break;
+			}
 		}
+		return; //프로그램 종료
 	}
 }

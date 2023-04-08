@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\junch\\OneDrive\\바탕 화면\\en#\\2차_틱테토\\2차_틱테토\\2차_틱테토.csproj",
+      "projectUniqueName": "C:\\Users\\junch\\OneDrive\\바탕 화면\\en#\\2차_틱테토\\src\\2차_틱테토\\2차_틱테토.csproj",
       "projectName": "2차_틱테토",
-      "projectPath": "C:\\Users\\junch\\OneDrive\\바탕 화면\\en#\\2차_틱테토\\2차_틱테토\\2차_틱테토.csproj",
+      "projectPath": "C:\\Users\\junch\\OneDrive\\바탕 화면\\en#\\2차_틱테토\\src\\2차_틱테토\\2차_틱테토.csproj",
       "packagesPath": "C:\\Users\\junch\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\junch\\OneDrive\\바탕 화면\\en#\\2차_틱테토\\2차_틱테토\\obj\\",
+      "outputPath": "C:\\Users\\junch\\OneDrive\\바탕 화면\\en#\\2차_틱테토\\src\\2차_틱테토\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\junch\\AppData\\Roaming\\NuGet\\NuGet.Config",

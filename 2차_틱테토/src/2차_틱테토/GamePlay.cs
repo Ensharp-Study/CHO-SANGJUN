@@ -3,14 +3,16 @@ using System.Security.Principal;
 
 public partial class GamePlay
 {
+    int result1 = 0, result2 = 0;
     string[,] room = new string [3, 3] { { "1", "2", "3" }, { "4", "5", "6" }, { "7", "8", "9" } }; //보드판 배열로 정의
     string[,] win_case = new string[8, 3] { { "1", "2", "3" }, { "4", "5", "6" }, { "7", "8", "9" }, { "1", "4", "7" }, { "2", "5", "8" }, { "3", "6", "9" }, { "1", "5", "9" }, { "3", "5", "7" } };
     //이기는 케이스 배열로 정리
-    int result1 = 0, result2 = 0;
 
     Ui ui = new Ui();
+    ExceptionHandling exceptionHandling = new ExceptionHandling();
+    ExitConfirmation exitConfirmation = new ExitConfirmation(); 
 
-    public void PlayWithComputer(int return_result1, int return_result2) //컴퓨터 VS USER
+    public int PlayWithComputer(int return_result1, int return_result2) //컴퓨터 VS USER
     {
         int i, j, k,l,m;
         int[] user_choice = new int[5];
@@ -23,16 +25,38 @@ public partial class GamePlay
         string win_user;
         int same_num_count=0;
         string not_same_index ="0";
-        int findroom;
         int result1 = 0, result2 = 0;
-        ExceptionHandling exceptionHandling = new ExceptionHandling();
+        int exitConfirmationNumber;
+
+        int CHOOSINGMENUAGAIN = 0; //메뉴 다시 선택할때
+        int ENDINGGAME = 1; //게임 종료할때
+        int CHOOSINGERROR = 2; // 종료하기 버튼 잘못 눌렀을때
 
 
         while (true) { //사용자 선공, 컴퓨터 후공
-            //사용자 입력
-            Console.Write("                                        ▶ [USER] 번호를 입력하세요:  ");
+                       //사용자 입력
+            ui.PrintGameBoard(room); //보드판 출력
+            ui.PrintExitConfirmation();
+
+            Console.Write("                                        ▶ [USER]의 번호를 입력하세요:  ");
             user_num = Console.ReadLine();
             exceptionHandling.PutNumberWrong_Fix(user_num);
+            exitConfirmationNumber= exitConfirmation.JudgeExitCode(user_num);
+            if(exitConfirmationNumber==0)
+            {
+                return CHOOSINGMENUAGAIN;
+            }
+            else if(exitConfirmationNumber==1) 
+            {
+                return ENDINGGAME;
+            }
+            else if (exitConfirmationNumber == 2)
+            {
+                ui.PrintGameBoard(room); //보드판 출력
+                ui.PrintExitConfirmation();
+                Console.Write("                                        ▶ [USER]의 번호를 입력하세요:  ");
+                user_num = Console.ReadLine();
+            }
 
             for (i = 0; i < 3; i++)
             {
@@ -244,6 +268,8 @@ public partial class GamePlay
             GamePlay gamePlay = new GamePlay();
             gamePlay.PlayWithComputer(result1 + return_result1, result2 + return_result2);
         }
+
+        return -1;
     }
 
     public string JudgeFirstComputerChoice(int i, int j)

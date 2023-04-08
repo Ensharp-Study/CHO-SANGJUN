@@ -16,7 +16,7 @@ public partial class Ui
         Console.WriteLine("                             *                                               *");
         Console.WriteLine("                             *             2. USER VS USER                   *");
         Console.WriteLine("                             *                                               *");
-        Console.WriteLine("                             *                                               *");
+        Console.WriteLine("                             *             3. 종료하기                       *");
         Console.WriteLine("                             *                                               *");
         Console.WriteLine("                             *                                               *");
         Console.WriteLine("                             *                                               *");
@@ -108,5 +108,35 @@ public partial class Ui
     public void WrongBoardNumInput()
     {
         Console.Write("                                        ▷잘못된 입력입니다. 다시 입력하세요: ");
+    }
+    public void PrintEndSign()
+    {
+        Console.WriteLine("                             *************************************************");
+        Console.WriteLine("                             *                                               *");
+        Console.WriteLine("                             *               게임이 종료됩니다               *");
+        Console.WriteLine("                             *                                               *");
+        Console.WriteLine("                             *************************************************");
+    }
+    public void PrintExitConfirmation()
+    {
+        Console.WriteLine("                             *************************************************");
+        Console.WriteLine("                             *                                               *");
+        Console.WriteLine("                             *              A.메뉴 다시 선택하기             *");
+        Console.WriteLine("                             *                                               *");
+        Console.WriteLine("                             *                 B.게임 종료하기               *");
+        Console.WriteLine("                             *                                               *");
+        Console.WriteLine("                             *************************************************");
+    }
+    public void PrintReAskExitConfirmation()
+    {
+        Console.WriteLine("                             *************************************************");
+        Console.WriteLine("                             *                                               *");
+        Console.WriteLine("                             *             정말로 종료하시겠습니까?          *");
+        Console.WriteLine("                             *                                               *");
+        Console.WriteLine("                             *                 1. 종료하기                   *");
+        Console.WriteLine("                             *                 2. 돌아가기                   *");
+        Console.WriteLine("                             *                                               *");
+        Console.WriteLine("                             *************************************************");
+        Console.Write("                                            ▷선택 : ");
     }
 }

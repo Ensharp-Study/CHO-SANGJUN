@@ -18,6 +18,8 @@ public partial class GamePlay
     int ENDINGGAME = 1; //게임 종료할때
     int CHOOSINGERROR = 2; // 종료하기 버튼 잘못 눌렀을때
 
+
+
     public int PlayWithComputer(int return_result1, int return_result2) //컴퓨터 VS USER
     {
         int i, j, k, l, m;
@@ -253,6 +255,7 @@ public partial class GamePlay
 
 
         }
+
         if (win_user == "computer")
         {
             result1 += 1;

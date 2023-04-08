@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Intrinsics.X86;
 
 public partial class SelectMenu
 {
@@ -7,8 +8,11 @@ public partial class SelectMenu
 	
 
     ExceptionHandling exceptionHandling = new ExceptionHandling();
+	Ui ui = new Ui();
+	ScreenBoard screenBoard = new ScreenBoard();
     GamePlay gamePlay = new GamePlay();
-	Ui ui = new Ui();	
+
+
     public void MenuFinder() // 메뉴 고르기
 	{
 		int judgingEnd;
@@ -41,7 +45,12 @@ public partial class SelectMenu
 				ui.PrintEndSign();
                 break;
 			}
-		}
+            else if (intMenuNumber == 4)
+            {
+				// 점수판 출력
+				ui.PrintUserScoreBoardUi(screenBoard.scoreSavedArr[0], screenBoard.scoreSavedArr[1]);
+            }
+        }
 		return; //프로그램 종료
 	}
 }

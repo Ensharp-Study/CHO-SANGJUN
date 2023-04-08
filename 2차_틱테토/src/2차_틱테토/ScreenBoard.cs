@@ -5,11 +5,15 @@ public partial class ScreenBoard
 {
     public int user1_win_count;
     public int user2_win_count;
+    public int[] scoreSavedArr = { 0, 0 };
 
     public int PrintUserScreenBoard(int user1_score, int user2_score)
     {
+        scoreSavedArr[0] = user1_score;
+        scoreSavedArr[1] = user2_score;
+
         Ui ui = new Ui();
-        ui.PrintUserScoreBoardUi(user1_score, user2_score);
+        ui.PrintUserScoreBoardUi(scoreSavedArr[0], scoreSavedArr[1]);
         ui.DoItAgain();
         int do_or_not = int.Parse(Console.ReadLine());
         if (do_or_not == 1)
@@ -29,8 +33,13 @@ public partial class ScreenBoard
 
     public int PrintComputerScreenBoard(int user1_score, int user2_score)
     {
+        
+        scoreSavedArr[0] = user1_score;
+        scoreSavedArr[1] = user2_score;
+
         Ui ui = new Ui();
-        ui.PrintComputerScoreBoardUi(user1_score, user2_score);
+        ui.PrintComputerScoreBoardUi(scoreSavedArr[0], scoreSavedArr[1]);
+        
         ui.DoItAgain();
         int do_or_not = int.Parse(Console.ReadLine());
         if (do_or_not == 1)

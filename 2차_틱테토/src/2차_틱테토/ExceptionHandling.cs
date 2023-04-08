@@ -8,7 +8,7 @@ public partial class ExceptionHandling
         Ui ui = new Ui(); // (메소드 밖에 선언하면 안되는 이유 찾아보기)
         SelectMenu selectMenu = new SelectMenu();
 
-        if ( (menu_number != "1") && (menu_number != "2") && (menu_number != "3"))
+        if ( (menu_number != "1") && (menu_number != "2") && (menu_number != "3") && (menu_number != "4"))
         {
             ui.WrongMenuNumInput();
             selectMenu.MenuFinder();

@@ -18,7 +18,7 @@ public partial class Ui
         Console.WriteLine("                             *                                               *");
         Console.WriteLine("                             *             3. 종료하기                       *");
         Console.WriteLine("                             *                                               *");
-        Console.WriteLine("                             *                                               *");
+        Console.WriteLine("                             *             4. 점수판 보기                    *");
         Console.WriteLine("                             *                                               *");
         Console.WriteLine("                             *                                               *");
         Console.WriteLine("                             *************************************************");
@@ -138,5 +138,10 @@ public partial class Ui
         Console.WriteLine("                             *                                               *");
         Console.WriteLine("                             *************************************************");
         Console.Write("                                            ▷선택 : ");
+    }
+
+    public void Print()
+    {
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 public class BookFinder
 {
@@ -8,14 +9,24 @@ public class BookFinder
 	public void FindBook(Data data, Ui ui, MagicNumber magicNumber)
 	{
 		ui.PrintBookListMenu();
-		ui.PrintBookList(data);
+		for (int i = 0; i < data.bookList.Count; i++)
+		{
+			ui.PrintBookList(data, i);
+		}
 		Console.SetCursorPosition(17, 1);
 		title = Console.ReadLine();
         Console.SetCursorPosition(19, 2);
-        title = Console.ReadLine();
+        Author = Console.ReadLine();
         Console.SetCursorPosition(17, 3);
-        title = Console.ReadLine();
+        publisher = Console.ReadLine();
 
-		//정규 표현식
+		Console.WriteLine("\n\n\n");
+        for (int i = 0; i < data.bookList.Count; i++)
+		{
+			if((data.bookList[i].bookName.Contains(title)) || (data.bookList[i].bookAuthor.Contains(Author)) || (data.bookList[i].bookPublisher.Contains(publisher)))
+			{ 
+                ui.PrintBookList(data, i);
+			}
+		}
     }
 }

@@ -31,7 +31,7 @@ public class Login
                     {
                         if (Regex.IsMatch(data.userList[indexJ].password, pattern))
                         {
-                            usermenu.ControllUserMenu(ui, data, magicNumber);
+                            usermenu.ControllUserMenu(ui, data, magicNumber, data.userList[indexJ]);
                             isJudgingCorrectInput =false;
                         }
                         else

@@ -11,7 +11,13 @@ public class UserInf
     public int userAge { get; set; }
     public string userPhoneNumber { get; set; }
 
-    public List<string> borrowBookList { get; set; }
+    public List<string> borrowBookList { get ; set; }
+    
     public List<string> returnBookList { get; set; }
-
+   
+    public UserInf()
+    {
+        borrowBookList = new List<string>();
+        returnBookList = new List<string>();
+    }
 }

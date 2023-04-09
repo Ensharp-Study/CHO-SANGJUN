@@ -1,0 +1,8 @@
+C:\Users\junch\OneDrive\바탕 화면\en#\3차_라이브러리\src\3차_라이브러리\obj\Debug\3차_라이브러리.csproj.AssemblyReference.cache
+C:\Users\junch\OneDrive\바탕 화면\en#\3차_라이브러리\src\3차_라이브러리\obj\Debug\3차_라이브러리.csproj.SuggestedBindingRedirects.cache
+C:\Users\junch\OneDrive\바탕 화면\en#\3차_라이브러리\src\3차_라이브러리\obj\Debug\3차_라이브러리.csproj.CoreCompileInputs.cache
+C:\Users\junch\OneDrive\바탕 화면\en#\3차_라이브러리\src\3차_라이브러리\bin\Debug\3차_라이브러리.exe.config
+C:\Users\junch\OneDrive\바탕 화면\en#\3차_라이브러리\src\3차_라이브러리\bin\Debug\3차_라이브러리.exe
+C:\Users\junch\OneDrive\바탕 화면\en#\3차_라이브러리\src\3차_라이브러리\bin\Debug\3차_라이브러리.pdb
+C:\Users\junch\OneDrive\바탕 화면\en#\3차_라이브러리\src\3차_라이브러리\obj\Debug\3차_라이브러리.exe
+C:\Users\junch\OneDrive\바탕 화면\en#\3차_라이브러리\src\3차_라이브러리\obj\Debug\3차_라이브러리.pdb

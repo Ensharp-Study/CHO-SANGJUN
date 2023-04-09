@@ -48,6 +48,13 @@
     <Compile Include="CONTROLLER\LibraryMain.cs" />
     <Compile Include="CONTROLLER\Login.cs" />
     <Compile Include="CONTROLLER\UserMenu.cs" />
+    <Compile Include="CONTROLLER\USERMENU\BookBorrowList.cs" />
+    <Compile Include="CONTROLLER\USERMENU\BookFinder.cs" />
+    <Compile Include="CONTROLLER\USERMENU\BookReturnList.cs" />
+    <Compile Include="CONTROLLER\USERMENU\BorrowingBook.cs" />
+    <Compile Include="CONTROLLER\USERMENU\DeleteUserInf.cs" />
+    <Compile Include="CONTROLLER\USERMENU\EditUserInf.cs" />
+    <Compile Include="CONTROLLER\USERMENU\ReturningBook.cs" />
     <Compile Include="MODEL\BookInf.cs" />
     <Compile Include="MODEL\Data.cs" />
     <Compile Include="MODEL\MagicNumber.cs" />

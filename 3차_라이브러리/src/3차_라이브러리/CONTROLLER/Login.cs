@@ -5,42 +5,49 @@ public class Login
 {
     Data data = new Data();
     UserMenu usermenu = new UserMenu();
-    public void GetLogin(Ui ui)
+    public void GetLogin(Ui ui,MagicNumber magicNumber)
     {
         string id;
         string password;
         string pattern;
-        
-
-        ui.PrintLoginMenu();
-        Console.SetCursorPosition(53, 23);
-        id = Console.ReadLine();
-        Console.SetCursorPosition(61, 24);
-        password = Console.ReadLine();
-
+        bool isJudgingCorrectInput = true;
         //정규표준식을 이용하여 id 및 패스워드 동일 한지 탐색
-        pattern = id;
-        
-        for(int indexI=0; indexI<data.userList.Count; indexI++ )
+
+        while (isJudgingCorrectInput)
         {
-            if (Regex.IsMatch(data.userList[indexI].id, pattern))
+            ui.PrintLoginMenu();
+            Console.SetCursorPosition(53, 23);
+            id = Console.ReadLine();
+            pattern = id;
+            Console.SetCursorPosition(61, 24);
+            password = Console.ReadLine();
+
+            for (int indexI = 0; indexI < data.userList.Count; indexI++)
             {
-                pattern = password;
-                for (int indexJ = 0; indexJ < data.userList.Count; indexJ++)
+                if (Regex.IsMatch(data.userList[indexI].id, pattern))
                 {
-                    if (Regex.IsMatch(data.userList[indexJ].password, pattern))
+                    pattern = password;
+                    for (int indexJ = 0; indexJ < data.userList.Count; indexJ++)
                     {
-                        usermenu.ControllUserMenu(ui, data);
-                    }
-                    else
-                    {
-                        Console.WriteLine("비밀번호 입력이 틀렸습니다.");
+                        if (Regex.IsMatch(data.userList[indexJ].password, pattern))
+                        {
+                            usermenu.ControllUserMenu(ui, data, magicNumber);
+                            isJudgingCorrectInput =false;
+                        }
+                        else
+                        {
+                            Console.WriteLine("\n\n                                   비밀번호 입력이 틀렸습니다. 다시 입력하세요        ");
+                        }
                     }
                 }
+                else
+                {
+                    Console.WriteLine("\n\n                             아이디 또는 비밀번호 입력이 틀렸습니다. 다시 입력하세요");
+                }
+
             }
-            
         }
-        //회원정보가 없습니다 처리
+        
 
     }
 }

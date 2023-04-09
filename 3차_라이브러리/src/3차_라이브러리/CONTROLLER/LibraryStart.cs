@@ -8,12 +8,12 @@ public class LibraryStart
     public void SelectMenu()
     {
         int menuNumber;
-        ui.MainMenuView();
+        ui.ViewMainMenu();
         menuNumber = ui.PrintSelectMenu(magicNumber);
 
         if(menuNumber == magicNumber.USERMODE) {  //유저모드
             Login login = new Login();
-            login.GetLogin(ui);
+            login.GetLogin(ui,magicNumber);
         }
         else if(menuNumber == magicNumber.ADMINMODE)
         {

@@ -1,7 +1,8 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Collections.Generic;
 
-
-namespace _3차_라이브러리
+namespace Library
 {
     internal class LibraryMain
     {
@@ -9,7 +10,6 @@ namespace _3차_라이브러리
         {
             LibraryStart libraryStart = new LibraryStart();
             libraryStart.SelectMenu();
-
         }
     }
 }

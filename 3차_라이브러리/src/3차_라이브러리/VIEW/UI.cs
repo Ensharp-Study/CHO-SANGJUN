@@ -97,4 +97,30 @@ public class Ui {
         Console.WriteLine("패스워드(PASSWORD) : ");
 
     }
+
+    public void PrintUserMenu()
+    {
+        Console.SetCursorPosition(0, 21);
+        Console.WriteLine("                        _______________________________________________________________                        ");
+        Console.WriteLine("                       |                                                               |                       ");
+        Console.WriteLine("                       |                                                               |                       ");
+        Console.WriteLine("                       |                           도서 업무                           |                       ");
+        Console.WriteLine("                       |                                                               |                       ");
+        Console.WriteLine("                       |                         책 정보 검색                          |                       ");
+        Console.WriteLine("                       |                                                               |                       ");
+        Console.WriteLine("                       |                         책 대여하기                           |                       ");
+        Console.WriteLine("                       |                                                               |                       ");
+        Console.WriteLine("                       |                          대여목록 확인                        |                       ");
+        Console.WriteLine("                       |                                                               |                       ");
+        Console.WriteLine("                       |                         책 반납하기                           |                       ");
+        Console.WriteLine("                       |                                                               |                       ");
+        Console.WriteLine("                       |                           반납목록 확인                       |                       ");
+        Console.WriteLine("                       |                                                               |                       ");
+        Console.WriteLine("                       |                          회원정보 수정                        |                       ");
+        Console.WriteLine("                       |                                                               |                       ");
+        Console.WriteLine("                       |                          회원 탈퇴                            |                       ");
+        Console.WriteLine("                       |                                                               |                       ");
+        Console.WriteLine("                       -----------------------------------------------------------------                       ");
+
+    }
 }

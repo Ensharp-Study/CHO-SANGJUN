@@ -43,14 +43,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdministratorMode.cs" />
-    <Compile Include="LibraryStart.cs" />
-    <Compile Include="LibraryMain.cs" />
-    <Compile Include="Login.cs" />
-    <Compile Include="MagicNumber.cs" />
+    <Compile Include="CONTROLLER\AdministratorMode.cs" />
+    <Compile Include="CONTROLLER\LibraryStart.cs" />
+    <Compile Include="CONTROLLER\LibraryMain.cs" />
+    <Compile Include="CONTROLLER\Login.cs" />
+    <Compile Include="CONTROLLER\UserMenu.cs" />
+    <Compile Include="MODEL\BookInf.cs" />
+    <Compile Include="MODEL\Data.cs" />
+    <Compile Include="MODEL\MagicNumber.cs" />
+    <Compile Include="MODEL\UserInf.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UI.cs" />
-    <Compile Include="UserMode.cs" />
+    <Compile Include="VIEW\UI.cs" />
+    <Compile Include="CONTROLLER\UserMode.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -11,13 +11,13 @@ public class LibraryStart
         ui.MainMenuView();
         menuNumber = ui.PrintSelectMenu(magicNumber);
 
-        if(menuNumber == magicNumber.USERMODE) { 
+        if(menuNumber == magicNumber.USERMODE) {  //유저모드
             Login login = new Login();
             login.GetLogin(ui);
         }
         else if(menuNumber == magicNumber.ADMINMODE)
         {
-
+            //관리자 모드
         }
       
     }

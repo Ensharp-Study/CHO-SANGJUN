@@ -12,4 +12,8 @@ public class MagicNumber
     public int BOOKRETURNLIST = 4;
     public int EDITUSERINF = 5;
     public int DELETEUSERINF = 6;
+
+    public int LOGIN = 0;
+    public int SIGNUP= 1;
+
 }

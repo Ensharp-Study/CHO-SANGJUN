@@ -4,6 +4,7 @@ public class LibraryStart
 {
     Ui ui = new Ui();
     MagicNumber magicNumber = new MagicNumber();
+    SelectingSignInOrSignUp selectingSignInOrSignUp = new SelectingSignInOrSignUp();
 
     public void SelectMenu()
     {
@@ -12,8 +13,7 @@ public class LibraryStart
         menuNumber = ui.PrintSelectMenu(magicNumber);
 
         if(menuNumber == magicNumber.USERMODE) {  //유저모드
-            Login login = new Login();
-            login.GetLogin(ui,magicNumber);
+            selectingSignInOrSignUp.SelectSignOrSignUp(ui,magicNumber);
         }
         else if(menuNumber == magicNumber.ADMINMODE)
         {

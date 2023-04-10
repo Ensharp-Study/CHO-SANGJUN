@@ -3,9 +3,10 @@ using System.Text.RegularExpressions;
 
 public class Login
 {
-    Data data = new Data();
     UserMenu usermenu = new UserMenu();
-    public void GetLogin(Ui ui,MagicNumber magicNumber)
+    Wrong wrong = new Wrong();
+
+    public void GetLogin(Ui ui,MagicNumber magicNumber, Data data)
     {
         string id;
         string password;
@@ -18,6 +19,7 @@ public class Login
             ui.PrintLoginMenu();
             Console.SetCursorPosition(53, 23);
             id = Console.ReadLine();
+             
             pattern = id;
             Console.SetCursorPosition(61, 24);
             password = Console.ReadLine();
@@ -47,7 +49,5 @@ public class Login
 
             }
         }
-        
-
     }
 }

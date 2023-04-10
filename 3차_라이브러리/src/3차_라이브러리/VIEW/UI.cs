@@ -39,6 +39,7 @@ public class Ui
         Console.SetCursorPosition(50, 24);
         Console.ForegroundColor = ConsoleColor.White;
         Console.WriteLine("○ 관리자 모드");
+        selectedMenuNum = magicNumber.USERMODE;
 
         while (isCheckedEnter == false)
         {
@@ -79,7 +80,78 @@ public class Ui
 
         return -1;
     }
+    public int PrintLoginOrSignUpMenu(MagicNumber magicNumber)
+    {
+        ConsoleKeyInfo inputKey;
+        bool isCheckedEnter = false;
+        int selectedMenuNum = -1;
 
+        Console.SetCursorPosition(50, 23);
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("○ 로그인                         ");
+        Console.SetCursorPosition(50, 24);
+        Console.ForegroundColor = ConsoleColor.White;
+        Console.WriteLine("○ 회원가입                       ");
+        selectedMenuNum = magicNumber.USERMODE;
+
+        while (isCheckedEnter == false)
+        {
+            inputKey = Console.ReadKey();
+            if (inputKey.Key == ConsoleKey.UpArrow)
+            {
+                Console.SetCursorPosition(50, 23);
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("○ 로그인                  ");
+                Console.SetCursorPosition(50, 24);
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("○ 회원가입                ");
+                selectedMenuNum = magicNumber.LOGIN;
+            }
+            else if (inputKey.Key == ConsoleKey.DownArrow)
+            {
+                Console.SetCursorPosition(50, 23);
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("○ 로그인                  ");
+                Console.SetCursorPosition(50, 24);
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("○ 회원가입                ");
+                Console.ResetColor();
+                selectedMenuNum = magicNumber.SIGNUP;
+            }
+            else if (inputKey.Key == ConsoleKey.Enter)
+            {
+                isCheckedEnter = true;
+            }
+        }
+        if (selectedMenuNum == magicNumber.LOGIN)
+        {
+            return magicNumber.LOGIN;
+        }
+        else if (selectedMenuNum == magicNumber.SIGNUP)
+        {
+            return magicNumber.SIGNUP;
+        }
+
+        return -1;
+
+
+    }
+    public void PrintSignUpMenu()
+    {
+        Console.SetCursorPosition(50, 22);
+        Console.WriteLine("                                              ");
+        Console.SetCursorPosition(50, 23);
+        Console.WriteLine("회 원 가 입");
+        Console.SetCursorPosition(34, 25);
+        Console.WriteLine("ESC : 뒤로가기              ENTER : 입력하기  ");
+    }
+    public void PrintSignUpInputMenu()
+    {
+        Console.SetCursorPosition(60, 22);
+        Console.WriteLine("\n");
+        Console.WriteLine("회 원 가 입");
+        Console.WriteLine("ESC : 뒤로가기              ENTER : 입력하기  ");
+    }
     public void PrintLoginMenu()
     {
         Console.SetCursorPosition(50, 22);

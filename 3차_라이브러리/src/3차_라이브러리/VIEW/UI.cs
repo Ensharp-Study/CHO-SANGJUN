@@ -159,7 +159,7 @@ public class Ui
         Console.WriteLine("                       ex) 경기도 수원시 영통구 영통로 124");
         Console.WriteLine("                       ex) 서울특별시 강남구 남부순환로 지하 2744");
         Console.WriteLine("                       ex) 서울특별시 마포구 큰우물로 28");
-
+        Console.ResetColor();
     }
     public void PrintLoginMenu()
     {

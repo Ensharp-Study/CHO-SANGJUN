@@ -147,10 +147,19 @@ public class Ui
     }
     public void PrintSignUpInputMenu()
     {
-        Console.SetCursorPosition(60, 22);
         Console.WriteLine("\n");
-        Console.WriteLine("회 원 가 입");
-        Console.WriteLine("ESC : 뒤로가기              ENTER : 입력하기  ");
+        Console.WriteLine("                       User ID (8~15글자 영어 ,숫자 포함) : ");
+        Console.WriteLine("                       User PW (8~15글자 영어 ,숫자 포함) : ");
+        Console.WriteLine("                       User PW (      PASSWORD 확인     ) : ");
+        Console.WriteLine("                       User Name (한글,영어 포함 1글자 이상) : ");
+        Console.WriteLine("                       User Age ( 0,자연수 0세 ~ 200세 ) : ");
+        Console.WriteLine("                       User PhoneNumber (  01x-xxxx-xxxx  ) : ");
+        Console.WriteLine("                       User Address (  도로명 주소 - 00시 00구  ) : ");
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("                       ex) 경기도 수원시 영통구 영통로 124");
+        Console.WriteLine("                       ex) 서울특별시 강남구 남부순환로 지하 2744");
+        Console.WriteLine("                       ex) 서울특별시 마포구 큰우물로 28");
+
     }
     public void PrintLoginMenu()
     {

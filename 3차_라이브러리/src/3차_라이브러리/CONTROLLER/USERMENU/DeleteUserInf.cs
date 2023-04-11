@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class DeletingUserInf
+public class DeletingUserInf //inf와같이 줄임말 
 {
 	public void DeleteUserInf(Data data, UserInf user)
 	{

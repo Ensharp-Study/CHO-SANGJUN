@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 public class Login
 {
     UserMenu usermenu = new UserMenu();
-    Wrong wrong = new Wrong();
+    ExceptionHandling exceptionHandling = new ExceptionHandling();
 
     public void GetLogin(Ui ui,MagicNumber magicNumber, Data data)
     {
@@ -14,8 +14,8 @@ public class Login
         bool isJudgingCorrectInput = true;
         //정규표준식을 이용하여 id 및 패스워드 동일 한지 탐색
 
-        while (isJudgingCorrectInput)
-        {
+        //while (isJudgingCorrectInput)
+        //{
             ui.PrintLoginMenu();
             Console.SetCursorPosition(53, 23);
             id = Console.ReadLine();
@@ -48,6 +48,6 @@ public class Login
                 }
 
             }
-        }
+      //  }
     }
 }

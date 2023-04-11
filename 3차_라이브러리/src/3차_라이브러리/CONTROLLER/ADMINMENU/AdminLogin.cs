@@ -1,12 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace _3차_라이브러리.CONTROLLER.ADMINMENU
+public class AdminLogin
 {
-    internal class AdminLogin
-    {
+    Ui ui;
+    MagicNumber magicNumber;
+    Data data;
+    
+    public AdminLogin(Ui ui , MagicNumber magicNumber, Data data) {
+        this.ui = ui;   
+        this.magicNumber = magicNumber;
+        this.data = data;
     }
+
+    /*public GetLogin()
+    {
+        
+    } */
 }
+
+
+
+

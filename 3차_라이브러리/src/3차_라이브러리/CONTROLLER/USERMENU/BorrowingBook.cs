@@ -25,7 +25,7 @@ public class BorrowingBook
 
 		}
 		
-        if (data.bookList[sameIndex].bookQuantity > 0)
+        if (data.bookList[sameIndex].bookQuantity > 0)   //view쪽으로
         {
             Console.SetCursorPosition(0, 3);
             Console.WriteLine("      책 빌리기 성공!                          ");

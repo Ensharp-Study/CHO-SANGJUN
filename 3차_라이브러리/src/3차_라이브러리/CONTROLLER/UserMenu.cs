@@ -8,7 +8,9 @@ public class UserMenu
 		ui.ViewUserMenu();
 		menuNumber = ui.PrintSelectUserMenu(magicNumber);
         Console.Clear();
-        if (menuNumber == magicNumber.BOOKFINDER) 
+
+        //상속을 활용하기 좀 더 고민해서 유저 관리자가 둘다 코드 재활용할 수 있을지 클래스 분할
+        if (menuNumber == magicNumber.BOOKFINDER)   //스위치
         {  
             BookFinder bookFinder = new BookFinder();
             bookFinder.FindBook(data, ui, magicNumber);

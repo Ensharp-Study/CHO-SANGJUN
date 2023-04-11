@@ -7,10 +7,6 @@ public class SignUp
     UserInf newUserInf = new UserInf();
 	string reInputPassword; 
 
-    public SignUp()
-	{
-
-	}
 	public void SignUpAccount(Ui ui, MagicNumber magicNumber, Data data)
 	{
 		ui.PrintSignUpMenu();
@@ -36,7 +32,7 @@ public class SignUp
         newUserInf.userAddress = Console.ReadLine();
         
         data.userList.Add(newUserInf);
-        Console.Clear();
+        Console.SetCursorPosition(60, 28);
         return;
     }
 }

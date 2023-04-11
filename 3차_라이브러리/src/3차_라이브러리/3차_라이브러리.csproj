@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CONTROLLER\AdministratorMode.cs" />
+    <Compile Include="CONTROLLER\ADMINMENU\AdminLogin.cs" />
     <Compile Include="CONTROLLER\LibraryStart.cs" />
     <Compile Include="CONTROLLER\LibraryMain.cs" />
     <Compile Include="CONTROLLER\Login.cs" />
@@ -57,7 +58,7 @@
     <Compile Include="CONTROLLER\USERMENU\DeleteUserInf.cs" />
     <Compile Include="CONTROLLER\USERMENU\EditingUserInf.cs" />
     <Compile Include="CONTROLLER\USERMENU\ReturningBook.cs" />
-    <Compile Include="CONTROLLER\Wrong.cs" />
+    <Compile Include="CONTROLLER\ExceptionHandling.cs" />
     <Compile Include="MODEL\BookInf.cs" />
     <Compile Include="MODEL\Data.cs" />
     <Compile Include="MODEL\MagicNumber.cs" />
@@ -68,8 +69,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CONTROLLER\ADMINMENU\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

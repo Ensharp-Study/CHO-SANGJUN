@@ -1,8 +1,7 @@
 ﻿using System;
 
-public class Ui
-{
-
+public class Ui //좀 더 쪼개기
+{ 
     public void ViewMainMenu()
     {
        
@@ -43,7 +42,7 @@ public class Ui
 
         while (isCheckedEnter == false)
         {
-            inputKey = Console.ReadKey();
+            inputKey = Console.ReadKey(); //입력받는거 모델에 있으면 안됨 - 모델은 데이터겟 셋만 뷰는 화면 뿌려주는것만 
             if (inputKey.Key == ConsoleKey.UpArrow)
             {
                 Console.SetCursorPosition(50, 23);
@@ -218,7 +217,7 @@ public class Ui
             Console.WriteLine(menuArr[i]);
         }
 
-        while (isCheckedEnter == false)
+        while (isCheckedEnter == false) // view 여기에 로직이 있는게 이상
         {
             do
             {
@@ -268,13 +267,13 @@ public class Ui
                     isCheckedEnter = true;
                 }
 
-            } while (inputKey.Key != ConsoleKey.Enter);
+            } while (inputKey.Key != ConsoleKey.Enter); //두 와일 지양, 너무 길다
 
         }
         return menuIndex;
     }
 
-    public void PrintBookListMenu()
+    public void PrintBookFinderMenu()
     {
         Console.WriteLine("============================================================");
         Console.WriteLine(" 제목으로 찾기:");

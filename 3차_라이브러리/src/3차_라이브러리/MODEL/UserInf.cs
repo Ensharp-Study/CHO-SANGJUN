@@ -17,7 +17,7 @@ public class UserInf
    
     public UserInf()
     {
-        borrowBookList = new List<string>();
+        borrowBookList = new List<string>(); // string 대신에 BookInf 활용 하기
         returnBookList = new List<string>();
     }
 }

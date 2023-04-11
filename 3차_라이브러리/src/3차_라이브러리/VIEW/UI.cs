@@ -356,10 +356,15 @@ public class Ui //좀 더 쪼개기
         Console.ResetColor();
         Console.WriteLine("============================================================");
     }
-    public void PrintReturningList()
+    public void PrintReturningMenuList()
     {
         Console.WriteLine("============================================================");
         Console.WriteLine("                    현재 반납한 도서 목록                   ");
+        Console.WriteLine("============================================================");
+    }
+    public void PrintShouldReturningList(string bookName) {
+
+        Console.WriteLine(" 책 이름 : " + bookName);
         Console.WriteLine("============================================================");
     }
 
@@ -394,5 +399,37 @@ public class Ui //좀 더 쪼개기
         Console.WriteLine("                 USER Age (    자연수 0~200세    ) : ");
         Console.WriteLine("                 USER PhoneNumber (  01x-xxxx-xxxx  ) : ");
         Console.WriteLine("                 USER Address (       한글 주소       ) : ");
+    }
+
+    public void confirmAccountDeletion()
+    {
+        Console.WriteLine("                        _______________________________________________________________                        ");
+        Console.WriteLine("                       |                                                               |                       ");
+        Console.WriteLine("                       |                     정말 삭제하시겠습니까?                    |                       ");
+        Console.WriteLine("                       |                                                               |                       ");
+        Console.WriteLine("                       -----------------------------------------------------------------                       ");
+
+    }
+
+    public void PrintAccountDeletionSentence()
+    {
+        Console.WriteLine("                        _______________________________________________________________                        ");
+        Console.WriteLine("                       |                                                               |                       ");
+        Console.WriteLine("                       |                   회원 탈퇴가 완료 되었습니다.                |                       ");
+        Console.WriteLine("                       |                                                               |                       ");
+        Console.WriteLine("                       |                                                               |                       ");
+        Console.WriteLine("                       |                                                               |                       ");
+        Console.WriteLine("                       -----------------------------------------------------------------                       ");
+
+    }
+
+    public void PrintMaintainingAccountSentence()
+    {
+        Console.WriteLine("                        _______________________________________________________________                        ");
+        Console.WriteLine("                       |                                                               |                       ");
+        Console.WriteLine("                       |                   회원 탈퇴가 거절 되었습니다.                |                       ");
+        Console.WriteLine("                       |                                                               |                       ");
+        Console.WriteLine("                       -----------------------------------------------------------------                       ");
+
     }
 }

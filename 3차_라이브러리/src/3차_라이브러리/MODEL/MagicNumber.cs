@@ -16,4 +16,6 @@ public class MagicNumber //모델에 있으면 안됨 >유틸리티 폴더 만�
     public int LOGIN = 0;
     public int SIGNUP= 1;
 
+    public int DELETEINGUSER= 0;
+    public int SAVINGUSER = 1;
 }

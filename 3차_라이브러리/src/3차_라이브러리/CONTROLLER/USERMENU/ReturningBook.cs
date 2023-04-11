@@ -7,13 +7,15 @@ public class ReturningBook
 	{
         string bookId;
         int sameIndex = -1;
+        ConsoleKeyInfo inputKey;
 
         ui.PrintReturningBook();
 
-        for (int i = 0; i < data.bookList.Count; i++)
+        for (int i = 0; i < user.borrowBookList.Count; i++)
         {
-            ui.PrintBookList(data, i);
+            ui.PrintShouldReturningList(user.borrowBookList[i]);
         }
+
         Console.SetCursorPosition(36, 3);
         bookId = Console.ReadLine();
 
@@ -43,6 +45,15 @@ public class ReturningBook
             data.bookList[sameIndex].bookQuantity += 1;
             user.returnBookList.Add(data.bookList[sameIndex].bookName);
         }
-  
+
+        inputKey = Console.ReadKey();
+        if (inputKey.Key == ConsoleKey.Escape)
+        {
+            return;
+        }
+        else
+        {
+
+        }
     }
 }

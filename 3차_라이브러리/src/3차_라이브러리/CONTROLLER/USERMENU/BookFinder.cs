@@ -9,6 +9,7 @@ public class BookFinder
 	string author;
 	string publisher;
     int PrintPossiblity = 0;
+    ConsoleKeyInfo inputKey;
 
     public void FindBook(Data data, Ui ui, MagicNumber magicNumber)
 	{
@@ -28,6 +29,7 @@ public class BookFinder
 			Console.WriteLine("\n\n\n");
 
 			Console.Clear();
+
 			ui.PrintBookFinderMenu();
         for (int i = 0; i < data.bookList.Count; i++)
         {
@@ -62,6 +64,15 @@ public class BookFinder
                 }
                 PrintPossiblity = 0;
             }
+        }
+        inputKey = Console.ReadKey();
+        if(inputKey.Key == ConsoleKey.Escape)
+        {
+            return;
+        }
+        else
+        {
+
         }
 
     }

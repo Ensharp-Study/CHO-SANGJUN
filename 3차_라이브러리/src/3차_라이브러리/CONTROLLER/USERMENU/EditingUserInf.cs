@@ -10,8 +10,9 @@ public class EditingUserInf
 		string newAge;
 		string newPhoneNumber;
 		String newAddress;
+        ConsoleKeyInfo inputKey;
 
-		ui.PrintBeforeUserInf(user);
+        ui.PrintBeforeUserInf(user);
 		ui.PrintAfterUserInf(user);
 		Console.SetCursorPosition(54, 22);
 		newId = Console.ReadLine();
@@ -31,8 +32,17 @@ public class EditingUserInf
 		user.userName = newName;
 		user.userAddress =newAddress;
 		user.userAge = int.Parse(newAge);
-		user.userPhoneNumber = newPhoneNumber; 
-		
+		user.userPhoneNumber = newPhoneNumber;
+
+        inputKey = Console.ReadKey();
+        if (inputKey.Key == ConsoleKey.Escape)
+        {
+            return;
+        }
+        else
+        {
+
+        }
     }
 	
 }

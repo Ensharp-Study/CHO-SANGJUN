@@ -6,15 +6,14 @@ public class BorrowingBook
 	{
 		string bookId;
 		int sameIndex = -1;
+        ConsoleKeyInfo inputKey;
 
-		ui.PrintBorrowingBook();
+        ui.PrintBorrowingBook();
 		for (int i = 0; i < data.bookList.Count; i++) {
 			ui.PrintBookList(data,i); 
 		}
         Console.SetCursorPosition(36,3);
 		bookId = Console.ReadLine();
-
-
 
 		for (int i = 0; i < data.bookList.Count; i++) {
 			if (data.bookList[i].bookId == int.Parse(bookId))
@@ -47,7 +46,15 @@ public class BorrowingBook
             Console.WriteLine("                            ");
         }
 
+        inputKey = Console.ReadKey();
+        if (inputKey.Key == ConsoleKey.Escape)
+        {
+            return;
+        }
+        else
+        {
 
+        }
 
     }
 }

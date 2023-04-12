@@ -43,11 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CONTROLLER\AdministratorMode.cs" />
-    <Compile Include="CONTROLLER\ADMINMENU\AdminLogin.cs" />
+    <Compile Include="CONTROLLER\AdministratorLogin.cs" />
+    <Compile Include="CONTROLLER\AdministratorMenu.cs" />
+    <Compile Include="CONTROLLER\ADMINMENU\AddingBook.cs" />
+    <Compile Include="CONTROLLER\ADMINMENU\BookBorrowingStatus.cs" />
+    <Compile Include="CONTROLLER\ADMINMENU\DeletingBook.cs" />
+    <Compile Include="CONTROLLER\ADMINMENU\EditingBook.cs" />
+    <Compile Include="CONTROLLER\ADMINMENU\MemberManger.cs" />
     <Compile Include="CONTROLLER\LibraryStart.cs" />
     <Compile Include="CONTROLLER\LibraryMain.cs" />
-    <Compile Include="CONTROLLER\Login.cs" />
+    <Compile Include="CONTROLLER\UserLogin.cs" />
     <Compile Include="CONTROLLER\SelectingSignInOrSignUp.cs" />
     <Compile Include="CONTROLLER\SignUp.cs" />
     <Compile Include="CONTROLLER\UserMenu.cs" />

@@ -12,9 +12,7 @@ public class BookFinder
     ConsoleKeyInfo inputKey;
 
     public void FindBook(Data data, Ui ui, MagicNumber magicNumber)
-	{
-       
-		
+    { 
 			ui.PrintBookFinderMenu();
 			for (int i = 0; i < data.bookList.Count; i++)
 			{
@@ -65,12 +63,16 @@ public class BookFinder
                 PrintPossiblity = 0;
             }
         }
+     
+        ui.SelectEndorReturnInTheProgram();
+
         inputKey = Console.ReadKey();
-        if(inputKey.Key == ConsoleKey.Escape)
+        if (inputKey.Key == ConsoleKey.Escape)
         {
             return;
         }
-        else
+
+        else if (inputKey.Key == ConsoleKey.Enter)
         {
 
         }

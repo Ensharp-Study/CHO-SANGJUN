@@ -177,7 +177,7 @@ public class Ui //좀 더 쪼개기
 
     }
 
-    public void ViewUserMenu()
+    public void ViewMenu()
     {
         Console.SetCursorPosition(0, 21);
         Console.WriteLine("                       _________________________________________________________________                       ");
@@ -198,7 +198,7 @@ public class Ui //좀 더 쪼개기
     }
 
 
-    public int PrintSelectUserMenu(MagicNumber magicNumber)
+    public int PrintSelectUserMenu()
     {
         ConsoleKeyInfo inputKey;
         bool isCheckedEnter = false;
@@ -247,6 +247,81 @@ public class Ui //좀 더 쪼개기
                     if (menuIndex < 6) menuIndex++;
 
                     for (i = 0; i < 7; i++)
+                    {
+                        Console.SetCursorPosition(49, 26 + i);
+                        if (i == menuIndex)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.Write(menuArr[i]);
+                            Console.ResetColor();
+                        }
+                        else
+                        {
+                            Console.Write(menuArr[i]);
+                        }
+                    }
+                }
+
+                else if (inputKey.Key == ConsoleKey.Enter)
+                {
+                    isCheckedEnter = true;
+                }
+
+            } while (inputKey.Key != ConsoleKey.Enter); //두 와일 지양, 너무 길다
+
+        }
+        return menuIndex;
+    }
+
+    public int PrintSelectAdministratorMenu()
+    {
+        ConsoleKeyInfo inputKey;
+        bool isCheckedEnter = false;
+        int selectedMenuNum = -1;
+        int menuIndex = 0;
+        int i;
+        string[] menuArr = { "○ 책 정보 검색", "○ 책 추가하기", "○ 책 삭제하기", "○ 책 정보 수정하기", "○ 회원관리", "○ 도서 대여 현황"};
+
+        Console.SetCursorPosition(49, 26);
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine(menuArr[0]);
+        Console.ResetColor();
+        for (i = 1; i < 6; i++)
+        {
+            Console.SetCursorPosition(49, 26 + i);
+            Console.WriteLine(menuArr[i]);
+        }
+
+        while (isCheckedEnter == false) // view 여기에 로직이 있는게 이상
+        {
+            do
+            {
+                inputKey = Console.ReadKey();
+                if (inputKey.Key == ConsoleKey.UpArrow)
+                {
+                    if (menuIndex > 0) menuIndex--;
+
+                    for (i = 0; i < 6; i++)
+                    {
+                        Console.SetCursorPosition(49, 26 + i);
+                        if (i == menuIndex)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.Write(menuArr[i]);
+                            Console.ResetColor();
+                        }
+                        else
+                        {
+                            Console.Write(menuArr[i]);
+                        }
+                    }
+                }
+
+                else if (inputKey.Key == ConsoleKey.DownArrow)
+                {
+                    if (menuIndex < 5) menuIndex++;
+
+                    for (i = 0; i < 6; i++)
                     {
                         Console.SetCursorPosition(49, 26 + i);
                         if (i == menuIndex)
@@ -431,5 +506,40 @@ public class Ui //좀 더 쪼개기
         Console.WriteLine("                       |                                                               |                       ");
         Console.WriteLine("                       -----------------------------------------------------------------                       ");
 
+    }
+    public void SelectEndorReturnInTheProgram()
+    {
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("프로그램을 끝내려면 ENTER 다시 메뉴선택으로 돌아가려면 ESC를 눌러주세요.");
+        Console.ResetColor();
+    }
+
+    public void PrintAddingBookMenu()
+    {
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                                    도서추가");
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                 ENTER : 확인                     ESC : 뒤로가기\n\n");
+        Console.WriteLine("                 ------------------------------------------------------------------------------\n");
+        Console.WriteLine("                 책 제목  :  ");
+        Console.WriteLine("                 작가     :  ");
+        Console.WriteLine("                 출판사   :  ");
+        Console.WriteLine("                 수량     :  ");
+        Console.WriteLine("                 가격     :  ");
+        Console.WriteLine("                 출시일   :  ");
+        Console.WriteLine("                 ISBN     :  ");
+        Console.WriteLine("                 정보     :  \n");
+        Console.WriteLine("                 -------------------------------------------------------------------------------\n");
+        Console.ForegroundColor= ConsoleColor.Green;
+        Console.WriteLine("                            책 제목 - 영어, 한글, 숫자,?!+= 1개 이상");
+        Console.WriteLine("                 작가     : 작가    - 영어, 한글 1글자 이상");
+        Console.WriteLine("                 출판사   : 출판사  - 영어, 한글, 숫자 중 1개 이상");
+        Console.WriteLine("                 수량     : 수량    - 1~999 사이의 자연수");
+        Console.WriteLine("                 가격     : 가격    - 1~9999999 사이의 자연수");
+        Console.WriteLine("                 출시일   : 출시일  - 19xx or 20xx-xx-xx");
+        Console.WriteLine("                 ISBN     : ISBN    - 정수9개 + 영어1개 + 공백 + 정수 13개");
+        Console.WriteLine("                 정보     : 정보    - 최소1개의 문자(공백포함)\n");
+        Console.ResetColor();
+        Console.WriteLine("                 -------------------------------------------------------------------------------\n");
     }
 }

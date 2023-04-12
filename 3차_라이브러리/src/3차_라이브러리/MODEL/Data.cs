@@ -22,8 +22,8 @@ public class Data // 모델에 있으면 안됨 //데이터 명 정확하게
         userList = new List<UserInf>();	 //회원 1명에 대한 정보
         UserInf userInf = new UserInf();
 
-        userInf.id = "a";
-        userInf.password = "a";
+        userInf.id = "abcde";
+        userInf.password = "password";
         userInf.userNumber = 1;
         userInf.userName = "조상준";
         userInf.userAddress = "서울시 서대문구";

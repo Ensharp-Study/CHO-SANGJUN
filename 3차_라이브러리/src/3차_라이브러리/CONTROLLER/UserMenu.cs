@@ -7,8 +7,8 @@ public class UserMenu
          while (true) { 
         
             int menuNumber;
-            ui.ViewUserMenu();
-            menuNumber = ui.PrintSelectUserMenu(magicNumber);
+            ui.ViewMenu();
+            menuNumber = ui.PrintSelectUserMenu();
             Console.Clear();
 
             //상속을 활용하기 좀 더 고민해서 유저 관리자가 둘다 코드 재활용할 수 있을지 클래스 분할

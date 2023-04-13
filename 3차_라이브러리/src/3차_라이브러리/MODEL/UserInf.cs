@@ -11,13 +11,13 @@ public class UserInf
     public int userAge { get; set; }
     public string userPhoneNumber { get; set; }
 
-    public List<string> borrowBookList { get ; set; }
+    public List<BookInf> borrowBookList { get ; set; }
     
-    public List<string> returnBookList { get; set; }
+    public List<BookInf> returnBookList { get; set; }
    
     public UserInf()
     {
-        borrowBookList = new List<string>(); // string 대신에 BookInf 활용 하기
-        returnBookList = new List<string>();
+        borrowBookList = new List<BookInf>(); // string 대신에 BookInf 활용 하기
+        returnBookList = new List<BookInf>();
     }
 }

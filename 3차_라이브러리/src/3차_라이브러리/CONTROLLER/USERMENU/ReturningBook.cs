@@ -43,7 +43,14 @@ public class ReturningBook
             Console.WriteLine("      책 반납 성공!                          ");
             Console.WriteLine("                                               ");
             data.bookList[sameIndex].bookQuantity += 1;
-            user.returnBookList.Add(data.bookList[sameIndex].bookName);
+
+            for (int i = 0; i < data.userList.Count; i++)
+            {
+                if (user.userNumber == data.userList[i].userNumber)
+                {
+                    data.userList[i].returnBookList.Add(data.bookList[sameIndex]);
+                }
+            }
         }
 
         inputKey = Console.ReadKey();

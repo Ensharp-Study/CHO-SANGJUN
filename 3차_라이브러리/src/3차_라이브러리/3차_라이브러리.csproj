@@ -46,7 +46,7 @@
     <Compile Include="CONTROLLER\AdministratorLogin.cs" />
     <Compile Include="CONTROLLER\AdministratorMenu.cs" />
     <Compile Include="CONTROLLER\ADMINMENU\AddingBook.cs" />
-    <Compile Include="CONTROLLER\ADMINMENU\BookBorrowingStatus.cs" />
+    <Compile Include="CONTROLLER\ADMINMENU\BookBorrowedStatus.cs" />
     <Compile Include="CONTROLLER\ADMINMENU\DeletingBook.cs" />
     <Compile Include="CONTROLLER\ADMINMENU\EditingBook.cs" />
     <Compile Include="CONTROLLER\ADMINMENU\MemberManger.cs" />

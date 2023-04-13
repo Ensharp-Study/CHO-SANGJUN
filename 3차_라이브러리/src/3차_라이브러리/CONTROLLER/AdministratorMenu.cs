@@ -4,8 +4,8 @@ public class AdministratorMenu
 {
     public void ControllAdministratorMenu(Ui ui, Data data, MagicNumber magicNumber)
     {
-        //while (true)
-        //{
+        while (true)
+        {
 
             int menuNumber;
             ui.ViewMenu();
@@ -19,36 +19,37 @@ public class AdministratorMenu
                 bookFinder.FindBook(data, ui, magicNumber);
             }
 
-            else if (menuNumber == magicNumber.ADDINGBOOK)
+            if (menuNumber == magicNumber.ADDINGBOOK)
             {
                 AddingBook addingBook = new AddingBook();
                 addingBook.AddNewBook(data,ui,magicNumber);
             }
 
-            if (menuNumber == magicNumber.BOOKBORROWLIST)
+            if (menuNumber == magicNumber.DELETINGBOOK)
             {
+                DeletingBook deletingBook = new DeletingBook();
+                deletingBook.DeleteABook(data, ui, magicNumber);
             }
 
-            if (menuNumber == magicNumber.RETURNINGBOOK)
+            if (menuNumber == magicNumber.EDITINGBOOK)
             {
-               
+                EditingBook editingBook = new EditingBook();
+                editingBook.EditBook(data, ui);
             }
 
-            if (menuNumber == magicNumber.BOOKRETURNLIST)
+            if (menuNumber == magicNumber.MEMBERMANAGER)
             {
-                
+                MemberManger memberManger = new MemberManger();
+                memberManger.ManageMember(data, ui);
             }
 
-            if (menuNumber == magicNumber.EDITUSERINF)
+            if (menuNumber == magicNumber.BOOKBORROWINGSTATUS)
             {
-               
+                BookBorrowedStatus bookBorrowedStatus = new BookBorrowedStatus();
+                bookBorrowedStatus.CheckBookBorrowedList(data, ui, magicNumber);
             }
 
-            if (menuNumber == magicNumber.DELETEUSERINF)
-            {
-               
-            }
-        //}
+        }
 
     }
 }

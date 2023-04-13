@@ -376,7 +376,7 @@ public class Ui //좀 더 쪼개기
         Console.WriteLine("============================================================");
     }
 
-    public void PrintBorrowingBook()
+    public void PrintBorrowingBookMenu()
     {
         Console.WriteLine("\n\n");
         Console.WriteLine("     빌릴 책의 ID를 입력해 주세요 : ");
@@ -392,7 +392,7 @@ public class Ui //좀 더 쪼개기
 
     }
 
-    public void PrintBorrowingBook(Data data, int indexI)
+    /*public void PrintBorrowingBookMenu(Data data, int indexI)
     {
         Console.WriteLine("\n\n");
         Console.WriteLine("   빌릴 책의 ID를 입력해 주세요 : ");
@@ -404,7 +404,7 @@ public class Ui //좀 더 쪼개기
         Console.WriteLine("ENTER  :  입력하기\n\n");
         Console.ResetColor();
         Console.WriteLine("============================================================");
-    }
+    }*/
 
     public void PrintBorrowingList()
     {
@@ -413,9 +413,16 @@ public class Ui //좀 더 쪼개기
         Console.WriteLine("============================================================");
     }
 
-    public void PrintUserBorrowingList(string bookName)
+    public void PrintUserBorrowingList(BookInf book)
     {
-        Console.WriteLine(" 책 이름 : " + bookName);
+        Console.WriteLine(" 책 아이디 : " + book.bookId);
+        Console.WriteLine(" 책 이름   : " + book.bookName);
+        Console.WriteLine(" 작가      : " + book.bookAuthor);
+        Console.WriteLine(" 출판사    : " + book.bookPublisher);
+        Console.WriteLine(" 책 수량   : " + book.bookQuantity);
+        Console.WriteLine(" 책 가격   : " + book.bookPrice);
+        Console.WriteLine(" 대여 일시 : " + book.bookPublicationDate);
+        Console.WriteLine(" ISBN      : " + book.bookPublicationDate);
         Console.WriteLine("============================================================");
     }
     public void PrintReturningBook()
@@ -437,9 +444,9 @@ public class Ui //좀 더 쪼개기
         Console.WriteLine("                    현재 반납한 도서 목록                   ");
         Console.WriteLine("============================================================");
     }
-    public void PrintShouldReturningList(string bookName) {
+    public void PrintShouldReturningList(BookInf book) {
 
-        Console.WriteLine(" 책 이름 : " + bookName);
+        Console.WriteLine(" 책 이름 : " + book.bookName);
         Console.WriteLine("============================================================");
     }
 
@@ -517,7 +524,7 @@ public class Ui //좀 더 쪼개기
     public void PrintAddingBookMenu()
     {
         Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
-        Console.WriteLine("                                                    도서추가");
+        Console.WriteLine("                                                    도서추가\n");
         Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
         Console.WriteLine("                                 ENTER : 확인                     ESC : 뒤로가기\n\n");
         Console.WriteLine("                 ------------------------------------------------------------------------------\n");
@@ -532,14 +539,194 @@ public class Ui //좀 더 쪼개기
         Console.WriteLine("                 -------------------------------------------------------------------------------\n");
         Console.ForegroundColor= ConsoleColor.Green;
         Console.WriteLine("                            책 제목 - 영어, 한글, 숫자,?!+= 1개 이상");
-        Console.WriteLine("                 작가     : 작가    - 영어, 한글 1글자 이상");
-        Console.WriteLine("                 출판사   : 출판사  - 영어, 한글, 숫자 중 1개 이상");
-        Console.WriteLine("                 수량     : 수량    - 1~999 사이의 자연수");
-        Console.WriteLine("                 가격     : 가격    - 1~9999999 사이의 자연수");
-        Console.WriteLine("                 출시일   : 출시일  - 19xx or 20xx-xx-xx");
-        Console.WriteLine("                 ISBN     : ISBN    - 정수9개 + 영어1개 + 공백 + 정수 13개");
-        Console.WriteLine("                 정보     : 정보    - 최소1개의 문자(공백포함)\n");
+        Console.WriteLine("                          : 작가    - 영어, 한글 1글자 이상");
+        Console.WriteLine("                          : 출판사  - 영어, 한글, 숫자 중 1개 이상");
+        Console.WriteLine("                          : 수량    - 1~999 사이의 자연수");
+        Console.WriteLine("                          : 가격    - 1~9999999 사이의 자연수");
+        Console.WriteLine("                          : 출시일  - 19xx or 20xx-xx-xx");
+        Console.WriteLine("                          : ISBN    - 정수9개 + 영어1개 + 공백 + 정수 13개");
+        Console.WriteLine("                          : 정보    - 최소1개의 문자(공백포함)\n");
         Console.ResetColor();
         Console.WriteLine("                 -------------------------------------------------------------------------------\n");
     }
+
+    public void PrintAddingBookSuccessSentence()
+    {
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                                    추가 완료\n");
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                ENTER : 다시추가                     ESC : 뒤로가기\n\n");
+        Console.WriteLine("                 -------------------------------------------------------------------------------\n\n\n");
+        Console.WriteLine("                                                   ★추가 성공★\n\n\n");
+    }
+
+    public void PrintDeletingBookMenu()
+    {
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                                  삭제할 책 ID : \n");
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                ENTER : 확인                       ESC : 뒤로가기\n\n");
+    }
+    public void PrintDeletingBookSuccessSentence()
+    {
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                                    책 삭제 완료!\n");
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                  ENTER : 다시삭제                  ESC : 뒤로가기\n\n");
+    }
+
+    public void PrintEditingBookAskingMenu()
+    {
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                                  수정할 책 ID : \n");
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                ENTER : 확인                       ESC : 뒤로가기\n\n");
+    }
+    public void PrintEditingBookMenu()
+    {
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                                     책  수정  \n");
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                ENTER : 확인                       ESC : 뒤로가기\n\n");
+    }
+    public void PrintCurrentSavedBookInformation(Data data, int bookIndex)
+    {
+        Console.WriteLine("                                                       ◈현재 등록되어 있는 정보◈         \n\n");
+        Console.WriteLine("                        책제목(영어,한글,숫자,?!+= 1개 이상): " + data.bookList[bookIndex].bookName);
+        Console.WriteLine("                        작가 (  영어,한글 1글자 이상  )     : " + data.bookList[bookIndex].bookAuthor);
+        Console.WriteLine("                        출판사 (영어,한글,숫자 1개 이상)    : " + data.bookList[bookIndex].bookPublisher);
+        Console.WriteLine("                        수량 (    1~999 사이의 자연수    )  : " + data.bookList[bookIndex].bookQuantity);
+        Console.WriteLine("                        가격 (  1~9999999 사이의 자연수  )  : " + data.bookList[bookIndex].bookPrice);
+        Console.WriteLine("                        출시일 (  19xx or 20xx-xx-xx   )    : " + data.bookList[bookIndex].bookPublicationDate);
+        Console.WriteLine("\n\n");
+    }
+    public int PrintEditingBookInformation(Data data)
+    {
+        ConsoleKeyInfo inputKey;
+        bool isCheckedEnter = false;
+        int selectedMenuNum = -1;
+        int menuIndex = 0;
+        int i;
+        string[] menuArr = { "○ 책 제목 (영어, 한글, 숫자 1개 이상) :", "○ 작가(  영어, 한글 1글자 이상  )     :", "○ 출판사 (영어, 한글, 숫자 1개 이상)  :", "○ 수량(    1~999 사이의 자연수   )    :", "○ 가격(   1~ 9999999 사이의 자연수  ) :", "○ 출시일 (   19xx 또는 20xx-xx-xx   ) :", "        ** 책 정보 수정하기 **      "};
+
+        Console.WriteLine("                                                       ◈변경 할 정보 입력◈         \n");
+        Console.SetCursorPosition(24, 26);
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine(menuArr[0]);
+        Console.ResetColor();
+        for (i = 1; i < 7; i++)
+        {
+            Console.SetCursorPosition(24, 26 + i);
+            Console.WriteLine(menuArr[i]);
+        }
+        Console.WriteLine("\n");
+        while (true)
+        {
+            inputKey = Console.ReadKey();
+            if (inputKey.Key == ConsoleKey.UpArrow)
+            {
+                if (menuIndex > 0) menuIndex--;
+                for (i = 0; i < 6; i++)
+                {
+                    Console.SetCursorPosition(24, 26 + i);
+                    if (i == menuIndex)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write(menuArr[i]);
+                        Console.ReadLine();
+                        Console.ResetColor();
+                    }
+                    else
+                    {
+                        Console.Write(menuArr[i]);
+                    }
+                }
+            }
+
+            else if (inputKey.Key == ConsoleKey.DownArrow)
+            {
+                if (menuIndex < 6) menuIndex++;
+                for (i = 0; i < 6; i++)
+                {
+                    Console.SetCursorPosition(24, 26 + i);
+                    if (i == menuIndex)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write(menuArr[i]);
+                        Console.ResetColor();
+                    }
+                    else
+                    {
+                        Console.Write(menuArr[i]);
+                    }
+                }
+            }
+        } 
+
+        return menuIndex;
+    }
+
+    public void PrintMemberManagerMenu()
+    {
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                             삭제할 유저 Number 입력 :\n");
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                  ENTER : 확인                     ESC : 뒤로가기\n\n");
+    }
+
+    public void PrintMemberList(Data data, int index) 
+    {
+        Console.WriteLine("===============================================================================================================\n");
+        Console.WriteLine("유저 Number :{0}", data.userList[index].userNumber);
+        Console.WriteLine("유저 ID     :" + data.userList[index].id);
+        Console.WriteLine("유저 이름   :" + data.userList[index].userName);
+        Console.WriteLine("유저 나이   :{0}", data.userList[index].userAge);
+        Console.WriteLine("유저 번호   :" + data.userList[index].userPhoneNumber);
+        Console.WriteLine("유저 주소   :" + data.userList[index].userAddress);
+        Console.WriteLine("\n\n");
+    }
+    public void PrintDeletingUserSuccessSentence()
+    {
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                                 유저 삭제 성공 :\n");
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                  ENTER : 확인                     ESC : 뒤로가기\n\n");
+    }
+
+    public void PrintBookBorrowedMenu()
+    {
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                                전체회원 대여상황 :\n");
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                  ENTER : 확인                     ESC : 뒤로가기\n\n");
+    }
+
+    public void PrintUserName(string userName)
+    {
+        Console.WriteLine("=============================================================================================================================\n");
+        Console.WriteLine("User Name  :" + userName);
+        Console.WriteLine("=============================================================================================================================");
+    }
+    public void PrintUserBorrowedBookList(Data data, int indexI, int indexJ)
+    {
+        Console.WriteLine("책아이디  :  {0}", data.userList[indexI].borrowBookList[indexJ].bookId);
+        Console.WriteLine("책 제목   :  " + data.userList[indexI].borrowBookList[indexJ].bookName);
+        Console.WriteLine("작가      :  " + data.userList[indexI].borrowBookList[indexJ].bookAuthor);
+        Console.WriteLine("출판사    :  " + data.userList[indexI].borrowBookList[indexJ].bookPublisher);
+        Console.WriteLine("수량      :  {0}", data.userList[indexI].borrowBookList[indexJ].bookQuantity);
+        Console.WriteLine("가격      :  {0}", data.userList[indexI].borrowBookList[indexJ].bookPrice);
+        Console.WriteLine("출시일    :  " + data.userList[indexI].borrowBookList[indexJ].bookPublicationDate);
+        Console.WriteLine("ISBN      :  " + data.userList[indexI].borrowBookList[indexJ].isbn);
+        Console.WriteLine("빌린 시간 :  " + data.userList[indexI].borrowBookList[indexJ].borrowTime);
+        Console.WriteLine("반납 시간 :  " + data.userList[indexI].borrowBookList[indexJ].returnTime);
+        Console.WriteLine("============================================================");
+    }
+
+
+
+
+
+
+
+
 }

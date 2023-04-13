@@ -11,5 +11,7 @@ public class BookInf
     public string bookPublicationDate { get; set; }
     public string isbn { get; set; }
     public string bookInf { get; set; }
+    public string borrowTime { get; set; }
+    public string returnTime { get; set; }
 
 }

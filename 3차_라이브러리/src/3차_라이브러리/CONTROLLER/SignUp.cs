@@ -7,13 +7,13 @@ public class SignUp
     UserInf newUserInf = new UserInf();
 	string reInputPassword; 
 
-	public void SignUpAccount(Ui ui, MagicNumber magicNumber, Data data)
+	public void SignUpAccount(Ui ui, MagicNumber magicNumber, Data data, ExceptionHandling exceptionHandling)
 	{
 		ui.PrintSignUpMenu();
 		ui.PrintSignUpInputMenu();
 
         Console.SetCursorPosition(60, 28);
-		newUserInf.id = exceptionHandling.JudgeWithRegularExpression(53, 23);
+		newUserInf.id = exceptionHandling.JudgeIdAndPasswordWithRegularExpression(53, 23);
         Console.SetCursorPosition(60, 29);
         newUserInf.password = Console.ReadLine();
         Console.SetCursorPosition(60, 30);

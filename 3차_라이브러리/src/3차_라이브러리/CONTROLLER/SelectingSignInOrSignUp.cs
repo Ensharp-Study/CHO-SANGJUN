@@ -18,7 +18,7 @@ public class SelectingSignInOrSignUp // 따로 클래스 뺄 필요 없다
             else if (judgementLoginOrSignUP == magicNumber.SIGNUP)
             {
                 SignUp signUp = new SignUp(); // 인스턴스
-                signUp.SignUpAccount(ui, magicNumber, data);
+                signUp.SignUpAccount(ui, magicNumber, data, exceptionHandling);
                 Console.Clear();
             }
     }

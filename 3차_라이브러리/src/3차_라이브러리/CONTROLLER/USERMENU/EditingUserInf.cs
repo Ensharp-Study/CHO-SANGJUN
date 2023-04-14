@@ -2,7 +2,7 @@
 
 public class EditingUserInf
 {
-	public void EditUserInf(Data data, Ui ui,UserInf user)
+	public void EditUserInf(Data data, Ui ui,UserInf user, ExceptionHandling exceptionHandling)
 	{
         while (true)
         {
@@ -17,15 +17,15 @@ public class EditingUserInf
             ui.PrintBeforeUserInf(user);
             ui.PrintAfterUserInf(user);
             Console.SetCursorPosition(54, 22);
-            newId = Console.ReadLine();
+            newId = exceptionHandling.JudgeIdAndPasswordWithRegularExpression(54, 22);
             Console.SetCursorPosition(54, 23);
-            newPassword = Console.ReadLine();
+            newPassword = exceptionHandling.JudgeIdAndPasswordWithRegularExpression(54, 23);
             Console.SetCursorPosition(57, 24);
-            newName = Console.ReadLine();
+            newName = exceptionHandling.JudgeUserNameWithRegularExpression(57, 24);
             Console.SetCursorPosition(54, 25);
-            newAge = Console.ReadLine();
+            newAge = exceptionHandling.JudgeUserAgeWithRegularExpression(54, 25);
             Console.SetCursorPosition(57, 26);
-            newPhoneNumber = Console.ReadLine();
+            newPhoneNumber = exceptionHandling.JudgeUserNumberWithRegularExpression(57, 26); ;
             Console.SetCursorPosition(60, 27);
             newAddress = Console.ReadLine();
 

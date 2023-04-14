@@ -2,7 +2,7 @@
 
 public class UserMenu
 {
-    public void ControllUserMenu(Ui ui, Data data,MagicNumber magicNumber, UserInf user)
+    public void ControllUserMenu(Ui ui, Data data,MagicNumber magicNumber, UserInf user, ExceptionHandling exceptionHandling)
 	{
          while (true) { 
         
@@ -22,7 +22,7 @@ public class UserMenu
             else if (menuNumber == magicNumber.BORROWINGBOOK)
             {
                 BorrowingBook borrowingBook = new BorrowingBook();
-                borrowingBook.BorrowBook(data, ui, magicNumber, user);
+                borrowingBook.BorrowBook(data, ui, magicNumber, user, exceptionHandling);
             }
 
             if (menuNumber == magicNumber.BOOKBORROWLIST)
@@ -34,7 +34,7 @@ public class UserMenu
             if (menuNumber == magicNumber.RETURNINGBOOK)
             {
                 ReturningBook returningBook = new ReturningBook();
-                returningBook.ReturnBook(data, ui, user);
+                returningBook.ReturnBook(data, ui, user, exceptionHandling);
             }
 
             if (menuNumber == magicNumber.BOOKRETURNLIST)
@@ -46,13 +46,13 @@ public class UserMenu
             if (menuNumber == magicNumber.EDITUSERINF)
             {
                 EditingUserInf editingUserInf = new EditingUserInf();
-                editingUserInf.EditUserInf(data, ui, user);
+                editingUserInf.EditUserInf(data, ui, user, exceptionHandling);
             }
 
             if (menuNumber == magicNumber.DELETEUSERINF)
             {
                 DeletingUserInf deletingUserInf = new DeletingUserInf();
-                deletingUserInf.DeleteUserInf(ui, magicNumber, data, user);
+                deletingUserInf.DeleteUserInf(ui, magicNumber, data, user, exceptionHandling);
             }
 
             if (menuNumber == magicNumber.ESC)

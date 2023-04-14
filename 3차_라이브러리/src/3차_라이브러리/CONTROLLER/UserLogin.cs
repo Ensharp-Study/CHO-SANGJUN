@@ -4,9 +4,8 @@ using System.Text.RegularExpressions;
 public class UserLogin
 {
     UserMenu usermenu = new UserMenu();
-    ExceptionHandling exceptionHandling = new ExceptionHandling();
 
-    public void GetUserLogin(Ui ui,MagicNumber magicNumber, Data data)
+    public void GetUserLogin(Ui ui,MagicNumber magicNumber, Data data, ExceptionHandling exceptionHandling)
     {
         string id;
         string password;
@@ -17,10 +16,12 @@ public class UserLogin
             Console.Clear();
             ui.ViewMainMenu();
             ui.PrintLoginMenu();
+
             Console.SetCursorPosition(53, 23);
-            id = Console.ReadLine();
+            id = exceptionHandling.JudgeIdAndPasswordWithRegularExpression(53,23);
+            
             Console.SetCursorPosition(61, 24);
-            password = Console.ReadLine();
+            password = exceptionHandling.JudgeIdAndPasswordWithRegularExpression(61, 24);
 
             for (int indexI = 0; indexI < data.userList.Count; indexI++)
             {
@@ -29,7 +30,7 @@ public class UserLogin
                     if (string.Equals(password, data.userList[indexI].password))
                     {
                         Console.Clear() ;
-                        usermenu.ControllUserMenu(ui, data, magicNumber, data.userList[indexI]);
+                        usermenu.ControllUserMenu(ui, data, magicNumber, data.userList[indexI], exceptionHandling);
                         isJudgingCorrectInput = false;
                     }
                     else

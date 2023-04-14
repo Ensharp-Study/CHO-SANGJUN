@@ -11,6 +11,7 @@ public class BorrowingBook
             int sameIndex = -1;
             ConsoleKeyInfo inputKey;
 
+            Console.Clear();
             ui.PrintBorrowingBookMenu();//책 빌리기 메뉴 출력
             for (int i = 0; i < data.bookList.Count; i++)
             {

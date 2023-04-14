@@ -13,7 +13,7 @@ public class SignUp
 		ui.PrintSignUpInputMenu();
 
         Console.SetCursorPosition(60, 28);
-		newUserInf.id = Console.ReadLine();
+		newUserInf.id = exceptionHandling.JudgeWithRegularExpression(53, 23);
         Console.SetCursorPosition(60, 29);
         newUserInf.password = Console.ReadLine();
         Console.SetCursorPosition(60, 30);

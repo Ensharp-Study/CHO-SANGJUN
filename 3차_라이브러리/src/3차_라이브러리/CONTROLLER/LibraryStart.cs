@@ -7,8 +7,7 @@ public class LibraryStart
     MagicNumber magicNumber = new MagicNumber();
     SelectingSignInOrSignUp selectingSignInOrSignUp = new SelectingSignInOrSignUp();
     AdministratorLogin administratorLogin = new AdministratorLogin();
-
-    //AdminLogin adminLogin = new AdminLogin(ui, magicNumber, data);
+    ExceptionHandling exceptionHandling = new ExceptionHandling();
 
     public void SelectMenu()
     {
@@ -21,7 +20,7 @@ public class LibraryStart
             if (menuNumber == magicNumber.USERMODE) //유저 모드 진입
             {
                 Console.Clear();
-                selectingSignInOrSignUp.SelectSignOrSignUp(ui, magicNumber, data);
+                selectingSignInOrSignUp.SelectSignOrSignUp(ui, magicNumber, data, exceptionHandling);
             }
             else if (menuNumber == magicNumber.ADMINMODE)//관리자 모드 진입
             {

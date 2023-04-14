@@ -2,7 +2,20 @@
 
 public class DeletingUserInf //inf와같이 줄임말 
 {
-    public void DeleteUserInf(Ui ui, MagicNumber magicNumber, Data data, UserInf user)
+    Ui ui;
+    MagicNumber magicNumber;
+    Data data;
+    UserInf user;
+
+    public DeletingUserInf(Ui ui, MagicNumber magicNumber, Data data, UserInf user)
+    {
+        this.ui = ui;
+        this.magicNumber = magicNumber;
+        this.data = data;
+        this.user = user;
+    }
+
+    public void DeleteUserInf()
     {
         while (true)
         {

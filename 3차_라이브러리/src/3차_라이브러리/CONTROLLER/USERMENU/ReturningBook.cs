@@ -3,7 +3,17 @@ using System.Net;
 
 public class ReturningBook
 {
-	public void ReturnBook(Data data,Ui ui,UserInf user)
+    Data data;
+    Ui ui;
+    UserInf user;
+
+    public ReturningBook(Data data, Ui ui, UserInf user) 
+    { 
+        this.data = data;
+        this.ui = ui;
+        this.user = user;
+    }
+	public void ReturnBook()
 	{
         while (true)
         {

@@ -2,7 +2,20 @@
 
 public class BorrowingBook
 {
-	public void BorrowBook(Data data, Ui ui,MagicNumber magicNumber, UserInf user)
+    Data data;
+    Ui ui;
+    MagicNumber magicNumber;
+    UserInf user;
+
+    public BorrowingBook(Data data, Ui ui,MagicNumber magicNumber,UserInf user) 
+    { 
+        this.data = data;
+        this.ui = ui;
+        this.magicNumber = magicNumber;
+        this.user = user;
+    }
+
+	public void BorrowBook()
 	{
 
         while (true)

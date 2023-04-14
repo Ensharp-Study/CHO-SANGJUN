@@ -2,12 +2,22 @@
 
 public class SignUp
 {
-	Ui ui;
-	MagicNumber magicNumber;
+    Ui ui;
+    MagicNumber magicNumber;
+    Data data;
+    ExceptionHandling exceptionHandling;
+
     UserInf newUserInf = new UserInf();
 	string reInputPassword; 
 
-	public void SignUpAccount(Ui ui, MagicNumber magicNumber, Data data, ExceptionHandling exceptionHandling)
+    public SignUp(Ui ui, MagicNumber magicNumber, Data data, ExceptionHandling exceptionHandling)
+    {
+        this.ui = ui;
+        this.magicNumber = magicNumber;
+        this.data = data;
+        this.exceptionHandling = exceptionHandling;
+    }
+	public void SignUpAccount()
 	{
 		ui.PrintSignUpMenu();
 		ui.PrintSignUpInputMenu();

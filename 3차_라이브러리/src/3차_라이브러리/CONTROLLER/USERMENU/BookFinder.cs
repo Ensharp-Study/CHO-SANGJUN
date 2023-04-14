@@ -11,7 +11,18 @@ public class BookFinder
     int PrintPossiblity = 0;
     ConsoleKeyInfo inputKey;
 
-    public void FindBook(Data data, Ui ui, MagicNumber magicNumbe)
+    Data data;
+    Ui ui;
+    MagicNumber magicNumber;
+
+    public BookFinder(Data data, Ui ui, MagicNumber magicNumber)
+    {
+        this.ui = ui;
+        this.magicNumber = magicNumber;
+        this.data = data;
+    }
+
+    public void FindBook()
     {
         while (true)
         {

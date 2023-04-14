@@ -1,12 +1,22 @@
 ﻿using System;
 public class AdministratorLogin
 {
-    public void GetAdministratorLogin(Ui ui, MagicNumber magicNumber, Data data)
+    Ui ui;
+    MagicNumber magicNumber;
+    Data data;
+
+    public AdministratorLogin(Ui ui, MagicNumber magicNumber, Data data)
+    {
+        this.ui = ui;
+        this.magicNumber = magicNumber;
+        this.data = data;
+    }
+    public void GetAdministratorLogin()
     {
         string id;
         string password;
         bool isJudgingCorrectInput = true;
-        AdministratorMenu administratorMenu = new AdministratorMenu();
+        AdministratorMenu administratorMenu = new AdministratorMenu(ui,data,magicNumber);
 
         ui.PrintLoginMenu();
         Console.SetCursorPosition(53, 23);
@@ -19,7 +29,7 @@ public class AdministratorLogin
             if (string.Equals(password, data.administratorInf.password))
             {
                 Console.Clear();
-                administratorMenu.ControllAdministratorMenu(ui, data, magicNumber);
+                administratorMenu.ControllAdministratorMenu();
                 isJudgingCorrectInput = false;
             }
             else

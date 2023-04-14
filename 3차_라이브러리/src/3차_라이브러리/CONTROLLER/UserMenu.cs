@@ -2,7 +2,23 @@
 
 public class UserMenu
 {
-    public void ControllUserMenu(Ui ui, Data data,MagicNumber magicNumber, UserInf user, ExceptionHandling exceptionHandling)
+    Ui ui;
+    Data data;
+    MagicNumber magicNumber;
+    UserInf user;
+    ExceptionHandling exceptionHandling;
+
+    public UserMenu(Ui ui, Data data, MagicNumber magicNumber, UserInf user, ExceptionHandling exceptionHandling)
+    {
+        this.ui = ui;
+        this.data = data;
+        this.magicNumber = magicNumber;
+        this.user = user;
+        this.exceptionHandling = exceptionHandling;
+
+    }
+
+    public void ControllUserMenu()
 	{
          while (true) { 
         
@@ -15,44 +31,44 @@ public class UserMenu
             //상속을 활용하기 좀 더 고민해서 유저 관리자가 둘다 코드 재활용할 수 있을지 클래스 분할
             if (menuNumber == magicNumber.BOOKFINDER)   //스위치
             {
-                BookFinder bookFinder = new BookFinder();
-                bookFinder.FindBook(data, ui, magicNumber);
+                BookFinder bookFinder = new BookFinder(data, ui, magicNumber);
+                bookFinder.FindBook();
             }
 
             else if (menuNumber == magicNumber.BORROWINGBOOK)
             {
-                BorrowingBook borrowingBook = new BorrowingBook();
-                borrowingBook.BorrowBook(data, ui, magicNumber, user);
+                BorrowingBook borrowingBook = new BorrowingBook(data, ui, magicNumber, user);
+                borrowingBook.BorrowBook();
             }
 
             if (menuNumber == magicNumber.BOOKBORROWLIST)
             {
-                BookBorrowList bookBorrowList = new BookBorrowList();
-                bookBorrowList.ShowBookBorrowList(data, ui, magicNumber, user);
+                BookBorrowList bookBorrowList = new BookBorrowList(data, ui, magicNumber, user);
+                bookBorrowList.ShowBookBorrowList();
             }
 
             if (menuNumber == magicNumber.RETURNINGBOOK)
             {
-                ReturningBook returningBook = new ReturningBook();
-                returningBook.ReturnBook(data, ui, user);
+                ReturningBook returningBook = new ReturningBook(data, ui, user);
+                returningBook.ReturnBook();
             }
 
             if (menuNumber == magicNumber.BOOKRETURNLIST)
             {
-                BookReturnList bookReturnList = new BookReturnList();
-                bookReturnList.ShowBookReturnList(data, ui, magicNumber, user);
+                BookReturnList bookReturnList = new BookReturnList(data, ui, magicNumber, user);
+                bookReturnList.ShowBookReturnList();
             }
 
             if (menuNumber == magicNumber.EDITUSERINF)
             {
-                EditingUserInf editingUserInf = new EditingUserInf();
-                editingUserInf.EditUserInf(data, ui, user, exceptionHandling);
+                EditingUserInf editingUserInf = new EditingUserInf(data, ui, user, exceptionHandling);
+                editingUserInf.EditUserInf();
             }
 
             if (menuNumber == magicNumber.DELETEUSERINF)
             {
-                DeletingUserInf deletingUserInf = new DeletingUserInf();
-                deletingUserInf.DeleteUserInf(ui, magicNumber, data, user);
+                DeletingUserInf deletingUserInf = new DeletingUserInf(ui, magicNumber, data, user);
+                deletingUserInf.DeleteUserInf();
             }
 
             if (menuNumber == magicNumber.ESC)

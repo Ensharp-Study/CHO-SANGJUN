@@ -2,8 +2,23 @@
 
 public class BookBorrowList
 {
+    Data data;
+    Ui ui;
+    MagicNumber magicNumber;
+    UserInf user;
+
+    public BookBorrowList(Data data,Ui ui,MagicNumber magicNumber,UserInf user)
+    {
+        this.data = data;
+        this.ui = ui;
+        this.magicNumber = magicNumber;
+        this.user = user;
+
+    }
+    
     ConsoleKeyInfo inputKey;
-    public void ShowBookBorrowList(Data data,Ui ui, MagicNumber magicNumber,UserInf user)
+
+    public void ShowBookBorrowList()
 	{
 		while (true)
 		{

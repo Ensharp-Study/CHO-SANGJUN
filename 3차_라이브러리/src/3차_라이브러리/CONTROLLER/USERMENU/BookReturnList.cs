@@ -2,7 +2,18 @@
 
 public class BookReturnList
 {
-    public void ShowBookReturnList(Data data, Ui ui, MagicNumber magicNumber, UserInf user)
+    Data data;
+    Ui ui;
+    MagicNumber magicNumber;
+    UserInf user;
+    public BookReturnList(Data data, Ui ui, MagicNumber magicNumber, UserInf user)
+    {
+        this.data = data;
+        this.ui = ui;
+        this.magicNumber = magicNumber;
+        this.user = user;
+    }
+    public void ShowBookReturnList()
     {
         while (true)
         {

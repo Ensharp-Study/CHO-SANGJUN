@@ -2,7 +2,20 @@
 
 public class EditingUserInf
 {
-	public void EditUserInf(Data data, Ui ui,UserInf user, ExceptionHandling exceptionHandling)
+    Data data;
+    Ui ui;
+    UserInf user;
+    ExceptionHandling exceptionHandling;
+
+    public EditingUserInf(Data data, Ui ui, UserInf user, ExceptionHandling exceptionHandling)
+    {
+        this.ui = ui;
+        this.user = user;
+        this.data = data;
+        this.exceptionHandling = exceptionHandling;
+
+    }
+    public void EditUserInf()
 	{
         while (true)
         {

@@ -2,7 +2,18 @@
 
 public class AddingBook
 {
-	public void AddNewBook(Data data, Ui ui, MagicNumber magicNumber)
+    Data data;
+    Ui ui;
+    MagicNumber magicNumber;
+
+    public AddingBook(Data data, Ui ui, MagicNumber magicNumber) { 
+    
+        this.data = data;
+        this.ui = ui;
+        this.magicNumber = magicNumber;
+    }
+
+	public void AddNewBook()
 	{
         while (true)
         {

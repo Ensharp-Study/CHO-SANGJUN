@@ -3,9 +3,20 @@ using System.Text.RegularExpressions;
 
 public class UserLogin
 {
-    UserMenu usermenu = new UserMenu();
+    Ui ui;
+    MagicNumber magicNumber;
+    Data data;
+    ExceptionHandling exceptionHandling;
 
-    public void GetUserLogin(Ui ui,MagicNumber magicNumber, Data data, ExceptionHandling exceptionHandling)
+    public UserLogin(Ui ui, MagicNumber magicNumber, Data data, ExceptionHandling exceptionHandling)
+    {
+        this.ui = ui;
+        this.magicNumber = magicNumber;
+        this.data = data;
+        this.exceptionHandling = exceptionHandling;
+    }
+
+    public void GetUserLogin()
     {
         string id;
         string password;
@@ -30,7 +41,8 @@ public class UserLogin
                     if (string.Equals(password, data.userList[indexI].password))
                     {
                         Console.Clear() ;
-                        usermenu.ControllUserMenu(ui, data, magicNumber, data.userList[indexI], exceptionHandling);
+                        UserMenu usermenu = new UserMenu(ui, data, magicNumber,  data.userList[indexI],  exceptionHandling);
+                        usermenu.ControllUserMenu();
                         isJudgingCorrectInput = false;
                     }
                     else

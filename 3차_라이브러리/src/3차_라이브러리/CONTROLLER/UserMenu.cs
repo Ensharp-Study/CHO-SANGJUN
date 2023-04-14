@@ -7,6 +7,7 @@ public class UserMenu
          while (true) { 
         
             int menuNumber;
+            ui.ViewMainMenu();
             ui.ViewMenu();
             menuNumber = ui.PrintSelectUserMenu();
             Console.Clear();
@@ -53,7 +54,12 @@ public class UserMenu
                 DeletingUserInf deletingUserInf = new DeletingUserInf();
                 deletingUserInf.DeleteUserInf(ui, magicNumber, data, user);
             }
-         }
+
+            if (menuNumber == magicNumber.ESC)
+            {
+                break;
+            }
+        }
 
     }
 }

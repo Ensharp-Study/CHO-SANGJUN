@@ -12,70 +12,73 @@ public class BookFinder
     ConsoleKeyInfo inputKey;
 
     public void FindBook(Data data, Ui ui, MagicNumber magicNumber)
-    { 
-			ui.PrintBookFinderMenu();
-			for (int i = 0; i < data.bookList.Count; i++)
-			{
-				ui.PrintBookList(data, i);
-			}
-			Console.SetCursorPosition(17, 1);
-			title = Console.ReadLine();
-			Console.SetCursorPosition(19, 2);
-			author = Console.ReadLine();
-			Console.SetCursorPosition(17, 3);
-			publisher = Console.ReadLine();
-			Console.WriteLine("\n\n\n");
-
-			Console.Clear();
-
-			ui.PrintBookFinderMenu();
-        for (int i = 0; i < data.bookList.Count; i++)
+    {
+        while (true)
         {
-
-            if (string.IsNullOrEmpty(title) == false)
+            ui.PrintBookFinderMenu();
+            for (int i = 0; i < data.bookList.Count; i++)
             {
-                if ((data.bookList[i].bookName).Contains(title))
+                ui.PrintBookList(data, i);
+            }
+            Console.SetCursorPosition(17, 1);
+            title = Console.ReadLine();
+            Console.SetCursorPosition(19, 2);
+            author = Console.ReadLine();
+            Console.SetCursorPosition(17, 3);
+            publisher = Console.ReadLine();
+            Console.WriteLine("\n\n\n");
+
+            Console.Clear();
+
+            ui.PrintBookFinderMenu();
+            for (int i = 0; i < data.bookList.Count; i++)
+            {
+
+                if (string.IsNullOrEmpty(title) == false)
                 {
-                    PrintPossiblity++;
+                    if ((data.bookList[i].bookName).Contains(title))
+                    {
+                        PrintPossiblity++;
+                    }
+                }
+
+                if (string.IsNullOrEmpty(author) == false)
+                {
+                    if ((data.bookList[i].bookAuthor).Contains(author))
+                    {
+                        PrintPossiblity++;
+                    }
+                }
+
+                if (string.IsNullOrEmpty(publisher) == false)
+                {
+                    if ((data.bookList[i].bookPublisher).Contains(publisher))
+                    {
+                        PrintPossiblity++;
+                    }
+                }
+                if (PrintPossiblity > 0)
+                {
+                    {
+                        ui.PrintBookList(data, i);
+                    }
+                    PrintPossiblity = 0;
                 }
             }
 
-            if (string.IsNullOrEmpty(author) == false)
+            ui.SelectEndorReturnInTheProgram();
+
+            inputKey = Console.ReadKey();
+            if (inputKey.Key == ConsoleKey.Escape)
             {
-                if ((data.bookList[i].bookAuthor).Contains(author))
-                {
-                    PrintPossiblity++;
-                }
+                Console.Clear();
+                return;
             }
 
-            if (string.IsNullOrEmpty(publisher) == false)
+            else if (inputKey.Key == ConsoleKey.Enter)
             {
-                if ((data.bookList[i].bookPublisher).Contains(publisher))
-                {
-                    PrintPossiblity++;
-                }
-            }
-            if (PrintPossiblity > 0)
-            {
-                {
-                    ui.PrintBookList(data, i);
-                }
-                PrintPossiblity = 0;
+                Console.Clear();
             }
         }
-     
-        ui.SelectEndorReturnInTheProgram();
-
-        inputKey = Console.ReadKey();
-        if (inputKey.Key == ConsoleKey.Escape)
-        {
-            return;
-        }
-
-        else if (inputKey.Key == ConsoleKey.Enter)
-        {
-
-        }
-
     }
 }

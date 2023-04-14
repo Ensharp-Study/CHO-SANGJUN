@@ -5,6 +5,7 @@ public class MagicNumber //모델에 있으면 안됨 >유틸리티 폴더 만�
 	public int USERMODE = 0; //constan
     public int ADMINMODE = 1;
 
+    public int ESC = 10;
 
     //유저 모드 메뉴 번호 할당
     public int BOOKFINDER = 0;

@@ -6,9 +6,11 @@ public class AdministratorMenu
     {
         while (true)
         {
-
+            ConsoleKeyInfo inputKey;
             int menuNumber;
+            ui.ViewMainMenu();
             ui.ViewMenu();
+
             menuNumber = ui.PrintSelectAdministratorMenu();
             Console.Clear();
 
@@ -47,6 +49,10 @@ public class AdministratorMenu
             {
                 BookBorrowedStatus bookBorrowedStatus = new BookBorrowedStatus();
                 bookBorrowedStatus.CheckBookBorrowedList(data, ui, magicNumber);
+            }
+            if(menuNumber == magicNumber.ESC)
+            {
+                break;
             }
 
         }

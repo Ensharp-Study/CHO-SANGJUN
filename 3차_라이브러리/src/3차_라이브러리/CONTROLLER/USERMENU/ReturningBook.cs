@@ -5,62 +5,73 @@ public class ReturningBook
 {
 	public void ReturnBook(Data data,Ui ui,UserInf user)
 	{
-        string bookId;
-        int sameIndex = -1;
-        ConsoleKeyInfo inputKey;
-
-        ui.PrintReturningBook();
-
-        for (int i = 0; i < user.borrowBookList.Count; i++)
+        while (true)
         {
-            ui.PrintShouldReturningList(user.borrowBookList[i]);
-        }
+            string bookId;
+            int sameIndex = -1;
+            ConsoleKeyInfo inputKey;
 
-        Console.SetCursorPosition(36, 3);
-        bookId = Console.ReadLine();
+            ui.PrintReturningBook();
 
-
-
-        for (int i = 0; i < data.bookList.Count; i++)
-        {
-            if (data.bookList[i].bookId == int.Parse(bookId))
+            for (int i = 0; i < user.borrowBookList.Count; i++)
             {
-                sameIndex = i;
-                break;
+                ui.PrintShouldReturningList(user.borrowBookList[i]);
             }
 
-        }
+            Console.SetCursorPosition(36, 3);
+            bookId = Console.ReadLine();
 
-        if (sameIndex == -1)
-        {
-            Console.SetCursorPosition(0, 3);
-            Console.WriteLine("잘못된 ID를 입력하였습니다. 다시 입력해 주세요.");
-            Console.WriteLine("                            ");
-        }
-        else
-        {
-            Console.SetCursorPosition(0, 3);
-            Console.WriteLine("      책 반납 성공!                          ");
-            Console.WriteLine("                                               ");
-            data.bookList[sameIndex].bookQuantity += 1;
 
-            for (int i = 0; i < data.userList.Count; i++)
+
+            for (int i = 0; i < data.bookList.Count; i++)
             {
-                if (user.userNumber == data.userList[i].userNumber)
+                if (data.bookList[i].bookId == int.Parse(bookId))
                 {
-                    data.userList[i].returnBookList.Add(data.bookList[sameIndex]);
+                    sameIndex = i;
+                    break;
+                }
+
+            }
+
+            if (sameIndex == -1)
+            {
+                Console.SetCursorPosition(0, 3);
+                Console.WriteLine("잘못된 ID를 입력하였습니다. 다시 입력해 주세요.");
+                Console.WriteLine("                            ");
+            }
+            else
+            {
+                Console.SetCursorPosition(0, 3);
+                Console.WriteLine("      책 반납 성공!                          ");
+                Console.WriteLine("                                               ");
+                data.bookList[sameIndex].bookQuantity += 1;
+
+                for (int i = 0; i < data.userList.Count; i++)
+                {
+                    if (user.userNumber == data.userList[i].userNumber)
+                    {
+                        data.userList[i].returnBookList.Add(data.bookList[sameIndex]);
+                    }
                 }
             }
-        }
 
-        inputKey = Console.ReadKey();
-        if (inputKey.Key == ConsoleKey.Escape)
-        {
-            return;
-        }
-        else
-        {
+            inputKey = Console.ReadKey();
 
+            if (inputKey.Key == ConsoleKey.Enter)
+            {
+                Console.Clear();
+                continue;
+            }
+            else if (inputKey.Key == ConsoleKey.Escape)
+            {
+                Console.Clear();
+                break;
+            }
+            else
+            {
+                Console.Clear();
+                break;
+            }
         }
     }
 }

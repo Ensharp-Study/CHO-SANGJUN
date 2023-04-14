@@ -8,8 +8,6 @@ public class AdministratorLogin
         bool isJudgingCorrectInput = true;
         AdministratorMenu administratorMenu = new AdministratorMenu();
 
-        //while (isJudgingCorrectInput)
-        //{
         ui.PrintLoginMenu();
         Console.SetCursorPosition(53, 23);
         id = Console.ReadLine();
@@ -20,6 +18,7 @@ public class AdministratorLogin
         {
             if (string.Equals(password, data.administratorInf.password))
             {
+                Console.Clear();
                 administratorMenu.ControllAdministratorMenu(ui, data, magicNumber);
                 isJudgingCorrectInput = false;
             }
@@ -34,9 +33,6 @@ public class AdministratorLogin
             Console.WriteLine("\n\n                             아이디 또는 비밀번호 입력이 틀렸습니다. 다시 입력하세요");
         }
 
-
-
-    
     }
 
 

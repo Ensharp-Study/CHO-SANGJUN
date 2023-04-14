@@ -4,8 +4,9 @@ public class SelectingSignInOrSignUp // 따로 클래스 뺄 필요 없다
 {
     public void SelectSignOrSignUp(Ui ui, MagicNumber magicNumber, Data data) //생성자에서 인스턴스 만들기
     {
-        while (true)
-        {
+       
+            
+            ui.ViewMainMenu();
             int judgementLoginOrSignUP;//밖으로 빼기
             judgementLoginOrSignUP = ui.PrintLoginOrSignUpMenu(magicNumber);
 
@@ -13,6 +14,7 @@ public class SelectingSignInOrSignUp // 따로 클래스 뺄 필요 없다
             {
                 UserLogin login = new UserLogin(); // 인스턴스 계속 생성 막기
                 login.GetUserLogin(ui, magicNumber, data);
+                return;
             }
             else if (judgementLoginOrSignUP == magicNumber.SIGNUP)
             {
@@ -20,7 +22,7 @@ public class SelectingSignInOrSignUp // 따로 클래스 뺄 필요 없다
                 signUp.SignUpAccount(ui, magicNumber, data);
                 Console.Clear();
             }
-        }
     }
+    
 }
 

@@ -13,80 +13,126 @@ public class EditingBook
     int PrintPossiblity = 0;
     string EditedBookIdString;
     int EditedBookIdInt;
-    
+    ConsoleKeyInfo inputKey;
+
 
     public void EditBook(Data data, Ui ui)
     {
-        ui.PrintBookFinderMenu();
-        for (int i = 0; i < data.bookList.Count; i++)
+        while (true)
         {
-            ui.PrintBookList(data, i);
-        }
-
-        Console.SetCursorPosition(17, 1);
-        title = Console.ReadLine();
-        Console.SetCursorPosition(19, 2);
-        author = Console.ReadLine();
-        Console.SetCursorPosition(17, 3);
-        publisher = Console.ReadLine();
-        Console.WriteLine("\n\n\n");
-
-        Console.Clear();
-
-        ui.PrintEditingBookAskingMenu(); //수정할 아이디 받는 창과 리스트 나열 출력
-        for (int i = 0; i < data.bookList.Count; i++)
-        {
-
-            if (string.IsNullOrEmpty(title) == false)
+            ui.PrintBookFinderMenu();
+            for (int i = 0; i < data.bookList.Count; i++)
             {
-                if ((data.bookList[i].bookName).Contains(title))
+                ui.PrintBookList(data, i);
+            }
+
+            Console.SetCursorPosition(17, 1);
+            title = Console.ReadLine();
+            Console.SetCursorPosition(19, 2);
+            author = Console.ReadLine();
+            Console.SetCursorPosition(17, 3);
+            publisher = Console.ReadLine();
+            Console.WriteLine("\n\n\n");
+
+            Console.Clear();
+
+            ui.PrintEditingBookAskingMenu(); //수정할 아이디 받는 창과 리스트 나열 출력
+            for (int i = 0; i < data.bookList.Count; i++)
+            {
+
+                if (string.IsNullOrEmpty(title) == false)
                 {
-                    PrintPossiblity++;
+                    if ((data.bookList[i].bookName).Contains(title))
+                    {
+                        PrintPossiblity++;
+                    }
+                }
+
+                if (string.IsNullOrEmpty(author) == false)
+                {
+                    if ((data.bookList[i].bookAuthor).Contains(author))
+                    {
+                        PrintPossiblity++;
+                    }
+                }
+
+                if (string.IsNullOrEmpty(publisher) == false)
+                {
+                    if ((data.bookList[i].bookPublisher).Contains(publisher))
+                    {
+                        PrintPossiblity++;
+                    }
+                }
+                if (PrintPossiblity > 0)
+                {
+                    {
+                        ui.PrintBookList(data, i);
+                    }
+                    PrintPossiblity = 0;
                 }
             }
 
-            if (string.IsNullOrEmpty(author) == false)
+            Console.SetCursorPosition(64, 2);
+            EditedBookIdString = Console.ReadLine();
+            EditedBookIdInt = int.Parse(EditedBookIdString);
+            Console.Clear();
+            ui.PrintEditingBookMenu();
+            for (int i = 0; i < data.bookList.Count; i++)
             {
-                if ((data.bookList[i].bookAuthor).Contains(author))
+                if (data.bookList[i].bookId == EditedBookIdInt)
                 {
-                    PrintPossiblity++;
+                    ui.PrintCurrentSavedBookInformation(data, i);
+                    break;
                 }
             }
 
-            if (string.IsNullOrEmpty(publisher) == false)
-            {
-                if ((data.bookList[i].bookPublisher).Contains(publisher))
-                {
-                    PrintPossiblity++;
-                }
-            }
-            if (PrintPossiblity > 0)
-            {
-                {
-                    ui.PrintBookList(data, i);
-                }
-                PrintPossiblity = 0;
-            }
-        }
+            ui.PrintEditingBookInformation();
 
-        Console.SetCursorPosition(64, 2);
-        EditedBookIdString = Console.ReadLine();
-        EditedBookIdInt = int.Parse(EditedBookIdString);
-        Console.Clear();
-        ui.PrintEditingBookMenu();
-        for (int i = 0; i < data.bookList.Count; i++)
-        {
-            if (data.bookList[i].bookId == EditedBookIdInt)
+            Console.SetCursorPosition(63, 24);
+            title = Console.ReadLine();
+            Console.SetCursorPosition(63, 25);
+            author = Console.ReadLine();
+            Console.SetCursorPosition(63, 26);
+            publisher = Console.ReadLine();
+            Console.SetCursorPosition(63, 27);
+            quantity = Console.ReadLine();
+            Console.SetCursorPosition(63, 28);
+            price = Console.ReadLine();
+            Console.SetCursorPosition(63, 29);
+            publishDate = Console.ReadLine();
+
+            for (int i = 0; i < data.bookList.Count; i++)
             {
-                ui.PrintCurrentSavedBookInformation(data, i);
+                if (data.bookList[i].bookId == EditedBookIdInt)
+                {
+                    data.bookList[i].bookName = title;
+                    data.bookList[i].bookAuthor = author;
+                    data.bookList[i].bookPublisher = publisher;
+                    data.bookList[i].bookQuantity = int.Parse(quantity);
+                    data.bookList[i].bookPrice = int.Parse(price);
+                    data.bookList[i].bookPublicationDate = publishDate;
+                    break;
+                }
+            }
+            Console.Clear();
+            ui.PrintEditingBookSuccessSentence();
+            inputKey = Console.ReadKey();
+            if (inputKey.Key == ConsoleKey.Enter)
+            {
+                Console.Clear();
+                continue;
+            }
+            else if (inputKey.Key == ConsoleKey.Escape)
+            {
+                Console.Clear();
+                break;
+            }
+            else
+            {
+                Console.Clear();
                 break;
             }
         }
-        ui.PrintEditingBookInformation(data);
-
-        Console.SetCursorPosition(40, 13);
-        title = Console.ReadLine();
-
 
 
     }

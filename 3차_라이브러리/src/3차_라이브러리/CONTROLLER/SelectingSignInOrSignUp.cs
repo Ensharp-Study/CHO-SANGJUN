@@ -22,13 +22,13 @@ public class SelectingSignInOrSignUp // 따로 클래스 뺄 필요 없다
             int judgementLoginOrSignUP;//밖으로 빼기
             judgementLoginOrSignUP = ui.PrintLoginOrSignUpMenu(magicNumber);
 
-            if (judgementLoginOrSignUP == magicNumber.LOGIN)
+            if (judgementLoginOrSignUP == MagicNumber.LOGIN)
             {
                 UserLogin login = new UserLogin(ui,  magicNumber,  data,  exceptionHandling); // 인스턴스 계속 생성 막기
                 login.GetUserLogin();
                 return;
             }
-            else if (judgementLoginOrSignUP == magicNumber.SIGNUP)
+            else if (judgementLoginOrSignUP == MagicNumber.SIGN_UP)
             {
                 SignUp signUp = new SignUp(ui, magicNumber, data, exceptionHandling); // 인스턴스
                 signUp.SignUpAccount();

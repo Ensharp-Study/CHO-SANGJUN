@@ -3,7 +3,16 @@
 public class MemberManger
 {
     ConsoleKeyInfo inputKey;
-    public void ManageMember(Data data, Ui ui)
+    Data data;
+    Ui ui;
+
+    public MemberManger(Data data, Ui ui)
+    {
+        this.data = data;
+        this.ui = ui;
+    }
+
+    public void ManageMember()
     {
         while (true)
         {

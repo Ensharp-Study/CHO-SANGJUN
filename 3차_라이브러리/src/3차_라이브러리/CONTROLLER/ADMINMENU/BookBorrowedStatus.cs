@@ -3,7 +3,18 @@
 public class BookBorrowedStatus
 {
     ConsoleKeyInfo inputKey;
-    public void CheckBookBorrowedList(Data data, Ui ui,MagicNumber magicNumber)
+    Data data;
+    Ui ui;
+    MagicNumber magicNumber;
+
+    public BookBorrowedStatus(Data data, Ui ui, MagicNumber magicNumber)
+    {
+        this.data = data;
+        this.ui = ui;
+        this.magicNumber = magicNumber;
+    }
+
+    public void CheckBookBorrowedList()
     {
         while (true)
         {

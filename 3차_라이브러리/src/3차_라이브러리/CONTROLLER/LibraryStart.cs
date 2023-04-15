@@ -16,13 +16,13 @@ public class LibraryStart
             ui.ViewMainMenu();
             menuNumber = ui.PrintSelectMenu(magicNumber);
 
-            if (menuNumber == magicNumber.USERMODE) //유저 모드 진입
+            if (menuNumber == MagicNumber.USER_MODE) //유저 모드 진입
             {
                 Console.Clear();
                 SelectingSignInOrSignUp selectingSignInOrSignUp = new SelectingSignInOrSignUp(ui, magicNumber, data, exceptionHandling);
                 selectingSignInOrSignUp.SelectSignOrSignUp();
             }
-            else if (menuNumber == magicNumber.ADMINMODE)//관리자 모드 진입
+            else if (menuNumber == MagicNumber.ADMIN_MODE)//관리자 모드 진입
             {
                 AdministratorLogin administratorLogin = new AdministratorLogin(ui, magicNumber, data);
                 administratorLogin.GetAdministratorLogin();

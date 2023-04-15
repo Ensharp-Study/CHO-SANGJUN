@@ -26,42 +26,42 @@ public class AdministratorMenu
             Console.Clear();
 
             //상속을 활용하기 좀 더 고민해서 유저 관리자가 둘다 코드 재활용할 수 있을지 클래스 분할
-            if (menuNumber == magicNumber.BOOKFINDER)   //스위치
+            if (menuNumber == MagicNumber.BOOK_FINDER)   //스위치
             {
                 BookFinder bookFinder = new BookFinder(data, ui, magicNumber);
                 bookFinder.FindBook();
             }
 
-            if (menuNumber == magicNumber.ADDINGBOOK)
+            if (menuNumber == MagicNumber.ADDING_BOOK)
             {
                 AddingBook addingBook = new AddingBook(data, ui, magicNumber);
                 addingBook.AddNewBook();
             }
 
-            if (menuNumber == magicNumber.DELETINGBOOK)
+            if (menuNumber == MagicNumber.DELETING_BOOK)
             {
-                DeletingBook deletingBook = new DeletingBook();
-                deletingBook.DeleteABook(data, ui, magicNumber);
+                DeletingBook deletingBook = new DeletingBook(data, ui, magicNumber);
+                deletingBook.DeleteABook();
             }
 
-            if (menuNumber == magicNumber.EDITINGBOOK)
+            if (menuNumber == MagicNumber.EDITING_BOOK)
             {
-                EditingBook editingBook = new EditingBook();
-                editingBook.EditBook(data, ui);
+                EditingBook editingBook = new EditingBook(data, ui);
+                editingBook.EditBook();
             }
 
-            if (menuNumber == magicNumber.MEMBERMANAGER)
+            if (menuNumber == MagicNumber.MEMBER_MANAGER)
             {
-                MemberManger memberManger = new MemberManger();
-                memberManger.ManageMember(data, ui);
+                MemberManger memberManger = new MemberManger(data, ui);
+                memberManger.ManageMember();
             }
 
-            if (menuNumber == magicNumber.BOOKBORROWINGSTATUS)
+            if (menuNumber == MagicNumber.BOOK_BORROWING_STATUS)
             {
-                BookBorrowedStatus bookBorrowedStatus = new BookBorrowedStatus();
-                bookBorrowedStatus.CheckBookBorrowedList(data, ui, magicNumber);
+                BookBorrowedStatus bookBorrowedStatus = new BookBorrowedStatus(data, ui, magicNumber);
+                bookBorrowedStatus.CheckBookBorrowedList();
             }
-            if(menuNumber == magicNumber.ESC)
+            if(menuNumber == MagicNumber.ESC)
             {
                 break;
             }

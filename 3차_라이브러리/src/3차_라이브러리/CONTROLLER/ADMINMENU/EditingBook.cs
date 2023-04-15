@@ -15,8 +15,17 @@ public class EditingBook
     int EditedBookIdInt;
     ConsoleKeyInfo inputKey;
 
+    Data data;
+    Ui ui;
 
-    public void EditBook(Data data, Ui ui)
+    public EditingBook(Data data, Ui ui) {
+
+        this.data = data;
+        this.ui = ui;
+    }
+
+
+    public void EditBook()
     {
         while (true)
         {

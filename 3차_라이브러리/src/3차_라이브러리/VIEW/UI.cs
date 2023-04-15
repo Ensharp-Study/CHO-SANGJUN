@@ -38,7 +38,7 @@ public class Ui //좀 더 쪼개기
         Console.SetCursorPosition(50, 24);
         Console.ForegroundColor = ConsoleColor.White;
         Console.WriteLine("○ 관리자 모드");
-        selectedMenuNum = magicNumber.USERMODE;
+        selectedMenuNum = MagicNumber.USER_MODE;
 
         while (isCheckedEnter == false)
         {
@@ -51,7 +51,7 @@ public class Ui //좀 더 쪼개기
                 Console.SetCursorPosition(50, 24);
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("○ 관리자 모드");
-                selectedMenuNum = magicNumber.USERMODE;
+                selectedMenuNum = MagicNumber.USER_MODE;
             }
             else if (inputKey.Key == ConsoleKey.DownArrow)
             {
@@ -62,20 +62,20 @@ public class Ui //좀 더 쪼개기
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("○ 관리자 모드");
                 Console.ResetColor();
-                selectedMenuNum = magicNumber.ADMINMODE;
+                selectedMenuNum = MagicNumber.ADMIN_MODE;
             }
             else if (inputKey.Key == ConsoleKey.Enter)
             {
                 isCheckedEnter = true;
             }
         }
-        if (selectedMenuNum == magicNumber.USERMODE)
+        if (selectedMenuNum == MagicNumber.USER_MODE)
         {
-            return magicNumber.USERMODE;
+            return MagicNumber.USER_MODE;
         }
-        else if (selectedMenuNum == magicNumber.ADMINMODE)
+        else if (selectedMenuNum == MagicNumber.USER_MODE)
         {
-            return magicNumber.ADMINMODE;
+            return MagicNumber.USER_MODE;
         }
 
         return -1;
@@ -92,7 +92,7 @@ public class Ui //좀 더 쪼개기
         Console.SetCursorPosition(50, 24);
         Console.ForegroundColor = ConsoleColor.White;
         Console.WriteLine("○ 회원가입                       ");
-        selectedMenuNum = magicNumber.USERMODE;
+        selectedMenuNum = MagicNumber.USER_MODE;
 
         while (isCheckedEnter == false)
         {
@@ -105,7 +105,7 @@ public class Ui //좀 더 쪼개기
                 Console.SetCursorPosition(50, 24);
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("○ 회원가입                ");
-                selectedMenuNum = magicNumber.LOGIN;
+                selectedMenuNum = MagicNumber.LOGIN;
             }
             else if (inputKey.Key == ConsoleKey.DownArrow)
             {
@@ -116,24 +116,23 @@ public class Ui //좀 더 쪼개기
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("○ 회원가입                ");
                 Console.ResetColor();
-                selectedMenuNum = magicNumber.SIGNUP;
+                selectedMenuNum = MagicNumber.SIGN_UP;
             }
             else if (inputKey.Key == ConsoleKey.Enter)
             {
                 isCheckedEnter = true;
             }
         }
-        if (selectedMenuNum == magicNumber.LOGIN)
+        if (selectedMenuNum == MagicNumber.LOGIN)
         {
-            return magicNumber.LOGIN;
+            return MagicNumber.LOGIN;
         }
-        else if (selectedMenuNum == magicNumber.SIGNUP)
+        else if (selectedMenuNum == MagicNumber.SIGN_UP)
         {
-            return magicNumber.SIGNUP;
+            return MagicNumber.SIGN_UP;
         }
 
         return -1;
-
 
     }
     public void PrintSignUpMenu()
@@ -402,20 +401,6 @@ public class Ui //좀 더 쪼개기
 
 
     }
-
-    /*public void PrintBorrowingBookMenu(Data data, int indexI)
-    {
-        Console.WriteLine("\n\n");
-        Console.WriteLine("   빌릴 책의 ID를 입력해 주세요 : ");
-        Console.WriteLine("   값의 범위 : 0~999");
-        Console.WriteLine("\n");
-        Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine("ESC  :  뒤로가기");
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine("ENTER  :  입력하기\n\n");
-        Console.ResetColor();
-        Console.WriteLine("============================================================");
-    }*/
 
     public void PrintBorrowingList()
     {

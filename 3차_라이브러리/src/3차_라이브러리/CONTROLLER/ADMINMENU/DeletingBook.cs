@@ -11,7 +11,18 @@ public class DeletingBook
     int PrintPossiblity = 0;
     ConsoleKeyInfo inputKey;
 
-    public void DeleteABook(Data data, Ui ui, MagicNumber magicNumber)
+    Data data;
+    Ui ui;
+    MagicNumber magicNumber;
+
+    public DeletingBook(Data data, Ui ui, MagicNumber magicNumber)
+    {
+        this.data = data;
+        this.ui = ui;
+        this.magicNumber = magicNumber;
+    }
+
+    public void DeleteABook()
     {
         while (true)
         {

@@ -31,7 +31,7 @@ public class DeletingUserInf //inf와같이 줄임말
             Console.SetCursorPosition(60, 3);
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("○ 아니오");
-            selectedMenuNum = magicNumber.DELETEINGUSER;
+            selectedMenuNum = MagicNumber.DELETEING_USER;
 
             while (isCheckedEnter == false)
             {
@@ -44,7 +44,7 @@ public class DeletingUserInf //inf와같이 줄임말
                     Console.SetCursorPosition(60, 4);
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("○ 아니오");
-                    selectedMenuNum = magicNumber.DELETEINGUSER;
+                    selectedMenuNum = MagicNumber.DELETEING_USER;
                 }
                 else if (inputKey.Key == ConsoleKey.RightArrow)
                 {
@@ -55,14 +55,14 @@ public class DeletingUserInf //inf와같이 줄임말
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("○ 아니오");
                     Console.ResetColor();
-                    selectedMenuNum = magicNumber.SAVINGUSER;
+                    selectedMenuNum = MagicNumber.SAVING_USER;
                 }
                 else if (inputKey.Key == ConsoleKey.Enter)
                 {
                     isCheckedEnter = true;
                 }
             }
-            if (selectedMenuNum == magicNumber.DELETEINGUSER)
+            if (selectedMenuNum == MagicNumber.DELETEING_USER)
             {
                 for (int i = 0; i < data.userList.Count; i++)
                 {
@@ -74,7 +74,7 @@ public class DeletingUserInf //inf와같이 줄임말
                 Console.Clear();
                 ui.PrintAccountDeletionSentence();
             }
-            else if (selectedMenuNum == magicNumber.SAVINGUSER)
+            else if (selectedMenuNum == MagicNumber.SAVING_USER)
             {
                 Console.Clear();
                 ui.PrintMaintainingAccountSentence();

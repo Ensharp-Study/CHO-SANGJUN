@@ -5,7 +5,7 @@ public class AdministratorMenu
     Ui ui;
     DataStorage dataStorage;
 
-    public AdministratorMenu(Ui ui, DataStorage dataStorage )
+    public AdministratorMenu(Ui ui, DataStorage dataStorage)
     {
         this.ui = ui;
         this.dataStorage = dataStorage;

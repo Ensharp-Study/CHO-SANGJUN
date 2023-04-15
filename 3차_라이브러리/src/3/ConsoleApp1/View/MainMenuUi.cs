@@ -33,7 +33,7 @@
     {
         ConsoleKeyInfo inputKey;
         bool isCheckedEnter = false;
-        int selectedMenuNum = -1;
+        int selectedMenuNum;
 
         Console.SetCursorPosition(50, 23);
         Console.ForegroundColor = ConsoleColor.Green;
@@ -76,9 +76,9 @@
         {
             return Constants.USER_MODE;
         }
-        else if (selectedMenuNum == Constants.USER_MODE)
+        else if (selectedMenuNum == Constants.ADMIN_MODE)
         {
-            return Constants.USER_MODE;
+            return Constants.ADMIN_MODE;
         }
 
         return -1;

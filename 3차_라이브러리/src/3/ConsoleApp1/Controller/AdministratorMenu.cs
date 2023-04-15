@@ -5,7 +5,7 @@ public class AdministratorMenu
     MainMenuUi mainMenuUi;
     DataStorage dataStorage;
 
-    public AdministratorMenu(MainMenuUi mainMenuUi, DataStorage dataStorage)
+    public AdministratorMenu(MainMenuUi mainMenuUi,   DataStorage dataStorage)
     {
         this.mainMenuUi = mainMenuUi;
         this.dataStorage = dataStorage;
@@ -20,6 +20,7 @@ public class AdministratorMenu
             ConsoleKeyInfo inputKey;
             int menuNumber;
             mainMenuUi.ViewMainMenu();
+            commonFunctionUi.ViewMenu();
             //administratorModeUi.ViewAdministratorMenu();
             
             menuNumber = administratorModeUi.PrintSelectAdministratorMenu();

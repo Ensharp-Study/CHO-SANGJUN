@@ -48,5 +48,11 @@ public class CommonFunctionUi
         Console.WriteLine("책 정보   :  " + dataStorage.bookList[indexI].bookInf);
         Console.WriteLine("============================================================");
     }
+    public void SelectEndorReturnInTheProgram()
+    {
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("다시 검색하려면 ENTER, 메뉴선택으로 돌아가려면 ESC를 눌러주세요.");
+        Console.ResetColor();
+    }
 }
 

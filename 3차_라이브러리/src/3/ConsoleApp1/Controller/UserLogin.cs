@@ -26,6 +26,7 @@ public class UserLogin
         {
             Console.Clear();
             mainMenuUi.ViewMainMenu();
+            mainMenuUi.ViewMenuSquare();
             signUpAndLoginUi.PrintLoginMenu();
 
             Console.SetCursorPosition(53, 23);

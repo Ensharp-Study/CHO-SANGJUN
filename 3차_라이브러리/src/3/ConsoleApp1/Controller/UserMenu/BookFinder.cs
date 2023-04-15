@@ -17,7 +17,6 @@ public class BookFinder
 
     public BookFinder(DataStorage dataStorage, CommonFunctionUi commonFunctionUi)
     {
-        this.userModeUi = userModeUi;
         this.dataStorage = dataStorage;
         this.commonFunctionUi = commonFunctionUi;
     }
@@ -65,7 +64,7 @@ public class BookFinder
                 }
             }
 
-            userModeUi.SelectEndorReturnInTheProgram();
+            commonFunctionUi.SelectEndorReturnInTheProgram();
 
             inputKey = Console.ReadKey();
             if (inputKey.Key == ConsoleKey.Escape)

@@ -14,7 +14,7 @@ public class LibraryMode
     {
         UserLogin login = new UserLogin(mainMenuUi,signUpAndLoginUi, dataStorage, exceptionHandling);
         SignUp signUp = new SignUp(mainMenuUi,signUpAndLoginUi, dataStorage, exceptionHandling);
-        AdministratorLogin administratorLogin = new AdministratorLogin(mainMenuUi, signUpAndLoginUi, dataStorage);
+        AdministratorLogin administratorLogin = new AdministratorLogin(mainMenuUi, signUpAndLoginUi, dataStorage, exceptionHandling);
 
         while (true)
         {
@@ -48,6 +48,9 @@ public class LibraryMode
 
             else if (menuNumber == Constants.ADMIN_MODE)//관리자 모드 진입
             {
+                Console.Clear();
+                mainMenuUi.ViewMainMenu();
+                mainMenuUi.ViewMenuSquare();
                 administratorLogin.GetAdministratorLogin();
             }
         }

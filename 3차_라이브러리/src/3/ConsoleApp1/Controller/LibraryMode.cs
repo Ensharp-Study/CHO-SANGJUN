@@ -2,10 +2,12 @@
 
 public class LibraryMode
 {
-    
+    ConsoleKeyInfo inputKey;
+
     Ui ui = new Ui();
     DataStorage dataStorage = new DataStorage();
     ExceptionHandling exceptionHandling = new ExceptionHandling();
+
 
     public void SelectMenu()
     {

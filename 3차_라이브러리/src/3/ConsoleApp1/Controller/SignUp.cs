@@ -8,6 +8,8 @@ public class SignUp
 
     UserInf newUserInf = new UserInf();
 
+    ConsoleKeyInfo inputKey;
+
     public SignUp(Ui ui, DataStorage dataStorage, ExceptionHandling exceptionHandling)
     {
         this.ui = ui;
@@ -50,7 +52,13 @@ public class SignUp
         newUserInf.userAddress = Console.ReadLine();
         
         dataStorage.userList.Add(newUserInf);
+        
+        Console.Clear();
+        ui.PrintAccountDeletionSentence(newUserInf.userName);
+        
+        inputKey = Console.ReadKey();
         Console.SetCursorPosition(60, 28);
+        
         return;
     }
 }

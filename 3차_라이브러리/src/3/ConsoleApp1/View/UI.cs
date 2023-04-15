@@ -163,6 +163,18 @@ public class Ui //좀 더 쪼개기
         Console.WriteLine("                       ex) 서울특별시 마포구 큰우물로 28");
         Console.ResetColor();
     }
+    public void PrintAccountDeletionSentence(string name)
+    {
+            Console.WriteLine("                        _______________________________________________________________                        ");
+            Console.WriteLine("                       |                                                               |                       ");
+            Console.WriteLine("                       |                                                               |                       ");
+            Console.WriteLine("                       |             "+name+"님"+"     회원가입이 완료 되었습니다!          |                       ");
+            Console.WriteLine("                       |                                                               |                       ");
+            Console.WriteLine("                       |                                                               |                       ");
+            Console.WriteLine("                       -----------------------------------------------------------------                       ");
+
+        
+    }
     public void PrintLoginMenu()
     {
         Console.SetCursorPosition(50, 22);

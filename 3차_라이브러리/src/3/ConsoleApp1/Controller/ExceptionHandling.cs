@@ -9,7 +9,7 @@ public class ExceptionHandling
         while (true)
         {
             Console.SetCursorPosition(cursorPositionX, cursorPositionY);
-            Console.WriteLine("                                         ");
+            Console.WriteLine ("                                            ");
             Console.SetCursorPosition(cursorPositionX, cursorPositionY);
             string input = Console.ReadLine();
             string pattern = @"^[a-zA-Z0-9]{8,15}$";

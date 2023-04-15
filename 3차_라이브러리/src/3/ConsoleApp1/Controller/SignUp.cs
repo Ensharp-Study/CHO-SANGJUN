@@ -8,8 +8,6 @@ public class SignUp
 
     UserInf newUserInf = new UserInf();
 
-    ConsoleKeyInfo inputKey;
-
     public SignUp(Ui ui, DataStorage dataStorage, ExceptionHandling exceptionHandling)
     {
         this.ui = ui;
@@ -34,6 +32,8 @@ public class SignUp
             passwordConfirmation = exceptionHandling.JudgeIdAndPasswordWithRegularExpression(60, 30);
             if (passwordConfirmation != newUserInf.password)
             {
+                ui.PrintpasswordConfirmation(60,30);
+                Console.ReadKey(true);
                 continue;
             }
             else
@@ -56,7 +56,7 @@ public class SignUp
         Console.Clear();
         ui.PrintAccountDeletionSentence(newUserInf.userName);
         
-        inputKey = Console.ReadKey();
+        Console.ReadKey();
         Console.SetCursorPosition(60, 28);
         
         return;

@@ -168,12 +168,17 @@ public class Ui //좀 더 쪼개기
             Console.WriteLine("                        _______________________________________________________________                        ");
             Console.WriteLine("                       |                                                               |                       ");
             Console.WriteLine("                       |                                                               |                       ");
-            Console.WriteLine("                       |             "+name+"님"+"     회원가입이 완료 되었습니다!          |                       ");
+            Console.WriteLine("                       |              "+name+"님"+"   회원가입이 완료 되었습니다!           |                       ");
             Console.WriteLine("                       |                                                               |                       ");
             Console.WriteLine("                       |                                                               |                       ");
             Console.WriteLine("                       -----------------------------------------------------------------                       ");
-
-        
+    }
+    public void PrintpasswordConfirmation(int cursorPositionX, int cursorPositionY)
+    {
+        Console.SetCursorPosition(cursorPositionX, cursorPositionY);
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("비밀번호가 서로 다릅니다. 다시 입력해주세요");
+        Console.ResetColor();
     }
     public void PrintLoginMenu()
     {

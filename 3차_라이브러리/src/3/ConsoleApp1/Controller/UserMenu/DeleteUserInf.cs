@@ -2,13 +2,13 @@
 
 public class DeletingUserInf //inf와같이 줄임말 
 {
-    Ui ui;
+    UserModeUi userModeUi;
     DataStorage dataStorage;
     UserInf user;
 
-    public DeletingUserInf(Ui ui, DataStorage dataStorage, UserInf user)
+    public DeletingUserInf(UserModeUi userModeUi, DataStorage dataStorage, UserInf user)
     {
-        this.ui = ui;
+        this.userModeUi = userModeUi;
         this.dataStorage = dataStorage;
         this.user = user;
     }
@@ -17,7 +17,7 @@ public class DeletingUserInf //inf와같이 줄임말
     {
         while (true)
         {
-            ui.confirmAccountDeletion();
+            userModeUi.confirmAccountDeletion();
 
             ConsoleKeyInfo inputKey;
             bool isCheckedEnter = false;
@@ -70,12 +70,12 @@ public class DeletingUserInf //inf와같이 줄임말
                     }
                 }
                 Console.Clear();
-                ui.PrintAccountDeletionSentence();
+                userModeUi.PrintAccountDeletionSentence();
             }
             else if (selectedMenuNum == Constants.SAVING_USER)
             {
                 Console.Clear();
-                ui.PrintMaintainingAccountSentence();
+                userModeUi.PrintMaintainingAccountSentence();
             }
 
             inputKey = Console.ReadKey();

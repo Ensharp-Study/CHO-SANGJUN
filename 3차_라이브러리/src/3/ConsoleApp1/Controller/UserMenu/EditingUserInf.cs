@@ -3,13 +3,13 @@
 public class EditingUserInf
 {
     DataStorage dataStorage;
-    Ui ui;
+    UserModeUi userModeUi;
     UserInf user;
     ExceptionHandling exceptionHandling;
 
-    public EditingUserInf(DataStorage dataStorage, Ui ui, UserInf user, ExceptionHandling exceptionHandling)
+    public EditingUserInf(DataStorage dataStorage, UserModeUi userModeUi, UserInf user, ExceptionHandling exceptionHandling)
     {
-        this.ui = ui;
+        this.userModeUi = userModeUi;
         this.user = user;
         this.dataStorage = dataStorage;
         this.exceptionHandling = exceptionHandling;
@@ -27,8 +27,8 @@ public class EditingUserInf
             String newAddress;
             ConsoleKeyInfo inputKey;
 
-            ui.PrintBeforeUserInf(user);
-            ui.PrintAfterUserInf(user);
+            userModeUi.PrintBeforeUserInf(user);
+            userModeUi.PrintAfterUserInf(user);
             Console.SetCursorPosition(54, 22);
             newId = exceptionHandling.JudgeIdAndPasswordWithRegularExpression(54, 22);
             Console.SetCursorPosition(54, 23);

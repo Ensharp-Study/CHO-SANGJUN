@@ -4,8 +4,7 @@ using System.Collections.Generic;
 
 namespace Library 
 {
-    internal class LibraryMain 
-       
+    public class LibraryMain    
     {
         static void Main(string[] args)
         {

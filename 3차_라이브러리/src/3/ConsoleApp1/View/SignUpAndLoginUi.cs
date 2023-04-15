@@ -1,12 +1,118 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ConsoleApp1.View
+public class SignUpAndLoginUi
 {
-    internal class SignUpAndLoginUi
+    public int PrintLoginOrSignUpMenu()
     {
+        ConsoleKeyInfo inputKey;
+        bool isCheckedEnter = false;
+        int selectedMenuNum = -1;
+
+        Console.SetCursorPosition(50, 23);
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("○ 로그인                         ");
+        Console.SetCursorPosition(50, 24);
+        Console.ForegroundColor = ConsoleColor.White;
+        Console.WriteLine("○ 회원가입                       ");
+        selectedMenuNum = Constants.USER_MODE;
+
+        while (isCheckedEnter == false)
+        {
+            inputKey = Console.ReadKey();
+            if (inputKey.Key == ConsoleKey.UpArrow)
+            {
+                Console.SetCursorPosition(50, 23);
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("○ 로그인                  ");
+                Console.SetCursorPosition(50, 24);
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("○ 회원가입                ");
+                selectedMenuNum = Constants.LOGIN;
+            }
+            else if (inputKey.Key == ConsoleKey.DownArrow)
+            {
+                Console.SetCursorPosition(50, 23);
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("○ 로그인                  ");
+                Console.SetCursorPosition(50, 24);
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("○ 회원가입                ");
+                Console.ResetColor();
+                selectedMenuNum = Constants.SIGN_UP;
+            }
+            else if (inputKey.Key == ConsoleKey.Enter)
+            {
+                isCheckedEnter = true;
+            }
+        }
+        if (selectedMenuNum == Constants.LOGIN)
+        {
+            return Constants.LOGIN;
+        }
+        else if (selectedMenuNum == Constants.SIGN_UP)
+        {
+            return Constants.SIGN_UP;
+        }
+
+        return -1;
+
+    }
+    public void PrintSignUpMenu()
+    {
+        Console.SetCursorPosition(50, 22);
+        Console.WriteLine("                                              ");
+        Console.SetCursorPosition(50, 23);
+        Console.WriteLine("회 원 가 입");
+        Console.SetCursorPosition(34, 25);
+        Console.WriteLine("ESC : 뒤로가기              ENTER : 입력하기  ");
+    }
+    public void PrintSignUpInputMenu()
+    {
+        Console.WriteLine("\n");
+        Console.WriteLine("                       User ID (8~15글자 영어 ,숫자 포함) : ");
+        Console.WriteLine("                       User PW (8~15글자 영어 ,숫자 포함) : ");
+        Console.WriteLine("                       User PW (      PASSWORD 확인     ) : ");
+        Console.WriteLine("                       User Name (한글,영어 포함 1글자 이상) : ");
+        Console.WriteLine("                       User Age ( 0,자연수 0세 ~ 200세 ) : ");
+        Console.WriteLine("                       User PhoneNumber (  01x-xxxx-xxxx  ) : ");
+        Console.WriteLine("                       User Address (  도로명 주소 - 00시 00구  ) : ");
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("                       ex) 경기도 수원시 영통구 영통로 124");
+        Console.WriteLine("                       ex) 서울특별시 강남구 남부순환로 지하 2744");
+        Console.WriteLine("                       ex) 서울특별시 마포구 큰우물로 28");
+        Console.ResetColor();
+    }
+    public void PrintAccountDeletionSentence(string name)
+    {
+        Console.WriteLine("                        _______________________________________________________________                        ");
+        Console.WriteLine("                       |                                                               |                       ");
+        Console.WriteLine("                       |                                                               |                       ");
+        Console.WriteLine("                       |              " + name + "님" + "   회원가입이 완료 되었습니다!           |                       ");
+        Console.WriteLine("                       |                                                               |                       ");
+        Console.WriteLine("                       |                                                               |                       ");
+        Console.WriteLine("                       -----------------------------------------------------------------                       ");
+    }
+    public void PrintpasswordConfirmation(int cursorPositionX, int cursorPositionY)
+    {
+        Console.SetCursorPosition(cursorPositionX, cursorPositionY);
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("비밀번호가 서로 다릅니다. 다시 입력해주세요");
+        Console.ResetColor();
+    }
+    public void PrintLoginMenu()
+    {
+        Console.SetCursorPosition(50, 22);
+        Console.WriteLine("                                              ");
+        Console.SetCursorPosition(50, 22);
+        Console.WriteLine("로그인");
+        Console.SetCursorPosition(40, 23);
+        Console.WriteLine("                                              ");
+        Console.SetCursorPosition(40, 23);
+        Console.WriteLine("아이디(ID) : ");
+        Console.SetCursorPosition(40, 24);
+        Console.WriteLine("                                              ");
+        Console.SetCursorPosition(40, 24);
+        Console.WriteLine("패스워드(PASSWORD) : ");
+
     }
 }

@@ -3,13 +3,15 @@ using System.Text.RegularExpressions;
 
 public class UserLogin
 {
-    Ui ui;
+    MainMenuUi mainMenuUi;
+    SignUpAndLoginUi signUpAndLoginUi;
     DataStorage dataStorage;
     ExceptionHandling exceptionHandling;
 
-    public UserLogin(Ui ui, DataStorage dataStorage, ExceptionHandling exceptionHandling)
+    public UserLogin(MainMenuUi mainMenuUi, SignUpAndLoginUi signUpAndLoginUi, DataStorage dataStorage, ExceptionHandling exceptionHandling)
     {
-        this.ui = ui;
+        this.mainMenuUi = mainMenuUi;
+        this.signUpAndLoginUi = signUpAndLoginUi;
         this.dataStorage = dataStorage;
         this.exceptionHandling = exceptionHandling;
     }
@@ -23,8 +25,8 @@ public class UserLogin
         while (isJudgingCorrectInput)
         {
             Console.Clear();
-            ui.ViewMainMenu();
-            ui.PrintLoginMenu();
+            mainMenuUi.ViewMainMenu();
+            signUpAndLoginUi.PrintLoginMenu();
 
             Console.SetCursorPosition(53, 23);
             id = exceptionHandling.JudgeIdAndPasswordWithRegularExpression(53,23);
@@ -39,7 +41,7 @@ public class UserLogin
                     if (string.Equals(password, dataStorage.userList[indexI].password))
                     {
                         Console.Clear() ;
-                        UserMenu usermenu = new UserMenu(ui, dataStorage,  dataStorage.userList[indexI],  exceptionHandling);
+                        UserMenu usermenu = new UserMenu(mainMenuUi, dataStorage,  dataStorage.userList[indexI],  exceptionHandling);
                         usermenu.ControllUserMenu();
                         isJudgingCorrectInput = false;
                     }

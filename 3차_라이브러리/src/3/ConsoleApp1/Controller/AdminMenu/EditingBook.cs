@@ -16,12 +16,14 @@ public class EditingBook
     ConsoleKeyInfo inputKey;
 
     DataStorage dataStorage;
-    Ui ui;
+    AdministratorModeUi administratorModeUi;
+    CommonFunctionUi commonFunctionUi;
 
-    public EditingBook(DataStorage dataStorage, Ui ui) {
+    public EditingBook(DataStorage dataStorage, AdministratorModeUi administratorModeUi , CommonFunctionUi commonFunctionUi) {
 
         this.dataStorage = dataStorage;
-        this.ui = ui;
+        this.administratorModeUi = administratorModeUi;
+        this.commonFunctionUi = commonFunctionUi;
     }
 
 
@@ -29,10 +31,10 @@ public class EditingBook
     {
         while (true)
         {
-            ui.PrintBookFinderMenu();
+            commonFunctionUi.PrintBookFinderMenu();
             for (int i = 0; i < dataStorage.bookList.Count; i++)
             {
-                ui.PrintBookList(dataStorage, i);
+                commonFunctionUi.PrintBookList(dataStorage, i);
             }
 
             Console.SetCursorPosition(17, 1);
@@ -45,7 +47,7 @@ public class EditingBook
 
             Console.Clear();
 
-            ui.PrintEditingBookAskingMenu(); //수정할 아이디 받는 창과 리스트 나열 출력
+            administratorModeUi.PrintEditingBookAskingMenu(); //수정할 아이디 받는 창과 리스트 나열 출력
             for (int i = 0; i < dataStorage.bookList.Count; i++)
             {
                 if (string.IsNullOrEmpty(title) == false ||
@@ -63,7 +65,7 @@ public class EditingBook
                 if (PrintPossiblity > 0) // 일치하면 출력
                 {
                     {
-                        ui.PrintBookList(dataStorage, i);
+                        commonFunctionUi.PrintBookList(dataStorage, i);
                     }
                     PrintPossiblity = 0;
                 }
@@ -73,17 +75,17 @@ public class EditingBook
             EditedBookIdString = Console.ReadLine();
             EditedBookIdInt = int.Parse(EditedBookIdString);
             Console.Clear();
-            ui.PrintEditingBookMenu();
+            administratorModeUi.PrintEditingBookMenu();
             for (int i = 0; i < dataStorage.bookList.Count; i++)
             {
                 if (dataStorage.bookList[i].bookId == EditedBookIdInt)
                 {
-                    ui.PrintCurrentSavedBookInformation(dataStorage, i);
+                    administratorModeUi.PrintCurrentSavedBookInformation(dataStorage, i);
                     break;
                 }
             }
 
-            ui.PrintEditingBookInformation();
+            administratorModeUi.PrintEditingBookInformation();
 
             Console.SetCursorPosition(63, 24);
             title = Console.ReadLine();
@@ -112,7 +114,7 @@ public class EditingBook
                 }
             }
             Console.Clear();
-            ui.PrintEditingBookSuccessSentence();
+            administratorModeUi.PrintEditingBookSuccessSentence();
             inputKey = Console.ReadKey();
             if (inputKey.Key == ConsoleKey.Enter)
             {

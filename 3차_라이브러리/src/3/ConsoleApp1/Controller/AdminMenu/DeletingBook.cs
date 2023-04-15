@@ -12,12 +12,14 @@ public class DeletingBook
     ConsoleKeyInfo inputKey;
 
     DataStorage dataStorage;
-    Ui ui;
+    AdministratorModeUi administratorModeUi;
+    CommonFunctionUi commonFunctionUi;
 
-    public DeletingBook(DataStorage dataStorage, Ui ui)
+    public DeletingBook(DataStorage dataStorage, AdministratorModeUi administratorModeUi, CommonFunctionUi commonFunctionUi)
     {
         this.dataStorage = dataStorage;
-        this.ui = ui;
+        this.administratorModeUi = administratorModeUi;
+        this.commonFunctionUi = commonFunctionUi;
     }
 
     public void DeleteABook() //책 삭제하기
@@ -25,11 +27,11 @@ public class DeletingBook
         while (true)
         {
             //책 검색하기 기능
-            ui.PrintBookFinderMenu(); //책 검색하는 인터페이스
+            commonFunctionUi.PrintBookFinderMenu(); //책 검색하는 인터페이스
 
             for (int i = 0; i < dataStorage.bookList.Count; i++) //모든책 리스트 접근
             {
-                ui.PrintBookList(dataStorage, i);
+                commonFunctionUi.PrintBookList(dataStorage, i);
             }
 
             Console.SetCursorPosition(17, 1);  //검색할 책 정보 입력받기
@@ -42,7 +44,7 @@ public class DeletingBook
 
             Console.Clear();
 
-            ui.PrintDeletingBookMenu(); //삭제 메뉴 및 검색된 책 리스트 출력
+            administratorModeUi.PrintDeletingBookMenu(); //삭제 메뉴 및 검색된 책 리스트 출력
             for (int i = 0; i < dataStorage.bookList.Count; i++) 
             {
 
@@ -61,7 +63,7 @@ public class DeletingBook
                 if (PrintPossiblity > 0) // 일치하면 출력
                 {
                     {
-                        ui.PrintBookList(dataStorage, i);
+                        commonFunctionUi.PrintBookList(dataStorage, i);
                     }
                     PrintPossiblity = 0;
                 }
@@ -80,7 +82,7 @@ public class DeletingBook
                 }
             }
             Console.Clear();
-            ui.PrintDeletingBookSuccessSentence();
+            administratorModeUi.PrintDeletingBookSuccessSentence();
 
 
             inputKey = Console.ReadKey();

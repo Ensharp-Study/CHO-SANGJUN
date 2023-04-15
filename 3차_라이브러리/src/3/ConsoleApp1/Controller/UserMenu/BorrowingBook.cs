@@ -3,13 +3,15 @@
 public class BorrowingBook
 {
     DataStorage dataStorage;
-    Ui ui;
+    UserModeUi userModeUi;
+    CommonFunctionUi commonFunctionUi;
     UserInf user;
 
-    public BorrowingBook(DataStorage dataStorage, Ui ui ,UserInf user) 
+    public BorrowingBook(DataStorage dataStorage, UserModeUi userModeUi, CommonFunctionUi commonFunctionUi, UserInf user) 
     { 
         this.dataStorage = dataStorage;
-        this.ui = ui;
+        this.userModeUi = userModeUi;
+        this.commonFunctionUi = commonFunctionUi;
         this.user = user;
     }
 
@@ -23,10 +25,10 @@ public class BorrowingBook
             ConsoleKeyInfo inputKey;
 
             Console.Clear();
-            ui.PrintBorrowingBookMenu();//책 빌리기 메뉴 출력
+            userModeUi.PrintBorrowingBookMenu();//책 빌리기 메뉴 출력
             for (int i = 0; i < dataStorage.bookList.Count; i++)
             {
-                ui.PrintBookList(dataStorage, i);
+                commonFunctionUi.PrintBookList(dataStorage, i);
             }
             Console.SetCursorPosition(36, 3);
             bookId = Console.ReadLine();

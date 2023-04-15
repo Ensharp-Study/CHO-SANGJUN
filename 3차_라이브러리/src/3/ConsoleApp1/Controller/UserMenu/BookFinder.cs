@@ -12,22 +12,24 @@ public class BookFinder
     ConsoleKeyInfo inputKey;
 
     DataStorage dataStorage;
-    Ui ui;
+    UserModeUi userModeUi;
+    CommonFunctionUi commonFunctionUi;
 
-    public BookFinder(DataStorage dataStorage, Ui ui)
+    public BookFinder(DataStorage dataStorage, CommonFunctionUi commonFunctionUi)
     {
-        this.ui = ui;
+        this.userModeUi = userModeUi;
         this.dataStorage = dataStorage;
+        this.commonFunctionUi = commonFunctionUi;
     }
 
     public void FindBook()
     {
         while (true)
         {
-            ui.PrintBookFinderMenu();
+            commonFunctionUi.PrintBookFinderMenu();
             for (int i = 0; i < dataStorage.bookList.Count; i++)
             {
-                ui.PrintBookList(dataStorage, i);
+                commonFunctionUi.PrintBookList(dataStorage, i);
             }
             Console.SetCursorPosition(17, 1);
             title = Console.ReadLine();
@@ -39,7 +41,7 @@ public class BookFinder
 
             Console.Clear();
 
-            ui.PrintBookFinderMenu();
+            commonFunctionUi.PrintBookFinderMenu();
             for (int i = 0; i < dataStorage.bookList.Count; i++)
             {
                 if (string.IsNullOrEmpty(title) == false ||
@@ -57,13 +59,13 @@ public class BookFinder
                 if (PrintPossiblity > 0) // 일치하면 출력
                 {
                     {
-                        ui.PrintBookList(dataStorage, i);
+                        commonFunctionUi.PrintBookList(dataStorage, i);
                     }
                     PrintPossiblity = 0;
                 }
             }
 
-            ui.SelectEndorReturnInTheProgram();
+            userModeUi.SelectEndorReturnInTheProgram();
 
             inputKey = Console.ReadKey();
             if (inputKey.Key == ConsoleKey.Escape)

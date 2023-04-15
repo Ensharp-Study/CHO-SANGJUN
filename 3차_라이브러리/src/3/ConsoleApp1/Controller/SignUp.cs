@@ -2,24 +2,26 @@
 
 public class SignUp
 {
-    Ui ui;
+    MainMenuUi mainMenuUi;
+    SignUpAndLoginUi signUpAndLoginUi;
     DataStorage dataStorage;
     ExceptionHandling exceptionHandling;
 
     UserInf newUserInf = new UserInf();
 
-    public SignUp(Ui ui, DataStorage dataStorage, ExceptionHandling exceptionHandling)
+    public SignUp(MainMenuUi mainMenuUi, SignUpAndLoginUi signUpAndLoginUi, DataStorage dataStorage, ExceptionHandling exceptionHandling)
     {
-        this.ui = ui;
+        this.mainMenuUi = mainMenuUi;
+        this.signUpAndLoginUi = signUpAndLoginUi;
         this.dataStorage = dataStorage;
         this.exceptionHandling = exceptionHandling;
     }
 	public void SignUpAccount()
 	{
-        ui.ViewMainMenu();
-        ui.ViewMenuSquare();
-		ui.PrintSignUpMenu();
-		ui.PrintSignUpInputMenu();
+        mainMenuUi.ViewMainMenu();
+        mainMenuUi.ViewMenuSquare();
+        signUpAndLoginUi.PrintSignUpMenu();
+        signUpAndLoginUi.PrintSignUpInputMenu();
         string passwordConfirmation;
 
         Console.SetCursorPosition(60, 28);
@@ -32,7 +34,7 @@ public class SignUp
             passwordConfirmation = exceptionHandling.JudgeIdAndPasswordWithRegularExpression(60, 30);
             if (passwordConfirmation != newUserInf.password)
             {
-                ui.PrintpasswordConfirmation(60,30);
+                signUpAndLoginUi.PrintpasswordConfirmation(60,30);
                 Console.ReadKey(true);
                 continue;
             }
@@ -54,7 +56,7 @@ public class SignUp
         dataStorage.userList.Add(newUserInf);
         
         Console.Clear();
-        ui.PrintAccountDeletionSentence(newUserInf.userName);
+        signUpAndLoginUi.PrintAccountDeletionSentence(newUserInf.userName);
         
         Console.ReadKey();
         Console.SetCursorPosition(60, 28);

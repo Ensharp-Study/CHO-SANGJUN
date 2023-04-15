@@ -1,12 +1,14 @@
 ﻿using System;
 public class AdministratorLogin
 {
-    Ui ui;
+    MainMenuUi mainMenuUi;
+    SignUpAndLoginUi signUpAndLoginUi;
     DataStorage dataStorage;
 
-    public AdministratorLogin(Ui ui, DataStorage dataStorage)
+    public AdministratorLogin(MainMenuUi mainMenuUi,SignUpAndLoginUi signUpAndLoginUi, DataStorage dataStorage)
     {
-        this.ui = ui;
+        this.mainMenuUi = mainMenuUi;
+        this.signUpAndLoginUi = signUpAndLoginUi;
         this.dataStorage = dataStorage;
     }
 
@@ -15,9 +17,9 @@ public class AdministratorLogin
         string id;
         string password;
         bool isJudgingCorrectInput = true;
-        AdministratorMenu administratorMenu = new AdministratorMenu(ui,dataStorage);
+        AdministratorMenu administratorMenu = new AdministratorMenu(mainMenuUi,dataStorage);
 
-        ui.PrintLoginMenu();
+        signUpAndLoginUi.PrintLoginMenu();
         Console.SetCursorPosition(53, 23);
         id = Console.ReadLine();
         Console.SetCursorPosition(61, 24);

@@ -3,24 +3,24 @@
 public class BookReturnList
 {
     DataStorage dataStorage;
-    Ui ui;
+    UserModeUi userModeUi;
     UserInf user;
-    public BookReturnList(DataStorage dataStorage, Ui ui, UserInf user)
+    public BookReturnList(DataStorage dataStorage, UserModeUi userModeUi, UserInf user)
     {
         this.dataStorage = dataStorage;
-        this.ui = ui;
+        this.userModeUi = userModeUi;
         this.user = user;
     }
     public void ShowBookReturnList()
     {
         while (true)
         {
-            ui.PrintReturningMenuList();
+            userModeUi.PrintReturningMenuList();
             ConsoleKeyInfo inputKey;
 
             for (int i = 0; i < user.returnBookList.Count; i++)
             {
-                ui.PrintUserBorrowingList(user.returnBookList[i]);
+                userModeUi.PrintUserBorrowingList(user.returnBookList[i]);
 
             }
 

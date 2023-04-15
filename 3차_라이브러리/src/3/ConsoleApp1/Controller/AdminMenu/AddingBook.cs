@@ -3,12 +3,12 @@
 public class AddingBook
 {
     DataStorage dataStorage;
-    Ui ui;
+    AdministratorModeUi administratorModeUi;
 
-    public AddingBook(DataStorage dataStorage, Ui ui) { 
+    public AddingBook(DataStorage dataStorage, AdministratorModeUi administratorModeUi) { 
     
         this.dataStorage = dataStorage;
-        this.ui = ui;
+        this.administratorModeUi = administratorModeUi;
     }
 
 	public void AddNewBook() //새로운 책 추가하기
@@ -16,7 +16,7 @@ public class AddingBook
         while (true)
         {
             ConsoleKeyInfo inputKey;
-            ui.PrintAddingBookMenu();  // 책 추가 메뉴 인터페이스 출력
+            administratorModeUi.PrintAddingBookMenu();  // 책 추가 메뉴 인터페이스 출력
             BookInf bookInf = new BookInf(); //새로운 책 정보 담을 인스턴스 생성
 
             Console.SetCursorPosition(29, 11);
@@ -38,7 +38,7 @@ public class AddingBook
             dataStorage.bookList.Add(bookInf);
             Console.Clear();
 
-            ui.PrintAddingBookSuccessSentence(); //책 추가 완료 인터페이스 출력
+            administratorModeUi.PrintAddingBookSuccessSentence(); //책 추가 완료 인터페이스 출력
 
             inputKey = Console.ReadKey();
             if (inputKey.Key == ConsoleKey.Enter)

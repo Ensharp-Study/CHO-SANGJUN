@@ -4,13 +4,13 @@ using System.Net;
 public class ReturningBook
 {
     DataStorage dataStorage;
-    Ui ui;
+    UserModeUi userModeUi;
     UserInf user;
 
-    public ReturningBook(DataStorage dataStorage, Ui ui, UserInf user) 
+    public ReturningBook(DataStorage dataStorage, UserModeUi userModeUi, UserInf user) 
     { 
         this.dataStorage = dataStorage;
-        this.ui = ui;
+        this.userModeUi = userModeUi;
         this.user = user;
     }
 	public void ReturnBook()
@@ -21,11 +21,11 @@ public class ReturningBook
             int sameIndex = -1;
             ConsoleKeyInfo inputKey;
 
-            ui.PrintReturningBook();
+            userModeUi.PrintReturningBook();
 
             for (int i = 0; i < user.borrowBookList.Count; i++)
             {
-                ui.PrintShouldReturningList(user.borrowBookList[i]);
+                userModeUi.PrintShouldReturningList(user.borrowBookList[i]);
             }
 
             Console.SetCursorPosition(36, 3);

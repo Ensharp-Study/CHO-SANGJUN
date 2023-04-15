@@ -17,13 +17,16 @@ public class Ui //좀 더 쪼개기
         Console.WriteLine("\n\n\n\n");
         Console.WriteLine("               ENTER : 선택                                                           ESC : 나가기");
         Console.WriteLine("\n");
+
+    }
+    public void ViewMenuSquare()
+    {
         Console.WriteLine("                        _______________________________________________________________                        ");
         Console.WriteLine("                       |                                                               |                       ");
         Console.WriteLine("                       |                                                               |                       ");
         Console.WriteLine("                       |                                                               |                       ");
         Console.WriteLine("                       |                                                               |                       ");
         Console.WriteLine("                       -----------------------------------------------------------------                       ");
-
     }
 
     public int PrintSelectMenu()

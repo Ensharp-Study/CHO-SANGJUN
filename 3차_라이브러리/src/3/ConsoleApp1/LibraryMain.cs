@@ -11,7 +11,7 @@ namespace Library
         {
             while (true)
             {
-                LibraryStart libraryStart = new LibraryStart();
+                LibraryMode libraryStart = new LibraryMode();
                 libraryStart.SelectMenu();
             }
         }

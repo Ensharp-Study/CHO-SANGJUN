@@ -52,8 +52,7 @@
     <Compile Include="Controller\AdminMenu\EditingBook.cs" />
     <Compile Include="Controller\AdminMenu\MemberManger.cs" />
     <Compile Include="Controller\ExceptionHandling.cs" />
-    <Compile Include="Controller\LibraryStart.cs" />
-    <Compile Include="Controller\SelectingSignInOrSignUp.cs" />
+    <Compile Include="Controller\LibraryMode.cs" />
     <Compile Include="Controller\SignUp.cs" />
     <Compile Include="Controller\UserLogin.cs" />
     <Compile Include="Controller\UserMenu.cs" />

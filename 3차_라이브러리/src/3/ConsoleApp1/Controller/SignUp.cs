@@ -7,7 +7,6 @@ public class SignUp
     ExceptionHandling exceptionHandling;
 
     UserInf newUserInf = new UserInf();
-	string reInputPassword; 
 
     public SignUp(Ui ui, DataStorage dataStorage, ExceptionHandling exceptionHandling)
     {
@@ -17,25 +16,36 @@ public class SignUp
     }
 	public void SignUpAccount()
 	{
+        ui.ViewMainMenu();
+        ui.ViewMenuSquare();
 		ui.PrintSignUpMenu();
 		ui.PrintSignUpInputMenu();
+        string passwordConfirmation;
 
         Console.SetCursorPosition(60, 28);
-		newUserInf.id = exceptionHandling.JudgeIdAndPasswordWithRegularExpression(53, 23);
+		newUserInf.id = exceptionHandling.JudgeIdAndPasswordWithRegularExpression(60, 28);
         Console.SetCursorPosition(60, 29);
-        newUserInf.password = Console.ReadLine();
-        Console.SetCursorPosition(60, 30);
-        reInputPassword = Console.ReadLine();
-		if(reInputPassword != newUserInf.password)
-		{
-			//예외처리
-		}
+        newUserInf.password = exceptionHandling.JudgeIdAndPasswordWithRegularExpression(60, 29);
+        while (true)
+        {
+            Console.SetCursorPosition(60, 30);
+            passwordConfirmation = exceptionHandling.JudgeIdAndPasswordWithRegularExpression(60, 30);
+            if (passwordConfirmation != newUserInf.password)
+            {
+                continue;
+            }
+            else
+            {
+                break;
+            }
+
+        }
         Console.SetCursorPosition(64, 31);
-        newUserInf.userName = Console.ReadLine();
+        newUserInf.userName = exceptionHandling.JudgeUserNameWithRegularExpression(64, 31);
         Console.SetCursorPosition(59, 32);
-        newUserInf.userAge = int.Parse(Console.ReadLine()); //예외처리
+        newUserInf.userAge = int.Parse(exceptionHandling.JudgeUserAgeWithRegularExpression(59, 32));
         Console.SetCursorPosition(62, 33);
-        newUserInf.userPhoneNumber = Console.ReadLine();
+        newUserInf.userPhoneNumber = exceptionHandling.JudgeUserNumberWithRegularExpression(62, 33);
         Console.SetCursorPosition(69, 34);
         newUserInf.userAddress = Console.ReadLine();
         

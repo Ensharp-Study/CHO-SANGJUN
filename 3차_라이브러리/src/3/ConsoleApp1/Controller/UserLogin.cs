@@ -6,14 +6,14 @@ public class UserLogin
     MainMenuUi mainMenuUi;
     SignUpAndLoginUi signUpAndLoginUi;
     DataStorage dataStorage;
-    UserInformation exceptionHandling;
+    UserInformationException userInformationException;
 
-    public UserLogin(MainMenuUi mainMenuUi, SignUpAndLoginUi signUpAndLoginUi, DataStorage dataStorage, UserInformation exceptionHandling)
+    public UserLogin(MainMenuUi mainMenuUi, SignUpAndLoginUi signUpAndLoginUi, DataStorage dataStorage, UserInformationException userInformationException)
     {
         this.mainMenuUi = mainMenuUi;
         this.signUpAndLoginUi = signUpAndLoginUi;
         this.dataStorage = dataStorage;
-        this.exceptionHandling = exceptionHandling;
+        this.userInformationException = userInformationException;
     }
 
     public void GetUserLogin()
@@ -30,10 +30,10 @@ public class UserLogin
             signUpAndLoginUi.PrintLoginMenu();
 
             Console.SetCursorPosition(53, 23);
-            id = exceptionHandling.JudgeIdAndPasswordWithRegularExpression(53,23);
+            id = userInformationException.JudgeIdAndPasswordWithRegularExpression(53,23);
             
             Console.SetCursorPosition(61, 24);
-            password = exceptionHandling.JudgeIdAndPasswordWithRegularExpression(61, 24);
+            password = userInformationException.JudgeIdAndPasswordWithRegularExpression(61, 24);
 
             for (int indexI = 0; indexI < dataStorage.userList.Count; indexI++)
             {
@@ -42,7 +42,7 @@ public class UserLogin
                     if (string.Equals(password, dataStorage.userList[indexI].password))
                     {
                         Console.Clear() ;
-                        UserMenu usermenu = new UserMenu(mainMenuUi, dataStorage,  dataStorage.userList[indexI],  exceptionHandling);
+                        UserMenu usermenu = new UserMenu(mainMenuUi, dataStorage,  dataStorage.userList[indexI],  userInformationException);
                         usermenu.ControllUserMenu();
                         isJudgingCorrectInput = false;
                     }

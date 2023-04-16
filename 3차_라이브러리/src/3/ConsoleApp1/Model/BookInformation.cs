@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class BookInf
+public class BookInformation
 {
     public int bookId { get; set; }
     public string bookName { get; set; }

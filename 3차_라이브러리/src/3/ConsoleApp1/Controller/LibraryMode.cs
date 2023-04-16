@@ -7,14 +7,14 @@ public class LibraryMode
     MainMenuUi mainMenuUi = new MainMenuUi();
     SignUpAndLoginUi signUpAndLoginUi = new SignUpAndLoginUi();
     DataStorage dataStorage = new DataStorage();
-    UserInformation exceptionHandling = new UserInformation();
+    UserInformationException userInformationException = new UserInformationException();
 
 
     public void SelectMenu()
     {
-        UserLogin login = new UserLogin(mainMenuUi,signUpAndLoginUi, dataStorage, exceptionHandling);
-        SignUp signUp = new SignUp(mainMenuUi,signUpAndLoginUi, dataStorage, exceptionHandling);
-        AdministratorLogin administratorLogin = new AdministratorLogin(mainMenuUi, signUpAndLoginUi, dataStorage, exceptionHandling);
+        UserLogin login = new UserLogin(mainMenuUi,signUpAndLoginUi, dataStorage, userInformationException);
+        SignUp signUp = new SignUp(mainMenuUi,signUpAndLoginUi, dataStorage, userInformationException);
+        AdministratorLogin administratorLogin = new AdministratorLogin(mainMenuUi, signUpAndLoginUi, dataStorage, userInformationException);
 
         while (true)
         {

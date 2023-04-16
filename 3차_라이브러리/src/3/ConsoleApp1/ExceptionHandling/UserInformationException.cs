@@ -2,7 +2,7 @@
 using System.Net;
 using System.Text.RegularExpressions;
 
-public class UserInformation
+public class UserInformationException
 
 {
     public string JudgeIdAndPasswordWithRegularExpression(int cursorPositionX, int cursorPositionY)

@@ -4,16 +4,16 @@ public class DeletingUserInf //inf와같이 줄임말
 {
     UserModeUi userModeUi;
     DataStorage dataStorage;
-    UserInf user;
+    UserInformation userInformation;
 
-    public DeletingUserInf(UserModeUi userModeUi, DataStorage dataStorage, UserInf user)
+    public DeletingUserInf(UserModeUi userModeUi, DataStorage dataStorage, UserInformation userInformation)
     {
         this.userModeUi = userModeUi;
         this.dataStorage = dataStorage;
-        this.user = user;
+        this.userInformation = userInformation;
     }
 
-    public void DeleteUserInf()
+    public void DeleteUserInformation()
     {
         while (true)
         {
@@ -21,7 +21,7 @@ public class DeletingUserInf //inf와같이 줄임말
 
             ConsoleKeyInfo inputKey;
             bool isCheckedEnter = false;
-            int selectedMenuNum = -1;
+            int selectedMenuNumber = -1;
 
             Console.SetCursorPosition(43, 3);
             Console.ForegroundColor = ConsoleColor.Green;
@@ -29,7 +29,7 @@ public class DeletingUserInf //inf와같이 줄임말
             Console.SetCursorPosition(60, 3);
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("○ 아니오");
-            selectedMenuNum = Constants.DELETEING_USER;
+            selectedMenuNumber = Constants.DELETEING_USER;
 
             while (isCheckedEnter == false)
             {
@@ -42,7 +42,7 @@ public class DeletingUserInf //inf와같이 줄임말
                     Console.SetCursorPosition(60, 4);
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("○ 아니오");
-                    selectedMenuNum = Constants.DELETEING_USER;
+                    selectedMenuNumber = Constants.DELETEING_USER;
                 }
                 else if (inputKey.Key == ConsoleKey.RightArrow)
                 {
@@ -53,18 +53,18 @@ public class DeletingUserInf //inf와같이 줄임말
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("○ 아니오");
                     Console.ResetColor();
-                    selectedMenuNum = Constants.SAVING_USER;
+                    selectedMenuNumber = Constants.SAVING_USER;
                 }
                 else if (inputKey.Key == ConsoleKey.Enter)
                 {
                     isCheckedEnter = true;
                 }
             }
-            if (selectedMenuNum == Constants.DELETEING_USER)
+            if (selectedMenuNumber == Constants.DELETEING_USER)
             {
                 for (int i = 0; i < dataStorage.userList.Count; i++)
                 {
-                    if (dataStorage.userList[i] == user)
+                    if (dataStorage.userList[i] == userInformation)
                     {
                         dataStorage.userList.RemoveAt(i);
                     }
@@ -72,7 +72,7 @@ public class DeletingUserInf //inf와같이 줄임말
                 Console.Clear();
                 userModeUi.PrintAccountDeletionSentence();
             }
-            else if (selectedMenuNum == Constants.SAVING_USER)
+            else if (selectedMenuNumber == Constants.SAVING_USER)
             {
                 Console.Clear();
                 userModeUi.PrintMaintainingAccountSentence();

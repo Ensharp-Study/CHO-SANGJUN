@@ -4,15 +4,15 @@ public class EditingUserInf
 {
     DataStorage dataStorage;
     UserModeUi userModeUi;
-    UserInf user;
-    UserInformation exceptionHandling;
+    UserInformation userInformation;
+    UserInformationException userInformationException;
 
-    public EditingUserInf(DataStorage dataStorage, UserModeUi userModeUi, UserInf user, UserInformation exceptionHandling)
+    public EditingUserInf(DataStorage dataStorage, UserModeUi userModeUi, UserInformation userInformation, UserInformationException userInformationException)
     {
         this.userModeUi = userModeUi;
-        this.user = user;
+        this.userInformation = userInformation;
         this.dataStorage = dataStorage;
-        this.exceptionHandling = exceptionHandling;
+        this.userInformationException = userInformationException;
 
     }
     public void EditUserInf()
@@ -27,27 +27,27 @@ public class EditingUserInf
             String newAddress;
             ConsoleKeyInfo inputKey;
 
-            userModeUi.PrintBeforeUserInf(user);
-            userModeUi.PrintAfterUserInf(user);
+            userModeUi.PrintBeforeUserInf(userInformation);
+            userModeUi.PrintAfterUserInf(userInformation);
             Console.SetCursorPosition(54, 22);
-            newId = exceptionHandling.JudgeIdAndPasswordWithRegularExpression(54, 22);
+            newId = userInformationException.JudgeIdAndPasswordWithRegularExpression(54, 22);
             Console.SetCursorPosition(54, 23);
-            newPassword = exceptionHandling.JudgeIdAndPasswordWithRegularExpression(54, 23);
+            newPassword = userInformationException.JudgeIdAndPasswordWithRegularExpression(54, 23);
             Console.SetCursorPosition(57, 24);
-            newName = exceptionHandling.JudgeUserNameWithRegularExpression(57, 24);
+            newName = userInformationException.JudgeUserNameWithRegularExpression(57, 24);
             Console.SetCursorPosition(54, 25);
-            newAge = exceptionHandling.JudgeUserAgeWithRegularExpression(54, 25);
+            newAge = userInformationException.JudgeUserAgeWithRegularExpression(54, 25);
             Console.SetCursorPosition(57, 26);
-            newPhoneNumber = exceptionHandling.JudgeUserNumberWithRegularExpression(57, 26); ;
+            newPhoneNumber = userInformationException.JudgeUserNumberWithRegularExpression(57, 26); ;
             Console.SetCursorPosition(60, 27);
             newAddress = Console.ReadLine();
 
-            user.id = newId;
-            user.password = newPassword;
-            user.userName = newName;
-            user.userAddress = newAddress;
-            user.userAge = int.Parse(newAge);
-            user.userPhoneNumber = newPhoneNumber;
+            userInformation.id = newId;
+            userInformation.password = newPassword;
+            userInformation.userName = newName;
+            userInformation.userAddress = newAddress;
+            userInformation.userAge = int.Parse(newAge);
+            userInformation.userPhoneNumber = newPhoneNumber;
 
             inputKey = Console.ReadKey();
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-public class BookInformation
+public class BookInformationException
 {
     public string JudgeBookNameRegularExpression(int cursorPositionX, int cursorPositionY)
     {

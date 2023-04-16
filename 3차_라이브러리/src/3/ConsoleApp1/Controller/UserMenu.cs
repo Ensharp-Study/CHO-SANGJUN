@@ -4,15 +4,15 @@ public class UserMenu
 {
     MainMenuUi mainMenuUi;
     DataStorage dataStorage;
-    UserInf user;
-    UserInformation exceptionHandling;
+    UserInformation user;
+    UserInformationException userInformationException;
 
-    public UserMenu(MainMenuUi mainMenuUi, DataStorage dataStorage, UserInf user, UserInformation exceptionHandling)
+    public UserMenu(MainMenuUi mainMenuUi, DataStorage dataStorage, UserInformation user, UserInformationException userInformationException)
     {
         this.mainMenuUi = mainMenuUi;
         this.dataStorage = dataStorage;
         this.user = user;
-        this.exceptionHandling = exceptionHandling;
+        this.userInformationException = userInformationException;
     }
 
     UserModeUi userModeUi = new UserModeUi();
@@ -61,14 +61,14 @@ public class UserMenu
 
             else if (menuNumber == Constants.EDIT_USER_INF)
             {
-                EditingUserInf editingUserInf = new EditingUserInf(dataStorage, userModeUi, user, exceptionHandling);
+                EditingUserInf editingUserInf = new EditingUserInf(dataStorage, userModeUi, user, userInformationException);
                 editingUserInf.EditUserInf();
             }
 
             else if (menuNumber == Constants.DELETE_USER_INFORMATION)
             {
                 DeletingUserInf deletingUserInf = new DeletingUserInf(userModeUi, dataStorage, user);
-                deletingUserInf.DeleteUserInf();
+                deletingUserInf.DeleteUserInformation();
             }
 
             else if (menuNumber == Constants.ESC)

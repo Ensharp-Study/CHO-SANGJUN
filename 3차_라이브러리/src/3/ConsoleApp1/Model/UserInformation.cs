@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public class UserInf
+public class UserInformation
 {
     public string id { get; set; }
     public string password { get; set; }
@@ -11,13 +11,13 @@ public class UserInf
     public int userAge { get; set; }
     public string userPhoneNumber { get; set; }
 
-    public List<BookInf> borrowBookList { get ; set; }
+    public List<BookInformation> borrowBookList { get ; set; }
     
-    public List<BookInf> returnBookList { get; set; }
+    public List<BookInformation> returnBookList { get; set; }
    
-    public UserInf()
+    public UserInformation()
     {
-        borrowBookList = new List<BookInf>(); 
-        returnBookList = new List<BookInf>();
+        borrowBookList = new List<BookInformation>(); 
+        returnBookList = new List<BookInformation>();
     }
 }

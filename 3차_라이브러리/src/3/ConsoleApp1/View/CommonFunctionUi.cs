@@ -35,7 +35,7 @@ public class CommonFunctionUi
         Console.WriteLine("건너뛰고자 하는 항목은 ENTER을 눌러주세요");
         Console.WriteLine("============================================================");
     }
-    public void PrintBookList(BookInf book, int indexI)
+    public void PrintBookList(BookInformation book, int indexI)
     {
         Console.WriteLine("책아이디  :  {0}", book.bookId);
         Console.WriteLine("책 제목   :  " + book.bookName);

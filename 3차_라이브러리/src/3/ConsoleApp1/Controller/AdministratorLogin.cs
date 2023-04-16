@@ -4,14 +4,14 @@ public class AdministratorLogin
     MainMenuUi mainMenuUi;
     SignUpAndLoginUi signUpAndLoginUi;
     DataStorage dataStorage;
-    UserInformation exceptionHandling;
+    UserInformationException userInformationException;
 
-    public AdministratorLogin(MainMenuUi mainMenuUi,SignUpAndLoginUi signUpAndLoginUi, DataStorage dataStorage, UserInformation exceptionHandling)
+    public AdministratorLogin(MainMenuUi mainMenuUi,SignUpAndLoginUi signUpAndLoginUi, DataStorage dataStorage, UserInformationException userInformationException)
     {
         this.mainMenuUi = mainMenuUi;
         this.signUpAndLoginUi = signUpAndLoginUi;
         this.dataStorage = dataStorage;
-        this.exceptionHandling = exceptionHandling;
+        this.userInformationException = userInformationException;
     }
 
     public void GetAdministratorLogin()
@@ -25,13 +25,13 @@ public class AdministratorLogin
         {
             signUpAndLoginUi.PrintLoginMenu();
             Console.SetCursorPosition(53, 23);
-            id = exceptionHandling.JudgeIdAndPasswordWithRegularExpression(53, 23);
+            id = userInformationException.JudgeIdAndPasswordWithRegularExpression(53, 23);
             Console.SetCursorPosition(61, 24);
-            password = exceptionHandling.JudgeIdAndPasswordWithRegularExpression(61, 24);
+            password = userInformationException.JudgeIdAndPasswordWithRegularExpression(61, 24);
 
-            if (string.Equals(id, dataStorage.administratorInf.id))
+            if (string.Equals(id, dataStorage.administratorInformation.id))
             {
-                if (string.Equals(password, dataStorage.administratorInf.password))
+                if (string.Equals(password, dataStorage.administratorInformation.password))
                 {
                     Console.Clear();
                     administratorMenu.ControllAdministratorMenu();

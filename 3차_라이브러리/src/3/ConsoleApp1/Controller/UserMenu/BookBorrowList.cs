@@ -4,13 +4,13 @@ public class BookBorrowList
 {
     DataStorage dataStorage;
     UserModeUi userModeUi;
-    UserInf user;
+    UserInformation userInformation;
 
-    public BookBorrowList(DataStorage dataStorage, UserModeUi userModeUi, UserInf user)
+    public BookBorrowList(DataStorage dataStorage, UserModeUi userModeUi, UserInformation userInformation)
     {
         this.dataStorage = dataStorage;
         this.userModeUi = userModeUi;
-        this.user = user;
+        this.userInformation = userInformation;
     }
     
     ConsoleKeyInfo inputKey;
@@ -20,9 +20,9 @@ public class BookBorrowList
 		while (true)
 		{
 			userModeUi.PrintBorrowingList();
-			for (int i = 0; i < user.borrowBookList.Count; i++)
+			for (int i = 0; i < userInformation.borrowBookList.Count; i++)
 			{
-				userModeUi.PrintUserBorrowingList(user.borrowBookList[i]);
+				userModeUi.PrintUserBorrowingList(userInformation.borrowBookList[i]);
 			}
 
             inputKey = Console.ReadKey();

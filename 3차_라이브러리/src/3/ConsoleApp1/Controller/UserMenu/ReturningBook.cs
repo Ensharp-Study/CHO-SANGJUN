@@ -5,13 +5,13 @@ public class ReturningBook
 {
     DataStorage dataStorage;
     UserModeUi userModeUi;
-    UserInf user;
+    UserInformation userInformation;
 
-    public ReturningBook(DataStorage dataStorage, UserModeUi userModeUi, UserInf user) 
+    public ReturningBook(DataStorage dataStorage, UserModeUi userModeUi, UserInformation userInformation) 
     { 
         this.dataStorage = dataStorage;
         this.userModeUi = userModeUi;
-        this.user = user;
+        this.userInformation = userInformation;
     }
 	public void ReturnBook()
 	{
@@ -23,9 +23,9 @@ public class ReturningBook
 
             userModeUi.PrintReturningBook();
 
-            for (int i = 0; i < user.borrowBookList.Count; i++)
+            for (int i = 0; i < userInformation.borrowBookList.Count; i++)
             {
-                userModeUi.PrintShouldReturningList(user.borrowBookList[i]);
+                userModeUi.PrintShouldReturningList(userInformation.borrowBookList[i]);
             }
 
             Console.SetCursorPosition(36, 3);
@@ -58,7 +58,7 @@ public class ReturningBook
 
                 for (int i = 0; i < dataStorage.userList.Count; i++)
                 {
-                    if (user.userNumber == dataStorage.userList[i].userNumber)
+                    if (userInformation.userNumber == dataStorage.userList[i].userNumber)
                     {
                         dataStorage.userList[i].returnBookList.Add(dataStorage.bookList[sameIndex]);
                     }

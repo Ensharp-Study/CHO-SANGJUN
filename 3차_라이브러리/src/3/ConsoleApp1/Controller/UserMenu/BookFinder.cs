@@ -12,7 +12,6 @@ public class BookFinder
     ConsoleKeyInfo inputKey;
 
     DataStorage dataStorage;
-    UserModeUi userModeUi;
     CommonFunctionUi commonFunctionUi;
 
     public BookFinder(DataStorage dataStorage, CommonFunctionUi commonFunctionUi)

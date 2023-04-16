@@ -5,14 +5,14 @@ public class BorrowingBook
     DataStorage dataStorage;
     UserModeUi userModeUi;
     CommonFunctionUi commonFunctionUi;
-    UserInf user;
+    UserInformation userInformation;
 
-    public BorrowingBook(DataStorage dataStorage, UserModeUi userModeUi, CommonFunctionUi commonFunctionUi, UserInf user) 
+    public BorrowingBook(DataStorage dataStorage, UserModeUi userModeUi, CommonFunctionUi commonFunctionUi, UserInformation userInformation) 
     { 
         this.dataStorage = dataStorage;
         this.userModeUi = userModeUi;
         this.commonFunctionUi = commonFunctionUi;
-        this.user = user;
+        this.userInformation = userInformation;
     }
 
 	public void BorrowBook()
@@ -50,7 +50,7 @@ public class BorrowingBook
                 dataStorage.bookList[sameIndex].bookQuantity -= 1;
                 for (int i = 0; i < dataStorage.userList.Count; i++)
                 {
-                    if (user.userNumber == dataStorage.userList[i].userNumber)
+                    if (userInformation.userNumber == dataStorage.userList[i].userNumber)
                     {
                         dataStorage.userList[i].borrowBookList.Add(dataStorage.bookList[sameIndex]);
                         break;

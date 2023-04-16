@@ -4,8 +4,8 @@ public class BookReturnList
 {
     DataStorage dataStorage;
     UserModeUi userModeUi;
-    UserInf user;
-    public BookReturnList(DataStorage dataStorage, UserModeUi userModeUi, UserInf user)
+    UserInformation user;
+    public BookReturnList(DataStorage dataStorage, UserModeUi userModeUi, UserInformation user)
     {
         this.dataStorage = dataStorage;
         this.userModeUi = userModeUi;

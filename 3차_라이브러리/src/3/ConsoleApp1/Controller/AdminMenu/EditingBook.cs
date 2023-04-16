@@ -18,14 +18,14 @@ public class EditingBook
     DataStorage dataStorage;
     AdministratorModeUi administratorModeUi;
     CommonFunctionUi commonFunctionUi;
-    BookInformation bookInformation;
+    BookInformationException bookInformationException;
 
-    public EditingBook(DataStorage dataStorage, AdministratorModeUi administratorModeUi , CommonFunctionUi commonFunctionUi, BookInformation bookInformation) {
+    public EditingBook(DataStorage dataStorage, AdministratorModeUi administratorModeUi , CommonFunctionUi commonFunctionUi, BookInformationException bookInformationException) {
 
         this.dataStorage = dataStorage;
         this.administratorModeUi = administratorModeUi;
         this.commonFunctionUi = commonFunctionUi;
-        this.bookInformation = bookInformation;
+        this.bookInformationException = bookInformationException;
     }
 
 
@@ -90,17 +90,17 @@ public class EditingBook
             administratorModeUi.PrintEditingBookInformation();
 
             Console.SetCursorPosition(63, 24);
-            title = bookInformation.JudgeBookNameRegularExpression(63, 24);
+            title = bookInformationException.JudgeBookNameRegularExpression(63, 24);
             Console.SetCursorPosition(63, 25);
-            author = bookInformation.JudgeBookAuthorRegularExpression(63, 25);
+            author = bookInformationException.JudgeBookAuthorRegularExpression(63, 25);
             Console.SetCursorPosition(63, 26);
-            publisher = bookInformation.JudgeBookPublisherRegularExpression(63, 26);
+            publisher = bookInformationException.JudgeBookPublisherRegularExpression(63, 26);
             Console.SetCursorPosition(63, 27);
-            quantity = bookInformation.JudgeBookQuantityRegularExpression(63, 27);
+            quantity = bookInformationException.JudgeBookQuantityRegularExpression(63, 27);
             Console.SetCursorPosition(63, 28);
-            price = bookInformation.JudgeBookPriceRegularExpression(63, 28);
+            price = bookInformationException.JudgeBookPriceRegularExpression(63, 28);
             Console.SetCursorPosition(63, 29);
-            publishDate = bookInformation.JudgeBookPublishDateRegularExpression(63, 29);
+            publishDate = bookInformationException.JudgeBookPublishDateRegularExpression(63, 29);
 
             for (int i = 0; i < dataStorage.bookList.Count; i++)
             {

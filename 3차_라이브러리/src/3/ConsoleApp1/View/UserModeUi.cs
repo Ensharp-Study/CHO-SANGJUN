@@ -104,7 +104,7 @@ public class UserModeUi
         Console.WriteLine("============================================================");
     }
 
-    public void PrintUserBorrowingList(BookInf book)
+    public void PrintUserBorrowingList(BookInformation book)
     {
         Console.WriteLine(" 책 아이디 : " + book.bookId);
         Console.WriteLine(" 책 이름   : " + book.bookName);
@@ -135,14 +135,14 @@ public class UserModeUi
         Console.WriteLine("                    현재 반납한 도서 목록                   ");
         Console.WriteLine("============================================================");
     }
-    public void PrintShouldReturningList(BookInf book)
+    public void PrintShouldReturningList(BookInformation book)
     {
 
         Console.WriteLine(" 책 이름 : " + book.bookName);
         Console.WriteLine("============================================================");
     }
 
-    public void PrintBeforeUserInf(UserInf user)
+    public void PrintBeforeUserInf(UserInformation user)
     {
         Console.WriteLine("                        _______________________________________________________________                        ");
         Console.WriteLine("                       |                                                               |                       ");
@@ -161,7 +161,7 @@ public class UserModeUi
         Console.WriteLine("                 USER PhoneNumber (  01x-xxxx-xxxx  ) : " + user.userPhoneNumber);
         Console.WriteLine("                 USER Address (       한글 주소       ) : " + user.userAddress);
     }
-    public void PrintAfterUserInf(UserInf user)
+    public void PrintAfterUserInf(UserInformation user)
     {
         Console.WriteLine("\n\n");
         Console.WriteLine("                                          ★     변경 할 정보 입력    ★                                        ");

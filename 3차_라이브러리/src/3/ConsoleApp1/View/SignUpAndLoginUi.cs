@@ -99,18 +99,37 @@ public class SignUpAndLoginUi
         Console.WriteLine("비밀번호가 서로 다릅니다. 다시 입력해주세요");
         Console.ResetColor();
     }
-    public void PrintLoginMenu()
+    public void PrintUserLoginMenu()
     {
         Console.SetCursorPosition(50, 22);
-        Console.WriteLine("                                              ");
+        //Console.WriteLine("                           ");
         Console.SetCursorPosition(50, 22);
-        Console.WriteLine("로그인");
+        Console.WriteLine("사용자 로그인");
         Console.SetCursorPosition(40, 23);
-        Console.WriteLine("                                              ");
+        //Console.WriteLine("                           ");
         Console.SetCursorPosition(40, 23);
         Console.WriteLine("아이디(ID) : ");
         Console.SetCursorPosition(40, 24);
-        Console.WriteLine("                                              ");
+        //Console.WriteLine("                             ");
+        Console.SetCursorPosition(40, 24);
+        Console.WriteLine("패스워드(PASSWORD) : ");
+
+    }
+
+    public void PrintAdministratorLoginMenu()
+    {
+        Console.SetCursorPosition(50, 22);
+        Console.WriteLine("                          ");
+        Console.SetCursorPosition(50, 22);
+        Console.ForegroundColor= ConsoleColor.Green;
+        Console.WriteLine("관리자 로그인");
+        Console.ResetColor();
+        Console.SetCursorPosition(40, 23);
+        Console.WriteLine("                               ");
+        Console.SetCursorPosition(40, 23);
+        Console.WriteLine("아이디(ID) : ");
+        Console.SetCursorPosition(40, 24);
+        Console.WriteLine("                                  ");
         Console.SetCursorPosition(40, 24);
         Console.WriteLine("패스워드(PASSWORD) : ");
 

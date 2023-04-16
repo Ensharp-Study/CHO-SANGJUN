@@ -23,7 +23,7 @@ public class AdministratorLogin
 
         while (true)
         {
-            signUpAndLoginUi.PrintLoginMenu();
+            signUpAndLoginUi.PrintAdministratorLoginMenu();
             Console.SetCursorPosition(53, 23);
             id = userInformationException.JudgeIdAndPasswordWithRegularExpression(53, 23);
             Console.SetCursorPosition(61, 24);

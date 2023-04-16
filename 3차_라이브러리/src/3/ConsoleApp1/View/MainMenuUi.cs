@@ -21,12 +21,12 @@
 
     public void ViewMenuSquare()
     {
-        Console.WriteLine("                        _______________________________________________________________                        ");
-        Console.WriteLine("                       |                                                               |                       ");
-        Console.WriteLine("                       |                                                               |                       ");
-        Console.WriteLine("                       |                                                               |                       ");
-        Console.WriteLine("                       |                                                               |                       ");
-        Console.WriteLine("                       -----------------------------------------------------------------                       ");
+        Console.WriteLine("             _____________________________________________________________________________________               ");
+        Console.WriteLine("            |                                                                                     |              ");
+        Console.WriteLine("            |                                                                                     |              ");
+        Console.WriteLine("            |                                                                                     |              ");
+        Console.WriteLine("            |                                                                                     |              ");
+        Console.WriteLine("            ---------------------------------------------------------------------------------------                      ");
     }
 
     public int PrintSelectMenu()

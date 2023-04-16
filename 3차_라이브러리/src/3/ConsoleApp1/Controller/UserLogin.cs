@@ -27,7 +27,7 @@ public class UserLogin
             Console.Clear();
             mainMenuUi.ViewMainMenu();
             mainMenuUi.ViewMenuSquare();
-            signUpAndLoginUi.PrintLoginMenu();
+            signUpAndLoginUi.PrintUserLoginMenu();
 
             Console.SetCursorPosition(53, 23);
             id = userInformationException.JudgeIdAndPasswordWithRegularExpression(53,23);
@@ -49,12 +49,14 @@ public class UserLogin
                     else
                     {
                         Console.WriteLine("\n\n                                   비밀번호 입력이 틀렸습니다. 다시 입력하세요        ");
+                        Console.ReadKey();
                     }
                 }
 
                 else
                 {
                     Console.WriteLine("\n\n                             아이디 또는 비밀번호 입력이 틀렸습니다. 다시 입력하세요");
+                    Console.ReadKey();
                 }
 
 

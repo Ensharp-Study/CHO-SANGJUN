@@ -107,7 +107,7 @@ public class AdministratorModeUi{
         Console.WriteLine("                          : 수량    - 1~999 사이의 자연수");
         Console.WriteLine("                          : 가격    - 1~9999999 사이의 자연수");
         Console.WriteLine("                          : 출시일  - 19xx or 20xx-xx-xx");
-        Console.WriteLine("                          : ISBN    - 정수9개 + 영어1개 + 공백 + 정수 13개");
+        Console.WriteLine("                          : ISBN    - 국제표준 xxx-xx-xxxxxx-x-x ");
         Console.WriteLine("                          : 정보    - 최소1개의 문자(공백포함)\n");
         Console.ResetColor();
         Console.WriteLine("                 -------------------------------------------------------------------------------\n");
@@ -176,7 +176,7 @@ public class AdministratorModeUi{
         Console.WriteLine("                        책제목(영어,한글,숫자,?!+= 1개 이상): ");
         Console.WriteLine("                        작가 (  영어,한글 1글자 이상  )     : ");
         Console.WriteLine("                        출판사 (영어,한글,숫자 1개 이상)    : ");
-        Console.WriteLine("                        수량 (    1~999 사이의 자연수    )  : ");
+        Console.WriteLine("                        수량 (    0~999 사이의 정수    )  : ");
         Console.WriteLine("                        가격 (  1~9999999 사이의 자연수  )  : ");
         Console.WriteLine("                        출시일 (  19xx or 20xx-xx-xx   )    : ");
     }
@@ -211,7 +211,7 @@ public class AdministratorModeUi{
     public void PrintBookBorrowedMenu()
     {
         Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
-        Console.WriteLine("                                                전체회원 대여상황 :\n");
+        Console.WriteLine("                                                 전체회원 대여상황 \n");
         Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
         Console.WriteLine("                                  ENTER : 확인                     ESC : 뒤로가기\n\n");
     }

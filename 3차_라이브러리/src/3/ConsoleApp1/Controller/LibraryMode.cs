@@ -7,7 +7,7 @@ public class LibraryMode
     MainMenuUi mainMenuUi = new MainMenuUi();
     SignUpAndLoginUi signUpAndLoginUi = new SignUpAndLoginUi();
     DataStorage dataStorage = new DataStorage();
-    ExceptionHandling exceptionHandling = new ExceptionHandling();
+    UserInformation exceptionHandling = new UserInformation();
 
 
     public void SelectMenu()

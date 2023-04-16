@@ -5,11 +5,11 @@ public class SignUp
     MainMenuUi mainMenuUi;
     SignUpAndLoginUi signUpAndLoginUi;
     DataStorage dataStorage;
-    ExceptionHandling exceptionHandling;
+    UserInformation exceptionHandling;
 
     UserInf newUserInf = new UserInf();
 
-    public SignUp(MainMenuUi mainMenuUi, SignUpAndLoginUi signUpAndLoginUi, DataStorage dataStorage, ExceptionHandling exceptionHandling)
+    public SignUp(MainMenuUi mainMenuUi, SignUpAndLoginUi signUpAndLoginUi, DataStorage dataStorage, UserInformation exceptionHandling)
     {
         this.mainMenuUi = mainMenuUi;
         this.signUpAndLoginUi = signUpAndLoginUi;

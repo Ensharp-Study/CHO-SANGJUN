@@ -28,7 +28,7 @@ public class BorrowingBook
             userModeUi.PrintBorrowingBookMenu();//책 빌리기 메뉴 출력
             for (int i = 0; i < dataStorage.bookList.Count; i++)
             {
-                commonFunctionUi.PrintBookList(dataStorage, i);
+                commonFunctionUi.PrintBookList(dataStorage.bookList[i], i);
             }
             Console.SetCursorPosition(36, 3);
             bookId = Console.ReadLine();

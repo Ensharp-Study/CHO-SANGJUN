@@ -4,11 +4,13 @@ public class AddingBook
 {
     DataStorage dataStorage;
     AdministratorModeUi administratorModeUi;
+    BookInformation bookInformation;
 
-    public AddingBook(DataStorage dataStorage, AdministratorModeUi administratorModeUi) { 
+    public AddingBook(DataStorage dataStorage, AdministratorModeUi administratorModeUi, BookInformation bookInformation) { 
     
         this.dataStorage = dataStorage;
         this.administratorModeUi = administratorModeUi;
+        this.bookInformation = bookInformation;
     }
 
 	public void AddNewBook() //새로운 책 추가하기
@@ -20,21 +22,22 @@ public class AddingBook
             BookInf bookInf = new BookInf(); //새로운 책 정보 담을 인스턴스 생성
 
             Console.SetCursorPosition(29, 11);
-            bookInf.bookName = Console.ReadLine();
+            bookInf.bookName = bookInformation.JudgeBookNameRegularExpression(29, 11);
             Console.SetCursorPosition(29, 12);
-            bookInf.bookAuthor = Console.ReadLine();
+            bookInf.bookAuthor = bookInformation.JudgeBookAuthorRegularExpression(29, 12);
             Console.SetCursorPosition(29, 13);
-            bookInf.bookPublisher = Console.ReadLine();
+            bookInf.bookPublisher = bookInformation.JudgeBookPublisherRegularExpression(29, 13);
             Console.SetCursorPosition(29, 14);
-            bookInf.bookQuantity = int.Parse(Console.ReadLine());
+            bookInf.bookQuantity = int.Parse(bookInformation.JudgeBookQuantityRegularExpression(29, 14));
             Console.SetCursorPosition(29, 15);
-            bookInf.bookPrice = int.Parse(Console.ReadLine());
+            bookInf.bookPrice = int.Parse(bookInformation.JudgeBookPriceRegularExpression(29, 15));
             Console.SetCursorPosition(29, 16);
-            bookInf.bookPublicationDate = Console.ReadLine();
+            bookInf.bookPublicationDate = bookInformation.JudgeBookPublishDateRegularExpression(29, 16);
             Console.SetCursorPosition(29, 17);
-            bookInf.isbn = Console.ReadLine();
+            bookInf.isbn = bookInformation.JudgeBookIsbnRegularExpression(29, 17);
             Console.SetCursorPosition(29, 18);
-            bookInf.bookInf = Console.ReadLine();
+            bookInf.bookInf = bookInformation.JudgeBookInformationRegularExpression(29, 18);
+            
             dataStorage.bookList.Add(bookInf);
             Console.Clear();
 

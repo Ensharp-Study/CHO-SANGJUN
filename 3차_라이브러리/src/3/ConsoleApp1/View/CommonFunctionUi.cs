@@ -35,17 +35,17 @@ public class CommonFunctionUi
         Console.WriteLine("건너뛰고자 하는 항목은 ENTER을 눌러주세요");
         Console.WriteLine("============================================================");
     }
-    public void PrintBookList(DataStorage dataStorage, int indexI)
+    public void PrintBookList(BookInf book, int indexI)
     {
-        Console.WriteLine("책아이디  :  {0}", dataStorage.bookList[indexI].bookId);
-        Console.WriteLine("책 제목   :  " + dataStorage.bookList[indexI].bookName);
-        Console.WriteLine("작가      :  " + dataStorage.bookList[indexI].bookAuthor);
-        Console.WriteLine("출판사    :  " + dataStorage.bookList[indexI].bookPublisher);
-        Console.WriteLine("수량      :  {0}", dataStorage.bookList[indexI].bookQuantity);
-        Console.WriteLine("가격      :  {0}", dataStorage.bookList[indexI].bookPrice);
-        Console.WriteLine("출시일    :  " + dataStorage.bookList[indexI].bookPublicationDate);
-        Console.WriteLine("ISBN      :  " + dataStorage.bookList[indexI].isbn);
-        Console.WriteLine("책 정보   :  " + dataStorage.bookList[indexI].bookInf);
+        Console.WriteLine("책아이디  :  {0}", book.bookId);
+        Console.WriteLine("책 제목   :  " + book.bookName);
+        Console.WriteLine("작가      :  " + book.bookAuthor);
+        Console.WriteLine("출판사    :  " + book.bookPublisher);
+        Console.WriteLine("수량      :  {0}", book.bookQuantity);
+        Console.WriteLine("가격      :  {0}", book.bookPrice);
+        Console.WriteLine("출시일    :  " + book.bookPublicationDate);
+        Console.WriteLine("ISBN      :  " + book.isbn);
+        Console.WriteLine("책 정보   :  " + book.bookInf);
         Console.WriteLine("============================================================");
     }
     public void SelectEndorReturnInTheProgram()

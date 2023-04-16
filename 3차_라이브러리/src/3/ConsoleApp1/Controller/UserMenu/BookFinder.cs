@@ -28,7 +28,7 @@ public class BookFinder
             commonFunctionUi.PrintBookFinderMenu();
             for (int i = 0; i < dataStorage.bookList.Count; i++)
             {
-                commonFunctionUi.PrintBookList(dataStorage, i);
+                commonFunctionUi.PrintBookList(dataStorage.bookList[i], i);
             }
             Console.SetCursorPosition(17, 1);
             title = Console.ReadLine();
@@ -58,7 +58,7 @@ public class BookFinder
                 if (PrintPossiblity > 0) // 일치하면 출력
                 {
                     {
-                        commonFunctionUi.PrintBookList(dataStorage, i);
+                        commonFunctionUi.PrintBookList(dataStorage.bookList[i], i);
                     }
                     PrintPossiblity = 0;
                 }

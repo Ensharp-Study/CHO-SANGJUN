@@ -13,6 +13,7 @@ public class AdministratorMenu
 
     AdministratorModeUi administratorModeUi = new AdministratorModeUi();
     CommonFunctionUi commonFunctionUi = new CommonFunctionUi();
+    BookInformation bookInformation = new BookInformation();
     public void ControllAdministratorMenu()
     {
         while (true)
@@ -35,7 +36,7 @@ public class AdministratorMenu
 
             if (menuNumber == Constants.ADDING_BOOK)
             {
-                AddingBook addingBook = new AddingBook(dataStorage, administratorModeUi);
+                AddingBook addingBook = new AddingBook(dataStorage, administratorModeUi, bookInformation);
                 addingBook.AddNewBook();
             }
 
@@ -47,7 +48,7 @@ public class AdministratorMenu
 
             if (menuNumber == Constants.EDITING_BOOK)
             {
-                EditingBook editingBook = new EditingBook(dataStorage, administratorModeUi, commonFunctionUi);
+                EditingBook editingBook = new EditingBook(dataStorage, administratorModeUi, commonFunctionUi, bookInformation);
                 editingBook.EditBook();
             }
 

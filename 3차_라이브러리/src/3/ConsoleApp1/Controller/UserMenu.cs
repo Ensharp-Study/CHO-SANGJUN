@@ -5,9 +5,9 @@ public class UserMenu
     MainMenuUi mainMenuUi;
     DataStorage dataStorage;
     UserInf user;
-    ExceptionHandling exceptionHandling;
+    UserInformation exceptionHandling;
 
-    public UserMenu(MainMenuUi mainMenuUi, DataStorage dataStorage, UserInf user, ExceptionHandling exceptionHandling)
+    public UserMenu(MainMenuUi mainMenuUi, DataStorage dataStorage, UserInf user, UserInformation exceptionHandling)
     {
         this.mainMenuUi = mainMenuUi;
         this.dataStorage = dataStorage;

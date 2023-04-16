@@ -5,9 +5,9 @@ public class EditingUserInf
     DataStorage dataStorage;
     UserModeUi userModeUi;
     UserInf user;
-    ExceptionHandling exceptionHandling;
+    UserInformation exceptionHandling;
 
-    public EditingUserInf(DataStorage dataStorage, UserModeUi userModeUi, UserInf user, ExceptionHandling exceptionHandling)
+    public EditingUserInf(DataStorage dataStorage, UserModeUi userModeUi, UserInf user, UserInformation exceptionHandling)
     {
         this.userModeUi = userModeUi;
         this.user = user;

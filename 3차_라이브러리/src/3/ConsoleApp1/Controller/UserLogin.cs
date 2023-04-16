@@ -6,9 +6,9 @@ public class UserLogin
     MainMenuUi mainMenuUi;
     SignUpAndLoginUi signUpAndLoginUi;
     DataStorage dataStorage;
-    ExceptionHandling exceptionHandling;
+    UserInformation exceptionHandling;
 
-    public UserLogin(MainMenuUi mainMenuUi, SignUpAndLoginUi signUpAndLoginUi, DataStorage dataStorage, ExceptionHandling exceptionHandling)
+    public UserLogin(MainMenuUi mainMenuUi, SignUpAndLoginUi signUpAndLoginUi, DataStorage dataStorage, UserInformation exceptionHandling)
     {
         this.mainMenuUi = mainMenuUi;
         this.signUpAndLoginUi = signUpAndLoginUi;

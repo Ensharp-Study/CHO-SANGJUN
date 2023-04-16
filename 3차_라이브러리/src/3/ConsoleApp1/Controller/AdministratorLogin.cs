@@ -4,9 +4,9 @@ public class AdministratorLogin
     MainMenuUi mainMenuUi;
     SignUpAndLoginUi signUpAndLoginUi;
     DataStorage dataStorage;
-    ExceptionHandling exceptionHandling;
+    UserInformation exceptionHandling;
 
-    public AdministratorLogin(MainMenuUi mainMenuUi,SignUpAndLoginUi signUpAndLoginUi, DataStorage dataStorage, ExceptionHandling exceptionHandling)
+    public AdministratorLogin(MainMenuUi mainMenuUi,SignUpAndLoginUi signUpAndLoginUi, DataStorage dataStorage, UserInformation exceptionHandling)
     {
         this.mainMenuUi = mainMenuUi;
         this.signUpAndLoginUi = signUpAndLoginUi;

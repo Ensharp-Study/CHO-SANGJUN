@@ -18,12 +18,14 @@ public class EditingBook
     DataStorage dataStorage;
     AdministratorModeUi administratorModeUi;
     CommonFunctionUi commonFunctionUi;
+    BookInformation bookInformation;
 
-    public EditingBook(DataStorage dataStorage, AdministratorModeUi administratorModeUi , CommonFunctionUi commonFunctionUi) {
+    public EditingBook(DataStorage dataStorage, AdministratorModeUi administratorModeUi , CommonFunctionUi commonFunctionUi, BookInformation bookInformation) {
 
         this.dataStorage = dataStorage;
         this.administratorModeUi = administratorModeUi;
         this.commonFunctionUi = commonFunctionUi;
+        this.bookInformation = bookInformation;
     }
 
 
@@ -34,7 +36,7 @@ public class EditingBook
             commonFunctionUi.PrintBookFinderMenu();
             for (int i = 0; i < dataStorage.bookList.Count; i++)
             {
-                commonFunctionUi.PrintBookList(dataStorage, i);
+                commonFunctionUi.PrintBookList(dataStorage.bookList[i], i);
             }
 
             Console.SetCursorPosition(17, 1);
@@ -65,7 +67,7 @@ public class EditingBook
                 if (PrintPossiblity > 0) // 일치하면 출력
                 {
                     {
-                        commonFunctionUi.PrintBookList(dataStorage, i);
+                        commonFunctionUi.PrintBookList(dataStorage.bookList[i], i);
                     }
                     PrintPossiblity = 0;
                 }
@@ -88,17 +90,17 @@ public class EditingBook
             administratorModeUi.PrintEditingBookInformation();
 
             Console.SetCursorPosition(63, 24);
-            title = Console.ReadLine();
+            title = bookInformation.JudgeBookNameRegularExpression(63, 24);
             Console.SetCursorPosition(63, 25);
-            author = Console.ReadLine();
+            author = bookInformation.JudgeBookAuthorRegularExpression(63, 25);
             Console.SetCursorPosition(63, 26);
-            publisher = Console.ReadLine();
+            publisher = bookInformation.JudgeBookPublisherRegularExpression(63, 26);
             Console.SetCursorPosition(63, 27);
-            quantity = Console.ReadLine();
+            quantity = bookInformation.JudgeBookQuantityRegularExpression(63, 27);
             Console.SetCursorPosition(63, 28);
-            price = Console.ReadLine();
+            price = bookInformation.JudgeBookPriceRegularExpression(63, 28);
             Console.SetCursorPosition(63, 29);
-            publishDate = Console.ReadLine();
+            publishDate = bookInformation.JudgeBookPublishDateRegularExpression(63, 29);
 
             for (int i = 0; i < dataStorage.bookList.Count; i++)
             {

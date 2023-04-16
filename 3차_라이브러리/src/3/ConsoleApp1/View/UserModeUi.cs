@@ -96,6 +96,12 @@ public class UserModeUi
 
 
     }
+    public void PrintNotCorrectBook()
+    {
+        Console.ForegroundColor= ConsoleColor.Red;
+        Console.WriteLine("해당 책이 없습니다. 다시 입력해 주세요");
+        Console.ResetColor();
+    }
 
     public void PrintBorrowingList()
     {

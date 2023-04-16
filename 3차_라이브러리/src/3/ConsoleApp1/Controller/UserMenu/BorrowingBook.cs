@@ -30,15 +30,28 @@ public class BorrowingBook
             {
                 commonFunctionUi.PrintBookList(dataStorage.bookList[i], i);
             }
-            Console.SetCursorPosition(36, 3);
-            bookId = Console.ReadLine();
 
-            for (int i = 0; i < dataStorage.bookList.Count; i++)
-            { //책 id와 저장된 책 리스트 비교
-                if (dataStorage.bookList[i].bookId == int.Parse(bookId))
+            while (sameIndex == -1)
+            {
+                Console.SetCursorPosition(36, 3);
+                Console.Write("                                         ");
+                Console.SetCursorPosition(36, 3);
+                bookId = Console.ReadLine();
+
+                for (int i = 0; i < dataStorage.bookList.Count; i++)
+                { //책 id와 저장된 책 리스트 비교
+                    if (dataStorage.bookList[i].bookId == int.Parse(bookId))
+                    {
+                        sameIndex = i;
+                        break;
+                    }
+                }
+
+                if (sameIndex == -1)
                 {
-                    sameIndex = i;
-                    break;
+                    Console.SetCursorPosition(36, 3);
+                    userModeUi.PrintNotCorrectBook();
+                    Console.ReadKey();
                 }
             }
 

@@ -17,7 +17,6 @@ public class AddingBook
 	{
         while (true)
         {
-            ConsoleKeyInfo inputKey;
             administratorModeUi.PrintAddingBookMenu();  // 책 추가 메뉴 인터페이스 출력
             BookInformation bookInformation = new BookInformation(); //새로운 책 정보 담을 인스턴스 생성
 
@@ -37,30 +36,14 @@ public class AddingBook
             bookInformation.isbn = bookInformationException.JudgeBookIsbnRegularExpression(29, 17);
             Console.SetCursorPosition(29, 18);
             bookInformation.bookInf = bookInformationException.JudgeBookInformationRegularExpression(29, 18);
-            
+
             dataStorage.bookList.Add(bookInformation);
             Console.Clear();
 
             administratorModeUi.PrintAddingBookSuccessSentence(); //책 추가 완료 인터페이스 출력
-
-            inputKey = Console.ReadKey();
-            if (inputKey.Key == ConsoleKey.Enter)
-            {
-                Console.Clear();
-                continue;
-            }
-            else if (inputKey.Key == ConsoleKey.Escape)
-            {
-                Console.Clear();
-                break;
-            }
-            else
-            {
-                Console.Clear();
-                break;
-            }
-
         }
 
     }
+
+    
 }

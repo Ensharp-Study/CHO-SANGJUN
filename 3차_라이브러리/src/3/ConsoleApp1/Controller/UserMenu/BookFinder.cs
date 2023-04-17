@@ -9,15 +9,17 @@ public class BookFinder
 	string author;
 	string publisher;
     int PrintPossiblity = 0;
-    ConsoleKeyInfo inputKey;
+   
 
     DataStorage dataStorage;
     CommonFunctionUi commonFunctionUi;
+    ProgramProcess programProcess;
 
-    public BookFinder(DataStorage dataStorage, CommonFunctionUi commonFunctionUi)
+    public BookFinder(DataStorage dataStorage, CommonFunctionUi commonFunctionUi, ProgramProcess programProcess)
     {
         this.dataStorage = dataStorage;
         this.commonFunctionUi = commonFunctionUi;
+        this.programProcess = programProcess;
     }
 
     public void FindBook()
@@ -65,17 +67,12 @@ public class BookFinder
 
             commonFunctionUi.SelectEndorReturnInTheProgram();
 
-            inputKey = Console.ReadKey();
-            if (inputKey.Key == ConsoleKey.Escape)
+            //프로그램 뒤로 나가기
+            if (programProcess.SelectProgramDirection() == Constants.RETURN)
             {
-                Console.Clear();
-                return;
+                break;
             }
 
-            else if (inputKey.Key == ConsoleKey.Enter)
-            {
-                Console.Clear();
-            }
         }
     }
 }

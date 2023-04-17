@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExceptionHandling\ProgramProcess.cs" />
     <Compile Include="ExceptionHandling\BookInformation.cs" />
     <Compile Include="Utility\Constants.cs" />
     <Compile Include="Controller\AdministratorLogin.cs" />

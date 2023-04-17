@@ -4,11 +4,13 @@ public class AdministratorMenu
 {
     MainMenuUi mainMenuUi;
     DataStorage dataStorage;
+    ProgramProcess programProcess;
 
-    public AdministratorMenu(MainMenuUi mainMenuUi,   DataStorage dataStorage)
+    public AdministratorMenu(MainMenuUi mainMenuUi,   DataStorage dataStorage, ProgramProcess programProcess)
     {
         this.mainMenuUi = mainMenuUi;
         this.dataStorage = dataStorage;
+        this.programProcess = programProcess;
     }
 
     AdministratorModeUi administratorModeUi = new AdministratorModeUi();
@@ -18,7 +20,7 @@ public class AdministratorMenu
     {
         while (true)
         {
-            ConsoleKeyInfo inputKey;
+            
             int menuNumber;
             mainMenuUi.ViewMainMenu();
             commonFunctionUi.ViewMenu();
@@ -30,7 +32,7 @@ public class AdministratorMenu
             //상속을 활용하기 좀 더 고민해서 유저 관리자가 둘다 코드 재활용할 수 있을지 클래스 분할
             if (menuNumber == Constants.BOOK_FINDER)   //스위치
             {
-                BookFinder bookFinder = new BookFinder(dataStorage, commonFunctionUi);
+                BookFinder bookFinder = new BookFinder(dataStorage, commonFunctionUi, programProcess);
                 bookFinder.FindBook();
             }
 

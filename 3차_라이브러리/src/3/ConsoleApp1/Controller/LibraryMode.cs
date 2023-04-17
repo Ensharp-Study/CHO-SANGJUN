@@ -8,13 +8,13 @@ public class LibraryMode
     SignUpAndLoginUi signUpAndLoginUi = new SignUpAndLoginUi();
     DataStorage dataStorage = new DataStorage();
     UserInformationException userInformationException = new UserInformationException();
-
+    ProgramProcess programProcess = new ProgramProcess();
 
     public void SelectMenu()
     {
-        UserLogin login = new UserLogin(mainMenuUi,signUpAndLoginUi, dataStorage, userInformationException);
+        UserLogin login = new UserLogin(mainMenuUi,signUpAndLoginUi, dataStorage, userInformationException, programProcess);
         SignUp signUp = new SignUp(mainMenuUi,signUpAndLoginUi, dataStorage, userInformationException);
-        AdministratorLogin administratorLogin = new AdministratorLogin(mainMenuUi, signUpAndLoginUi, dataStorage, userInformationException);
+        AdministratorLogin administratorLogin = new AdministratorLogin(mainMenuUi, signUpAndLoginUi, dataStorage, userInformationException, programProcess);
 
         while (true)
         {
@@ -52,6 +52,12 @@ public class LibraryMode
                 mainMenuUi.ViewMainMenu();
                 mainMenuUi.ViewMenuSquare();
                 administratorLogin.GetAdministratorLogin();
+            }
+
+            //프로그램 종료하기
+            if (programProcess.SelectProgramDirection() == Constants.RETURN)
+            {
+                break;
             }
         }
     }

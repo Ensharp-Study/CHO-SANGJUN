@@ -6,13 +6,15 @@ public class BorrowingBook
     UserModeUi userModeUi;
     CommonFunctionUi commonFunctionUi;
     UserInformation userInformation;
+    ProgramProcess programProcess;
 
-    public BorrowingBook(DataStorage dataStorage, UserModeUi userModeUi, CommonFunctionUi commonFunctionUi, UserInformation userInformation) 
+    public BorrowingBook(DataStorage dataStorage, UserModeUi userModeUi, CommonFunctionUi commonFunctionUi, UserInformation userInformation, ProgramProcess programProcess) 
     { 
         this.dataStorage = dataStorage;
         this.userModeUi = userModeUi;
         this.commonFunctionUi = commonFunctionUi;
         this.userInformation = userInformation;
+        this.programProcess = programProcess;
     }
 
 	public void BorrowBook()
@@ -22,7 +24,6 @@ public class BorrowingBook
         {
             string bookId;
             int sameIndex = -1;
-            ConsoleKeyInfo inputKey;
 
             Console.Clear();
             userModeUi.PrintBorrowingBookMenu();//책 빌리기 메뉴 출력
@@ -84,22 +85,11 @@ public class BorrowingBook
                 Console.WriteLine("                            ");
             }
 
-            inputKey = Console.ReadKey();
-            if (inputKey.Key == ConsoleKey.Enter)
+            if (programProcess.SelectProgramDirection() == Constants.RETURN)
             {
-                Console.Clear();
-                continue;
-            }
-            else if (inputKey.Key == ConsoleKey.Escape)
-            {
-                Console.Clear();
                 break;
             }
-            else
-            {
-                Console.Clear();
-                break;
-            }
+
         }
 
     }

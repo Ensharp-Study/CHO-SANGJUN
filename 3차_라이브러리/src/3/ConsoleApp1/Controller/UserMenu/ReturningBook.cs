@@ -6,12 +6,14 @@ public class ReturningBook
     DataStorage dataStorage;
     UserModeUi userModeUi;
     UserInformation userInformation;
+    ProgramProcess programProcess;
 
-    public ReturningBook(DataStorage dataStorage, UserModeUi userModeUi, UserInformation userInformation) 
+    public ReturningBook(DataStorage dataStorage, UserModeUi userModeUi, UserInformation userInformation, ProgramProcess programProcess) 
     { 
         this.dataStorage = dataStorage;
         this.userModeUi = userModeUi;
         this.userInformation = userInformation;
+        this.programProcess = programProcess;
     }
 	public void ReturnBook()
 	{
@@ -19,7 +21,6 @@ public class ReturningBook
         {
             string bookId;
             int sameIndex = -1;
-            ConsoleKeyInfo inputKey;
 
             userModeUi.PrintReturningBook();
 
@@ -65,21 +66,9 @@ public class ReturningBook
                 }
             }
 
-            inputKey = Console.ReadKey();
-
-            if (inputKey.Key == ConsoleKey.Enter)
+            //프로그램 뒤로 나가기
+            if (programProcess.SelectProgramDirection() == Constants.RETURN)
             {
-                Console.Clear();
-                continue;
-            }
-            else if (inputKey.Key == ConsoleKey.Escape)
-            {
-                Console.Clear();
-                break;
-            }
-            else
-            {
-                Console.Clear();
                 break;
             }
         }

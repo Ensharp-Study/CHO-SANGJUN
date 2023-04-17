@@ -5,12 +5,15 @@ public class DeletingUserInf //inf와같이 줄임말
     UserModeUi userModeUi;
     DataStorage dataStorage;
     UserInformation userInformation;
+    ProgramProcess programProcess;
 
-    public DeletingUserInf(UserModeUi userModeUi, DataStorage dataStorage, UserInformation userInformation)
+
+    public DeletingUserInf(UserModeUi userModeUi, DataStorage dataStorage, UserInformation userInformation, ProgramProcess programProcess)
     {
         this.userModeUi = userModeUi;
         this.dataStorage = dataStorage;
         this.userInformation = userInformation;
+        this.programProcess = programProcess;
     }
 
     public void DeleteUserInformation()
@@ -18,8 +21,9 @@ public class DeletingUserInf //inf와같이 줄임말
         while (true)
         {
             userModeUi.confirmAccountDeletion();
-
             ConsoleKeyInfo inputKey;
+
+
             bool isCheckedEnter = false;
             int selectedMenuNumber = -1;
 
@@ -78,20 +82,9 @@ public class DeletingUserInf //inf와같이 줄임말
                 userModeUi.PrintMaintainingAccountSentence();
             }
 
-            inputKey = Console.ReadKey();
-            if (inputKey.Key == ConsoleKey.Enter)
+            //프로그램 뒤로 나가기
+            if (programProcess.SelectProgramDirection() == Constants.RETURN)
             {
-                Console.Clear();
-                continue;
-            }
-            else if (inputKey.Key == ConsoleKey.Escape)
-            {
-                Console.Clear();
-                break;
-            }
-            else
-            {
-                Console.Clear();
                 break;
             }
         }

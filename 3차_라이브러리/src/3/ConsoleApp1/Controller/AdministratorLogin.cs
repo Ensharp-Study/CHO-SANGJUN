@@ -5,13 +5,15 @@ public class AdministratorLogin
     SignUpAndLoginUi signUpAndLoginUi;
     DataStorage dataStorage;
     UserInformationException userInformationException;
+    ProgramProcess programProcess;
 
-    public AdministratorLogin(MainMenuUi mainMenuUi,SignUpAndLoginUi signUpAndLoginUi, DataStorage dataStorage, UserInformationException userInformationException)
+    public AdministratorLogin(MainMenuUi mainMenuUi,SignUpAndLoginUi signUpAndLoginUi, DataStorage dataStorage, UserInformationException userInformationException, ProgramProcess programProcess)
     {
         this.mainMenuUi = mainMenuUi;
         this.signUpAndLoginUi = signUpAndLoginUi;
         this.dataStorage = dataStorage;
         this.userInformationException = userInformationException;
+        this.programProcess = programProcess;
     }
 
     public void GetAdministratorLogin()
@@ -19,7 +21,7 @@ public class AdministratorLogin
         string id;
         string password;
 
-        AdministratorMenu administratorMenu = new AdministratorMenu(mainMenuUi, dataStorage);
+        AdministratorMenu administratorMenu = new AdministratorMenu(mainMenuUi, dataStorage, programProcess);
 
         while (true)
         {
@@ -45,6 +47,11 @@ public class AdministratorLogin
             else
             {
                 Console.WriteLine("\n\n                             아이디 또는 비밀번호 입력이 틀렸습니다. 다시 입력하세요");
+            }
+
+            if (programProcess.SelectProgramDirection() == Constants.RETURN)
+            {
+                break;
             }
 
         }

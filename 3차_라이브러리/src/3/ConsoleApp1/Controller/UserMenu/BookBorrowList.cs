@@ -5,15 +5,14 @@ public class BookBorrowList
     DataStorage dataStorage;
     UserModeUi userModeUi;
     UserInformation userInformation;
-
-    public BookBorrowList(DataStorage dataStorage, UserModeUi userModeUi, UserInformation userInformation)
+    ProgramProcess programProcess;
+    public BookBorrowList(DataStorage dataStorage, UserModeUi userModeUi, UserInformation userInformation, ProgramProcess programProcess)
     {
         this.dataStorage = dataStorage;
         this.userModeUi = userModeUi;
         this.userInformation = userInformation;
+        this.programProcess = programProcess;
     }
-    
-    ConsoleKeyInfo inputKey;
 
     public void ShowBookBorrowList()
 	{
@@ -25,20 +24,9 @@ public class BookBorrowList
 				userModeUi.PrintUserBorrowingList(userInformation.borrowBookList[i]);
 			}
 
-            inputKey = Console.ReadKey();
-            if (inputKey.Key == ConsoleKey.Enter)
+            //프로그램 뒤로 나가기
+            if (programProcess.SelectProgramDirection() == Constants.RETURN)
             {
-                Console.Clear();
-                continue;
-            }
-            else if (inputKey.Key == ConsoleKey.Escape)
-            {
-                Console.Clear();
-                break;
-            }
-            else
-            {
-                Console.Clear();
                 break;
             }
         }

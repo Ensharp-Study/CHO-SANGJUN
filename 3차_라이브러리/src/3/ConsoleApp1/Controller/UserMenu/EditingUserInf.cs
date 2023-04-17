@@ -6,14 +6,15 @@ public class EditingUserInf
     UserModeUi userModeUi;
     UserInformation userInformation;
     UserInformationException userInformationException;
+    ProgramProcess programProcess;
 
-    public EditingUserInf(DataStorage dataStorage, UserModeUi userModeUi, UserInformation userInformation, UserInformationException userInformationException)
+    public EditingUserInf(DataStorage dataStorage, UserModeUi userModeUi, UserInformation userInformation, UserInformationException userInformationException, ProgramProcess programProcess)
     {
         this.userModeUi = userModeUi;
         this.userInformation = userInformation;
         this.dataStorage = dataStorage;
         this.userInformationException = userInformationException;
-
+        this.programProcess = programProcess;
     }
     public void EditUserInf()
 	{
@@ -25,7 +26,6 @@ public class EditingUserInf
             string newAge;
             string newPhoneNumber;
             String newAddress;
-            ConsoleKeyInfo inputKey;
 
             userModeUi.PrintBeforeUserInf(userInformation);
             userModeUi.PrintAfterUserInf(userInformation);
@@ -49,21 +49,9 @@ public class EditingUserInf
             userInformation.userAge = int.Parse(newAge);
             userInformation.userPhoneNumber = newPhoneNumber;
 
-            inputKey = Console.ReadKey();
-
-            if (inputKey.Key == ConsoleKey.Enter)
+            //프로그램 뒤로 나가기
+            if (programProcess.SelectProgramDirection() == Constants.RETURN)
             {
-                Console.Clear();
-                continue;
-            }
-            else if (inputKey.Key == ConsoleKey.Escape)
-            {
-                Console.Clear();
-                break;
-            }
-            else
-            {
-                Console.Clear();
                 break;
             }
         }

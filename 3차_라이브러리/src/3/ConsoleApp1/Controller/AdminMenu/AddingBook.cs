@@ -5,12 +5,14 @@ public class AddingBook
     DataStorage dataStorage;
     AdministratorModeUi administratorModeUi;
     BookInformationException bookInformationException;
+    ProgramProcess programProcess;
 
-    public AddingBook(DataStorage dataStorage, AdministratorModeUi administratorModeUi, BookInformationException bookInformationException) { 
+    public AddingBook(DataStorage dataStorage, AdministratorModeUi administratorModeUi, BookInformationException bookInformationException, ProgramProcess programProcess) { 
     
         this.dataStorage = dataStorage;
         this.administratorModeUi = administratorModeUi;
         this.bookInformationException = bookInformationException;
+        this.programProcess = programProcess;
     }
 
 	public void AddNewBook() //새로운 책 추가하기
@@ -41,6 +43,12 @@ public class AddingBook
             Console.Clear();
 
             administratorModeUi.PrintAddingBookSuccessSentence(); //책 추가 완료 인터페이스 출력
+
+            if ((programProcess.SelectProgramDirection()).Key == ConsoleKey.Escape)
+            {
+                break;
+            }
+
         }
 
     }

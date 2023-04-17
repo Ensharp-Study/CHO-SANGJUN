@@ -85,7 +85,7 @@ public class BorrowingBook
                 Console.WriteLine("                            ");
             }
 
-            if (programProcess.SelectProgramDirection() == Constants.RETURN)
+            if ((programProcess.SelectProgramDirection()).Key == ConsoleKey.Escape)
             {
                 break;
             }

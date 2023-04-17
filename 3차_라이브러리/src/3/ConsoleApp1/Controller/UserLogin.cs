@@ -8,14 +8,16 @@ public class UserLogin
     DataStorage dataStorage;
     UserInformationException userInformationException;
     ProgramProcess programProcess;
+    InformationMasking informationMasking;
 
-    public UserLogin(MainMenuUi mainMenuUi, SignUpAndLoginUi signUpAndLoginUi, DataStorage dataStorage, UserInformationException userInformationException, ProgramProcess programProcess)
+    public UserLogin(MainMenuUi mainMenuUi, SignUpAndLoginUi signUpAndLoginUi, DataStorage dataStorage, UserInformationException userInformationException, ProgramProcess programProcess, InformationMasking informationMasking)
     {
         this.mainMenuUi = mainMenuUi;
         this.signUpAndLoginUi = signUpAndLoginUi;
         this.dataStorage = dataStorage;
         this.userInformationException = userInformationException;
         this.programProcess = programProcess;
+        this.informationMasking = informationMasking;
     }
 
     public void GetUserLogin()
@@ -32,21 +34,24 @@ public class UserLogin
             signUpAndLoginUi.PrintUserLoginMenu();
 
             Console.SetCursorPosition(53, 23);
-            id = userInformationException.JudgeIdAndPasswordWithRegularExpression(53,23);
+            id = userInformationException.JudgeIdWithRegularExpression(53,23);
             
             Console.SetCursorPosition(61, 24);
-            password = userInformationException.JudgeIdAndPasswordWithRegularExpression(61, 24);
+            password = userInformationException.JudgePasswordWithRegularExpression(61, 24);
+
+            bool isJudgingCorrectId = false;
 
             for (int indexI = 0; indexI < dataStorage.userList.Count; indexI++)
             {
                 if (string.Equals(id, dataStorage.userList[indexI].id))
                 {
+                    isJudgingCorrectId = true;
                     if (string.Equals(password, dataStorage.userList[indexI].password))
                     {
                         Console.Clear() ;
                         UserMenu usermenu = new UserMenu(mainMenuUi, dataStorage,  dataStorage.userList[indexI],  userInformationException, programProcess);
                         usermenu.ControllUserMenu();
-                        isJudgingCorrectInput = false;
+                        //isJudgingCorrectInput = false;
                     }
                     else
                     {
@@ -54,22 +59,13 @@ public class UserLogin
                         Console.ReadKey();
                     }
                 }
-
-                else
-                {
-                    Console.WriteLine("\n\n                             아이디 또는 비밀번호 입력이 틀렸습니다. 다시 입력하세요");
-                    Console.ReadKey();
-                }
-
-
             }
 
-            //프로그램 종료하기
-            if (programProcess.SelectProgramDirection() == Constants.RETURN)
+            if(isJudgingCorrectId == false)
             {
-                break;
+                Console.WriteLine("\n\n                             아이디 또는 비밀번호 입력이 틀렸습니다. 다시 입력하세요");
+                Console.ReadKey();
             }
-
         }
     }
 }

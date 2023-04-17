@@ -24,7 +24,6 @@ public class AdministratorMenu
             int menuNumber;
             mainMenuUi.ViewMainMenu();
             commonFunctionUi.ViewMenu();
-            //administratorModeUi.ViewAdministratorMenu();
             
             menuNumber = administratorModeUi.PrintSelectAdministratorMenu();
             Console.Clear();
@@ -38,31 +37,31 @@ public class AdministratorMenu
 
             if (menuNumber == Constants.ADDING_BOOK)
             {
-                AddingBook addingBook = new AddingBook(dataStorage, administratorModeUi, bookInformationException);
+                AddingBook addingBook = new AddingBook(dataStorage, administratorModeUi, bookInformationException, programProcess);
                 addingBook.AddNewBook();
             }
 
             if (menuNumber == Constants.DELETING_BOOK)
             {
-                DeletingBook deletingBook = new DeletingBook(dataStorage, administratorModeUi, commonFunctionUi);
+                DeletingBook deletingBook = new DeletingBook(dataStorage, administratorModeUi, commonFunctionUi, programProcess);
                 deletingBook.DeleteABook();
             }
 
             if (menuNumber == Constants.EDITING_BOOK)
             {
-                EditingBook editingBook = new EditingBook(dataStorage, administratorModeUi, commonFunctionUi, bookInformationException);
+                EditingBook editingBook = new EditingBook(dataStorage, administratorModeUi, commonFunctionUi, bookInformationException, programProcess);
                 editingBook.EditBook();
             }
 
             if (menuNumber == Constants.MEMBER_MANAGER)
             {
-                MemberManger memberManger = new MemberManger(dataStorage, administratorModeUi);
+                MemberManger memberManger = new MemberManger(dataStorage, administratorModeUi, programProcess);
                 memberManger.ManageMember();
             }
 
             if (menuNumber == Constants.BOOK_BORROWING_STATUS)
             {
-                BookBorrowedStatus bookBorrowedStatus = new BookBorrowedStatus(dataStorage, administratorModeUi);
+                BookBorrowedStatus bookBorrowedStatus = new BookBorrowedStatus(dataStorage, administratorModeUi, programProcess);
                 bookBorrowedStatus.CheckBookBorrowedList();
             }
             if(menuNumber == Constants.ESC)

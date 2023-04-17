@@ -2,14 +2,14 @@
 
 public class MemberManger
 {
-    ConsoleKeyInfo inputKey;
     DataStorage dataStorage;
-
     AdministratorModeUi administratorModeUi;
-    public MemberManger(DataStorage dataStorage, AdministratorModeUi administratorModeUi)
+    ProgramProcess programProcess;
+    public MemberManger(DataStorage dataStorage, AdministratorModeUi administratorModeUi, ProgramProcess programProcess)
     {
         this.dataStorage = dataStorage;
         this.administratorModeUi = administratorModeUi;
+        this.programProcess = programProcess;
     }
 
     public void ManageMember()
@@ -42,17 +42,9 @@ public class MemberManger
                 administratorModeUi.PrintMemberList(dataStorage, i);
             }
 
-            inputKey = Console.ReadKey();
-            if (inputKey.Key == ConsoleKey.Escape)
+            if ((programProcess.SelectProgramDirection()).Key == ConsoleKey.Escape)
             {
-                Console.Clear();
-                return;
-            }
-
-            else if (inputKey.Key == ConsoleKey.Enter)
-            {
-                Console.Clear();
-                continue;
+                break;
             }
         }
     } 

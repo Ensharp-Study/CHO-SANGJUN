@@ -9,17 +9,18 @@ public class DeletingBook
     string deletedBookIdString;
     int deletedBookIdInt;
     int PrintPossiblity = 0;
-    ConsoleKeyInfo inputKey;
 
     DataStorage dataStorage;
     AdministratorModeUi administratorModeUi;
     CommonFunctionUi commonFunctionUi;
+    ProgramProcess programProcess;
 
-    public DeletingBook(DataStorage dataStorage, AdministratorModeUi administratorModeUi, CommonFunctionUi commonFunctionUi)
+    public DeletingBook(DataStorage dataStorage, AdministratorModeUi administratorModeUi, CommonFunctionUi commonFunctionUi, ProgramProcess programProcess)
     {
         this.dataStorage = dataStorage;
         this.administratorModeUi = administratorModeUi;
         this.commonFunctionUi = commonFunctionUi;
+        this.programProcess = programProcess;
     }
 
     public void DeleteABook() //책 삭제하기
@@ -84,21 +85,8 @@ public class DeletingBook
             Console.Clear();
             administratorModeUi.PrintDeletingBookSuccessSentence();
 
-
-            inputKey = Console.ReadKey();
-            if (inputKey.Key == ConsoleKey.Enter)
+            if ((programProcess.SelectProgramDirection()).Key == ConsoleKey.Escape)
             {
-                Console.Clear();
-                continue;
-            }
-            else if (inputKey.Key == ConsoleKey.Escape)
-            {
-                Console.Clear();
-                break;
-            }
-            else
-            {
-                Console.Clear();
                 break;
             }
         }

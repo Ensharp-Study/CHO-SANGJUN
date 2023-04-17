@@ -25,7 +25,7 @@ public class BookBorrowList
 			}
 
             //프로그램 뒤로 나가기
-            if (programProcess.SelectProgramDirection() == Constants.RETURN)
+            if ((programProcess.SelectProgramDirection()).Key == ConsoleKey.Escape)
             {
                 break;
             }

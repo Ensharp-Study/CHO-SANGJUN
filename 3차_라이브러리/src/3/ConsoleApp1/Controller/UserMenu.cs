@@ -24,7 +24,6 @@ public class UserMenu
     {
         while (true)
         {
-
             int menuNumber;
             mainMenuUi.ViewMainMenu();
             commonFunctionUi.ViewMenu();
@@ -74,7 +73,7 @@ public class UserMenu
                 deletingUserInf.DeleteUserInformation();
             }
 
-            if (programProcess.SelectProgramDirection() == Constants.RETURN)
+            if ((programProcess.SelectProgramDirection()).Key == ConsoleKey.Escape)
             {
                 break;
             }

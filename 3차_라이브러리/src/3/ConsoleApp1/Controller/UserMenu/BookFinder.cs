@@ -8,8 +8,9 @@ public class BookFinder
 	string title;
 	string author;
 	string publisher;
-    int PrintPossiblity = 0;
-   
+    int printPossiblity = 0;
+    bool isMenuExecute = true;
+
 
     DataStorage dataStorage;
     CommonFunctionUi commonFunctionUi;
@@ -24,7 +25,7 @@ public class BookFinder
 
     public void FindBook()
     {
-        while (true)
+        while (isMenuExecute)
         {
             commonFunctionUi.PrintBookFinderMenu();
             for (int i = 0; i < dataStorage.bookList.Count; i++)
@@ -38,7 +39,6 @@ public class BookFinder
             Console.SetCursorPosition(17, 3);
             publisher = Console.ReadLine();
             Console.WriteLine("\n\n\n");
-
             Console.Clear();
 
             commonFunctionUi.PrintBookFinderMenu();
@@ -50,27 +50,26 @@ public class BookFinder
                 {
                     if ((dataStorage.bookList[i].bookName).Contains(title) &&
                         (dataStorage.bookList[i].bookAuthor).Contains(author) &&
-                        (dataStorage.bookList[i].bookPublisher).Contains(publisher)) //제목 일치하는지 확인
+                        (dataStorage.bookList[i].bookPublisher).Contains(publisher)) 
                     {
-                        PrintPossiblity++;
+                        printPossiblity++;
                     }
                 }
 
-                if (PrintPossiblity > 0) // 일치하면 출력
+                if (printPossiblity > 0) // 일치하면 출력
                 {
                     {
                         commonFunctionUi.PrintBookList(dataStorage.bookList[i], i);
                     }
-                    PrintPossiblity = 0;
+                    printPossiblity = 0;
                 }
             }
-
             commonFunctionUi.SelectEndorReturnInTheProgram();
 
             //프로그램 뒤로 나가기
-            if (programProcess.SelectProgramDirection() == Constants.RETURN)
+            if ((programProcess.SelectProgramDirection()).Key == ConsoleKey.Escape)
             {
-                break;
+                isMenuExecute = false;
             }
 
         }

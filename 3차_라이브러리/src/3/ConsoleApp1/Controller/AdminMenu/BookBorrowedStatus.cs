@@ -2,14 +2,15 @@
 
 public class BookBorrowedStatus
 {
-    ConsoleKeyInfo inputKey;
     DataStorage dataStorage;
     AdministratorModeUi administratorModeUi;
+    ProgramProcess programProcess;
 
-    public BookBorrowedStatus(DataStorage dataStorage, AdministratorModeUi administratorModeUi)
+    public BookBorrowedStatus(DataStorage dataStorage, AdministratorModeUi administratorModeUi, ProgramProcess programProcess)
     {
         this.dataStorage = dataStorage;
         this.administratorModeUi = administratorModeUi;
+        this.programProcess = programProcess;
     }
 
     public void CheckBookBorrowedList() //빌린 책 출력하는 함수
@@ -27,22 +28,11 @@ public class BookBorrowedStatus
                 }
             }
 
-            inputKey = Console.ReadKey();
-            if (inputKey.Key == ConsoleKey.Enter)
+            if ((programProcess.SelectProgramDirection()).Key == ConsoleKey.Escape)
             {
-                Console.Clear();
                 break;
             }
-            else if (inputKey.Key == ConsoleKey.Escape)
-            {
-                Console.Clear();
-                break;
-            }
-            else
-            {
-                Console.Clear();
-                break;
-            }
+
         }
     }
 }

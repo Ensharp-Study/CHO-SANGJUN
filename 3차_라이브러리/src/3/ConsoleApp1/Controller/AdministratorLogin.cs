@@ -27,9 +27,9 @@ public class AdministratorLogin
         {
             signUpAndLoginUi.PrintAdministratorLoginMenu();
             Console.SetCursorPosition(53, 23);
-            id = userInformationException.JudgeIdAndPasswordWithRegularExpression(53, 23);
+            id = userInformationException.JudgeIdWithRegularExpression(53, 23);
             Console.SetCursorPosition(61, 24);
-            password = userInformationException.JudgeIdAndPasswordWithRegularExpression(61, 24);
+            password = userInformationException.JudgePasswordWithRegularExpression(61, 24);
 
             if (string.Equals(id, dataStorage.administratorInformation.id))
             {
@@ -49,7 +49,7 @@ public class AdministratorLogin
                 Console.WriteLine("\n\n                             아이디 또는 비밀번호 입력이 틀렸습니다. 다시 입력하세요");
             }
 
-            if (programProcess.SelectProgramDirection() == Constants.RETURN)
+            if ((programProcess.SelectProgramDirection()).Key == ConsoleKey.Escape)
             {
                 break;
             }

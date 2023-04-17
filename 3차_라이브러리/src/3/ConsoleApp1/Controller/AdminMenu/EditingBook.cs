@@ -13,19 +13,21 @@ public class EditingBook
     int PrintPossiblity = 0;
     string EditedBookIdString;
     int EditedBookIdInt;
-    ConsoleKeyInfo inputKey;
 
     DataStorage dataStorage;
     AdministratorModeUi administratorModeUi;
     CommonFunctionUi commonFunctionUi;
     BookInformationException bookInformationException;
+    ProgramProcess programProcess;
 
-    public EditingBook(DataStorage dataStorage, AdministratorModeUi administratorModeUi , CommonFunctionUi commonFunctionUi, BookInformationException bookInformationException) {
+    public EditingBook(DataStorage dataStorage, AdministratorModeUi administratorModeUi , CommonFunctionUi commonFunctionUi, BookInformationException bookInformationException, ProgramProcess programProcess = null)
+    {
 
         this.dataStorage = dataStorage;
         this.administratorModeUi = administratorModeUi;
         this.commonFunctionUi = commonFunctionUi;
         this.bookInformationException = bookInformationException;
+        this.programProcess = programProcess;
     }
 
 
@@ -117,20 +119,9 @@ public class EditingBook
             }
             Console.Clear();
             administratorModeUi.PrintEditingBookSuccessSentence();
-            inputKey = Console.ReadKey();
-            if (inputKey.Key == ConsoleKey.Enter)
+
+            if ((programProcess.SelectProgramDirection()).Key == ConsoleKey.Escape)
             {
-                Console.Clear();
-                continue;
-            }
-            else if (inputKey.Key == ConsoleKey.Escape)
-            {
-                Console.Clear();
-                break;
-            }
-            else
-            {
-                Console.Clear();
                 break;
             }
         }

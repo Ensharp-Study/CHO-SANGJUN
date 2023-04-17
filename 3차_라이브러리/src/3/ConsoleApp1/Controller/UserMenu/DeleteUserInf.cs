@@ -83,7 +83,7 @@ public class DeletingUserInf //inf와같이 줄임말
             }
 
             //프로그램 뒤로 나가기
-            if (programProcess.SelectProgramDirection() == Constants.RETURN)
+            if ((programProcess.SelectProgramDirection()).Key == ConsoleKey.Escape)
             {
                 break;
             }

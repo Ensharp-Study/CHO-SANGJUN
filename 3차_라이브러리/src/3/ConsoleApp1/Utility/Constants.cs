@@ -30,6 +30,6 @@ public class Constants
     public const int SAVING_USER = 1;
 
     public const int CONTINUE = 0;
-    public const int RETURN = 0;
+    public const int RETURN = 1;
 
 }

@@ -30,9 +30,9 @@ public class EditingUserInf
             userModeUi.PrintBeforeUserInf(userInformation);
             userModeUi.PrintAfterUserInf(userInformation);
             Console.SetCursorPosition(54, 22);
-            newId = userInformationException.JudgeIdAndPasswordWithRegularExpression(54, 22);
+            newId = userInformationException.JudgeIdWithRegularExpression(54, 22);
             Console.SetCursorPosition(54, 23);
-            newPassword = userInformationException.JudgeIdAndPasswordWithRegularExpression(54, 23);
+            newPassword = userInformationException.JudgePasswordWithRegularExpression(54, 23);
             Console.SetCursorPosition(57, 24);
             newName = userInformationException.JudgeUserNameWithRegularExpression(57, 24);
             Console.SetCursorPosition(54, 25);
@@ -50,7 +50,7 @@ public class EditingUserInf
             userInformation.userPhoneNumber = newPhoneNumber;
 
             //프로그램 뒤로 나가기
-            if (programProcess.SelectProgramDirection() == Constants.RETURN)
+            if ((programProcess.SelectProgramDirection()).Key == ConsoleKey.Escape)
             {
                 break;
             }

@@ -9,10 +9,11 @@ public class LibraryMode
     DataStorage dataStorage = new DataStorage();
     UserInformationException userInformationException = new UserInformationException();
     ProgramProcess programProcess = new ProgramProcess();
+    InformationMasking informationMasking = new InformationMasking();
 
     public void SelectMenu()
     {
-        UserLogin login = new UserLogin(mainMenuUi,signUpAndLoginUi, dataStorage, userInformationException, programProcess);
+        UserLogin login = new UserLogin(mainMenuUi,signUpAndLoginUi, dataStorage, userInformationException, programProcess, informationMasking);
         SignUp signUp = new SignUp(mainMenuUi,signUpAndLoginUi, dataStorage, userInformationException);
         AdministratorLogin administratorLogin = new AdministratorLogin(mainMenuUi, signUpAndLoginUi, dataStorage, userInformationException, programProcess);
 
@@ -55,7 +56,7 @@ public class LibraryMode
             }
 
             //프로그램 종료하기
-            if (programProcess.SelectProgramDirection() == Constants.RETURN)
+            if ((programProcess.SelectProgramDirection()).Key == ConsoleKey.Escape)
             {
                 break;
             }

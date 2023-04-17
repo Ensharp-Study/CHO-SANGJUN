@@ -24,7 +24,7 @@ public class BookBorrowedStatus
                 administratorModeUi.PrintUserName(dataStorage.userList[i].userName); //유저 이름 출력 인터페이스
                 for (int j = 0; j < dataStorage.userList[i].borrowBookList.Count; j++) //유저정보 내 빌린책 리스트 접근
                 {
-                    administratorModeUi.PrintUserBorrowedBookList(dataStorage, i, j); //빌린책 리스트 출력
+                    administratorModeUi.PrintUserBorrowedBookList(dataStorage.userList[i].borrowBookList[j]); //빌린책 리스트 출력
                 }
             }
 

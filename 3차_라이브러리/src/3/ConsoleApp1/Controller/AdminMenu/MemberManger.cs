@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 
 public class MemberManger
 {
@@ -21,7 +22,7 @@ public class MemberManger
             administratorModeUi.PrintMemberManagerMenu();
             for (int i = 0; i < dataStorage.userList.Count; i++)
             {
-                administratorModeUi.PrintMemberList(dataStorage, i);
+                administratorModeUi.PrintMemberList(dataStorage.userList[i]);
             }
             Console.SetCursorPosition(70, 2);
 
@@ -39,7 +40,7 @@ public class MemberManger
             administratorModeUi.PrintDeletingUserSuccessSentence();
             for (int i = 0; i < dataStorage.userList.Count; i++)
             {
-                administratorModeUi.PrintMemberList(dataStorage, i);
+                administratorModeUi.PrintMemberList(dataStorage.userList[i]);
             }
 
             if ((programProcess.SelectProgramDirection()).Key == ConsoleKey.Escape)

@@ -84,7 +84,7 @@ public class EditingBook
             {
                 if (dataStorage.bookList[i].bookId == EditedBookIdInt)
                 {
-                    administratorModeUi.PrintCurrentSavedBookInformation(dataStorage, i);
+                    administratorModeUi.PrintCurrentSavedBookInformation(dataStorage.bookList[i]);
                     break;
                 }
             }

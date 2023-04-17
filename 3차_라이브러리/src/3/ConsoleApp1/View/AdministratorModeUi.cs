@@ -159,15 +159,15 @@ public class AdministratorModeUi{
         Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
         Console.WriteLine("                                  ENTER : 다시하기                    ESC : 뒤로가기\n\n");
     }
-    public void PrintCurrentSavedBookInformation(DataStorage dataStorage, int bookIndex)
+    public void PrintCurrentSavedBookInformation(BookInformation bookInformation)
     {
         Console.WriteLine("                                                       ◈현재 등록되어 있는 정보◈         \n\n");
-        Console.WriteLine("                        책제목(영어,한글,숫자,?!+= 1개 이상): " + dataStorage.bookList[bookIndex].bookName);
-        Console.WriteLine("                        작가 (  영어,한글 1글자 이상  )     : " + dataStorage.bookList[bookIndex].bookAuthor);
-        Console.WriteLine("                        출판사 (영어,한글,숫자 1개 이상)    : " + dataStorage.bookList[bookIndex].bookPublisher);
-        Console.WriteLine("                        수량 (    1~999 사이의 자연수    )  : " + dataStorage.bookList[bookIndex].bookQuantity);
-        Console.WriteLine("                        가격 (  1~9999999 사이의 자연수  )  : " + dataStorage.bookList[bookIndex].bookPrice);
-        Console.WriteLine("                        출시일 (  19xx or 20xx-xx-xx   )    : " + dataStorage.bookList[bookIndex].bookPublicationDate);
+        Console.WriteLine("                        책제목(영어,한글,숫자,?!+= 1개 이상): " + bookInformation.bookName);
+        Console.WriteLine("                        작가 (  영어,한글 1글자 이상  )     : " + bookInformation.bookAuthor);
+        Console.WriteLine("                        출판사 (영어,한글,숫자 1개 이상)    : " + bookInformation.bookPublisher);
+        Console.WriteLine("                        수량 (    1~999 사이의 자연수    )  : " + bookInformation.bookQuantity);
+        Console.WriteLine("                        가격 (  1~9999999 사이의 자연수  )  : " + bookInformation.bookPrice);
+        Console.WriteLine("                        출시일 (  19xx or 20xx-xx-xx   )    : " + bookInformation.bookPublicationDate);
         Console.WriteLine("\n\n");
     }
     public void PrintEditingBookInformation()
@@ -189,15 +189,15 @@ public class AdministratorModeUi{
         Console.WriteLine("                                  ENTER : 확인                     ESC : 뒤로가기\n\n");
     }
 
-    public void PrintMemberList(DataStorage dataStorage, int index)
+    public void PrintMemberList(UserInformation userInformation)
     {
         Console.WriteLine("===========================================================================================================\n");
-        Console.WriteLine("유저 Number :{0}", dataStorage.userList[index].userNumber);
-        Console.WriteLine("유저 ID     :" + dataStorage.userList[index].id);
-        Console.WriteLine("유저 이름   :" + dataStorage.userList[index].userName);
-        Console.WriteLine("유저 나이   :{0}", dataStorage.userList[index].userAge);
-        Console.WriteLine("유저 번호   :" + dataStorage.userList[index].userPhoneNumber);
-        Console.WriteLine("유저 주소   :" + dataStorage.userList[index].userAddress);
+        Console.WriteLine("유저 Number :{0}", userInformation.userNumber);
+        Console.WriteLine("유저 ID     :" + userInformation.id);
+        Console.WriteLine("유저 이름   :" + userInformation.userName);
+        Console.WriteLine("유저 나이   :{0}", userInformation.userAge);
+        Console.WriteLine("유저 번호   :" + userInformation.userPhoneNumber);
+        Console.WriteLine("유저 주소   :" + userInformation.userAddress);
         Console.WriteLine("\n\n");
     }
     public void PrintDeletingUserSuccessSentence()
@@ -222,18 +222,18 @@ public class AdministratorModeUi{
         Console.WriteLine("User Name  :" + userName);
         Console.WriteLine("========================================================================================================================");
     }
-    public void PrintUserBorrowedBookList(DataStorage dataStorage, int indexI, int indexJ)
+    public void PrintUserBorrowedBookList(BookInformation bookInformation)
     {
-        Console.WriteLine("책아이디  :  {0}", dataStorage.userList[indexI].borrowBookList[indexJ].bookId);
-        Console.WriteLine("책 제목   :  " + dataStorage.userList[indexI].borrowBookList[indexJ].bookName);
-        Console.WriteLine("작가      :  " + dataStorage.userList[indexI].borrowBookList[indexJ].bookAuthor);
-        Console.WriteLine("출판사    :  " + dataStorage.userList[indexI].borrowBookList[indexJ].bookPublisher);
-        Console.WriteLine("수량      :  {0}", dataStorage.userList[indexI].borrowBookList[indexJ].bookQuantity);
-        Console.WriteLine("가격      :  {0}", dataStorage.userList[indexI].borrowBookList[indexJ].bookPrice);
-        Console.WriteLine("출시일    :  " + dataStorage.userList[indexI].borrowBookList[indexJ].bookPublicationDate);
-        Console.WriteLine("ISBN      :  " + dataStorage.userList[indexI].borrowBookList[indexJ].isbn);
-        Console.WriteLine("빌린 시간 :  " + dataStorage.userList[indexI].borrowBookList[indexJ].borrowTime);
-        Console.WriteLine("반납 시간 :  " + dataStorage.userList[indexI].borrowBookList[indexJ].returnTime);
+        Console.WriteLine("책아이디  :  {0}", bookInformation.bookId);
+        Console.WriteLine("책 제목   :  " + bookInformation.bookName);
+        Console.WriteLine("작가      :  " + bookInformation.bookAuthor);
+        Console.WriteLine("출판사    :  " + bookInformation.bookPublisher);
+        Console.WriteLine("수량      :  {0}", bookInformation.bookQuantity);
+        Console.WriteLine("가격      :  {0}", bookInformation.bookPrice);
+        Console.WriteLine("출시일    :  " + bookInformation.bookPublicationDate);
+        Console.WriteLine("ISBN      :  " + bookInformation.isbn);
+        Console.WriteLine("빌린 시간 :  " + bookInformation.borrowTime);
+        Console.WriteLine("반납 시간 :  " + bookInformation.returnTime);
         Console.WriteLine("============================================================");
     }
 }

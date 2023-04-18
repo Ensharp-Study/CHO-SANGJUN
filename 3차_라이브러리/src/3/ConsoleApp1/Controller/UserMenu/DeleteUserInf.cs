@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class DeletingUserInf //inf와같이 줄임말 
+public class DeletingUserInformation //inf와같이 줄임말 
 {
     UserModeUi userModeUi;
     DataStorage dataStorage;
@@ -8,7 +8,7 @@ public class DeletingUserInf //inf와같이 줄임말
     ProgramProcess programProcess;
 
 
-    public DeletingUserInf(UserModeUi userModeUi, DataStorage dataStorage, UserInformation userInformation, ProgramProcess programProcess)
+    public DeletingUserInformation(UserModeUi userModeUi, DataStorage dataStorage, UserInformation userInformation, ProgramProcess programProcess)
     {
         this.userModeUi = userModeUi;
         this.dataStorage = dataStorage;

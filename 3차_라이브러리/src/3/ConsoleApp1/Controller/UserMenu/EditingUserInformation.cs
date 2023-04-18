@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class EditingUserInf
+public class EditingUserInformation
 {
     DataStorage dataStorage;
     UserModeUi userModeUi;
@@ -8,7 +8,7 @@ public class EditingUserInf
     UserInformationException userInformationException;
     ProgramProcess programProcess;
 
-    public EditingUserInf(DataStorage dataStorage, UserModeUi userModeUi, UserInformation userInformation, UserInformationException userInformationException, ProgramProcess programProcess)
+    public EditingUserInformation(DataStorage dataStorage, UserModeUi userModeUi, UserInformation userInformation, UserInformationException userInformationException, ProgramProcess programProcess)
     {
         this.userModeUi = userModeUi;
         this.userInformation = userInformation;
@@ -16,7 +16,7 @@ public class EditingUserInf
         this.userInformationException = userInformationException;
         this.programProcess = programProcess;
     }
-    public void EditUserInf()
+    public void EditUserInformation()
 	{
         while (true)
         {

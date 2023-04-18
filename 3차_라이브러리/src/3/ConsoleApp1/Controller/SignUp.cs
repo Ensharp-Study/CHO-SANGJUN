@@ -25,14 +25,14 @@ public class SignUp
         string passwordConfirmation;
 
         Console.SetCursorPosition(60, 28);
-		//newUserInformation.Id = userInformationException.JudgeIdWithRegularExpression(60, 28);
+		newUserInformation.Id = userInformationException.JudgeIdWithRegularExpression(60, 28);
         Console.SetCursorPosition(60, 29);
-        //newUserInformation.Password = userInformationException.JudgePasswordWithRegularExpression(60, 29);
+        newUserInformation.Password = userInformationException.JudgePasswordWithRegularExpression(60, 29);
         while (true)
         {
             Console.SetCursorPosition(60, 30);
-            //passwordConfirmation = userInformationException.JudgePasswordWithRegularExpression(60, 30);
-            /*if (passwordConfirmation != newUserInformation.Password)
+            passwordConfirmation = userInformationException.JudgePasswordWithRegularExpression(60, 30);
+            if (passwordConfirmation != newUserInformation.Password)
             {
                 signUpAndLoginUi.PrintpasswordConfirmation(60,30);
                 Console.ReadKey(true);
@@ -41,7 +41,7 @@ public class SignUp
             else
             {
                 break;
-            }*/
+            }
 
         }
         Console.SetCursorPosition(64, 31);

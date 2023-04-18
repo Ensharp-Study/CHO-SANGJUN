@@ -39,6 +39,7 @@ public class BorrowingBook
                 Console.SetCursorPosition(36, 3);
                 bookId = Console.ReadLine();
 
+
                 for (int i = 0; i < dataStorage.bookList.Count; i++)
                 { //책 id와 저장된 책 리스트 비교
                     if (dataStorage.bookList[i].BookId == int.Parse(bookId))

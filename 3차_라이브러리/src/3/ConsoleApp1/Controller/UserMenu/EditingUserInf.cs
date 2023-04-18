@@ -27,8 +27,8 @@ public class EditingUserInf
             string newPhoneNumber;
             String newAddress;
 
-            userModeUi.PrintBeforeUserInf(userInformation);
-            userModeUi.PrintAfterUserInf(userInformation);
+            userModeUi.PrintBeforeUserInformation(userInformation);
+            userModeUi.PrintAfterUserInformation(userInformation);
             Console.SetCursorPosition(54, 22);
             newId = userInformationException.JudgeIdWithRegularExpression(54, 22);
             Console.SetCursorPosition(54, 23);

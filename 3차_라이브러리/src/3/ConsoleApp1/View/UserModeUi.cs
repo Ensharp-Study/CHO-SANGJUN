@@ -148,7 +148,7 @@ public class UserModeUi
         Console.WriteLine("============================================================");
     }
 
-    public void PrintBeforeUserInf(UserInformation user)
+    public void PrintBeforeUserInformation(UserInformation user)
     {
         Console.WriteLine("                        _______________________________________________________________                        ");
         Console.WriteLine("                       |                                                               |                       ");
@@ -167,7 +167,7 @@ public class UserModeUi
         Console.WriteLine("                 USER PhoneNumber (  01x-xxxx-xxxx  ) : " + user.UserPhoneNumber);
         Console.WriteLine("                 USER Address (       한글 주소       ) : " + user.UserAddress);
     }
-    public void PrintAfterUserInf(UserInformation user)
+    public void PrintAfterUserInformation(UserInformation user)
     {
         Console.WriteLine("\n\n");
         Console.WriteLine("                                          ★     변경 할 정보 입력    ★                                        ");

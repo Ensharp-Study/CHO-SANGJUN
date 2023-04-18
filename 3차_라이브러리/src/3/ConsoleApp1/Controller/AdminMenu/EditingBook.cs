@@ -35,46 +35,10 @@ public class EditingBook
     {
         while (true)
         {
-            commonFunctionUi.PrintBookFinderMenu();
-            for (int i = 0; i < dataStorage.bookList.Count; i++)
-            {
-                commonFunctionUi.PrintBookList(dataStorage.bookList[i], i);
-            }
+            //책 검색하기
+            FindBook();
 
-            Console.SetCursorPosition(17, 1);
-            title = Console.ReadLine();
-            Console.SetCursorPosition(19, 2);
-            author = Console.ReadLine();
-            Console.SetCursorPosition(17, 3);
-            publisher = Console.ReadLine();
-            Console.WriteLine("\n\n\n");
-
-            Console.Clear();
-
-            administratorModeUi.PrintEditingBookAskingMenu(); //수정할 아이디 받는 창과 리스트 나열 출력
-            for (int i = 0; i < dataStorage.bookList.Count; i++)
-            {
-                if (string.IsNullOrEmpty(title) == false ||
-                   string.IsNullOrEmpty(author) == false ||
-                   string.IsNullOrEmpty(publisher) == false) // 입력받은 값이 공백인 경우 제외
-                {
-                    if ((dataStorage.bookList[i].BookName).Contains(title) &&
-                        (dataStorage.bookList[i].BookAuthor).Contains(author) &&
-                        (dataStorage.bookList[i].BookPublisher).Contains(publisher)) //제목 일치하는지 확인
-                    {
-                        PrintPossiblity++;
-                    }
-                }
-
-                if (PrintPossiblity > 0) // 일치하면 출력
-                {
-                    {
-                        commonFunctionUi.PrintBookList(dataStorage.bookList[i], i);
-                    }
-                    PrintPossiblity = 0;
-                }
-            }
-
+            //책 수정하기
             Console.SetCursorPosition(64, 2);
             EditedBookIdString = Console.ReadLine();
             EditedBookIdInt = int.Parse(EditedBookIdString);
@@ -125,8 +89,48 @@ public class EditingBook
                 break;
             }
         }
+    }
+    public void FindBook()
+    {
+        commonFunctionUi.PrintBookFinderMenu();
+        for (int i = 0; i < dataStorage.bookList.Count; i++)
+        {
+            commonFunctionUi.PrintBookList(dataStorage.bookList[i], i);
+        }
 
+        Console.SetCursorPosition(17, 1);
+        title = Console.ReadLine();
+        Console.SetCursorPosition(19, 2);
+        author = Console.ReadLine();
+        Console.SetCursorPosition(17, 3);
+        publisher = Console.ReadLine();
+        Console.WriteLine("\n\n\n");
 
+        Console.Clear();
+
+        administratorModeUi.PrintEditingBookAskingMenu(); //수정할 아이디 받는 창과 리스트 나열 출력
+        for (int i = 0; i < dataStorage.bookList.Count; i++)
+        {
+            if (string.IsNullOrEmpty(title) == false ||
+               string.IsNullOrEmpty(author) == false ||
+               string.IsNullOrEmpty(publisher) == false) // 입력받은 값이 공백인 경우 제외
+            {
+                if ((dataStorage.bookList[i].BookName).Contains(title) &&
+                    (dataStorage.bookList[i].BookAuthor).Contains(author) &&
+                    (dataStorage.bookList[i].BookPublisher).Contains(publisher)) //제목 일치하는지 확인
+                {
+                    PrintPossiblity++;
+                }
+            }
+
+            if (PrintPossiblity > 0) // 일치하면 출력
+            {
+                {
+                    commonFunctionUi.PrintBookList(dataStorage.bookList[i], i);
+                }
+                PrintPossiblity = 0;
+            }
+        }
     }
 
 }

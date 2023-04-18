@@ -52,14 +52,12 @@ public class UserInformation
     public List<BookInformation> BorrowBookList
     {
         get { return borrowBookList; }
-        set { borrowBookList = value; }
     }
 
     private List<BookInformation> returnBookList { get; set; }
     public List<BookInformation> ReturnBookList
     {
         get { return returnBookList; }
-        set { returnBookList = value; }
     }
 
 

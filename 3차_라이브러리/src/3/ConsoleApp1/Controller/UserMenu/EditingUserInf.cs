@@ -30,9 +30,9 @@ public class EditingUserInf
             userModeUi.PrintBeforeUserInformation(userInformation);
             userModeUi.PrintAfterUserInformation(userInformation);
             Console.SetCursorPosition(54, 22);
-            newId = userInformationException.JudgeIdWithRegularExpression(54, 22);
+            //newId = userInformationException.JudgeIdWithRegularExpression(54, 22);
             Console.SetCursorPosition(54, 23);
-            newPassword = userInformationException.JudgePasswordWithRegularExpression(54, 23);
+            //newPassword = userInformationException.JudgePasswordWithRegularExpression(54, 23);
             Console.SetCursorPosition(57, 24);
             newName = userInformationException.JudgeUserNameWithRegularExpression(57, 24);
             Console.SetCursorPosition(54, 25);
@@ -42,8 +42,8 @@ public class EditingUserInf
             Console.SetCursorPosition(60, 27);
             newAddress = Console.ReadLine();
 
-            userInformation.Id = newId;
-            userInformation.Password = newPassword;
+            //userInformation.Id = newId;
+            //userInformation.Password = newPassword;
             userInformation.UserName = newName;
             userInformation.UserAddress = newAddress;
             userInformation.UserAge = int.Parse(newAge);
@@ -56,5 +56,4 @@ public class EditingUserInf
             }
         }
     }
-	
 }

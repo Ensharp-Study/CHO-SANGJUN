@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 
 enum ModeNumber
 {
@@ -40,11 +41,6 @@ enum UserManagementNumber
 
 public class Constants
 {
-
     public const int ESC = 10;
-
-    //public const int CONTINUE = 0;
-    //public const int RETURN = 1;
-
 }
     

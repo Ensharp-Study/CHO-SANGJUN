@@ -25,6 +25,7 @@ public class UserLogin
         string id;
         string password;
         bool isJudgingCorrectInput = true;
+        bool isJudgingCorrectString;
 
         while (isJudgingCorrectInput)
         {
@@ -34,10 +35,19 @@ public class UserLogin
             signUpAndLoginUi.PrintUserLoginMenu();
 
             Console.SetCursorPosition(53, 23);
-            id = userInformationException.JudgeIdWithRegularExpression(53,23);
-            
+            do
+            {
+                id = ToReceiveInput.ReceiveInput(53, 23);
+                isJudgingCorrectString = userInformationException.JudgeIdWithRegularExpression(53, 23, id);
+            } while (!isJudgingCorrectString);
+
             Console.SetCursorPosition(61, 24);
-            password = userInformationException.JudgePasswordWithRegularExpression(61, 24);
+            do
+            {
+                password = ToReceiveInput.ReceiveInputForMasking(61, 24);
+                isJudgingCorrectString = userInformationException.JudgePasswordWithRegularExpression(61, 24, password);
+            } while (!isJudgingCorrectString);
+            
 
             bool isJudgingCorrectId = false;
 

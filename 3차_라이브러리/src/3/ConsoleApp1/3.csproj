@@ -43,9 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExceptionHandling\InformationMasking.cs" />
     <Compile Include="ExceptionHandling\ProgramProcess.cs" />
-    <Compile Include="ExceptionHandling\BookInformation.cs" />
+    <Compile Include="ExceptionHandling\BookInformationException.cs" />
+    <Compile Include="ExceptionHandling\ToReceiveInput.cs" />
     <Compile Include="Utility\Constants.cs" />
     <Compile Include="Controller\AdministratorLogin.cs" />
     <Compile Include="Controller\AdministratorMenu.cs" />

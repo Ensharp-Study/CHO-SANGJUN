@@ -23,7 +23,7 @@ public class AdministratorLogin
 
         AdministratorMenu administratorMenu = new AdministratorMenu(mainMenuUi, dataStorage, programProcess);
 
-        while (true)
+        /*while (true)
         {
             signUpAndLoginUi.PrintAdministratorLoginMenu();
             Console.SetCursorPosition(53, 23);
@@ -54,7 +54,7 @@ public class AdministratorLogin
                 break;
             }
 
-        }
+        }*/
     }
 
 }

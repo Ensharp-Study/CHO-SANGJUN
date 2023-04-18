@@ -41,7 +41,7 @@
         Console.SetCursorPosition(50, 24);
         Console.ForegroundColor = ConsoleColor.White;
         Console.WriteLine("○ 관리자 모드");
-        selectedMenuNum = Constants.USER_MODE;
+        selectedMenuNum = (int)(ModeNumber.USER_MODE);
 
         while (isCheckedEnter == false)
         {
@@ -54,7 +54,7 @@
                 Console.SetCursorPosition(50, 24);
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("○ 관리자 모드");
-                selectedMenuNum = Constants.USER_MODE;
+                selectedMenuNum = (int)(ModeNumber.USER_MODE);
             }
             else if (inputKey.Key == ConsoleKey.DownArrow)
             {
@@ -65,20 +65,20 @@
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("○ 관리자 모드");
                 Console.ResetColor();
-                selectedMenuNum = Constants.ADMIN_MODE;
+                selectedMenuNum = (int)(ModeNumber.ADMIN_MODE);
             }
             else if (inputKey.Key == ConsoleKey.Enter)
             {
                 isCheckedEnter = true;
             }
         }
-        if (selectedMenuNum == Constants.USER_MODE)
+        if (selectedMenuNum == (int)(ModeNumber.USER_MODE))
         {
-            return Constants.USER_MODE;
+            return (int)(ModeNumber.USER_MODE);
         }
-        else if (selectedMenuNum == Constants.ADMIN_MODE)
+        else if (selectedMenuNum == (int)(ModeNumber.ADMIN_MODE))
         {
-            return Constants.ADMIN_MODE;
+            return (int)(ModeNumber.ADMIN_MODE);
         }
 
         return -1;

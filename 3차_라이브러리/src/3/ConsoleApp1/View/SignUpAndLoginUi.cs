@@ -14,7 +14,7 @@ public class SignUpAndLoginUi
         Console.SetCursorPosition(50, 24);
         Console.ForegroundColor = ConsoleColor.White;
         Console.WriteLine("○ 회원가입                       ");
-        selectedMenuNum = Constants.USER_MODE;
+        selectedMenuNum = (int)(ModeNumber.USER_MODE);
 
         while (isCheckedEnter == false)
         {
@@ -27,7 +27,7 @@ public class SignUpAndLoginUi
                 Console.SetCursorPosition(50, 24);
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("○ 회원가입                ");
-                selectedMenuNum = Constants.LOGIN;
+                selectedMenuNum = (int)(LoginOrSignUpNumber.LOGIN);
             }
             else if (inputKey.Key == ConsoleKey.DownArrow)
             {
@@ -38,20 +38,20 @@ public class SignUpAndLoginUi
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("○ 회원가입                ");
                 Console.ResetColor();
-                selectedMenuNum = Constants.SIGN_UP;
+                selectedMenuNum = (int)(LoginOrSignUpNumber.SIGN_UP);
             }
             else if (inputKey.Key == ConsoleKey.Enter)
             {
                 isCheckedEnter = true;
             }
         }
-        if (selectedMenuNum == Constants.LOGIN)
+        if (selectedMenuNum == (int)(LoginOrSignUpNumber.LOGIN))
         {
-            return Constants.LOGIN;
+            return (int)(LoginOrSignUpNumber.LOGIN);
         }
-        else if (selectedMenuNum == Constants.SIGN_UP)
+        else if (selectedMenuNum == (int)(LoginOrSignUpNumber.SIGN_UP))
         {
-            return Constants.SIGN_UP;
+            return (int)(LoginOrSignUpNumber.SIGN_UP);
         }
 
         return -1;

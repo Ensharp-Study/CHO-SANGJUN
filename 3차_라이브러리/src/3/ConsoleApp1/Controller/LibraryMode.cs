@@ -24,7 +24,7 @@ public class LibraryMode
             mainMenuUi.ViewMenuSquare();
             menuNumber = mainMenuUi.PrintSelectMenu();
 
-            if (menuNumber == Constants.USER_MODE) //유저 모드 진입
+            if (menuNumber == (int)(ModeNumber.USER_MODE)) //유저 모드 진입
             {
                 int judgementLoginOrSignUP;
 
@@ -34,12 +34,12 @@ public class LibraryMode
                
                 judgementLoginOrSignUP = signUpAndLoginUi.PrintLoginOrSignUpMenu();
 
-                if (judgementLoginOrSignUP == Constants.LOGIN)
+                if (judgementLoginOrSignUP == (int)(LoginOrSignUpNumber.LOGIN))
                 {
                     login.GetUserLogin();
                     return;
                 }
-                else if (judgementLoginOrSignUP == Constants.SIGN_UP)
+                else if (judgementLoginOrSignUP == (int)(LoginOrSignUpNumber.SIGN_UP))
                 {
                     Console.Clear();
                     signUp.SignUpAccount();
@@ -47,7 +47,7 @@ public class LibraryMode
                 }
             }
 
-            else if (menuNumber == Constants.ADMIN_MODE)//관리자 모드 진입
+            else if (menuNumber == (int)(ModeNumber.ADMIN_MODE))//관리자 모드 진입
             {
                 Console.Clear();
                 mainMenuUi.ViewMainMenu();

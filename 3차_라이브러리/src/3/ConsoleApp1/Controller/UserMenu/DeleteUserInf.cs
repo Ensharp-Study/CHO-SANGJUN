@@ -33,7 +33,7 @@ public class DeletingUserInf //inf와같이 줄임말
             Console.SetCursorPosition(60, 3);
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("○ 아니오");
-            selectedMenuNumber = Constants.DELETEING_USER;
+            selectedMenuNumber = (int)(UserManagementNumber.DELETEING_USER);
 
             while (isCheckedEnter == false)
             {
@@ -46,7 +46,7 @@ public class DeletingUserInf //inf와같이 줄임말
                     Console.SetCursorPosition(60, 4);
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("○ 아니오");
-                    selectedMenuNumber = Constants.DELETEING_USER;
+                    selectedMenuNumber = (int)(UserManagementNumber.DELETEING_USER);
                 }
                 else if (inputKey.Key == ConsoleKey.RightArrow)
                 {
@@ -57,14 +57,14 @@ public class DeletingUserInf //inf와같이 줄임말
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("○ 아니오");
                     Console.ResetColor();
-                    selectedMenuNumber = Constants.SAVING_USER;
+                    selectedMenuNumber = (int)(UserManagementNumber.SAVING_USER); 
                 }
                 else if (inputKey.Key == ConsoleKey.Enter)
                 {
                     isCheckedEnter = true;
                 }
             }
-            if (selectedMenuNumber == Constants.DELETEING_USER)
+            if (selectedMenuNumber == (int)(UserManagementNumber.DELETEING_USER))
             {
                 for (int i = 0; i < dataStorage.userList.Count; i++)
                 {
@@ -76,7 +76,7 @@ public class DeletingUserInf //inf와같이 줄임말
                 Console.Clear();
                 userModeUi.PrintAccountDeletionSentence();
             }
-            else if (selectedMenuNumber == Constants.SAVING_USER)
+            else if (selectedMenuNumber == (int)(UserManagementNumber.SAVING_USER))
             {
                 Console.Clear();
                 userModeUi.PrintMaintainingAccountSentence();

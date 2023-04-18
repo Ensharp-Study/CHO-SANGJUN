@@ -14,6 +14,7 @@ public class DeletingBook
     AdministratorModeUi administratorModeUi;
     CommonFunctionUi commonFunctionUi;
     ProgramProcess programProcess;
+    
 
     public DeletingBook(DataStorage dataStorage, AdministratorModeUi administratorModeUi, CommonFunctionUi commonFunctionUi, ProgramProcess programProcess)
     {
@@ -25,6 +26,7 @@ public class DeletingBook
 
     public void DeleteABook() //책 삭제하기
     {
+        BookFinder bookFinder = new BookFinder(dataStorage, commonFunctionUi, programProcess);
         while (true)
         {
             //책 검색하기 기능

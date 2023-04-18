@@ -42,12 +42,12 @@ public class EditingUserInf
             Console.SetCursorPosition(60, 27);
             newAddress = Console.ReadLine();
 
-            userInformation.id = newId;
-            userInformation.password = newPassword;
-            userInformation.userName = newName;
-            userInformation.userAddress = newAddress;
-            userInformation.userAge = int.Parse(newAge);
-            userInformation.userPhoneNumber = newPhoneNumber;
+            userInformation.Id = newId;
+            userInformation.Password = newPassword;
+            userInformation.UserName = newName;
+            userInformation.UserAddress = newAddress;
+            userInformation.UserAge = int.Parse(newAge);
+            userInformation.UserPhoneNumber = newPhoneNumber;
 
             //프로그램 뒤로 나가기
             if ((programProcess.SelectProgramDirection()).Key == ConsoleKey.Escape)

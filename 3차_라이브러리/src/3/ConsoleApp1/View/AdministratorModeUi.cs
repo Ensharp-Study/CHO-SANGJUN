@@ -162,12 +162,12 @@ public class AdministratorModeUi{
     public void PrintCurrentSavedBookInformation(BookInformation bookInformation)
     {
         Console.WriteLine("                                                       ◈현재 등록되어 있는 정보◈         \n\n");
-        Console.WriteLine("                        책제목(영어,한글,숫자,?!+= 1개 이상): " + bookInformation.bookName);
-        Console.WriteLine("                        작가 (  영어,한글 1글자 이상  )     : " + bookInformation.bookAuthor);
-        Console.WriteLine("                        출판사 (영어,한글,숫자 1개 이상)    : " + bookInformation.bookPublisher);
-        Console.WriteLine("                        수량 (    1~999 사이의 자연수    )  : " + bookInformation.bookQuantity);
-        Console.WriteLine("                        가격 (  1~9999999 사이의 자연수  )  : " + bookInformation.bookPrice);
-        Console.WriteLine("                        출시일 (  19xx or 20xx-xx-xx   )    : " + bookInformation.bookPublicationDate);
+        Console.WriteLine("                        책제목(영어,한글,숫자,?!+= 1개 이상): " + bookInformation.BookName);
+        Console.WriteLine("                        작가 (  영어,한글 1글자 이상  )     : " + bookInformation.BookAuthor);
+        Console.WriteLine("                        출판사 (영어,한글,숫자 1개 이상)    : " + bookInformation.BookPublisher);
+        Console.WriteLine("                        수량 (    1~999 사이의 자연수    )  : " + bookInformation.BookQuantity);
+        Console.WriteLine("                        가격 (  1~9999999 사이의 자연수  )  : " + bookInformation.BookPrice);
+        Console.WriteLine("                        출시일 (  19xx or 20xx-xx-xx   )    : " + bookInformation.BookPublicationDate);
         Console.WriteLine("\n\n");
     }
     public void PrintEditingBookInformation()
@@ -192,12 +192,12 @@ public class AdministratorModeUi{
     public void PrintMemberList(UserInformation userInformation)
     {
         Console.WriteLine("===========================================================================================================\n");
-        Console.WriteLine("유저 Number :{0}", userInformation.userNumber);
-        Console.WriteLine("유저 ID     :" + userInformation.id);
-        Console.WriteLine("유저 이름   :" + userInformation.userName);
-        Console.WriteLine("유저 나이   :{0}", userInformation.userAge);
-        Console.WriteLine("유저 번호   :" + userInformation.userPhoneNumber);
-        Console.WriteLine("유저 주소   :" + userInformation.userAddress);
+        Console.WriteLine("유저 Number :{0}", userInformation.UserNumber);
+        Console.WriteLine("유저 ID     :" + userInformation.Id);
+        Console.WriteLine("유저 이름   :" + userInformation.UserName);
+        Console.WriteLine("유저 나이   :{0}", userInformation.UserAge);
+        Console.WriteLine("유저 번호   :" + userInformation.UserPhoneNumber);
+        Console.WriteLine("유저 주소   :" + userInformation.UserAddress);
         Console.WriteLine("\n\n");
     }
     public void PrintDeletingUserSuccessSentence()
@@ -224,16 +224,16 @@ public class AdministratorModeUi{
     }
     public void PrintUserBorrowedBookList(BookInformation bookInformation)
     {
-        Console.WriteLine("책아이디  :  {0}", bookInformation.bookId);
-        Console.WriteLine("책 제목   :  " + bookInformation.bookName);
-        Console.WriteLine("작가      :  " + bookInformation.bookAuthor);
-        Console.WriteLine("출판사    :  " + bookInformation.bookPublisher);
-        Console.WriteLine("수량      :  {0}", bookInformation.bookQuantity);
-        Console.WriteLine("가격      :  {0}", bookInformation.bookPrice);
-        Console.WriteLine("출시일    :  " + bookInformation.bookPublicationDate);
-        Console.WriteLine("ISBN      :  " + bookInformation.isbn);
-        Console.WriteLine("빌린 시간 :  " + bookInformation.borrowTime);
-        Console.WriteLine("반납 시간 :  " + bookInformation.returnTime);
+        Console.WriteLine("책아이디  :  {0}", bookInformation.BookId);
+        Console.WriteLine("책 제목   :  " + bookInformation.BookName);
+        Console.WriteLine("작가      :  " + bookInformation.BookAuthor);
+        Console.WriteLine("출판사    :  " + bookInformation.BookPublisher);
+        Console.WriteLine("수량      :  {0}", bookInformation.BookQuantity);
+        Console.WriteLine("가격      :  {0}", bookInformation.BookPrice);
+        Console.WriteLine("출시일    :  " + bookInformation.BookPublicationDate);
+        Console.WriteLine("ISBN      :  " + bookInformation.Isbn);
+        Console.WriteLine("빌린 시간 :  " + bookInformation.BorrowTime);
+        Console.WriteLine("반납 시간 :  " + bookInformation.ReturnTime);
         Console.WriteLine("============================================================");
     }
 }

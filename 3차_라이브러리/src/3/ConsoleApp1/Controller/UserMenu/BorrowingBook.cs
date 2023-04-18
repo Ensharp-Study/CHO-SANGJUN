@@ -41,7 +41,7 @@ public class BorrowingBook
 
                 for (int i = 0; i < dataStorage.bookList.Count; i++)
                 { //책 id와 저장된 책 리스트 비교
-                    if (dataStorage.bookList[i].bookId == int.Parse(bookId))
+                    if (dataStorage.bookList[i].BookId == int.Parse(bookId))
                     {
                         sameIndex = i;
                         break;
@@ -56,22 +56,22 @@ public class BorrowingBook
                 }
             }
 
-            if (dataStorage.bookList[sameIndex].bookQuantity > 0)   //view쪽으로
+            if (dataStorage.bookList[sameIndex].BookQuantity > 0)   //view쪽으로
             {
                 Console.SetCursorPosition(0, 3);
                 Console.WriteLine("      책 빌리기 성공!                          ");
                 Console.WriteLine("                                               ");
-                dataStorage.bookList[sameIndex].bookQuantity -= 1;
+                dataStorage.bookList[sameIndex].BookQuantity -= 1;
                 for (int i = 0; i < dataStorage.userList.Count; i++)
                 {
-                    if (userInformation.userNumber == dataStorage.userList[i].userNumber)
+                    if (userInformation.UserNumber == dataStorage.userList[i].UserNumber)
                     {
-                        dataStorage.userList[i].borrowBookList.Add(dataStorage.bookList[sameIndex]);
+                        dataStorage.userList[i].BorrowBookList.Add(dataStorage.bookList[sameIndex]);
                         break;
                     }
                 }
             }
-            else if (dataStorage.bookList[sameIndex].bookQuantity == 0)
+            else if (dataStorage.bookList[sameIndex].BookQuantity == 0)
             {
                 Console.SetCursorPosition(0, 3);
                 Console.WriteLine("전 수량이 대여 중 입니다.         ");

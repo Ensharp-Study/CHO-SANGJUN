@@ -112,14 +112,14 @@ public class UserModeUi
 
     public void PrintUserBorrowingList(BookInformation book)
     {
-        Console.WriteLine(" 책 아이디 : " + book.bookId);
-        Console.WriteLine(" 책 이름   : " + book.bookName);
-        Console.WriteLine(" 작가      : " + book.bookAuthor);
-        Console.WriteLine(" 출판사    : " + book.bookPublisher);
-        Console.WriteLine(" 책 수량   : " + book.bookQuantity);
-        Console.WriteLine(" 책 가격   : " + book.bookPrice);
-        Console.WriteLine(" 대여 일시 : " + book.bookPublicationDate);
-        Console.WriteLine(" ISBN      : " + book.bookPublicationDate);
+        Console.WriteLine(" 책 아이디 : " + book.BookId);
+        Console.WriteLine(" 책 이름   : " + book.BookName);
+        Console.WriteLine(" 작가      : " + book.BookAuthor);
+        Console.WriteLine(" 출판사    : " + book.BookPublisher);
+        Console.WriteLine(" 책 수량   : " + book.BookQuantity);
+        Console.WriteLine(" 책 가격   : " + book.BookPrice);
+        Console.WriteLine(" 대여 일시 : " + book.BookPublicationDate);
+        Console.WriteLine(" ISBN      : " + book.Isbn);
         Console.WriteLine("============================================================");
     }
     public void PrintReturningBook()
@@ -144,7 +144,7 @@ public class UserModeUi
     public void PrintShouldReturningList(BookInformation book)
     {
 
-        Console.WriteLine(" 책 이름 : " + book.bookName);
+        Console.WriteLine(" 책 이름 : " + book.BookName);
         Console.WriteLine("============================================================");
     }
 
@@ -160,12 +160,12 @@ public class UserModeUi
         Console.WriteLine("                                          ★ 현재 등록되어 있는 정보 ★                                        ");
         Console.WriteLine("                                                                                                               ");
         Console.WriteLine("                                                                                                               ");
-        Console.WriteLine("                 USER ID (8~15글자 영어, 숫자포함) : " + user.id);
-        Console.WriteLine("                 USER PW (8~15글자 영어, 숫자포함) : " + user.password);
-        Console.WriteLine("                 USER Name (한글,영어 포함 2글자 이상) : " + user.userName);
-        Console.WriteLine("                 USER Age (    자연수 0~200세    ) : " + user.userAge);
-        Console.WriteLine("                 USER PhoneNumber (  01x-xxxx-xxxx  ) : " + user.userPhoneNumber);
-        Console.WriteLine("                 USER Address (       한글 주소       ) : " + user.userAddress);
+        Console.WriteLine("                 USER ID (8~15글자 영어, 숫자포함) : " + user.Id);
+        Console.WriteLine("                 USER PW (8~15글자 영어, 숫자포함) : " + user.Password);
+        Console.WriteLine("                 USER Name (한글,영어 포함 2글자 이상) : " + user.UserName);
+        Console.WriteLine("                 USER Age (    자연수 0~200세    ) : " + user.UserAge);
+        Console.WriteLine("                 USER PhoneNumber (  01x-xxxx-xxxx  ) : " + user.UserPhoneNumber);
+        Console.WriteLine("                 USER Address (       한글 주소       ) : " + user.UserAddress);
     }
     public void PrintAfterUserInf(UserInformation user)
     {

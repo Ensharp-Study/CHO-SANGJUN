@@ -48,9 +48,9 @@ public class BookFinder
                    string.IsNullOrEmpty(author) == false ||
                    string.IsNullOrEmpty(publisher) == false) // 입력받은 값이 공백인 경우 제외
                 {
-                    if ((dataStorage.bookList[i].bookName).Contains(title) &&
-                        (dataStorage.bookList[i].bookAuthor).Contains(author) &&
-                        (dataStorage.bookList[i].bookPublisher).Contains(publisher)) 
+                    if ((dataStorage.bookList[i].BookName).Contains(title) &&
+                        (dataStorage.bookList[i].BookAuthor).Contains(author) &&
+                        (dataStorage.bookList[i].BookPublisher).Contains(publisher)) 
                     {
                         printPossiblity++;
                     }

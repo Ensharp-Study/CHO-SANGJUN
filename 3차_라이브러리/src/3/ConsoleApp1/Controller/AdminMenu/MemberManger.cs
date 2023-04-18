@@ -30,7 +30,7 @@ public class MemberManger
 
             for (int i = 0; i < dataStorage.userList.Count; i++)
             {
-                if (int.Parse(userNumber) == dataStorage.userList[i].userNumber)
+                if (int.Parse(userNumber) == dataStorage.userList[i].UserNumber)
                 {
                     dataStorage.userList.RemoveAt(i);
                 }

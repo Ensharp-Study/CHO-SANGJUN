@@ -25,14 +25,14 @@ public class SignUp
         string passwordConfirmation;
 
         Console.SetCursorPosition(60, 28);
-		newUserInformation.id = userInformationException.JudgeIdWithRegularExpression(60, 28);
+		newUserInformation.Id = userInformationException.JudgeIdWithRegularExpression(60, 28);
         Console.SetCursorPosition(60, 29);
-        newUserInformation.password = userInformationException.JudgePasswordWithRegularExpression(60, 29);
+        newUserInformation.Password = userInformationException.JudgePasswordWithRegularExpression(60, 29);
         while (true)
         {
             Console.SetCursorPosition(60, 30);
             passwordConfirmation = userInformationException.JudgePasswordWithRegularExpression(60, 30);
-            if (passwordConfirmation != newUserInformation.password)
+            if (passwordConfirmation != newUserInformation.Password)
             {
                 signUpAndLoginUi.PrintpasswordConfirmation(60,30);
                 Console.ReadKey(true);
@@ -45,18 +45,18 @@ public class SignUp
 
         }
         Console.SetCursorPosition(64, 31);
-        newUserInformation.userName = userInformationException.JudgeUserNameWithRegularExpression(64, 31);
+        newUserInformation.UserName = userInformationException.JudgeUserNameWithRegularExpression(64, 31);
         Console.SetCursorPosition(59, 32);
-        newUserInformation.userAge = int.Parse(userInformationException.JudgeUserAgeWithRegularExpression(59, 32));
+        newUserInformation.UserAge = int.Parse(userInformationException.JudgeUserAgeWithRegularExpression(59, 32));
         Console.SetCursorPosition(62, 33);
-        newUserInformation.userPhoneNumber = userInformationException.JudgeUserNumberWithRegularExpression(62, 33);
+        newUserInformation.UserPhoneNumber = userInformationException.JudgeUserNumberWithRegularExpression(62, 33);
         Console.SetCursorPosition(69, 34);
-        newUserInformation.userAddress = Console.ReadLine(); //정규식 예외처리 하기
+        newUserInformation.UserAddress = Console.ReadLine(); //정규식 예외처리 하기
         
         dataStorage.userList.Add(newUserInformation);
         
         Console.Clear();
-        signUpAndLoginUi.PrintAccountDeletionSentence(newUserInformation.userName);
+        signUpAndLoginUi.PrintAccountDeletionSentence(newUserInformation.UserName);
         
         Console.ReadKey();
         Console.SetCursorPosition(60, 28);

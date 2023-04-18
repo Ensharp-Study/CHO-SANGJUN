@@ -19,9 +19,9 @@ public class BookBorrowList
 		while (true)
 		{
 			userModeUi.PrintBorrowingList();
-			for (int i = 0; i < userInformation.borrowBookList.Count; i++)
+			for (int i = 0; i < userInformation.BorrowBookList.Count; i++)
 			{
-				userModeUi.PrintUserBorrowingList(userInformation.borrowBookList[i]);
+				userModeUi.PrintUserBorrowingList(userInformation.BorrowBookList[i]);
 			}
 
             //프로그램 뒤로 나가기

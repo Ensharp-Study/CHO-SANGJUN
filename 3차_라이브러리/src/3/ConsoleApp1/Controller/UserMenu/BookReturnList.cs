@@ -19,9 +19,9 @@ public class BookReturnList
         {
             userModeUi.PrintReturningMenuList();
  
-            for (int i = 0; i < user.returnBookList.Count; i++)
+            for (int i = 0; i < user.ReturnBookList.Count; i++)
             {
-                userModeUi.PrintUserBorrowingList(user.returnBookList[i]);
+                userModeUi.PrintUserBorrowingList(user.ReturnBookList[i]);
 
             }
 

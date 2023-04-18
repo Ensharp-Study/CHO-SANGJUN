@@ -31,9 +31,9 @@ public class AdministratorLogin
             Console.SetCursorPosition(61, 24);
             password = userInformationException.JudgePasswordWithRegularExpression(61, 24);
 
-            if (string.Equals(id, dataStorage.administratorInformation.id))
+            if (string.Equals(id, dataStorage.administratorInformation.Id))
             {
-                if (string.Equals(password, dataStorage.administratorInformation.password))
+                if (string.Equals(password, dataStorage.administratorInformation.Password))
                 {
                     Console.Clear();
                     administratorMenu.ControllAdministratorMenu();

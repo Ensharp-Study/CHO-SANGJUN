@@ -24,9 +24,9 @@ public class ReturningBook
 
             userModeUi.PrintReturningBook();
 
-            for (int i = 0; i < userInformation.borrowBookList.Count; i++)
+            for (int i = 0; i < userInformation.BorrowBookList.Count; i++)
             {
-                userModeUi.PrintShouldReturningList(userInformation.borrowBookList[i]);
+                userModeUi.PrintShouldReturningList(userInformation.BorrowBookList[i]);
             }
 
             Console.SetCursorPosition(36, 3);
@@ -36,7 +36,7 @@ public class ReturningBook
 
             for (int i = 0; i < dataStorage.bookList.Count; i++)
             {
-                if (dataStorage.bookList[i].bookId == int.Parse(bookId))
+                if (dataStorage.bookList[i].BookId == int.Parse(bookId))
                 {
                     sameIndex = i;
                     break;
@@ -55,13 +55,13 @@ public class ReturningBook
                 Console.SetCursorPosition(0, 3);
                 Console.WriteLine("      책 반납 성공!                          ");
                 Console.WriteLine("                                               ");
-                dataStorage.bookList[sameIndex].bookQuantity += 1;
+                dataStorage.bookList[sameIndex].BookQuantity += 1;
 
                 for (int i = 0; i < dataStorage.userList.Count; i++)
                 {
-                    if (userInformation.userNumber == dataStorage.userList[i].userNumber)
+                    if (userInformation.UserNumber == dataStorage.userList[i].UserNumber)
                     {
-                        dataStorage.userList[i].returnBookList.Add(dataStorage.bookList[sameIndex]);
+                        dataStorage.userList[i].ReturnBookList.Add(dataStorage.bookList[sameIndex]);
                     }
                 }
             }

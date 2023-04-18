@@ -58,9 +58,9 @@ public class EditingBook
                    string.IsNullOrEmpty(author) == false ||
                    string.IsNullOrEmpty(publisher) == false) // 입력받은 값이 공백인 경우 제외
                 {
-                    if ((dataStorage.bookList[i].bookName).Contains(title) &&
-                        (dataStorage.bookList[i].bookAuthor).Contains(author) &&
-                        (dataStorage.bookList[i].bookPublisher).Contains(publisher)) //제목 일치하는지 확인
+                    if ((dataStorage.bookList[i].BookName).Contains(title) &&
+                        (dataStorage.bookList[i].BookAuthor).Contains(author) &&
+                        (dataStorage.bookList[i].BookPublisher).Contains(publisher)) //제목 일치하는지 확인
                     {
                         PrintPossiblity++;
                     }
@@ -82,7 +82,7 @@ public class EditingBook
             administratorModeUi.PrintEditingBookMenu();
             for (int i = 0; i < dataStorage.bookList.Count; i++)
             {
-                if (dataStorage.bookList[i].bookId == EditedBookIdInt)
+                if (dataStorage.bookList[i].BookId == EditedBookIdInt)
                 {
                     administratorModeUi.PrintCurrentSavedBookInformation(dataStorage.bookList[i]);
                     break;
@@ -106,14 +106,14 @@ public class EditingBook
 
             for (int i = 0; i < dataStorage.bookList.Count; i++)
             {
-                if (dataStorage.bookList[i].bookId == EditedBookIdInt)
+                if (dataStorage.bookList[i].BookId == EditedBookIdInt)
                 {
-                    dataStorage.bookList[i].bookName = title;
-                    dataStorage.bookList[i].bookAuthor = author;
-                    dataStorage.bookList[i].bookPublisher = publisher;
-                    dataStorage.bookList[i].bookQuantity = int.Parse(quantity);
-                    dataStorage.bookList[i].bookPrice = int.Parse(price);
-                    dataStorage.bookList[i].bookPublicationDate = publishDate;
+                    dataStorage.bookList[i].BookName = title;
+                    dataStorage.bookList[i].BookAuthor = author;
+                    dataStorage.bookList[i].BookPublisher = publisher;
+                    dataStorage.bookList[i].BookQuantity = int.Parse(quantity);
+                    dataStorage.bookList[i].BookPrice = int.Parse(price);
+                    dataStorage.bookList[i].BookPublicationDate = publishDate;
                     break;
                 }
             }

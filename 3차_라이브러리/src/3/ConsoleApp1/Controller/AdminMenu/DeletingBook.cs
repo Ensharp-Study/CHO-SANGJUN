@@ -55,9 +55,9 @@ public class DeletingBook
                     string.IsNullOrEmpty(author) == false || 
                     string.IsNullOrEmpty(publisher) == false) // 입력받은 값이 공백인 경우 제외
                 {
-                    if ((dataStorage.bookList[i].bookName).Contains(title) && 
-                        (dataStorage.bookList[i].bookAuthor).Contains(author) &&
-                        (dataStorage.bookList[i].bookPublisher).Contains(publisher)) //제목 일치하는지 확인
+                    if ((dataStorage.bookList[i].BookName).Contains(title) && 
+                        (dataStorage.bookList[i].BookAuthor).Contains(author) &&
+                        (dataStorage.bookList[i].BookPublisher).Contains(publisher)) //제목 일치하는지 확인
                     {
                         PrintPossiblity++;
                     }
@@ -78,7 +78,7 @@ public class DeletingBook
             deletedBookIdInt = int.Parse(deletedBookIdString); 
             for (int i = 0; i < dataStorage.bookList.Count; i++) //모든 책 접근
             {
-                if (dataStorage.bookList[i].bookId == deletedBookIdInt)
+                if (dataStorage.bookList[i].BookId == deletedBookIdInt)
                 {
                     dataStorage.bookList.RemoveAt(i);
                     break;

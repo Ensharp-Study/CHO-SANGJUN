@@ -43,10 +43,10 @@ public class UserLogin
 
             for (int indexI = 0; indexI < dataStorage.userList.Count; indexI++)
             {
-                if (string.Equals(id, dataStorage.userList[indexI].id))
+                if (string.Equals(id, dataStorage.userList[indexI].Id))
                 {
                     isJudgingCorrectId = true;
-                    if (string.Equals(password, dataStorage.userList[indexI].password))
+                    if (string.Equals(password, dataStorage.userList[indexI].Password))
                     {
                         Console.Clear() ;
                         UserMenu usermenu = new UserMenu(mainMenuUi, dataStorage,  dataStorage.userList[indexI],  userInformationException, programProcess);

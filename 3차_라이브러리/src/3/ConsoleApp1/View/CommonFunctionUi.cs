@@ -37,15 +37,15 @@ public class CommonFunctionUi
     }
     public void PrintBookList(BookInformation book, int indexI)
     {
-        Console.WriteLine("책아이디  :  {0}", book.bookId);
-        Console.WriteLine("책 제목   :  " + book.bookName);
-        Console.WriteLine("작가      :  " + book.bookAuthor);
-        Console.WriteLine("출판사    :  " + book.bookPublisher);
-        Console.WriteLine("수량      :  {0}", book.bookQuantity);
-        Console.WriteLine("가격      :  {0}", book.bookPrice);
-        Console.WriteLine("출시일    :  " + book.bookPublicationDate);
-        Console.WriteLine("ISBN      :  " + book.isbn);
-        Console.WriteLine("책 정보   :  " + book.bookInf);
+        Console.WriteLine("책아이디  :  {0}", book.BookId);
+        Console.WriteLine("책 제목   :  " + book.BookName);
+        Console.WriteLine("작가      :  " + book.BookAuthor);
+        Console.WriteLine("출판사    :  " + book.BookPublisher);
+        Console.WriteLine("수량      :  {0}", book.BookQuantity);
+        Console.WriteLine("가격      :  {0}", book.BookPrice);
+        Console.WriteLine("출시일    :  " + book.BookPublicationDate);
+        Console.WriteLine("ISBN      :  " + book.Isbn);
+        Console.WriteLine("책 정보   :  " + book.BookDescription);
         Console.WriteLine("============================================================");
     }
     public void SelectEndorReturnInTheProgram()

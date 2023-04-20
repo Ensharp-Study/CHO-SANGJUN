@@ -14,16 +14,19 @@ public class DeletingBook
     AdministratorModeUi administratorModeUi;
     CommonFunctionUi commonFunctionUi;
     ProgramProcess programProcess;
-    
+    BookInformationException bookInformationException;
 
-    public DeletingBook(DataStorage dataStorage, AdministratorModeUi administratorModeUi, CommonFunctionUi commonFunctionUi, ProgramProcess programProcess)
+
+    public DeletingBook(DataStorage dataStorage, AdministratorModeUi administratorModeUi, CommonFunctionUi commonFunctionUi, ProgramProcess programProcess, BookInformationException bookInformationException)
     {
         this.dataStorage = dataStorage;
         this.administratorModeUi = administratorModeUi;
         this.commonFunctionUi = commonFunctionUi;
         this.programProcess = programProcess;
+        this.bookInformationException = bookInformationException;
     }
 
+    bool isJudgingCorrectString;
     public void DeleteABook() //책 삭제하기
     {
         while (true)
@@ -64,11 +67,26 @@ public class DeletingBook
         }
 
         Console.SetCursorPosition(17, 1);  //검색할 책 정보 입력받기
-        title = Console.ReadLine();
+        do
+        {
+            title = ToReceiveInput.ReceiveInput(17, 1);
+            isJudgingCorrectString = bookInformationException.JudgeBookNameRegularExpression(17, 1, title);
+        } while (!isJudgingCorrectString);
+
         Console.SetCursorPosition(19, 2);
-        author = Console.ReadLine();
+        do
+        {
+            author = ToReceiveInput.ReceiveInput(19, 2);
+            isJudgingCorrectString = bookInformationException.JudgeBookAuthorRegularExpression(19, 2, author);
+        } while (!isJudgingCorrectString);
+
         Console.SetCursorPosition(17, 3);
-        publisher = Console.ReadLine();
+        do
+        {
+            publisher = ToReceiveInput.ReceiveInput(17, 3);
+            isJudgingCorrectString = bookInformationException.JudgeBookPublisherRegularExpression(17, 3, publisher);
+        } while (!isJudgingCorrectString);
+
         Console.WriteLine("\n\n\n");
 
         Console.Clear();

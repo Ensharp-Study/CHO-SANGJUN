@@ -64,7 +64,7 @@
     <Compile Include="Controller\UserMenu\BookReturnList.cs" />
     <Compile Include="Controller\UserMenu\BorrowingBook.cs" />
     <Compile Include="Controller\UserMenu\DeleteUserInf.cs" />
-    <Compile Include="Controller\UserMenu\EditingUserInf.cs" />
+    <Compile Include="Controller\UserMenu\EditingUserInformation.cs" />
     <Compile Include="Controller\UserMenu\ReturningBook.cs" />
     <Compile Include="LibraryMain.cs" />
     <Compile Include="Model\BookInformation.cs" />

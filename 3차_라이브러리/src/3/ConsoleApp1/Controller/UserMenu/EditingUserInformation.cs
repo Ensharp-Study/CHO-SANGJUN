@@ -6,16 +6,20 @@ public class EditingUserInformation
     UserModeUi userModeUi;
     UserInformation userInformation;
     UserInformationException userInformationException;
+    BookInformationException bookInformationException;
     ProgramProcess programProcess;
 
-    public EditingUserInformation(DataStorage dataStorage, UserModeUi userModeUi, UserInformation userInformation, UserInformationException userInformationException, ProgramProcess programProcess)
+    public EditingUserInformation(DataStorage dataStorage, UserModeUi userModeUi, UserInformation userInformation, UserInformationException userInformationException, BookInformationException bookInformationException, ProgramProcess programProcess)
     {
         this.userModeUi = userModeUi;
         this.userInformation = userInformation;
         this.dataStorage = dataStorage;
         this.userInformationException = userInformationException;
+        this.bookInformationException = bookInformationException;
         this.programProcess = programProcess;
     }
+
+    bool isJudgingCorrectString;
     public void EditUserInformation()
 	{
         while (true)
@@ -28,22 +32,53 @@ public class EditingUserInformation
             String newAddress;
 
             userModeUi.PrintBeforeUserInformation(userInformation);
-            userModeUi.PrintAfterUserInformation(userInformation);
-            Console.SetCursorPosition(54, 22);
-            //newId = userInformationException.JudgeIdWithRegularExpression(54, 22);
-            Console.SetCursorPosition(54, 23);
-            //newPassword = userInformationException.JudgePasswordWithRegularExpression(54, 23);
-            Console.SetCursorPosition(57, 24);
-            newName = userInformationException.JudgeUserNameWithRegularExpression(57, 24);
-            Console.SetCursorPosition(54, 25);
-            newAge = userInformationException.JudgeUserAgeWithRegularExpression(54, 25);
-            Console.SetCursorPosition(57, 26);
-            newPhoneNumber = userInformationException.JudgeUserNumberWithRegularExpression(57, 26); ;
-            Console.SetCursorPosition(60, 27);
-            newAddress = Console.ReadLine();
+            userModeUi.PrintAfterUserInformation(userInformation); //유저 정보 수정하는 인터페이스 출력
 
-            //userInformation.Id = newId;
-            //userInformation.Password = newPassword;
+            Console.SetCursorPosition(54, 22);
+            do//아이디 입력
+            {
+                newId = ToReceiveInput.ReceiveInput(54, 22);
+                isJudgingCorrectString = userInformationException.JudgeIdWithRegularExpression(54, 22, newId);
+            } while (!isJudgingCorrectString);
+            
+            Console.SetCursorPosition(54, 23);
+            do//비밀번호 입력
+            {
+                newPassword = ToReceiveInput.ReceiveInputForMasking(54, 23);
+                isJudgingCorrectString = userInformationException.JudgePasswordWithRegularExpression(54, 23, newPassword);
+            } while (!isJudgingCorrectString);
+
+            Console.SetCursorPosition(57, 24);
+            do//이름 입력
+            {
+                newName = ToReceiveInput.ReceiveInput(57, 24);
+                isJudgingCorrectString = userInformationException.JudgeUserNameWithRegularExpression(57, 24, newName);
+            } while (!isJudgingCorrectString);
+            
+            Console.SetCursorPosition(54, 25);
+            do//나이 입력
+            {
+                newAge = ToReceiveInput.ReceiveInput(54, 25);
+                isJudgingCorrectString = userInformationException.JudgeUserAgeWithRegularExpression(54, 25, newAge);
+            } while (!isJudgingCorrectString);
+
+            Console.SetCursorPosition(57, 26);
+            do//휴대폰 번호 입력
+            {
+                newPhoneNumber = ToReceiveInput.ReceiveInput(57, 26);
+                isJudgingCorrectString = userInformationException.JudgeUserNumberWithRegularExpression(57, 26, newPhoneNumber);
+            } while (!isJudgingCorrectString);
+
+            Console.SetCursorPosition(60, 27);
+            do//주소 입력
+            {
+                newAddress = ToReceiveInput.ReceiveInput(60, 27);
+                isJudgingCorrectString = true;  //아직 주소 정규표현식 미 구현
+            } while (!isJudgingCorrectString);
+          
+            //데이터에 입력 받은 값 저장
+            userInformation.Id = newId;
+            userInformation.Password = newPassword;
             userInformation.UserName = newName;
             userInformation.UserAddress = newAddress;
             userInformation.UserAge = int.Parse(newAge);

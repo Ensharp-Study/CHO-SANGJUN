@@ -26,7 +26,7 @@ public class MemberManger
             }
             Console.SetCursorPosition(70, 2);
 
-            userNumber = Console.ReadLine();
+            userNumber = ToReceiveInput.ReceiveInput(70, 2);
 
             for (int i = 0; i < dataStorage.userList.Count; i++)
             {

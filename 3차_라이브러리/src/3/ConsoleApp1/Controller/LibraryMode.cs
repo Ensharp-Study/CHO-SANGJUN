@@ -8,14 +8,14 @@ public class LibraryMode
     SignUpAndLoginUi signUpAndLoginUi = new SignUpAndLoginUi();
     DataStorage dataStorage = new DataStorage();
     UserInformationException userInformationException = new UserInformationException();
+    BookInformationException bookInformationException = new BookInformationException();
     ProgramProcess programProcess = new ProgramProcess();
-    InformationMasking informationMasking = new InformationMasking();
 
     public void SelectMenu()
     {
-        UserLogin login = new UserLogin(mainMenuUi,signUpAndLoginUi, dataStorage, userInformationException, programProcess, informationMasking);
+        UserLogin login = new UserLogin(mainMenuUi,signUpAndLoginUi, dataStorage, userInformationException, bookInformationException, programProcess);
         SignUp signUp = new SignUp(mainMenuUi,signUpAndLoginUi, dataStorage, userInformationException);
-        AdministratorLogin administratorLogin = new AdministratorLogin(mainMenuUi, signUpAndLoginUi, dataStorage, userInformationException, programProcess);
+        AdministratorLogin administratorLogin = new AdministratorLogin(mainMenuUi, signUpAndLoginUi, dataStorage, userInformationException, bookInformationException, programProcess);
 
         while (true)
         {

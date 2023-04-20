@@ -30,7 +30,7 @@ public class EditingBook
         this.programProcess = programProcess;
     }
 
-
+    bool isJudgingCorrectString;
     public void EditBook()
     {
         while (true)
@@ -56,17 +56,46 @@ public class EditingBook
             administratorModeUi.PrintEditingBookInformation();
 
             Console.SetCursorPosition(63, 24);
-            title = bookInformationException.JudgeBookNameRegularExpression(63, 24);
+            do
+            {
+                title = ToReceiveInput.ReceiveInput(63, 24);
+                isJudgingCorrectString = bookInformationException.JudgeBookNameRegularExpression(63, 24, title);
+            } while (!isJudgingCorrectString);
+         
             Console.SetCursorPosition(63, 25);
-            author = bookInformationException.JudgeBookAuthorRegularExpression(63, 25);
+            do
+            {
+                author = ToReceiveInput.ReceiveInput(63, 25);
+                isJudgingCorrectString = bookInformationException.JudgeBookAuthorRegularExpression(63, 25, author);
+            } while (!isJudgingCorrectString);
+
             Console.SetCursorPosition(63, 26);
-            publisher = bookInformationException.JudgeBookPublisherRegularExpression(63, 26);
+            do
+            {
+                publisher = ToReceiveInput.ReceiveInput(63, 26);
+                isJudgingCorrectString = bookInformationException.JudgeBookPublisherRegularExpression(63, 26, publisher);
+            } while (!isJudgingCorrectString);
+
             Console.SetCursorPosition(63, 27);
-            quantity = bookInformationException.JudgeBookQuantityRegularExpression(63, 27);
+            do
+            {
+                quantity = ToReceiveInput.ReceiveInput(63, 27);
+                isJudgingCorrectString = bookInformationException.JudgeBookQuantityRegularExpression(63, 27, quantity);
+            } while (!isJudgingCorrectString);
+
             Console.SetCursorPosition(63, 28);
-            price = bookInformationException.JudgeBookPriceRegularExpression(63, 28);
+            do
+            {
+                price = ToReceiveInput.ReceiveInput(63, 28);
+                isJudgingCorrectString = bookInformationException.JudgeBookPriceRegularExpression(63, 28, price);
+            } while (!isJudgingCorrectString);
+
             Console.SetCursorPosition(63, 29);
-            publishDate = bookInformationException.JudgeBookPublishDateRegularExpression(63, 29);
+            do
+            {
+                publishDate = ToReceiveInput.ReceiveInput(63, 29);
+                isJudgingCorrectString = bookInformationException.JudgeBookPublishDateRegularExpression(63, 29, publishDate);
+            } while (!isJudgingCorrectString);
 
             for (int i = 0; i < dataStorage.bookList.Count; i++)
             {

@@ -2,6 +2,8 @@
 using System.Linq.Expressions;
 using System.Runtime.Remoting.Lifetime;
 using System.Text;
+using System.Text.RegularExpressions;
+
 public class ToReceiveInput{
 
     public static string ReceiveInput(int cursorPositionX,int cursorPositionY)
@@ -50,8 +52,6 @@ public class ToReceiveInput{
         
         return stringBuilder.ToString();
     }
-
-
     public static string ReceiveInputForMasking(int cursorPositionX, int cursorPositionY)
     {
         StringBuilder stringBuilder = new StringBuilder();
@@ -100,5 +100,15 @@ public class ToReceiveInput{
 
         return stringBuilder.ToString();
     }
+
+    public static bool JudgingIsStringNumber(string inputString)
+    {
+        if (Regex.IsMatch(inputString, @"^\d+$")) //숫자인지 검사
+        {
+            return true;
+        }
+        else return false;
+    }
+
 }
 

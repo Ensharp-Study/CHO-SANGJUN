@@ -7,17 +7,21 @@ public class BorrowingBook
     CommonFunctionUi commonFunctionUi;
     UserInformation userInformation;
     ProgramProcess programProcess;
+    BookInformationException bookInformationException;
 
-    public BorrowingBook(DataStorage dataStorage, UserModeUi userModeUi, CommonFunctionUi commonFunctionUi, UserInformation userInformation, ProgramProcess programProcess) 
+    public BorrowingBook(DataStorage dataStorage, UserModeUi userModeUi, CommonFunctionUi commonFunctionUi, UserInformation userInformation, ProgramProcess programProcess, BookInformationException bookInformationException) 
     { 
         this.dataStorage = dataStorage;
         this.userModeUi = userModeUi;
         this.commonFunctionUi = commonFunctionUi;
         this.userInformation = userInformation;
         this.programProcess = programProcess;
+        this.bookInformationException = bookInformationException;
     }
 
-	public void BorrowBook()
+    bool isJudgingCorrectString;
+
+    public void BorrowBook()
 	{
 
         while (true)
@@ -37,11 +41,16 @@ public class BorrowingBook
                 Console.SetCursorPosition(36, 3);
                 Console.Write("                                         ");
                 Console.SetCursorPosition(36, 3);
-                bookId = Console.ReadLine();
 
+                do //책 아이디 입력
+                {
+                    bookId = ToReceiveInput.ReceiveInput(36, 3);
+                    isJudgingCorrectString = true; 
+                } while (!isJudgingCorrectString);
 
+                //입력받은 책 id와 저장된 책 리스트 비교
                 for (int i = 0; i < dataStorage.bookList.Count; i++)
-                { //책 id와 저장된 책 리스트 비교
+                {
                     if (dataStorage.bookList[i].BookId == int.Parse(bookId))
                     {
                         sameIndex = i;
@@ -49,15 +58,15 @@ public class BorrowingBook
                     }
                 }
 
-                if (sameIndex == -1)
+                if (sameIndex == -1) //일치하는 책이 없을 경우
                 {
                     Console.SetCursorPosition(36, 3);
                     userModeUi.PrintNotCorrectBook();
-                    Console.ReadKey();
+                    Console.ReadKey(true);//창 넘기기
                 }
             }
 
-            if (dataStorage.bookList[sameIndex].BookQuantity > 0)   //view쪽으로
+            if (dataStorage.bookList[sameIndex].BookQuantity > 0) //책 수량 검사로 대여 가능한지 판별
             {
                 Console.SetCursorPosition(0, 3);
                 Console.WriteLine("      책 빌리기 성공!                          ");
@@ -67,7 +76,7 @@ public class BorrowingBook
                 {
                     if (userInformation.UserNumber == dataStorage.userList[i].UserNumber)
                     {
-                        dataStorage.userList[i].BorrowBookList.Add(dataStorage.bookList[sameIndex]);
+                        dataStorage.userList[i].BorrowBookList.Add(dataStorage.bookList[sameIndex]); //유저 대여 리스트에 저장
                         break;
                     }
                 }
@@ -79,14 +88,14 @@ public class BorrowingBook
                 Console.WriteLine("                                  ");
 
             }
-            else if (sameIndex == -1)
+            else if (sameIndex == -1) //일치하는 책이 없을 경우
             {
                 Console.SetCursorPosition(0, 3);
                 Console.WriteLine("잘못된 ID를 입력하였습니다. 다시 입력해 주세요.");
                 Console.WriteLine("                            ");
             }
 
-            if ((programProcess.SelectProgramDirection()).Key == ConsoleKey.Escape)
+            if ((programProcess.SelectProgramDirection()).Key == ConsoleKey.Escape) //메뉴 탈출하기
             {
                 break;
             }

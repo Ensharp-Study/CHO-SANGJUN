@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _4차_LTT.Model
+namespace LectureTimeTable.Model
 {
     internal class UserDto
     {

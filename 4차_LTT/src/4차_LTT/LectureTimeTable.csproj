@@ -48,7 +48,6 @@
     <Compile Include="Controller\CourseRegistration.cs" />
     <Compile Include="Controller\CourseRegistrationChecker.cs" />
     <Compile Include="Controller\LttMenu.cs" />
-    <Compile Include="Controller\LttProgram.cs" />
     <Compile Include="DataBase\DataStorage.cs" />
     <Compile Include="ExcepionHandling\ToReceiveInput.cs" />
     <Compile Include="Model\LectureDto.cs" />

@@ -8,6 +8,7 @@ namespace LectureTimeTable
 {
     public class LetureTimeTableMain
     {
+        
         static void Main(string[] args)
         {
         }

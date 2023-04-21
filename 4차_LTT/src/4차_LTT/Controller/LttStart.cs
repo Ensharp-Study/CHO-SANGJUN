@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace LectureTimeTable.Controller
 {
-    internal class LttProgram
+    public class LttStart
     {
+
+
+        public void GetLogin() 
+        { 
+            
+        }
     }
 }

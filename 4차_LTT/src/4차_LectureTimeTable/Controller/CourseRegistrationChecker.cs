@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace _4차_LectureTimeTable.Controller
 {
-    internal class CourseRegistrationChecker
+    public class CourseRegistrationChecker
     {
+
+
     }
 }

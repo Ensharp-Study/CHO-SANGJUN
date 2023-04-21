@@ -57,7 +57,7 @@
     <Compile Include="Model\UserDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\Constants.cs" />
-    <Compile Include="View\MenuUi.cs" />
+    <Compile Include="View\BasicUi.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

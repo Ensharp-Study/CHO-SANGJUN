@@ -12,11 +12,11 @@ namespace _4차_LectureTimeTable.Controller
 {
     public class LectureTimeTableStart
     {
-        LectureTimeTableMenu lectureTimeTableMenu = new LectureTimeTableMenu();
-        MenuUi menuUi = new MenuUi();
+     
+        BasicUi basicUi = new BasicUi();
         UserException userException = new UserException();
         DataStorage dataStorage = new DataStorage();
-
+        
         public string id;
         public string password;
         public bool isInputValid;
@@ -24,16 +24,17 @@ namespace _4차_LectureTimeTable.Controller
 
         public void GetLogin()
         {
+            LectureTimeTableMenu lectureTimeTableMenu = new LectureTimeTableMenu(basicUi,dataStorage);
             while (true)
             {
                 Console.SetWindowSize(100, 30);
-                menuUi.MainMenuUi();
-                menuUi.LoginUi();//UI 출력
+                basicUi.MainUi();
+                basicUi.LoginUi();//UI 출력
 
                 //아이디 비밀번호 입력 받기
                 InputUserIdAndPassword();
 
-                //데이터베이스와 비교하기
+                //데이터 베이스와 비교하기
                 isAccountExist = false;
                 for (int i = 0; i < dataStorage.userData.Count; i++)
                 {
@@ -43,9 +44,10 @@ namespace _4차_LectureTimeTable.Controller
                         if (string.Equals(password, dataStorage.userData[i].UserPassword))
                         {
                             Console.Clear();
-                            lectureTimeTableMenu.ControllLectureTimeTableMenu(); //메뉴로 이동
+                            lectureTimeTableMenu.ControllLectureTimeTableMenu(dataStorage.userData[i]); //메뉴로 이동
                             break;
                         }
+                        
                         else
                         {
                             Console.SetCursorPosition(30, 22);
@@ -73,7 +75,6 @@ namespace _4차_LectureTimeTable.Controller
             isInputValid = false;
             while (!isInputValid)
             {
-                Console.CursorVisible = false;
                 id = ToReceiveInput.ReceiveInput(38, 18 ,8, Constants.isNotPassword);
                 isInputValid = userException.JudgeIdWithRegularExpression(38, 18, id);
             }
@@ -82,7 +83,7 @@ namespace _4차_LectureTimeTable.Controller
             while (!isInputValid)
             {
                 //Console.CursorVisible = false;
-                password = ToReceiveInput.ReceiveInput(38, 19 ,40, Constants.isPassword);
+                password = ToReceiveInput.ReceiveInput(38, 19 ,35, Constants.isPassword);
                 isInputValid = userException.JudgePasswordWithRegularExpression(38, 19, password);
             }
         }

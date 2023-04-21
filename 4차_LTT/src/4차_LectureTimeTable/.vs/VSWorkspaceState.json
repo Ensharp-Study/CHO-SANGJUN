@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Controller",
+    "\\DataBase",
+    "\\ExceptionHandling",
+    "\\Model",
+    "\\Utility",
+    "\\View"
+  ],
+  "SelectedNode": "\\ExceptionHandling\\UserException.cs",
+  "PreviewInSolutionExplorer": false
+}

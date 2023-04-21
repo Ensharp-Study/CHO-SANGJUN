@@ -8,5 +8,6 @@ namespace _4차_LectureTimeTable.Controller
 {
     public class CourseFinder
     {
+        //엑셀 불러오기
     }
 }

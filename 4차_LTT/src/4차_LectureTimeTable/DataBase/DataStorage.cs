@@ -11,14 +11,16 @@ namespace _4차_LectureTimeTable.DataBase
     {
         public DataStorage()
         {
-            UserDTO userOneData = new UserDTO();        //기존에 저장 된 유저 정보 
-            userOneData.UserId = "juncho1201";
+            UserDTO userOneData = new UserDTO(); //기존에 저장 된 유저 정보 
+            userOneData.UserId = "20011609";
             userOneData.UserPassword = "password123";
+            userOneData.UserName = "조상준";
             userData.Add(userOneData);
 
             UserDTO userTwoData = new UserDTO();
-            userTwoData.UserId = "mynameisuser2";
+            userTwoData.UserId = "22010323";
             userTwoData.UserPassword = "password234";
+            userTwoData.UserName = "김현아";
             userData.Add(userTwoData);
         }
 

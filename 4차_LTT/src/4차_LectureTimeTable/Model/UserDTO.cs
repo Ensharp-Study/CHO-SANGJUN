@@ -22,5 +22,12 @@ namespace _4차_LectureTimeTable.Model
             set { userPassword = value; }
         }
 
+        private string userName;
+        public string UserName
+        {
+            get { return userName; }
+            set { userName = value; }
+        }
+
     }
 }

@@ -1,0 +1,8 @@
+C:\Users\junch\OneDrive\바탕 화면\en#\4차_LTT\src\4차_LectureTimeTable\bin\Debug\4차_LectureTimeTable.exe.config
+C:\Users\junch\OneDrive\바탕 화면\en#\4차_LTT\src\4차_LectureTimeTable\bin\Debug\4차_LectureTimeTable.exe
+C:\Users\junch\OneDrive\바탕 화면\en#\4차_LTT\src\4차_LectureTimeTable\bin\Debug\4차_LectureTimeTable.pdb
+C:\Users\junch\OneDrive\바탕 화면\en#\4차_LTT\src\4차_LectureTimeTable\obj\Debug\4차_LectureTimeTable.csproj.AssemblyReference.cache
+C:\Users\junch\OneDrive\바탕 화면\en#\4차_LTT\src\4차_LectureTimeTable\obj\Debug\4차_LectureTimeTable.csproj.SuggestedBindingRedirects.cache
+C:\Users\junch\OneDrive\바탕 화면\en#\4차_LTT\src\4차_LectureTimeTable\obj\Debug\4차_LectureTimeTable.csproj.CoreCompileInputs.cache
+C:\Users\junch\OneDrive\바탕 화면\en#\4차_LTT\src\4차_LectureTimeTable\obj\Debug\4차_LectureTimeTable.exe
+C:\Users\junch\OneDrive\바탕 화면\en#\4차_LTT\src\4차_LectureTimeTable\obj\Debug\4차_LectureTimeTable.pdb

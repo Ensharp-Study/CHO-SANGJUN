@@ -14,7 +14,7 @@ namespace _4차_LectureTimeTable.Utility
         COURSE_REGISTRATION_CHECKER
     }
 
-    class Constants
+    public class Constants
     {
         public const  bool isPassword = true;
         public const  bool isNotPassword = false;

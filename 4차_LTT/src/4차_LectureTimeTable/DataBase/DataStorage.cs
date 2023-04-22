@@ -11,6 +11,8 @@ namespace _4차_LectureTimeTable.DataBase
     {
         public DataStorage()
         {
+            userData = new List<UserDTO>();
+
             UserDTO userOneData = new UserDTO(); //기존에 저장 된 유저 정보 
             userOneData.UserId = "20011609";
             userOneData.UserPassword = "password123";
@@ -22,9 +24,18 @@ namespace _4차_LectureTimeTable.DataBase
             userTwoData.UserPassword = "password234";
             userTwoData.UserName = "김현아";
             userData.Add(userTwoData);
+
+            UserDTO userThreeData = new UserDTO();
+            userThreeData.UserId = "19011069";
+            userThreeData.UserPassword = "password123";
+            userThreeData.UserName = "권오성";
+            userData.Add(userThreeData);
         }
 
-        public List<UserDTO>userData = new List<UserDTO>();
+        public List<UserDTO> userData;
+
+        public Array lectureTotalData;
+
 
 
     }

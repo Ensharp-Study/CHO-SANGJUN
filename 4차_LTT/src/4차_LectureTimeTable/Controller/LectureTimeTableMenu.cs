@@ -1,4 +1,5 @@
 ﻿using _4차_LectureTimeTable.DataBase;
+using _4차_LectureTimeTable.ExceptionHandling;
 using _4차_LectureTimeTable.Model;
 using _4차_LectureTimeTable.Utility;
 using _4차_LectureTimeTable.View;
@@ -14,6 +15,7 @@ namespace _4차_LectureTimeTable.Controller
     public class LectureTimeTableMenu
     {
         MenuUi menuUi= new MenuUi();
+        LectureException lectureException= new LectureException();
 
         DataStorage dataStorage;
 
@@ -28,6 +30,7 @@ namespace _4차_LectureTimeTable.Controller
 
         public void ControllLectureTimeTableMenu(UserDTO userInformation) //로그인한 유저의 정보 인자로 받아오기
         {
+            CourseFinder courseFinder = new CourseFinder(dataStorage, lectureException);
             CourseOfInterestAdder courseOfInterestAdder = new CourseOfInterestAdder(menuUi);
 
             menuUi.PrintMenuUi(userInformation.UserName);

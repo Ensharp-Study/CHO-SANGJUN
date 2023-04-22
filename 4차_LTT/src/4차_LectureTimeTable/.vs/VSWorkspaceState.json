@@ -5,9 +5,11 @@
     "\\DataBase",
     "\\ExceptionHandling",
     "\\Model",
+    "\\packages",
+    "\\Properties",
     "\\Utility",
     "\\View"
   ],
-  "SelectedNode": "\\ExceptionHandling\\UserException.cs",
+  "SelectedNode": "\\Controller\\CourseOfInterestAdder.cs",
   "PreviewInSolutionExplorer": false
 }

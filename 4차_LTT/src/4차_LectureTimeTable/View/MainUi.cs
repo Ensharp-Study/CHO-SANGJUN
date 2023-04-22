@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace _4차_LectureTimeTable.View
 {
-    public class BasicUi
+    public class MainUi
     {
-        public void MainUi()
+        public void PrintMainUi()
         {
 
             Console.WriteLine("\n\n\n");
@@ -27,7 +27,7 @@ namespace _4차_LectureTimeTable.View
 
         }
 
-        public void LoginUi()
+        public void PrintLoginUi()
         {
             Console.WriteLine("                         ┌───────────────────────────────────────────────────┐");
             Console.WriteLine("                         │                      로그인                       │");
@@ -38,41 +38,5 @@ namespace _4차_LectureTimeTable.View
             Console.WriteLine("                         └───────────────────────────────────────────────────┘");
         }
 
-        public void MenuUi(string userName)
-        {
-            Console.WriteLine("\n\n\n");
-            Console.WriteLine("                             ==============================================");
-            Console.WriteLine("                                             학사 정보 시스템              ");
-            Console.WriteLine("                             ==============================================");
-            Console.Write("                             회원 :");
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write(userName);
-            Console.ResetColor();
-            Console.Write(" 님");
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("                 ESC : 로그아웃");
-            Console.ResetColor();
-            Console.WriteLine("                             ==============================================");
-            Console.WriteLine("                             □                  메뉴선택                □");
-            Console.WriteLine("                             ==============================================");
-        }
-
-        public void MenuList(string[] menuList ,int menuNumber)
-        {
-            for(int i=0; i< menuList.Length; i++)
-            {
-                if( i == menuNumber)
-                {
-                    Console.ForegroundColor= ConsoleColor.Green;
-                    Console.WriteLine(menuList[i]);
-                    Console.ResetColor();
-                }
-                else
-                {
-                    Console.WriteLine(menuList[i]);
-                }
-            }
-
-        }
     }
 }

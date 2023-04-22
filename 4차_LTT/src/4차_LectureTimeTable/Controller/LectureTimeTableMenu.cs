@@ -5,6 +5,7 @@ using _4차_LectureTimeTable.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,29 +13,34 @@ namespace _4차_LectureTimeTable.Controller
 {
     public class LectureTimeTableMenu
     {
-        BasicUi basicUi;
+        MenuUi menuUi= new MenuUi();
+
         DataStorage dataStorage;
 
-        public LectureTimeTableMenu(BasicUi basicUi, DataStorage dataStorage) //생성자 
+        public LectureTimeTableMenu(DataStorage dataStorage) //생성자 
         { 
-           this.basicUi = basicUi;
            this.dataStorage = dataStorage;  
         }
+
 
         string[] menuList = { "○ 강의 시간표 조회", "○ 관심과목 담기", "○ 수강 신청", "○ 수강 신청 내역 조회" };
         int selectedMenu = 0;
 
         public void ControllLectureTimeTableMenu(UserDTO userInformation) //로그인한 유저의 정보 인자로 받아오기
         {
-            basicUi.MenuUi(userInformation.UserName);
-            SelectMenu();
+            CourseOfInterestAdder courseOfInterestAdder = new CourseOfInterestAdder(menuUi);
+
+            menuUi.PrintMenuUi(userInformation.UserName);
+            SelectMenu(4);
 
             switch (selectedMenu)
             {
                 case (int)MenuList.COURSE_FINDER:
 
-
                 case (int)MenuList.COURSE_OF_INTEREST_ADDER:
+                    Console.SetWindowSize(150, 30);
+                    courseOfInterestAdder.SearchTheLecture();
+                    break;
 
                 case (int)MenuList.COURSE_REGISTRATION:
 
@@ -46,7 +52,7 @@ namespace _4차_LectureTimeTable.Controller
 
         }
 
-        public void SelectMenu()
+        public void SelectMenu(int menuNumber) //위아래 키 입력 받고 처리하는 함수
         {
             ConsoleKeyInfo inputKey;
             bool isEnter = false;
@@ -61,7 +67,7 @@ namespace _4차_LectureTimeTable.Controller
                 {
                     selectedMenu--;
                 }
-                else if ((inputKey.Key == ConsoleKey.DownArrow) && (selectedMenu < 3))
+                else if ((inputKey.Key == ConsoleKey.DownArrow) && (selectedMenu < (menuNumber-1)))
                 {
                     selectedMenu++;
                 }
@@ -74,27 +80,22 @@ namespace _4차_LectureTimeTable.Controller
             }
         }
 
-        public void SetAndPrintColorMenuSentence(int cursorPositionX,int CursorPositionY)
+        public void SetAndPrintColorMenuSentence(int cursorPositionX, int cursorPositionY) //해당 메뉴 위치 보여주는 함수
         {
             for (int i = 0; i < menuList.Length; i++)
             {
                 if (i == selectedMenu)
                 {
-                    Console.SetCursorPosition(cursorPositionX,CursorPositionY);
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine(menuList[i]);
-                    Console.ResetColor();
+                    menuUi.PrintColorSentence(cursorPositionX, cursorPositionY, menuList[i]);
                 }
 
                 else
                 {
-                    Console.SetCursorPosition(cursorPositionX, CursorPositionY);
-                    Console.WriteLine(menuList[i]);
+                    menuUi.PrintNotColorSentence(cursorPositionX, cursorPositionY, menuList[i]);
                 }
 
-                CursorPositionY += 1;
+                cursorPositionY += 1; //다음줄로 넘기기 위한 Y좌표 증가
             }
         }
-
     }
 }

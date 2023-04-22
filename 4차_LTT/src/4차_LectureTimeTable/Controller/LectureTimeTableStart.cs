@@ -13,7 +13,7 @@ namespace _4차_LectureTimeTable.Controller
     public class LectureTimeTableStart
     {
      
-        BasicUi basicUi = new BasicUi();
+        MainUi mainUi = new MainUi();
         UserException userException = new UserException();
         DataStorage dataStorage = new DataStorage();
         
@@ -24,12 +24,12 @@ namespace _4차_LectureTimeTable.Controller
 
         public void GetLogin()
         {
-            LectureTimeTableMenu lectureTimeTableMenu = new LectureTimeTableMenu(basicUi,dataStorage);
+            LectureTimeTableMenu lectureTimeTableMenu = new LectureTimeTableMenu(dataStorage);
             while (true)
             {
                 Console.SetWindowSize(100, 30);
-                basicUi.MainUi();
-                basicUi.LoginUi();//UI 출력
+                mainUi.PrintMainUi();
+                mainUi.PrintLoginUi();//UI 출력
 
                 //아이디 비밀번호 입력 받기
                 InputUserIdAndPassword();

@@ -13,6 +13,7 @@ namespace _4차_LectureTimeTable
         {
             LectureTimeTableStart lectureTimeTableStart = new LectureTimeTableStart();
             lectureTimeTableStart.GetLogin();
+
         }
     }
 }

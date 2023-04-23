@@ -163,9 +163,10 @@ namespace _4차_LectureTimeTable.Controller
             string[] maximumLengthOfStringsInEachRow = { "184", "기계항공우주공학부", "004714","001", "K-MOOC:모두를위한머신러닝", "공통교양필수", "1", "1", "수 16:30~18:30, 금 09:00~11:00", "센B201,센B209", "Abolghasem Sadeghi-Niaraki", "영어/한국어" };
             for (int i = 1; i <= 12; i++)
             {
-                menuUi.PrintExistLectureInformation(lectureTotalData.GetValue(index, i).ToString(),  Encoding.Default.GetByteCount(maximumLengthOfStringsInEachRow[i - 1])  - (lectureTotalData.GetValue(index, i).ToString()).Length  + 2);
+                menuUi.PrintExistLectureInformation(lectureTotalData.GetValue(index, i).ToString(), lectureTotalData.GetValue(index, i).ToString().Length + Encoding.Default.GetByteCount(maximumLengthOfStringsInEachRow[i - 1])  - Encoding.Default.GetByteCount(lectureTotalData.GetValue(index, i).ToString()) );
+            
             }
-            Console.WriteLine();
+            Console.WriteLine("  ");
 
         }
 

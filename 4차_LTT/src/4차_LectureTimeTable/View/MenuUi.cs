@@ -83,8 +83,9 @@ namespace _4차_LectureTimeTable.View
 
             lectureData = lectureData.PadRight(emptyCount);
             Console.Write(lectureData);
-               
-            
+            Console.Write("  ");
+
+
         }
 
     }

@@ -22,51 +22,6 @@ namespace _4차_LectureTimeTable.Controller
             menuUi.PrintSearchLectureGuideUi();
             //SelectUpAndDownMenu(6,44,11);
         }
-
-
-        public void SetAndPrintColorUpAndDownMenuSentence(int cursorPositionX, int cursorPositionY) //해당 메뉴 위치 보여주는 함수
-        {
-            for (int i = 0; i < menuList.Length; i++)
-            {
-                if (i == selectedMenu)
-                {
-                    menuUi.PrintColorSentence(cursorPositionX, cursorPositionY, menuList[i]);
-                }
-
-                else
-                {
-                    menuUi.PrintNotColorSentence(cursorPositionX, cursorPositionY, menuList[i]);
-                }
-
-                cursorPositionY += 1; //다음줄로 넘기기 위한 Y좌표 증가
-            }
-        }
-
-        public void SetAndPrintColorLeftAndRightMenuSentence(int cursorPositionX, int cursorPositionY) //해당 메뉴 위치 보여주는 함수
-        {
-            for (int i = 0; i < menuList.Length; i++)
-            {
-                if (i == selectedMenu)
-                {
-                    menuUi.PrintColorSentence(cursorPositionX, cursorPositionY, menuList[i]);
-                }
-
-                else
-                {
-                    menuUi.PrintNotColorSentence(cursorPositionX, cursorPositionY, menuList[i]);
-                }
-
-                Console.Write("     "); //옆으로 나열하기 위한
-            }
-        }
-
-        public void SelectDetailOption()
-        {
-            while (true)
-            {
-                
-            }
-        }
         
     }
 }

@@ -13,7 +13,7 @@ namespace _4차_LectureTimeTable.ExceptionHandling
         {
 
             Console.SetCursorPosition(cursorPositionX, cursorPositionY);
-            string pattern = @"^[A-Za-z가-힣0-9+#:-()]{1,15}$";
+            string pattern = @"^[A-Za-z가-힣0-9+#:\-\(\)]{1,15}$";
             bool isMatch = Regex.IsMatch(inputString, pattern);
 
             if (isMatch == true)
@@ -77,7 +77,7 @@ namespace _4차_LectureTimeTable.ExceptionHandling
         {
 
             Console.SetCursorPosition(cursorPositionX, cursorPositionY);
-            string pattern = @"^[0 - 9]{6}$";
+            string pattern = @"^[0-9]{6}$";
             bool isMatch = Regex.IsMatch(inputString, pattern);
 
             if (isMatch == true)
@@ -99,7 +99,7 @@ namespace _4차_LectureTimeTable.ExceptionHandling
         {
 
             Console.SetCursorPosition(cursorPositionX, cursorPositionY);
-            string pattern = @"^0[0 - 9]{2}$";
+            string pattern = @"^0[0-9]{2}$";
             bool isMatch = Regex.IsMatch(inputString, pattern);
 
             if (isMatch == true)
@@ -110,7 +110,7 @@ namespace _4차_LectureTimeTable.ExceptionHandling
             {
                 Console.SetCursorPosition(cursorPositionX, cursorPositionY);
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("분반을 입력해 주세요");
+                Console.WriteLine("0xx 형태의 분반을 입력해 주세요");
                 Console.ResetColor();
                 Console.ReadKey(true);
                 return false;

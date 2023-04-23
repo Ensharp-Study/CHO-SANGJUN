@@ -4,12 +4,13 @@
     "\\Controller",
     "\\DataBase",
     "\\ExceptionHandling",
+    "\\Input",
     "\\Model",
     "\\packages",
     "\\Properties",
     "\\Utility",
     "\\View"
   ],
-  "SelectedNode": "\\Controller\\CourseOfInterestAdder.cs",
+  "SelectedNode": "\\Controller\\MenuPrintController.cs",
   "PreviewInSolutionExplorer": false
 }

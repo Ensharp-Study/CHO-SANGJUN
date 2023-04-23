@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,19 +42,50 @@ namespace _4차_LectureTimeTable.View
             Console.Write(menuIndexLine);
         }
 
-        public void PrintSearchLectureGuideUi()
+        public void PrintCourseFinderMenu()
         {
-            Console.WriteLine("┏───────────────강의 검색 가이드───────────────┓");
-            Console.WriteLine("┃                                                                            ┃");
-            Console.WriteLine("┃  ◎                                                                        ┃");
-            Console.WriteLine("┃                                                                            ┃");
-            Console.WriteLine("┃                                                                            ┃");
-            Console.WriteLine("┃                                                                            ┃");
-            Console.WriteLine("┃                                                                            ┃");
-            Console.WriteLine("┃                                                                            ┃");
-            Console.WriteLine("┗──────────────────────────────────────┛");
+            Console.WriteLine("==========================================================================================");
+            Console.WriteLine("                                 23학년도 1학기 강의 검색         ");
+            Console.WriteLine("==========================================================================================");
+
         }
 
-       
+        public void PrintSearchLectureGuideUi()
+        {
+            Console.WriteLine("┏────────────────────────────────────강의 검색 가이드────────────────────────────────────┓");
+            Console.WriteLine("┃                                                                                        ┃");
+            Console.WriteLine("┃  ◎  방향키를 이용하여 옵션을 이동 후 ENTER를 누르면 선택 또는 입력 가능 합니다.       ┃");
+            Console.WriteLine("┃  ◎  검색 도중 ESC를 누르면 다시 입력 할 수 있습니다.                                  ┃");
+            Console.WriteLine("┃  ◎  모든 입력을 완료하면 <검색하기>를 눌러 주세요.                                    ┃");
+            Console.WriteLine("┃                                                                                        ┃");
+            Console.WriteLine("┗────────────────────────────────────────────────────────────────────────────────────────┛");
+        }
+        public void PrintLectureDetailInformationInputMenu(int cursorPositionX, int cursorPositionY)
+        {
+            Console.SetCursorPosition(cursorPositionX, cursorPositionY);
+            Console.WriteLine(" > 교과목명 : ");
+            cursorPositionY++;
+            Console.SetCursorPosition(cursorPositionX, cursorPositionY);
+            Console.WriteLine(" > 교수명   : ");
+            cursorPositionY++;
+            Console.SetCursorPosition(cursorPositionX, cursorPositionY);
+            Console.WriteLine(" > 학년     : ");
+            cursorPositionY++;
+            Console.SetCursorPosition(cursorPositionX, cursorPositionY);
+            Console.WriteLine(" > 학수번호 : ");
+            cursorPositionY++;
+            Console.SetCursorPosition(cursorPositionX, cursorPositionY);
+            Console.WriteLine(" > 분반     : ");
+        }
+
+        public void PrintExistLectureInformation(Array lectureTotalData, int index)
+        {
+            for (int j = 0; j <= 11; j++)
+            {
+                Console.WriteLine(lectureTotalData.GetValue(index, j).ToString());
+            }
+            
+        }
+
     }
 }

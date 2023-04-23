@@ -20,66 +20,9 @@ namespace _4차_LectureTimeTable.Controller
         {
             Console.Clear();
             menuUi.PrintSearchLectureGuideUi();
-            SelectUpAndDownMenu(6,44,11);
+            //SelectUpAndDownMenu(6,44,11);
         }
 
-        public void SelectUpAndDownMenu(int menuNumber, int cursorPositionX, int cursorPositionY) //위 아래 키 입력 받고 처리하는 함수
-        {
-            ConsoleKeyInfo inputKey;
-            bool isEnter = false;
-
-            Console.CursorVisible = false;
-            SetAndPrintColorUpAndDownMenuSentence(cursorPositionX, cursorPositionY);
-
-            selectedMenu = 0;
-            while (!isEnter)
-            {
-                inputKey = Console.ReadKey();
-                if ((inputKey.Key == ConsoleKey.UpArrow) && (selectedMenu > 0))
-                {
-                    selectedMenu--;
-                }
-                else if ((inputKey.Key == ConsoleKey.DownArrow) && (selectedMenu < (menuNumber-1)))
-                {
-                    selectedMenu++;
-                }
-                else if ((inputKey.Key == ConsoleKey.Enter))
-                {
-                    isEnter = true;
-                }
-
-                SetAndPrintColorUpAndDownMenuSentence(cursorPositionX, cursorPositionY);
-            }
-        }
-
-        public void SelectRightAndLeftMenu(int menuNumber, int cursorPositionX, int cursorPositionY)
-        {
-            ConsoleKeyInfo inputKey;
-            bool isEnter = false;
-
-            Console.CursorVisible = false;
-            SetAndPrintColorUpAndDownMenuSentence(cursorPositionX, cursorPositionY);
-
-            selectedMenu = 0;
-            while (!isEnter)
-            {
-                inputKey = Console.ReadKey();
-                if ((inputKey.Key == ConsoleKey.LeftArrow) && (selectedMenu > 0))
-                {
-                    selectedMenu--;
-                }
-                else if ((inputKey.Key == ConsoleKey.RightArrow) && (selectedMenu < (menuNumber-1)))
-                {
-                    selectedMenu++;
-                }
-                else if ((inputKey.Key == ConsoleKey.Enter))
-                {
-                    isEnter = true;
-                }
-
-                SetAndPrintColorLeftAndRightMenuSentence(cursorPositionX, cursorPositionY);
-            }
-        }
 
         public void SetAndPrintColorUpAndDownMenuSentence(int cursorPositionX, int cursorPositionY) //해당 메뉴 위치 보여주는 함수
         {

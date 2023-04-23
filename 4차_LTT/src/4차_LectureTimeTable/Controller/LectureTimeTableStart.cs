@@ -75,7 +75,7 @@ namespace _4차_LectureTimeTable.Controller
             isInputValid = false;
             while (!isInputValid)
             {
-                id = ToReceiveInput.ReceiveInput(38, 18 ,8, Constants.isNotPassword);
+                id = ToReceiveInput.ReceiveInput(38, 18 ,8, Constants.IS_NOT_PASSWORD);
                 isInputValid = userException.JudgeIdWithRegularExpression(38, 18, id);
             }
 
@@ -83,7 +83,7 @@ namespace _4차_LectureTimeTable.Controller
             while (!isInputValid)
             {
                 //Console.CursorVisible = false;
-                password = ToReceiveInput.ReceiveInput(38, 19 ,35, Constants.isPassword);
+                password = ToReceiveInput.ReceiveInput(38, 19 ,35, Constants.IS_PASSWORD);
                 isInputValid = userException.JudgePasswordWithRegularExpression(38, 19, password);
             }
         }

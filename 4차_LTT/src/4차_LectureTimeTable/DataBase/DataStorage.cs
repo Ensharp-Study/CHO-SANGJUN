@@ -15,7 +15,7 @@ namespace _4차_LectureTimeTable.DataBase
 
             UserDTO userOneData = new UserDTO(); //기존에 저장 된 유저 정보 
             userOneData.UserId = "20011609";
-            userOneData.UserPassword = "password123";
+            userOneData.UserPassword = "password1";
             userOneData.UserName = "조상준";
             userData.Add(userOneData);
 

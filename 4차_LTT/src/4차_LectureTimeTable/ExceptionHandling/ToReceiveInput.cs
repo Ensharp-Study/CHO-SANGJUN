@@ -13,6 +13,7 @@ namespace _4차_LectureTimeTable.ExceptionHandling
         public static string ReceiveInput(int cursorPositionX, int cursorPositionY , int maxLength, bool isPassword)
         {
             StringBuilder stringBuilder = new StringBuilder();
+            
             Console.SetCursorPosition(cursorPositionX, cursorPositionY);
             Console.Write("                                       ");
             Console.SetCursorPosition(cursorPositionX, cursorPositionY);
@@ -29,7 +30,7 @@ namespace _4차_LectureTimeTable.ExceptionHandling
                 {
                     if (stringBuilder.Length == 0) //뒤로가기
                     {
-
+                        stringBuilder.Append("ESC");
                     }
 
                     else if (stringBuilder.Length > 0) //다시 입력하기
@@ -37,7 +38,7 @@ namespace _4차_LectureTimeTable.ExceptionHandling
                         Console.SetCursorPosition(cursorPositionX, cursorPositionY);
                         for (int i = 0; i < stringBuilder.Length; i++)
                         {
-                            Console.Write(" ");
+                            Console.Write("\n \n");
                         }
                         Console.SetCursorPosition(cursorPositionX, cursorPositionY);
                         stringBuilder.Remove(0, stringBuilder.Length);
@@ -66,7 +67,7 @@ namespace _4차_LectureTimeTable.ExceptionHandling
                 else if ( (Char.IsLetterOrDigit(inputKey.KeyChar)
                     || Char.IsWhiteSpace(inputKey.KeyChar)
                     || Char.IsPunctuation(inputKey.KeyChar)
-                    || Char.IsSymbol(inputKey.KeyChar)) && stringBuilder.Length <= maxLength)    //문자,숫자,기호,구두점 입력 받았을 시
+                    || Char.IsSymbol(inputKey.KeyChar)) && stringBuilder.Length < maxLength)    //문자,숫자,기호,구두점 입력 받았을 시
                 { 
                     stringBuilder.Append(inputKey.KeyChar);
                     if(isPassword)
@@ -79,19 +80,7 @@ namespace _4차_LectureTimeTable.ExceptionHandling
                     }
                 }
             }
-
             return stringBuilder.ToString();
         }
-        
-        public static bool JudgingIsStringNumber(string inputString)
-        {
-            if (Regex.IsMatch(inputString, @"^\d+$")) //숫자인지 검사
-            {
-                return true;
-            }
-            else return false;
-        }
-
-
     }
 }

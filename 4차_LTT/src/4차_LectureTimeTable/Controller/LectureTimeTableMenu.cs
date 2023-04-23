@@ -30,16 +30,20 @@ namespace _4차_LectureTimeTable.Controller
 
         public void ControllLectureTimeTableMenu(UserDTO userInformation) //로그인한 유저의 정보 인자로 받아오기
         {
-            CourseFinder courseFinder = new CourseFinder(dataStorage, lectureException);
+            MenuSelectController menuSelectController = new MenuSelectController(menuUi);
+            CourseFinder courseFinder = new CourseFinder(dataStorage, lectureException, menuUi, menuSelectController);
             CourseOfInterestAdder courseOfInterestAdder = new CourseOfInterestAdder(menuUi);
+            
 
             menuUi.PrintMenuUi(userInformation.UserName);
-            SelectMenu(4);
+            menuSelectController.SelectMenuWithUpAndDown(menuList, 4, 42, 12);
 
             switch (selectedMenu)
             {
                 case (int)MenuList.COURSE_FINDER:
-
+                    Console.SetWindowSize(150, 30);
+                    courseFinder.FindCourse();
+                    break;
                 case (int)MenuList.COURSE_OF_INTEREST_ADDER:
                     Console.SetWindowSize(150, 30);
                     courseOfInterestAdder.SearchTheLecture();
@@ -55,50 +59,5 @@ namespace _4차_LectureTimeTable.Controller
 
         }
 
-        public void SelectMenu(int menuNumber) //위아래 키 입력 받고 처리하는 함수
-        {
-            ConsoleKeyInfo inputKey;
-            bool isEnter = false;
-
-            Console.CursorVisible = false;
-            SetAndPrintColorMenuSentence(42,11);
-
-            while (!isEnter)
-            {
-                inputKey = Console.ReadKey();
-                if ((inputKey.Key == ConsoleKey.UpArrow) && (selectedMenu > 0))
-                {
-                    selectedMenu--;
-                }
-                else if ((inputKey.Key == ConsoleKey.DownArrow) && (selectedMenu < (menuNumber-1)))
-                {
-                    selectedMenu++;
-                }
-                else if ((inputKey.Key == ConsoleKey.Enter))
-                {
-                    isEnter = true;
-                }
-
-                SetAndPrintColorMenuSentence(42, 11);
-            }
-        }
-
-        public void SetAndPrintColorMenuSentence(int cursorPositionX, int cursorPositionY) //해당 메뉴 위치 보여주는 함수
-        {
-            for (int i = 0; i < menuList.Length; i++)
-            {
-                if (i == selectedMenu)
-                {
-                    menuUi.PrintColorSentence(cursorPositionX, cursorPositionY, menuList[i]);
-                }
-
-                else
-                {
-                    menuUi.PrintNotColorSentence(cursorPositionX, cursorPositionY, menuList[i]);
-                }
-
-                cursorPositionY += 1; //다음줄로 넘기기 위한 Y좌표 증가
-            }
-        }
     }
 }

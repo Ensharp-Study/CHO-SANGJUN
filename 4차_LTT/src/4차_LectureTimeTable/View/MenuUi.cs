@@ -85,7 +85,6 @@ namespace _4차_LectureTimeTable.View
             Console.Write(lectureData);
             Console.Write("  ");
 
-
         }
 
     }

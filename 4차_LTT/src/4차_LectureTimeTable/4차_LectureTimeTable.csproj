@@ -63,6 +63,7 @@
     <Compile Include="Model\UserDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\Constants.cs" />
+    <Compile Include="View\LectureOfInterestAdderUi.cs" />
     <Compile Include="View\MainUi.cs" />
     <Compile Include="View\MenuUi.cs" />
   </ItemGroup>

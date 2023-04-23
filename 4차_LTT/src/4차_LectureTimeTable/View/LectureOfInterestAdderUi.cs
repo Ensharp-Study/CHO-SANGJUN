@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace _4차_LectureTimeTable.View
 {
-    internal class LectureOfInterestAdder
+    public class LectureOfInterestAdderUi
     {
+        public void PrintLectureOfInterestAdderUi()
+        {
+            
+        }
     }
 }

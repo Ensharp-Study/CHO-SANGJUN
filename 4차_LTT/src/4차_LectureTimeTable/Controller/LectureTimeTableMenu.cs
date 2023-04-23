@@ -20,10 +20,9 @@ namespace _4차_LectureTimeTable.Controller
         DataStorage dataStorage;
 
         public LectureTimeTableMenu(DataStorage dataStorage) //생성자 
-        { 
-           this.dataStorage = dataStorage;  
+        {
+            this.dataStorage = dataStorage;
         }
-
 
         string[] menuList = { "○ 강의 시간표 조회", "○ 관심과목 담기", "○ 수강 신청", "○ 수강 신청 내역 조회" };
         int selectedMenu;
@@ -32,7 +31,7 @@ namespace _4차_LectureTimeTable.Controller
         {
             MenuSelectController menuSelectController = new MenuSelectController(menuUi);
             CourseFinder courseFinder = new CourseFinder(dataStorage, lectureException, menuUi, menuSelectController);
-            CourseOfInterestAdder courseOfInterestAdder = new CourseOfInterestAdder(menuUi);
+            CourseOfInterestAdder courseOfInterestAdder = new CourseOfInterestAdder(menuUi, menuSelectController, courseFinder);
             
 
             menuUi.PrintMenuUi(userInformation.UserName);
@@ -46,7 +45,7 @@ namespace _4차_LectureTimeTable.Controller
                     break;
                 case (int)MenuList.COURSE_OF_INTEREST_ADDER:
                     Console.SetWindowSize(150, 30);
-                    courseOfInterestAdder.SearchTheLecture();
+                    courseOfInterestAdder.AddInterestLecture(userInformation);
                     break;
 
                 case (int)MenuList.COURSE_REGISTRATION:

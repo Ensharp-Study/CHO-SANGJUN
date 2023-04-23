@@ -80,9 +80,13 @@ namespace _4차_LectureTimeTable.View
 
         public void PrintExistLectureInformation(Array lectureTotalData, int index)
         {
-            for (int j = 0; j <= 11; j++)
+            string printedData;
+
+            for (int j = 1; j <= 12; j++)
             {
-                Console.WriteLine(lectureTotalData.GetValue(index, j).ToString());
+                printedData = lectureTotalData.GetValue(index, j).ToString();
+                printedData = printedData.PadRight(5, ' ');
+                Console.Write(printedData);
             }
             
         }

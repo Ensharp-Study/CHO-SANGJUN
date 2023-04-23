@@ -35,9 +35,13 @@ namespace _4차_LectureTimeTable.Controller
         public string courseCode;  //학수번호
         public string courseClass; //분반
 
-        public string[] majorList = { " > 컴퓨터공학과", " > 소프트웨어학과", " > 지능기전공학부", " > 기계항공우주공학부" };
-        public string[] courseClassificationList = { " > 공통교양필수", " > 전공필수", " > 전공선택" };
+        
+        public string[] majorPrintList = { "전체", "컴퓨터공학과", "소프트웨어학과", "지능기전공학부", "기계항공우주공학부" };
+        public string[] courseClassificationPrintList = { "전체", "공통교양필수", "전공필수", "전공선택" };
+        public string[] LectureEntries = { "개설학과 전공", "이수구분", "교과목명", "교수명", "학년", "학수번호" };
 
+        public int majorNumber;
+        public int courseClassificationNumber;
 
         public void FindCourse()  //강의 찾기 내 메인 함수
         {
@@ -45,8 +49,10 @@ namespace _4차_LectureTimeTable.Controller
             Console.Clear();
             menuUi.PrintSearchLectureGuideUi();
             menuUi.PrintCourseFinderMenu();
-            menuSelectController.SelectMenuWithRightAndLeft(majorList, 4, 10, 15);
-            menuSelectController.SelectMenuWithRightAndLeft(courseClassificationList, 4, 10, 16);
+
+            menuSelectController.SelectMenuWithUpAndDown(LectureEntries,6,5,15);
+            majorNumber = menuSelectController.SelectMenuWithRightAndLeft(majorPrintList, 5, 10, 15);
+            courseClassificationNumber = menuSelectController.SelectMenuWithRightAndLeft(courseClassificationPrintList, 4, 10, 16);
             InputCourseInformation();
             CompareWithData();
         }
@@ -101,13 +107,15 @@ namespace _4차_LectureTimeTable.Controller
                    string.IsNullOrEmpty(grade) == false ||
                    string.IsNullOrEmpty(courseCode) == false ||
                    string.IsNullOrEmpty(courseClass) == false)
-
                 {
-                    if ( (dataStorage.lectureTotalData.GetValue(i, 4).ToString() ).Contains(lectureName) &&
-                        (dataStorage.lectureTotalData.GetValue(i, 10).ToString()).Contains(professor) &&
-                        (dataStorage.lectureTotalData.GetValue(i, 6).ToString()).Contains(grade) &&
-                        (dataStorage.lectureTotalData.GetValue(i, 2).ToString()).Contains(courseCode) &&
-                        (dataStorage.lectureTotalData.GetValue(i, 3).ToString()).Contains(courseClass)){
+                    if (
+                        (dataStorage.lectureTotalData.GetValue(i, 2).ToString()).Contains(majorPrintList[majorNumber]) &&
+                        (dataStorage.lectureTotalData.GetValue(i, 6).ToString()).Contains(courseClassificationPrintList[courseClassificationNumber]) &&
+                        (dataStorage.lectureTotalData.GetValue(i, 5).ToString() ).Contains(lectureName) &&
+                        (dataStorage.lectureTotalData.GetValue(i, 11).ToString()).Contains(professor) &&
+                        (dataStorage.lectureTotalData.GetValue(i, 7).ToString()).Contains(grade) &&
+                        (dataStorage.lectureTotalData.GetValue(i, 3).ToString()).Contains(courseCode) &&
+                        (dataStorage.lectureTotalData.GetValue(i, 4).ToString()).Contains(courseClass)){
 
                         isExistCourseInData = true;
                     }

@@ -17,7 +17,7 @@ namespace _4차_LectureTimeTable.Controller
             this.menuUi = menuUi;
         }
 
-        public void SelectMenuWithUpAndDown(string[] menuList, int menuNumber, int cursorPositionX, int cursorPositionY) 
+        public int SelectMenuWithUpAndDown(string[] menuList, int menuNumber, int cursorPositionX, int cursorPositionY) 
             //위아래 키 입력 받고 처리하는 함수
         {
             ConsoleKeyInfo inputKey;
@@ -45,9 +45,11 @@ namespace _4차_LectureTimeTable.Controller
 
                 SetAndPrintColorMenuSentence(menuList, selectedMenu, cursorPositionX, cursorPositionY, Constants.IS_PRINT_NEXT_LINE);
             }
+
+            return selectedMenu;
         }
 
-        public void SelectMenuWithRightAndLeft(string[] menuList, int menuNumber, int cursorPositionX, int cursorPositionY) 
+        public int SelectMenuWithRightAndLeft(string[] menuList, int menuNumber, int cursorPositionX, int cursorPositionY) 
             //좌우 키 입력 받고 처리하는 함수
         {
             ConsoleKeyInfo inputKey;
@@ -76,6 +78,8 @@ namespace _4차_LectureTimeTable.Controller
 
                 SetAndPrintColorMenuSentence(menuList, selectedMenu, cursorPositionX, cursorPositionY, Constants.IS_PRINT_NEXT_SIDE);
             }
+
+            return selectedMenu;
         }
 
         public void SetAndPrintColorMenuSentence(string[] menuList,int selectedMenu, int cursorPositionX, int cursorPositionY, bool isDownOrRight) //해당 메뉴 위치 보여주는 함수
@@ -101,6 +105,7 @@ namespace _4차_LectureTimeTable.Controller
                     cursorPositionX += ((menuList[i].Length) * 2 + 5);  //한글은 콘솔창 2칸씩 차지 하므로 겹치지 않도록 2배 처리
                 }
             }
+
         }
     }
 }

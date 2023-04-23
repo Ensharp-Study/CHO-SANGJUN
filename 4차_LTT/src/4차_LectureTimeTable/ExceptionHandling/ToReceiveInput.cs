@@ -31,6 +31,7 @@ namespace _4차_LectureTimeTable.ExceptionHandling
                     if (stringBuilder.Length == 0) //뒤로가기
                     {
                         stringBuilder.Append("ESC");
+                        return stringBuilder.ToString();
                     }
 
                     else if (stringBuilder.Length > 0) //다시 입력하기

@@ -14,6 +14,18 @@ namespace _4차_LectureTimeTable.Utility
         COURSE_REGISTRATION_CHECKER
     }
 
+    enum LectureEntriesList
+    {
+        MAJOR_LECTURE,
+        CLASSIFICATION,
+        LECTURE_NAME,
+        PROFESSOR_NAME,
+        GRADE,
+        COURSE_NUMBER,
+        CLASS_NUMBER,
+        SEARCH
+    }
+
     public class Constants
     {
         public const bool IS_PASSWORD = true;
@@ -21,5 +33,6 @@ namespace _4차_LectureTimeTable.Utility
 
         public const bool IS_PRINT_NEXT_LINE = true;
         public const bool IS_PRINT_NEXT_SIDE = false;
+
     }
 }

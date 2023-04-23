@@ -78,16 +78,12 @@ namespace _4차_LectureTimeTable.View
             Console.WriteLine(" > 분반     : ");
         }
 
-        public void PrintExistLectureInformation(Array lectureTotalData, int index)
+        public void PrintExistLectureInformation(string lectureData, int emptyCount)
         {
-            string printedData;
 
-            for (int j = 1; j <= 12; j++)
-            {
-                printedData = lectureTotalData.GetValue(index, j).ToString();
-                printedData = printedData.PadRight(5, ' ');
-                Console.Write(printedData);
-            }
+            lectureData = lectureData.PadRight(emptyCount);
+            Console.Write(lectureData);
+               
             
         }
 

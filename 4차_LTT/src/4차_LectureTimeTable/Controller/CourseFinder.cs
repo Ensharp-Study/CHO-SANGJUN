@@ -12,6 +12,7 @@ using _4차_LectureTimeTable.ExceptionHandling;
 using _4차_LectureTimeTable.Utility;
 using System.Security.Policy;
 using _4차_LectureTimeTable.View;
+using System.Globalization;
 
 namespace _4차_LectureTimeTable.Controller
 {
@@ -29,19 +30,23 @@ namespace _4차_LectureTimeTable.Controller
             this.menuSelectController = menuSelectController;
         }
 
-        public string lectureName; //과목명
-        public string professor;   //교수명
-        public string grade;       //학년
-        public string courseCode;  //학수번호
-        public string courseClass; //분반
+        public string lectureName=""; //과목명
+        public string professor="";   //교수명
+        public string grade = "";       //학년
+        public string courseCode = "";  //학수번호
+        public string courseClass = ""; //분반
 
         
         public string[] majorPrintList = { "전체", "컴퓨터공학과", "소프트웨어학과", "지능기전공학부", "기계항공우주공학부" };
         public string[] courseClassificationPrintList = { "전체", "공통교양필수", "전공필수", "전공선택" };
-        public string[] LectureEntries = { "개설학과 전공", "이수구분", "교과목명", "교수명", "학년", "학수번호" };
+        public string[] LectureEntries = { "개설학과 전공", "이수구분", "교과목명     :", "교수명       :", "학년         :", "학수번호     :", "분반         :", "<검색하기>" };
 
+        public int lectureEntriesNumber;
         public int majorNumber;
         public int courseClassificationNumber;
+
+        bool isInputValid = false;
+        bool isSearchCompleted = false;
 
         public void FindCourse()  //강의 찾기 내 메인 함수
         {
@@ -50,52 +55,72 @@ namespace _4차_LectureTimeTable.Controller
             menuUi.PrintSearchLectureGuideUi();
             menuUi.PrintCourseFinderMenu();
 
-            menuSelectController.SelectMenuWithUpAndDown(LectureEntries,6,5,15);
-            majorNumber = menuSelectController.SelectMenuWithRightAndLeft(majorPrintList, 5, 10, 15);
-            courseClassificationNumber = menuSelectController.SelectMenuWithRightAndLeft(courseClassificationPrintList, 4, 10, 16);
-            InputCourseInformation();
+            while (!isSearchCompleted)
+            {
+                lectureEntriesNumber = menuSelectController.SelectMenuWithUpAndDown(LectureEntries, 8, 5, 11);
+                SelectLectureEntriesMenu();
+            }
+            Console.Clear();
             CompareWithData();
         }
-
-        public void InputCourseInformation() //원하는 강의 정보 입력 받는 함수
+        
+        public void SelectLectureEntriesMenu()
         {
-            Console.CursorVisible = true;
-            menuUi.PrintLectureDetailInformationInputMenu(10, 17);
-            bool isInputValid = false;
-            while (!isInputValid)
-            {
-                lectureName = ToReceiveInput.ReceiveInput(24, 17, 30, Constants.IS_NOT_PASSWORD);
-                isInputValid = lectureException.JudgeLectureNameRegularExpression(24, 17, lectureName);
-            }
-
             isInputValid = false;
-            while (!isInputValid)
+            isSearchCompleted = false;
+            switch (lectureEntriesNumber)
             {
-                professor = ToReceiveInput.ReceiveInput(24, 18, 25, Constants.IS_NOT_PASSWORD);
-                isInputValid = lectureException.JudgeProcessorRegularExpression(24, 18, professor);
-            }
+                case (int)LectureEntriesList.MAJOR_LECTURE:
+                    majorNumber = menuSelectController.SelectMenuWithRightAndLeft(majorPrintList, 5, 20, 11);
+                    break;
 
-            isInputValid = false;
-            while (!isInputValid)
-            {
-                grade = ToReceiveInput.ReceiveInput(24, 19, 1, Constants.IS_NOT_PASSWORD);
-                isInputValid = lectureException.JudgeGradeRegularExpression(24, 19, grade);
-            }
+                case (int)LectureEntriesList.CLASSIFICATION:
+                    courseClassificationNumber = menuSelectController.SelectMenuWithRightAndLeft(courseClassificationPrintList, 4, 20, 12);
+                    break;
 
-            isInputValid = false;
-            while (!isInputValid)
-            {
-                courseCode = ToReceiveInput.ReceiveInput(24, 20, 6, Constants.IS_NOT_PASSWORD);
-                isInputValid = lectureException.JudgeCourseCodeRegularExpression(24, 20, courseCode);
-            }
+                case (int)LectureEntriesList.LECTURE_NAME:
+                    while (!isInputValid)
+                    {
+                        lectureName = ToReceiveInput.ReceiveInput(20, 13, 30, Constants.IS_NOT_PASSWORD);
+                        isInputValid = lectureException.JudgeLectureNameRegularExpression(20, 13, lectureName);
+                    }
+                    break;
 
-            isInputValid = false;
-            while (!isInputValid)
-            {
-                courseClass = ToReceiveInput.ReceiveInput(24, 21, 3, Constants.IS_NOT_PASSWORD);
-                isInputValid = lectureException.JudgeCourseClassRegularExpression(24, 21, courseClass);
+                case (int)LectureEntriesList.PROFESSOR_NAME:
+                    while (!isInputValid)
+                    {
+                        professor = ToReceiveInput.ReceiveInput(20, 14, 25, Constants.IS_NOT_PASSWORD);
+                        isInputValid = lectureException.JudgeProcessorRegularExpression(20, 14, professor);
+                    }
+                    break;
+
+                case (int)LectureEntriesList.GRADE:
+                    while (!isInputValid)
+                    {
+                        grade = ToReceiveInput.ReceiveInput(20, 15, 1, Constants.IS_NOT_PASSWORD);
+                        isInputValid = lectureException.JudgeGradeRegularExpression(20, 15, grade);
+                    }
+                    break;
+
+                case (int)LectureEntriesList.COURSE_NUMBER:
+                    while (!isInputValid)
+                    {
+                        courseCode = ToReceiveInput.ReceiveInput(20, 16, 6, Constants.IS_NOT_PASSWORD);
+                        isInputValid = lectureException.JudgeCourseCodeRegularExpression(20, 16, courseCode);
+                    }
+                    break;
+                case (int)LectureEntriesList.CLASS_NUMBER:
+                    while (!isInputValid)
+                    {
+                        courseClass = ToReceiveInput.ReceiveInput(20, 17, 3, Constants.IS_NOT_PASSWORD);
+                        isInputValid = lectureException.JudgeCourseClassRegularExpression(20, 17, courseClass);
+                    }
+                    break;
+                case (int)LectureEntriesList.SEARCH:
+                    isSearchCompleted = true;
+                    break;
             }
-        }
+        } 
 
         public void CompareWithData()
         {
@@ -125,15 +150,27 @@ namespace _4차_LectureTimeTable.Controller
                 if (isExistCourseInData) // 일치하면 출력
                 {
                     {
-                        menuUi.PrintExistLectureInformation( dataStorage.lectureTotalData, i);
+                        SetAndArrangeData(dataStorage.lectureTotalData, i);//문자열 수 확인하는 함수
                     }
                     isExistCourseInData = false;
                 }
             }
         }
 
+        //문자열 바이트 수 확인하고 출력 정렬 맞춰주는 함수
+        public void SetAndArrangeData(Array lectureTotalData, int index)
+        {
+            string[] maximumLengthOfStringsInEachRow = { "184", "기계항공우주공학부", "004714","001", "K-MOOC:모두를위한머신러닝", "공통교양필수", "1", "1", "수 16:30~18:30, 금 09:00~11:00", "센B201,센B209", "Abolghasem Sadeghi-Niaraki", "영어/한국어" };
+            for (int i = 1; i <= 12; i++)
+            {
+                menuUi.PrintExistLectureInformation(lectureTotalData.GetValue(index, i).ToString(),  Encoding.Default.GetByteCount(maximumLengthOfStringsInEachRow[i - 1])  - (lectureTotalData.GetValue(index, i).ToString()).Length  + 2);
+            }
+            Console.WriteLine();
+
+        }
+
         //엑셀 불러오기
-        public void GetExcelFile()
+        public void GetExcelFile() // 밖으로 빼기
         {
             try
             {

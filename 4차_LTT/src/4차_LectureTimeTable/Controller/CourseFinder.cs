@@ -15,10 +15,10 @@ namespace _4차_LectureTimeTable.Controller
 {
     public class CourseFinder
     {
-        DataStorage dataStorage;
-        LectureException lectureException;
-        MenuUi menuUi;
-        MenuSelectController menuSelectController;
+        protected DataStorage dataStorage;
+        protected LectureException lectureException;
+        protected MenuUi menuUi;
+        protected MenuSelectController menuSelectController;
         public CourseFinder(DataStorage dataStorage, LectureException lectureException, MenuUi menuUi, MenuSelectController menuSelectController) 
         { 
             this.dataStorage = dataStorage;

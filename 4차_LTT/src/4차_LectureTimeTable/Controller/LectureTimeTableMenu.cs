@@ -31,7 +31,7 @@ namespace _4차_LectureTimeTable.Controller
         {
             MenuSelectController menuSelectController = new MenuSelectController(menuUi);
             CourseFinder courseFinder = new CourseFinder(dataStorage, lectureException, menuUi, menuSelectController);
-            CourseOfInterestAdder courseOfInterestAdder = new CourseOfInterestAdder(menuUi, menuSelectController, courseFinder);
+            CourseOfInterestAdder courseOfInterestAdder = new CourseOfInterestAdder(menuUi, dataStorage, lectureException, menuSelectController);
             
 
             menuUi.PrintMenuUi(userInformation.UserName);
@@ -45,7 +45,7 @@ namespace _4차_LectureTimeTable.Controller
                     break;
                 case (int)MenuList.COURSE_OF_INTEREST_ADDER:
                     Console.SetWindowSize(150, 30);
-                    courseOfInterestAdder.AddInterestLecture(userInformation);
+                    courseOfInterestAdder.ControllAddInterestLectureMenu(userInformation);
                     break;
 
                 case (int)MenuList.COURSE_REGISTRATION:

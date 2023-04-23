@@ -14,6 +14,13 @@ namespace _4차_LectureTimeTable.Utility
         COURSE_REGISTRATION_CHECKER
     }
 
+    enum InterestLectureMenuList
+    {
+        ADDER,
+        CHECKER,
+        DELETER
+    }
+
     enum LectureEntriesList
     {
         MAJOR_LECTURE,

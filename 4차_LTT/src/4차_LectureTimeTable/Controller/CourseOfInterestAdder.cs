@@ -54,8 +54,8 @@ namespace _4차_LectureTimeTable.Controller
                 isInputValid = false;
                 while (!isInputValid) //담을 과목 번호 입력 받기
                 {
-                    courseRegistrationNumber = ToReceiveInput.ReceiveInput(Console.CursorTop, 2, 3, Constants.IS_NOT_PASSWORD);
-                    isInputValid = lectureException.JudgeCourseNumberRegularExpression(38, 19, courseRegistrationNumber);
+                    courseRegistrationNumber = ToReceiveInput.ReceiveInput(55, Console.CursorTop-1, 3, Constants.IS_NOT_PASSWORD);
+                    isInputValid = lectureException.JudgeCourseNumberRegularExpression(55, Console.CursorTop-1, courseRegistrationNumber);
                 }
 
                 for (int i = 1; i <= dataStorage.lectureTotalData.GetLength(0); i++) //엑셀 모든 열 탐색
@@ -82,6 +82,7 @@ namespace _4차_LectureTimeTable.Controller
                         userInformation.UserInterestLecture.Add(lectureDTO);//해당 DTO 인스턴스 데이터 저장소에 저장
                     }
                 }
+
             }
 
         }

@@ -121,7 +121,7 @@ namespace _4차_LectureTimeTable.ExceptionHandling
         {
 
             Console.SetCursorPosition(cursorPositionX, cursorPositionY);
-            string pattern = @"^[0-9]{3}$";
+            string pattern = @"^[1-9][0-9]{0,2}$";
             bool isMatch = Regex.IsMatch(inputString, pattern);
 
             if (isMatch == true)
@@ -132,7 +132,7 @@ namespace _4차_LectureTimeTable.ExceptionHandling
             {
                 Console.SetCursorPosition(cursorPositionX, cursorPositionY);
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("숫자 세자리를 입력해 주세요");
+                Console.WriteLine("1 부터 999 사이의 숫자를 입력해 주세요");
                 Console.ResetColor();
                 Console.ReadKey(true);
                 return false;

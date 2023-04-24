@@ -27,6 +27,8 @@ namespace _4차_LectureTimeTable.Controller
             this.menuSelectController = menuSelectController;
         }
 
+        public string major;
+        public string courseClassification;
         public string lectureName=""; //과목명
         public string professor="";   //교수명
         public string grade = "";       //학년
@@ -70,10 +72,14 @@ namespace _4차_LectureTimeTable.Controller
                 case (int)LectureEntriesList.MAJOR_LECTURE: //전공선택
                     
                     majorNumber = menuSelectController.SelectMenuWithRightAndLeft(majorPrintList, 5, 20, 11); //좌우키로 메뉴선택하는 함수 호출
+                    if (majorNumber == 0) major = "";
+                    else major = majorPrintList[majorNumber];
                     break;
 
                 case (int)LectureEntriesList.CLASSIFICATION: //이수구분 선택하기
                     courseClassificationNumber = menuSelectController.SelectMenuWithRightAndLeft(courseClassificationPrintList, 4, 20, 12); //좌우키로 메뉴 선택하는 함수 호출
+                    if (courseClassificationNumber == 0) courseClassification = "";
+                    else courseClassification = courseClassificationPrintList[courseClassificationNumber];
                     break;
 
                 case (int)LectureEntriesList.LECTURE_NAME: //강의 이름 
@@ -123,6 +129,7 @@ namespace _4차_LectureTimeTable.Controller
         public void CompareWithData() //데이터와 입력 받은값 서로 비교하기
         {
             bool isExistCourseInData = false;
+
             for (int i = 1; i <= dataStorage.lectureTotalData.GetLength(0); i++)
             {
                 // 입력받은 값이 모두 공백인 경우만 제외
@@ -134,8 +141,8 @@ namespace _4차_LectureTimeTable.Controller
                 {
                     // 엑셀에서 가져온 데이터와 입력받은값 서로 비교하여 교집합으로 포함되는지 판단하는 함수
                     if (
-                        (dataStorage.lectureTotalData.GetValue(i, 2).ToString()).Contains(majorPrintList[majorNumber]) &&
-                        (dataStorage.lectureTotalData.GetValue(i, 6).ToString()).Contains(courseClassificationPrintList[courseClassificationNumber]) &&
+                        (dataStorage.lectureTotalData.GetValue(i, 2).ToString()).Contains(major) &&
+                        (dataStorage.lectureTotalData.GetValue(i, 6).ToString()).Contains(courseClassification) &&
                         (dataStorage.lectureTotalData.GetValue(i, 5).ToString() ).Contains(lectureName) &&
                         (dataStorage.lectureTotalData.GetValue(i, 11).ToString()).Contains(professor) &&
                         (dataStorage.lectureTotalData.GetValue(i, 7).ToString()).Contains(grade) &&

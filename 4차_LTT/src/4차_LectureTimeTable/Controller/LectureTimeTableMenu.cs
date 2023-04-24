@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace _4차_LectureTimeTable.Controller
 {
-    public class LectureTimeTableMenu
+    public class LectureTimeTableMenu //초기 메뉴 선택하는 클래스
     {
         MenuUi menuUi= new MenuUi();
         LectureException lectureException= new LectureException();
@@ -35,22 +35,22 @@ namespace _4차_LectureTimeTable.Controller
             
 
             menuUi.PrintMenuUi(userInformation.UserName);
-            selectedMenu = menuSelectController.SelectMenuWithUpAndDown(menuList, 4, 42, 12);
+            selectedMenu = menuSelectController.SelectMenuWithUpAndDown(menuList, 4, 42, 12); //초기 메뉴선택 상하키 함수로 선택
 
             switch (selectedMenu)
             {
-                case (int)MenuList.COURSE_FINDER:
-                    Console.SetWindowSize(150, 30);
+                case (int)MenuList.COURSE_FINDER: //강의 찾기
+                    Console.SetWindowSize(180, 30);
                     courseFinder.FindCourse();
                     break;
-                case (int)MenuList.COURSE_OF_INTEREST_ADDER:
-                    Console.SetWindowSize(150, 30);
+                case (int)MenuList.COURSE_OF_INTEREST_ADDER: //관심과목 담기
+                    Console.SetWindowSize(180, 30);
                     courseOfInterestAdder.ControllAddInterestLectureMenu(userInformation);
                     break;
 
-                case (int)MenuList.COURSE_REGISTRATION:
+                case (int)MenuList.COURSE_REGISTRATION: //수강신청하기
 
-                case (int)MenuList.COURSE_REGISTRATION_CHECKER:
+                case (int)MenuList.COURSE_REGISTRATION_CHECKER: //시간표 확인하기
                     break;
                 
             }

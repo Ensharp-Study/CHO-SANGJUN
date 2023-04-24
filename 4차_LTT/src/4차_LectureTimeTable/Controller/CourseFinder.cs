@@ -13,7 +13,7 @@ using System.Globalization;
 
 namespace _4차_LectureTimeTable.Controller
 {
-    public class CourseFinder
+    public class CourseFinder //강의 검색하는 클래스
     {
         protected DataStorage dataStorage;
         protected LectureException lectureException;
@@ -36,9 +36,9 @@ namespace _4차_LectureTimeTable.Controller
         
         public string[] majorPrintList = { "전체", "컴퓨터공학과", "소프트웨어학과", "지능기전공학부", "기계항공우주공학부" };
         public string[] courseClassificationPrintList = { "전체", "공통교양필수", "전공필수", "전공선택" };
-        public string[] LectureEntries = { "개설학과 전공", "이수구분", "교과목명     :", "교수명       :", "학년         :", "학수번호     :", "분반         :", "<검색하기>" };
+        public string[] LectureEntries = { "개설학과 전공", "이수구분", "교과목명     :", "교수명       :", "학년         :", "학수번호     :", "분반         :", "<검색하기>" }; 
 
-        public int lectureEntriesNumber;
+        public int lectureEntriesNumber; //메뉴 ENTER로 선택 했을때 해당 인덱스 저장하는 변수
         public int majorNumber;
         public int courseClassificationNumber;
 
@@ -53,28 +53,28 @@ namespace _4차_LectureTimeTable.Controller
 
             while (!isSearchCompleted)
             {
-                lectureEntriesNumber = menuSelectController.SelectMenuWithUpAndDown(LectureEntries, 8, 5, 11);
-                SelectLectureEntriesMenu();
+                lectureEntriesNumber = menuSelectController.SelectMenuWithUpAndDown(LectureEntries, 8, 5, 11); //상하키로 메뉴 선택하는 함수 호출
+                SelectLectureEntriesMenu(); //선택한 메뉴 처리 하는 함수
             }
             Console.Clear();
-            CompareWithData();
+            CompareWithData(); //검색한 값과 데이터 값 서로 비교하기
         }
         
-        public void SelectLectureEntriesMenu()
+        public void SelectLectureEntriesMenu() //선택한 메뉴 처리하는 함수
         {
             isInputValid = false;
             isSearchCompleted = false;
             switch (lectureEntriesNumber)
             {
-                case (int)LectureEntriesList.MAJOR_LECTURE:
-                    majorNumber = menuSelectController.SelectMenuWithRightAndLeft(majorPrintList, 5, 20, 11);
+                case (int)LectureEntriesList.MAJOR_LECTURE: //전공선택
+                    majorNumber = menuSelectController.SelectMenuWithRightAndLeft(majorPrintList, 5, 20, 11); //좌우키로 메뉴선택하는 함수 호출
                     break;
 
-                case (int)LectureEntriesList.CLASSIFICATION:
-                    courseClassificationNumber = menuSelectController.SelectMenuWithRightAndLeft(courseClassificationPrintList, 4, 20, 12);
+                case (int)LectureEntriesList.CLASSIFICATION: //이수구분 선택하기
+                    courseClassificationNumber = menuSelectController.SelectMenuWithRightAndLeft(courseClassificationPrintList, 4, 20, 12); //좌우키로 메뉴 선택하는 함수 호출
                     break;
 
-                case (int)LectureEntriesList.LECTURE_NAME:
+                case (int)LectureEntriesList.LECTURE_NAME: //강의 이름 
                     while (!isInputValid)
                     {
                         lectureName = ToReceiveInput.ReceiveInput(20, 13, 30, Constants.IS_NOT_PASSWORD);
@@ -82,7 +82,7 @@ namespace _4차_LectureTimeTable.Controller
                     }
                     break;
 
-                case (int)LectureEntriesList.PROFESSOR_NAME:
+                case (int)LectureEntriesList.PROFESSOR_NAME: //교수명
                     while (!isInputValid)
                     {
                         professor = ToReceiveInput.ReceiveInput(20, 14, 25, Constants.IS_NOT_PASSWORD);
@@ -90,7 +90,7 @@ namespace _4차_LectureTimeTable.Controller
                     }
                     break;
 
-                case (int)LectureEntriesList.GRADE:
+                case (int)LectureEntriesList.GRADE: //학점
                     while (!isInputValid)
                     {
                         grade = ToReceiveInput.ReceiveInput(20, 15, 1, Constants.IS_NOT_PASSWORD);
@@ -98,37 +98,39 @@ namespace _4차_LectureTimeTable.Controller
                     }
                     break;
 
-                case (int)LectureEntriesList.COURSE_NUMBER:
+                case (int)LectureEntriesList.COURSE_NUMBER: //학수번호
                     while (!isInputValid)
                     {
                         courseCode = ToReceiveInput.ReceiveInput(20, 16, 6, Constants.IS_NOT_PASSWORD);
                         isInputValid = lectureException.JudgeCourseCodeRegularExpression(20, 16, courseCode);
                     }
                     break;
-                case (int)LectureEntriesList.CLASS_NUMBER:
+                case (int)LectureEntriesList.CLASS_NUMBER: //분반
                     while (!isInputValid)
                     {
                         courseClass = ToReceiveInput.ReceiveInput(20, 17, 3, Constants.IS_NOT_PASSWORD);
                         isInputValid = lectureException.JudgeCourseClassRegularExpression(20, 17, courseClass);
                     }
                     break;
-                case (int)LectureEntriesList.SEARCH:
-                    isSearchCompleted = true;
+                case (int)LectureEntriesList.SEARCH: //ENTER 눌렀을 경우
+                    isSearchCompleted = true; //반복문 탈출을 위한 bool형 변수 처리
                     break;
             }
         } 
 
-        public void CompareWithData()
+        public void CompareWithData() //데이터와 입력 받은값 서로 비교하기
         {
             bool isExistCourseInData = false;
             for (int i = 1; i <= dataStorage.lectureTotalData.GetLength(0); i++)
             {
-                if (string.IsNullOrEmpty(lectureName) == false ||   // 입력받은 값이 공백인 경우 제외
+                // 입력받은 값이 모두 공백인 경우만 제외
+                if (string.IsNullOrEmpty(lectureName) == false ||   
                    string.IsNullOrEmpty(professor) == false ||
                    string.IsNullOrEmpty(grade) == false ||
                    string.IsNullOrEmpty(courseCode) == false ||
                    string.IsNullOrEmpty(courseClass) == false)
                 {
+                    // 엑셀에서 가져온 데이터와 입력받은값 서로 비교하여 교집합으로 포함되는지 판단하는 함수
                     if (
                         (dataStorage.lectureTotalData.GetValue(i, 2).ToString()).Contains(majorPrintList[majorNumber]) &&
                         (dataStorage.lectureTotalData.GetValue(i, 6).ToString()).Contains(courseClassificationPrintList[courseClassificationNumber]) &&
@@ -136,7 +138,7 @@ namespace _4차_LectureTimeTable.Controller
                         (dataStorage.lectureTotalData.GetValue(i, 11).ToString()).Contains(professor) &&
                         (dataStorage.lectureTotalData.GetValue(i, 7).ToString()).Contains(grade) &&
                         (dataStorage.lectureTotalData.GetValue(i, 3).ToString()).Contains(courseCode) &&
-                        (dataStorage.lectureTotalData.GetValue(i, 4).ToString()).Contains(courseClass)){
+                        (dataStorage.lectureTotalData.GetValue(i, 4).ToString()).Contains(courseClass)){  
 
                         isExistCourseInData = true;
                     }
@@ -159,10 +161,11 @@ namespace _4차_LectureTimeTable.Controller
             string[] maximumLengthOfStringsInEachRow = { "184", "기계항공우주공학부", "004714","001", "K-MOOC:모두를위한머신러닝", "공통교양필수", "1", "1", "수 16:30~18:30, 금 09:00~11:00", "센B201,센B209", "Abolghasem Sadeghi-Niaraki", "영어/한국어" };
             for (int i = 1; i <= 12; i++)
             {
+                //문자열과 출력해야 하는 공백 칸수 함수에 인자로 전달 
                 menuUi.PrintExistLectureInformation(lectureTotalData.GetValue(index, i).ToString(), lectureTotalData.GetValue(index, i).ToString().Length + Encoding.Default.GetByteCount(maximumLengthOfStringsInEachRow[i - 1])  - Encoding.Default.GetByteCount(lectureTotalData.GetValue(index, i).ToString()) );
             
             }
-            Console.WriteLine("  ");
+            Console.WriteLine("");//줄 띄우기
 
         }
 

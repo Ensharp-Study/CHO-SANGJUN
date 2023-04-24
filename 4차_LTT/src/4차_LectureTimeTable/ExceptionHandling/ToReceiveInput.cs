@@ -9,7 +9,7 @@ namespace _4차_LectureTimeTable.ExceptionHandling
 {
     public class ToReceiveInput
     {
-        public ToReceiveInput() { } 
+        public ToReceiveInput() { } //모든 입력을 입력받는 함수(예외처리)
         public static string ReceiveInput(int cursorPositionX, int cursorPositionY , int maxLength, bool isPassword)
         {
             StringBuilder stringBuilder = new StringBuilder();

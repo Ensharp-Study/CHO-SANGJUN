@@ -34,7 +34,7 @@ namespace _4차_LectureTimeTable.DataBase
 
         public List<UserDTO> userData;
 
-        public Array lectureTotalData;
+        public Array lectureTotalData; //엑셀에서 불러온 데이터 저장하는 배열
 
 
 

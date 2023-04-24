@@ -13,12 +13,7 @@ namespace _4차_LectureTimeTable
         static void Main(string[] args)
         {
             LectureTimeTableStart lectureTimeTableStart = new LectureTimeTableStart();
-            lectureTimeTableStart.GetLogin();
-
-            /*Console.WriteLine(Encoding.Default.GetByteCount("월 16:30~18:30, 월 18:30~20:30") - ("월 16:30~18:30, 월 18:30~20:30").Length + 2); 4
-            Console.WriteLine(Encoding.Default.GetByteCount("월 16:30~18:30, 월 18:30~20:30")); 30
-            Console.WriteLine(("월 16:30~18:30, 월 18:30~20:30").Length); 28*/ 
-
+            lectureTimeTableStart.GetLogin(); //로그인 함수로 들어가기
         }
     }
 }

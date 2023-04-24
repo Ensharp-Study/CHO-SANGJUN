@@ -87,5 +87,10 @@ namespace _4차_LectureTimeTable.View
 
         }
 
+        public void PrintStatusOfInterestedLecture(int availableCreditsForRegistration, int earnedCredits)
+        {
+            Console.WriteLine("==============================================================================================================");
+            Console.WriteLine("등록가능 학점 : {0}    담은학점 : {1}     담을과목 (NO) : ", availableCreditsForRegistration, earnedCredits);
+        }
     }
 }

@@ -25,9 +25,9 @@ namespace _4차_LectureTimeTable.Controller
             int selectedMenu = 0;
 
             Console.CursorVisible = false;
-            SetAndPrintColorMenuSentence(menuList, selectedMenu, cursorPositionX, cursorPositionY,Constants.IS_PRINT_NEXT_LINE);
+            SetAndPrintColorMenuSentence(menuList, selectedMenu, cursorPositionX, cursorPositionY,Constants.IS_PRINT_NEXT_LINE); //색깔 적용 후 메뉴 리스트 출력해 주는 함수
 
-            while (!isEnter)
+            while (!isEnter) //위아래 키에 맞게 메뉴의 번호 설정하기
             {
                 inputKey = Console.ReadKey();
                 if ((inputKey.Key == ConsoleKey.UpArrow) && (selectedMenu > 0))
@@ -83,26 +83,27 @@ namespace _4차_LectureTimeTable.Controller
         }
 
         public void SetAndPrintColorMenuSentence(string[] menuList,int selectedMenu, int cursorPositionX, int cursorPositionY, bool isDownOrRight) //해당 메뉴 위치 보여주는 함수
-        {
+        {   //선택한 메뉴 색처리 및 메뉴 출력해주는 함수
             for (int i = 0; i < menuList.Length; i++)
             {
                 if (i == selectedMenu)
                 {
-                    menuUi.PrintColorSentence(cursorPositionX, cursorPositionY, menuList[i]);
+                    menuUi.PrintColorSentence(cursorPositionX, cursorPositionY, menuList[i]); //색 처리
                 }
 
                 else
                 {
-                    menuUi.PrintNotColorSentence(cursorPositionX, cursorPositionY, menuList[i]);
+                    menuUi.PrintNotColorSentence(cursorPositionX, cursorPositionY, menuList[i]); //색 미처리
                 }
 
-                if (isDownOrRight)
+                if (isDownOrRight) //상하키 함수에서 호출 할 경우
                 {
                     cursorPositionY++;
                 }
                 else
                 {
-                    cursorPositionX += ((menuList[i].Length) * 2 + 5);  //한글은 콘솔창 2칸씩 차지 하므로 겹치지 않도록 2배 처리
+                    cursorPositionX += ((menuList[i].Length) * 2 + 5);  //좌우 키 함수에서 호출 할 경우
+                    //한글은 콘솔창 2칸씩 차지 하므로 겹치지 않도록 2배 처리
                 }
             }
 

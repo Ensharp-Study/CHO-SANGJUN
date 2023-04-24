@@ -48,6 +48,7 @@ namespace _4차_LectureTimeTable.Controller
         public void FindCourse()  //강의 찾기 내 메인 함수
         {
             Console.Clear();
+            
             menuUi.PrintSearchLectureGuideUi();
             menuUi.PrintCourseFinderMenu();
 
@@ -67,6 +68,7 @@ namespace _4차_LectureTimeTable.Controller
             switch (lectureEntriesNumber)
             {
                 case (int)LectureEntriesList.MAJOR_LECTURE: //전공선택
+                    
                     majorNumber = menuSelectController.SelectMenuWithRightAndLeft(majorPrintList, 5, 20, 11); //좌우키로 메뉴선택하는 함수 호출
                     break;
 
@@ -124,11 +126,11 @@ namespace _4차_LectureTimeTable.Controller
             for (int i = 1; i <= dataStorage.lectureTotalData.GetLength(0); i++)
             {
                 // 입력받은 값이 모두 공백인 경우만 제외
-                if (string.IsNullOrEmpty(lectureName) == false ||   
-                   string.IsNullOrEmpty(professor) == false ||
-                   string.IsNullOrEmpty(grade) == false ||
-                   string.IsNullOrEmpty(courseCode) == false ||
-                   string.IsNullOrEmpty(courseClass) == false)
+                //if (string.IsNullOrEmpty(lectureName) == false ||   
+                   //string.IsNullOrEmpty(professor) == false ||
+                   //string.IsNullOrEmpty(grade) == false ||
+                   //string.IsNullOrEmpty(courseCode) == false ||
+                   //string.IsNullOrEmpty(courseClass) == false)
                 {
                     // 엑셀에서 가져온 데이터와 입력받은값 서로 비교하여 교집합으로 포함되는지 판단하는 함수
                     if (
@@ -158,9 +160,11 @@ namespace _4차_LectureTimeTable.Controller
         //문자열 바이트 수 확인하고 출력 정렬 맞춰주는 함수
         public void SetAndArrangeData(Array lectureTotalData, int index)
         {
-            string[] maximumLengthOfStringsInEachRow = { "184", "기계항공우주공학부", "004714","001", "K-MOOC:모두를위한머신러닝", "공통교양필수", "1", "1", "수 16:30~18:30, 금 09:00~11:00", "센B201,센B209", "Abolghasem Sadeghi-Niaraki", "영어/한국어" };
+            string[] maximumLengthOfStringsInEachRow = { "184", "기계항공우주공학부", "004714","001", "Capstone디자인(산학협력프로젝트)", "공통교양필수", "1", "1", "수 16:30~18:30, 금 09:00~11:00", "센B201,센B209", "Abolghasem Sadeghi-Niaraki", "영어/한국어" };
             for (int i = 1; i <= 12; i++)
             {
+                //예외처리. 엑셀 값이 공백 일 때
+                if (lectureTotalData.GetValue(index, i) == null) lectureTotalData.SetValue("", index, i);
                 //문자열과 출력해야 하는 공백 칸수 함수에 인자로 전달 
                 menuUi.PrintExistLectureInformation(lectureTotalData.GetValue(index, i).ToString(), lectureTotalData.GetValue(index, i).ToString().Length + Encoding.Default.GetByteCount(maximumLengthOfStringsInEachRow[i - 1])  - Encoding.Default.GetByteCount(lectureTotalData.GetValue(index, i).ToString()) );
             

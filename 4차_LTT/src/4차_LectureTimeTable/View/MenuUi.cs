@@ -92,5 +92,18 @@ namespace _4차_LectureTimeTable.View
             Console.WriteLine("==============================================================================================================");
             Console.WriteLine("등록가능 학점 : {0}    담은학점 : {1}     담을과목 (NO) : ", availableCreditsForRegistration, earnedCredits);
         }
+
+        public void PrintAlreadyContainErrorMesseage()
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("이미 관심과목에 담겨진 항목입니다. 다시 선택하세요. ");
+            Console.ResetColor();
+        }
+        public void PrintExcessCreditsErrorMesseage()
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("");
+            Console.ResetColor();
+        }
     }
 }

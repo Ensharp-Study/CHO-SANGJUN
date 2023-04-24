@@ -44,6 +44,8 @@ namespace _4차_LectureTimeTable.Controller
         public int earnedCredits =0; //담은 학점수
         public string courseRegistrationNumber; //담는 과목 번호
         bool isInputValid = false;
+        bool isAddPosibility = true;
+      
         public void AddLecture(UserDTO userInformation) //관심과목 호출하는 함수
         {
             FindCourse();
@@ -52,34 +54,54 @@ namespace _4차_LectureTimeTable.Controller
             {
                 menuUi.PrintStatusOfInterestedLecture(availableCreditsForRegistration, earnedCredits);
                 isInputValid = false;
+                isAddPosibility = true;
                 while (!isInputValid) //담을 과목 번호 입력 받기
                 {
                     courseRegistrationNumber = ToReceiveInput.ReceiveInput(55, Console.CursorTop-1, 3, Constants.IS_NOT_PASSWORD);
                     isInputValid = lectureException.JudgeCourseNumberRegularExpression(55, Console.CursorTop-1, courseRegistrationNumber);
                 }
 
-                for (int i = 1; i <= dataStorage.lectureTotalData.GetLength(0); i++) //엑셀 모든 열 탐색
+                for (int j = 0; j < userInformation.UserInterestLecture.Count; j++) 
                 {
-                    if (dataStorage.lectureTotalData.GetValue(i, 1).ToString() == courseRegistrationNumber) // 엑셀 번호값이랑 입력번호값이랑 비교
+                    if (userInformation.UserInterestLecture[j].LectureId == courseRegistrationNumber) //예외처리 1.이미 관심과목에 담았을때
                     {
-                        LectureDTO lectureDTO = new LectureDTO();
-                        lectureDTO.LectureId = dataStorage.lectureTotalData.GetValue(i, 1).ToString();
-                        lectureDTO.Major = dataStorage.lectureTotalData.GetValue(i, 2).ToString();
-                        lectureDTO.CourseNumber = dataStorage.lectureTotalData.GetValue(i, 3).ToString();
-                        lectureDTO.CourseClass = dataStorage.lectureTotalData.GetValue(i, 4).ToString();
-                        lectureDTO.LectureName = dataStorage.lectureTotalData.GetValue(i, 5).ToString();
-                        lectureDTO.CourseClassification = dataStorage.lectureTotalData.GetValue(i, 6).ToString();
-                        lectureDTO.Grade = dataStorage.lectureTotalData.GetValue(i, 7).ToString();
-                        lectureDTO.Credit = dataStorage.lectureTotalData.GetValue(i, 8).ToString();
-                        lectureDTO.LectureTime = dataStorage.lectureTotalData.GetValue(i, 9).ToString();
-                        lectureDTO.LectureClassroom = dataStorage.lectureTotalData.GetValue(i, 10).ToString();
-                        lectureDTO.Professor = dataStorage.lectureTotalData.GetValue(i, 11).ToString();
-                        //해당 번호 강의 정보 DTO에 저장하기
+                        menuUi.PrintAlreadyContainErrorMesseage(); //오류메세지 출력
+                        isAddPosibility = false;
+                    }
+                }
+                //예외처리 2. 학점수가 초과되거나 해당리스트에 없을때
+                if ((availableCreditsForRegistration - (int) (dataStorage.lectureTotalData.GetValue(int.Parse(courseRegistrationNumber),8) ) )<0) 
+                {
+                    menuUi.PrintExcessCreditsErrorMesseage(); //오류메세지 출력
+                    isAddPosibility = false;
 
-                        availableCreditsForRegistration -= int.Parse(lectureDTO.Credit); //신청가능 학점 수 줄이기
-                        earnedCredits += int.Parse(lectureDTO.Credit); //신청학점 수 추가하기
+                }
 
-                        userInformation.UserInterestLecture.Add(lectureDTO);//해당 DTO 인스턴스 데이터 저장소에 저장
+                if (isAddPosibility)//강의가 미리 담겨지지 않았을 경우에만 실행
+                {
+                    for (int i = 1; i <= dataStorage.lectureTotalData.GetLength(0); i++) //엑셀 모든 열 탐색
+                    {
+                        if (dataStorage.lectureTotalData.GetValue(i, 1).ToString() == courseRegistrationNumber) // 엑셀 번호값이랑 입력번호값이랑 비교
+                        {
+                            LectureDTO lectureDTO = new LectureDTO();
+                            lectureDTO.LectureId = dataStorage.lectureTotalData.GetValue(i, 1).ToString();
+                            lectureDTO.Major = dataStorage.lectureTotalData.GetValue(i, 2).ToString();
+                            lectureDTO.CourseNumber = dataStorage.lectureTotalData.GetValue(i, 3).ToString();
+                            lectureDTO.CourseClass = dataStorage.lectureTotalData.GetValue(i, 4).ToString();
+                            lectureDTO.LectureName = dataStorage.lectureTotalData.GetValue(i, 5).ToString();
+                            lectureDTO.CourseClassification = dataStorage.lectureTotalData.GetValue(i, 6).ToString();
+                            lectureDTO.Grade = dataStorage.lectureTotalData.GetValue(i, 7).ToString();
+                            lectureDTO.Credit = dataStorage.lectureTotalData.GetValue(i, 8).ToString();
+                            lectureDTO.LectureTime = dataStorage.lectureTotalData.GetValue(i, 9).ToString();
+                            lectureDTO.LectureClassroom = dataStorage.lectureTotalData.GetValue(i, 10).ToString();
+                            lectureDTO.Professor = dataStorage.lectureTotalData.GetValue(i, 11).ToString();
+                            //해당 번호 강의 정보 DTO에 저장하기
+
+                            availableCreditsForRegistration -= int.Parse(lectureDTO.Credit); //신청가능 학점 수 줄이기
+                            earnedCredits += int.Parse(lectureDTO.Credit); //신청학점 수 추가하기
+
+                            userInformation.UserInterestLecture.Add(lectureDTO);//해당 DTO 인스턴스 데이터 저장소에 저장
+                        }
                     }
                 }
 

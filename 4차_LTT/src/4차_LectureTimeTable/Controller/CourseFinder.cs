@@ -27,8 +27,8 @@ namespace _4차_LectureTimeTable.Controller
             this.menuSelectController = menuSelectController;
         }
 
-        public string major;
-        public string courseClassification;
+        public string major="";
+        public string courseClassification="";
         public string lectureName=""; //과목명
         public string professor="";   //교수명
         public string grade = "";       //학년
@@ -138,7 +138,7 @@ namespace _4차_LectureTimeTable.Controller
                    //string.IsNullOrEmpty(grade) == false ||
                    //string.IsNullOrEmpty(courseCode) == false ||
                    //string.IsNullOrEmpty(courseClass) == false)
-                {
+                //{
                     // 엑셀에서 가져온 데이터와 입력받은값 서로 비교하여 교집합으로 포함되는지 판단하는 함수
                     if (
                         (dataStorage.lectureTotalData.GetValue(i, 2).ToString()).Contains(major) &&
@@ -152,7 +152,7 @@ namespace _4차_LectureTimeTable.Controller
                         isExistCourseInData = true;
                     }
 
-                }
+                //}
 
                 if (isExistCourseInData) // 일치하면 출력
                 {

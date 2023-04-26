@@ -33,12 +33,27 @@ namespace _4차_LectureTimeTable.Model
             set { userName = value; }
         }
 
-        private List<LectureDTO> userInterestLecture;  //사용자의 관심과목을 저장하는 리스트 선언
 
+        private List<LectureDTO> userInterestLecture;  //사용자의 관심과목을 저장하는 리스트 선언
         public List<LectureDTO> UserInterestLecture
         {
             get { return userInterestLecture; }
         }
+
+        private int availableCreditsForRegistrationOfInterestLecture; //관심과목 담기 가능 학점
+        public int AvailableCreditsForRegistrationOfInterestLecture
+        {
+            get { return  availableCreditsForRegistrationOfInterestLecture;}
+            set { availableCreditsForRegistrationOfInterestLecture = value; }
+        }
+
+        private int earnedCreditsOfInterestLecture; //담은 학점수
+        public int EarnedCreditsOfInterestLecture
+        {
+            get { return earnedCreditsOfInterestLecture; }
+            set { earnedCreditsOfInterestLecture = value; }
+        }
+
 
         private string userInterestLectureCredits;
         public string UserInterestLectureCredits

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _4차_LectureTimeTable.Model
 {
-    public class LectureDTO
+    public class LectureDTO //변수 위로 올리기
     {
         public LectureDTO() 
         { 

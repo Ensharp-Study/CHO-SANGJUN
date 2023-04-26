@@ -14,10 +14,9 @@ namespace _4차_LectureTimeTable.Controller
 {
     public class LectureTimeTableMenu //초기 메뉴 선택하는 클래스
     {
-        MenuUi menuUi= new MenuUi();
-        LectureException lectureException= new LectureException();
-
-        DataStorage dataStorage;
+        public DataStorage dataStorage;
+        public MenuUi menuUi = new MenuUi();
+        public LectureException lectureException = new LectureException(); //생성자로 내리기
 
         public LectureTimeTableMenu(DataStorage dataStorage) //생성자 
         {
@@ -29,34 +28,35 @@ namespace _4차_LectureTimeTable.Controller
 
         public void ControllLectureTimeTableMenu(UserDTO userInformation) //로그인한 유저의 정보 인자로 받아오기
         {
-            MenuSelectController menuSelectController = new MenuSelectController(menuUi);
-            CourseFinder courseFinder = new CourseFinder(dataStorage, lectureException, menuUi, menuSelectController);
-            CourseOfInterestAdder courseOfInterestAdder = new CourseOfInterestAdder(menuUi, dataStorage, lectureException, menuSelectController);
-            
-
-            menuUi.PrintMenuUi(userInformation.UserName);
-            selectedMenu = menuSelectController.SelectMenuWithUpAndDown(menuList, 4, 42, 12); //초기 메뉴선택 상하키 함수로 선택
-
-            switch (selectedMenu)
+            while (true)
             {
-                case (int)MenuList.COURSE_FINDER: //강의 찾기
-                    Console.SetWindowSize(190, 30);
-                    courseFinder.FindCourse();
-                    break;
-                case (int)MenuList.COURSE_OF_INTEREST_ADDER: //관심과목 담기
-                    Console.SetWindowSize(180, 30);
-                    courseOfInterestAdder.ControllAddInterestLectureMenu(userInformation);
-                    break;
+                MenuSelectController menuSelectController = new MenuSelectController(menuUi);
+                CourseFinder courseFinder = new CourseFinder(dataStorage, lectureException, menuUi, menuSelectController);
+                CourseOfInterestAdder courseOfInterestAdder = new CourseOfInterestAdder(menuUi, dataStorage, lectureException, menuSelectController);
 
-                case (int)MenuList.COURSE_REGISTRATION: //수강신청하기
+                menuUi.PrintMenuUi(userInformation.UserName);
+                selectedMenu = menuSelectController.SelectMenuWithUpAndDown(menuList, 4, 42, 12); //초기 메뉴선택 상하키 함수로 선택
 
-                case (int)MenuList.COURSE_REGISTRATION_CHECKER: //시간표 확인하기
-                    break;
-                
+                switch (selectedMenu)
+                {
+                    case (int)MenuList.COURSE_FINDER: //강의 찾기
+                        Console.SetWindowSize(190, 30);
+                        courseFinder.FindCourse();
+                        break;
+                    case (int)MenuList.COURSE_OF_INTEREST_ADDER: //관심과목 담기
+                        Console.SetWindowSize(180, 30);
+                        courseOfInterestAdder.ControllAddInterestLectureMenu(userInformation);
+                        break;
+
+                    case (int)MenuList.COURSE_REGISTRATION: //수강신청하기
+
+                    case (int)MenuList.COURSE_REGISTRATION_CHECKER: //시간표 확인하기
+                        break;
+
+                }
             }
-           
 
         }
-
+        
     }
 }

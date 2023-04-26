@@ -29,8 +29,8 @@ namespace _4차_LectureTimeTable.Controller
                 case (int)InterestLectureMenuList.ADDER:
                     AddLecture(userInformation); //관심과목 추가하는 함수 호출
                     break;
-                case (int)InterestLectureMenuList.CHECKER:
-                   
+                case (int)InterestLectureMenuList.CHECKER: 
+                    CheckInterestLecture(userInformation); //관심과목 담긴 목록 확인하는 함수 호출
                     break;
 
                 case (int)InterestLectureMenuList.DELETER:
@@ -40,8 +40,6 @@ namespace _4차_LectureTimeTable.Controller
             }
         }
 
-        public int availableCreditsForRegistration = 24; //관심과목 담기 가능 학점
-        public int earnedCredits =0; //담은 학점수
         public string courseRegistrationNumber; //담는 과목 번호
         bool isInputValid = false;
         bool isAddPosibility = true;
@@ -49,10 +47,11 @@ namespace _4차_LectureTimeTable.Controller
         public void AddLecture(UserDTO userInformation) //관심과목 호출하는 함수
         {
             FindCourse();
-            
+            userInformation.AvailableCreditsForRegistrationOfInterestLecture = 24;
+            userInformation.EarnedCreditsOfInterestLecture = 0;
             while (true)
             {
-                menuUi.PrintStatusOfInterestedLecture(availableCreditsForRegistration, earnedCredits);
+                menuUi.PrintStatusOfInterestedLecture(userInformation.AvailableCreditsForRegistrationOfInterestLecture, userInformation.EarnedCreditsOfInterestLecture);
                 isInputValid = false;
                 isAddPosibility = true;
                 while (!isInputValid) //담을 과목 번호 입력 받기
@@ -60,7 +59,7 @@ namespace _4차_LectureTimeTable.Controller
                     courseRegistrationNumber = ToReceiveInput.ReceiveInput(55, Console.CursorTop-1, 3, Constants.IS_NOT_PASSWORD);
                     isInputValid = lectureException.JudgeCourseNumberRegularExpression(55, Console.CursorTop-1, courseRegistrationNumber);
                 }
-
+                
                 for (int j = 0; j < userInformation.UserInterestLecture.Count; j++) 
                 {
                     if (userInformation.UserInterestLecture[j].LectureId == courseRegistrationNumber) //예외처리 1.이미 관심과목에 담았을때
@@ -70,7 +69,7 @@ namespace _4차_LectureTimeTable.Controller
                     }
                 }
                 //예외처리 2. 학점수가 초과되거나 해당리스트에 없을때
-                if ((availableCreditsForRegistration - (int) (dataStorage.lectureTotalData.GetValue(int.Parse(courseRegistrationNumber),8) ) )<0) 
+                if ((userInformation.AvailableCreditsForRegistrationOfInterestLecture - Convert.ToInt32((dataStorage.lectureTotalData.GetValue(int.Parse(courseRegistrationNumber),8) )) )<0) 
                 {
                     menuUi.PrintExcessCreditsErrorMesseage(); //오류메세지 출력
                     isAddPosibility = false;
@@ -97,8 +96,8 @@ namespace _4차_LectureTimeTable.Controller
                             lectureDTO.Professor = dataStorage.lectureTotalData.GetValue(i, 11).ToString();
                             //해당 번호 강의 정보 DTO에 저장하기
 
-                            availableCreditsForRegistration -= int.Parse(lectureDTO.Credit); //신청가능 학점 수 줄이기
-                            earnedCredits += int.Parse(lectureDTO.Credit); //신청학점 수 추가하기
+                            userInformation.AvailableCreditsForRegistrationOfInterestLecture -= int.Parse(lectureDTO.Credit); //신청가능 학점 수 줄이기
+                            userInformation.EarnedCreditsOfInterestLecture += int.Parse(lectureDTO.Credit); //신청학점 수 추가하기
 
                             userInformation.UserInterestLecture.Add(lectureDTO);//해당 DTO 인스턴스 데이터 저장소에 저장
                         }
@@ -106,6 +105,11 @@ namespace _4차_LectureTimeTable.Controller
                 }
 
             }
+
+        }
+
+        public void CheckInterestLecture(UserDTO userInformation)
+        {
 
         }
 

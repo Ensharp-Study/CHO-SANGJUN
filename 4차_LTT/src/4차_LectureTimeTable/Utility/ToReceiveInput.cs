@@ -5,9 +5,9 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace _4차_LectureTimeTable.ExceptionHandling
+namespace _4차_LectureTimeTable.Utility
 {
-    public class ToReceiveInput
+    public class ToReceiveInput //이름 변경
     {
         public ToReceiveInput() { } //모든 입력을 입력받는 함수(예외처리)
         public static string ReceiveInput(int cursorPositionX, int cursorPositionY , int maxLength, bool isPassword)

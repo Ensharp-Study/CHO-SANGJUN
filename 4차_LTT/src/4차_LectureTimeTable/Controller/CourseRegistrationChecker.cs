@@ -8,7 +8,5 @@ namespace _4차_LectureTimeTable.Controller
 {
     public class CourseRegistrationChecker
     {
-
-
     }
 }

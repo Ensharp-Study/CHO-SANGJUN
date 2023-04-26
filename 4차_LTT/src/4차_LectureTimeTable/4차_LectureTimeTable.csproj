@@ -53,10 +53,10 @@
     <Compile Include="Controller\CourseRegistrationChecker.cs" />
     <Compile Include="Controller\LectureTimeTableMenu.cs" />
     <Compile Include="Controller\LectureTimeTableStart.cs" />
-    <Compile Include="Controller\MenuSelectController.cs" />
+    <Compile Include="Utility\MenuSelectController.cs" />
     <Compile Include="DataBase\DataStorage.cs" />
     <Compile Include="ExceptionHandling\LectureException.cs" />
-    <Compile Include="ExceptionHandling\ToReceiveInput.cs" />
+    <Compile Include="Utility\ToReceiveInput.cs" />
     <Compile Include="ExceptionHandling\UserException.cs" />
     <Compile Include="LectureTimeTableMain.cs" />
     <Compile Include="Model\LectureDTO.cs" />

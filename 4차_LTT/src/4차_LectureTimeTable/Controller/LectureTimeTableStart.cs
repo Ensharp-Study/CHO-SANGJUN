@@ -16,10 +16,10 @@ namespace _4차_LectureTimeTable.Controller
     public class LectureTimeTableStart
     {
      
-        MainUi mainUi = new MainUi();
-        UserException userException = new UserException();
-        DataStorage dataStorage = new DataStorage();
-        
+        public MainUi mainUi = new MainUi();
+        public UserException userException = new UserException();
+        public DataStorage dataStorage = new DataStorage();
+
         public string id;
         public string password;
         public bool isInputValid;
@@ -27,11 +27,10 @@ namespace _4차_LectureTimeTable.Controller
 
         public void GetLogin()
         {
-            LectureTimeTableMenu lectureTimeTableMenu = new LectureTimeTableMenu(dataStorage);
+            LectureTimeTableMenu lectureTimeTableMenu = new LectureTimeTableMenu(dataStorage); //메소드 밖에 쓰면 오류 발생?
             GetExcelFile();
             while (true)
             {
-
                 Console.SetWindowSize(100, 30);
                 mainUi.PrintMainUi();
                 mainUi.PrintLoginUi();//UI 출력
@@ -74,7 +73,6 @@ namespace _4차_LectureTimeTable.Controller
             }
         }
 
-
         public void InputUserIdAndPassword() // 사용자로 부터 아이디 및 비밀번호 입력 받기 
         {
             isInputValid = false;
@@ -87,14 +85,13 @@ namespace _4차_LectureTimeTable.Controller
             isInputValid = false;
             while (!isInputValid)
             {
-                //Console.CursorVisible = false;
                 password = ToReceiveInput.ReceiveInput(38, 19 ,35, Constants.IS_PASSWORD);
                 isInputValid = userException.JudgePasswordWithRegularExpression(38, 19, password);
             }
         }
 
         //엑셀 불러오기
-        public void GetExcelFile() // 밖으로 빼기
+        public void GetExcelFile() // EXCEL 클래스 만들어서 밖으로 빼기 (이것보다 밖으로 빼면 (메인클래스로 빼면) 오류 발생)
         {
             try
             {

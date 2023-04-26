@@ -20,16 +20,15 @@ namespace _4차_LectureTimeTable.ExceptionHandling
             {
                 return true;
             }
-            else
-            {
-                Console.SetCursorPosition(cursorPositionX, cursorPositionY);
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("학번 8자리를 입력해 주세요!");
-                Console.ResetColor();
-                Console.ReadKey(true);
-                return false;
-            }
+            Console.SetCursorPosition(cursorPositionX, cursorPositionY);
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.CursorVisible = false;
+            Console.WriteLine("학번 8자리를 입력해 주세요!");
+            Console.ResetColor();
+            Console.ReadKey(true);
+            Console.CursorVisible = true;
 
+            return false;
         }
 
         public bool JudgePasswordWithRegularExpression(int cursorPositionX, int cursorPositionY, string inputString)

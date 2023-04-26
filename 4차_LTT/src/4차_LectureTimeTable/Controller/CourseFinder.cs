@@ -61,6 +61,9 @@ namespace _4차_LectureTimeTable.Controller
             }
             Console.Clear();
             CompareWithData(); //검색한 값과 데이터 값 서로 비교하기
+
+            Console.ReadKey(true); //아무키 눌러서 이전 메뉴로 돌아가기
+            Console.Clear();
         }
         
         public void SelectLectureEntriesMenu() //선택한 메뉴 처리하는 함수
@@ -156,9 +159,9 @@ namespace _4차_LectureTimeTable.Controller
 
                 if (isExistCourseInData) // 일치하면 출력
                 {
-                    {
+                   
                         SetAndArrangeData(dataStorage.lectureTotalData, i);//문자열 수 확인하는 함수
-                    }
+                    
                     isExistCourseInData = false;
                 }
             }

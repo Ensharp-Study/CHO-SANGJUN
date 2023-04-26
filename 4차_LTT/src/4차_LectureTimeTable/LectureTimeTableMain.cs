@@ -1,4 +1,5 @@
 ﻿using _4차_LectureTimeTable.Controller;
+using _4차_LectureTimeTable.DataBase;
 using System;
 using System.Collections.Generic;
 using System.Linq;

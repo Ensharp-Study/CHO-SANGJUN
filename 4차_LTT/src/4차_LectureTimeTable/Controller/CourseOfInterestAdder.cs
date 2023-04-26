@@ -4,7 +4,9 @@ using _4차_LectureTimeTable.Model;
 using _4차_LectureTimeTable.Utility;
 using _4차_LectureTimeTable.View;
 using System;
+using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace _4차_LectureTimeTable.Controller
 {
@@ -103,15 +105,36 @@ namespace _4차_LectureTimeTable.Controller
                         }
                     }
                 }
-
+                if (Console.ReadKey().Key == ConsoleKey.Escape) break;
             }
-
         }
 
         public void CheckInterestLecture(UserDTO userInformation)
         {
+            menuUi.PrintStatusOfInterestedLecture(userInformation.AvailableCreditsForRegistrationOfInterestLecture, userInformation.EarnedCreditsOfInterestLecture);
+            for (int i = 0; i < userInformation.UserInterestLecture.Count; i++)
+            {
+                string[] maximumLengthOfStringsInEachRow = { "184", "기계항공우주공학부", "004714", "001", "Capstone디자인(산학협력프로젝트)", "공통교양필수", "1", "1", "수 16:30~18:30, 금 09:00~11:00", "센B201,센B209", "Abolghasem Sadeghi-Niaraki", "영어/한국어" };
 
+                //문자열과 출력해야 하는 공백 칸수 함수에 인자로 전달 
+                menuUi.PrintExistLectureInformation(userInformation.UserInterestLecture[i].LectureId, userInformation.UserInterestLecture[i].LectureId.Length + Encoding.Default.GetByteCount(maximumLengthOfStringsInEachRow[i]) - Encoding.Default.GetByteCount(userInformation.UserInterestLecture[i].LectureId));
+                menuUi.PrintExistLectureInformation(userInformation.UserInterestLecture[i].Major, userInformation.UserInterestLecture[i].Major.Length + Encoding.Default.GetByteCount(maximumLengthOfStringsInEachRow[i]) - Encoding.Default.GetByteCount(userInformation.UserInterestLecture[i].Major));
+                menuUi.PrintExistLectureInformation(userInformation.UserInterestLecture[i].CourseNumber, userInformation.UserInterestLecture[i].CourseNumber.Length + Encoding.Default.GetByteCount(maximumLengthOfStringsInEachRow[i]) - Encoding.Default.GetByteCount(userInformation.UserInterestLecture[i].CourseNumber));
+                menuUi.PrintExistLectureInformation(userInformation.UserInterestLecture[i].CourseClass, userInformation.UserInterestLecture[i].CourseClass.Length + Encoding.Default.GetByteCount(maximumLengthOfStringsInEachRow[i]) - Encoding.Default.GetByteCount(userInformation.UserInterestLecture[i].CourseClass));
+                menuUi.PrintExistLectureInformation(userInformation.UserInterestLecture[i].LectureName, userInformation.UserInterestLecture[i].LectureName.Length + Encoding.Default.GetByteCount(maximumLengthOfStringsInEachRow[i]) - Encoding.Default.GetByteCount(userInformation.UserInterestLecture[i].LectureName));
+                menuUi.PrintExistLectureInformation(userInformation.UserInterestLecture[i].CourseClassification, userInformation.UserInterestLecture[i].CourseClassification.Length + Encoding.Default.GetByteCount(maximumLengthOfStringsInEachRow[i]) - Encoding.Default.GetByteCount(userInformation.UserInterestLecture[i].CourseClassification));
+                menuUi.PrintExistLectureInformation(userInformation.UserInterestLecture[i].Grade, userInformation.UserInterestLecture[i].Grade.Length + Encoding.Default.GetByteCount(maximumLengthOfStringsInEachRow[i]) - Encoding.Default.GetByteCount(userInformation.UserInterestLecture[i].Grade));
+                menuUi.PrintExistLectureInformation(userInformation.UserInterestLecture[i].Credit, userInformation.UserInterestLecture[i].Credit.Length + Encoding.Default.GetByteCount(maximumLengthOfStringsInEachRow[i]) - Encoding.Default.GetByteCount(userInformation.UserInterestLecture[i].Credit));
+                menuUi.PrintExistLectureInformation(userInformation.UserInterestLecture[i].LectureTime, userInformation.UserInterestLecture[i].LectureTime.Length + Encoding.Default.GetByteCount(maximumLengthOfStringsInEachRow[i]) - Encoding.Default.GetByteCount(userInformation.UserInterestLecture[i].LectureTime));
+                menuUi.PrintExistLectureInformation(userInformation.UserInterestLecture[i].LectureClassroom, userInformation.UserInterestLecture[i].LectureClassroom.Length + Encoding.Default.GetByteCount(maximumLengthOfStringsInEachRow[i]) - Encoding.Default.GetByteCount(userInformation.UserInterestLecture[i].LectureClassroom));
+                menuUi.PrintExistLectureInformation(userInformation.UserInterestLecture[i].Professor, userInformation.UserInterestLecture[i].Professor.Length + Encoding.Default.GetByteCount(maximumLengthOfStringsInEachRow[i]) - Encoding.Default.GetByteCount(userInformation.UserInterestLecture[i].Professor));
+
+            }
+
+            Console.WriteLine();
         }
+
+        
 
 
 

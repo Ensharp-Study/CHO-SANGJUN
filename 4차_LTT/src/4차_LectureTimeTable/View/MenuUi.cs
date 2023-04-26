@@ -91,6 +91,7 @@ namespace _4차_LectureTimeTable.View
         {
             Console.WriteLine("==============================================================================================================");
             Console.WriteLine("등록가능 학점 : {0}    담은학점 : {1}     담을과목 (NO) : ", availableCreditsForRegistration, earnedCredits);
+            Console.WriteLine("==============================================================================================================");
         }
 
         public void PrintAlreadyContainErrorMesseage()

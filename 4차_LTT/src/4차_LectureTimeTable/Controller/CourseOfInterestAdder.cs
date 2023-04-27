@@ -167,7 +167,11 @@ namespace _4차_LectureTimeTable.Controller
             Console.ReadKey(true);
         }
 
-        
+        public void DeleteInterestLecture()
+        {
+           
+
+        }
 
 
 

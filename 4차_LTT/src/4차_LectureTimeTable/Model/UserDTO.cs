@@ -13,8 +13,8 @@ namespace _4차_LectureTimeTable.Model
             userInterestLecture = new List<LectureDTO>();
             userRegistratedLecture = new List<LectureDTO>();
 
-            TimeTableOfOfflineLecture = new string[26, 6]; //시간표 시간 30분 단위, 월~금으로 배열 구성
-            Array.Clear(TimeTableOfOfflineLecture, 0, TimeTableOfOfflineLecture.Length);
+            timeTableOfOfflineLecture = new string[27, 6]; //시간표 시간 30분 단위, 월~금으로 배열 구성, 마지막줄에는 비대면 강의 
+            Array.Clear(timeTableOfOfflineLecture, 0, timeTableOfOfflineLecture.Length); //초기 NULL값을 다 0으로 초기화
         }
 
         private string userId;
@@ -27,7 +27,7 @@ namespace _4차_LectureTimeTable.Model
         private List<LectureDTO> userInterestLecture;  //사용자의 관심과목을 저장하는 리스트 선언
         private List<LectureDTO> userRegistratedLecture; //사용자의 수강 신청과목을 저장하는 리스트 선언
 
-        string[,] TimeTableOfOfflineLecture;
+        string[,] timeTableOfOfflineLecture; //사용자의 시간표 저장하는 2차원 배열
 
         public string UserId
         {

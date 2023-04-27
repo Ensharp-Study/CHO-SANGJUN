@@ -79,6 +79,7 @@ namespace _4차_LectureTimeTable.Controller
 
         public void  ChangeTimeTypeToDateTimeStruct(string time)//시간대 저장형태 구분하고 DateTime 형태로 변환 하는 함수
         {
+            string dayOfTheWeek;
             DateTime startTime;
             DateTime endTime;
 
@@ -86,6 +87,7 @@ namespace _4차_LectureTimeTable.Controller
             {
                 if (lectureException.JudgeTimeTypeRegularExpression(time, @"^[^,] *,[^,] *$")) //일주일에 수업 두번 있고 서로 시간대가 다른 경우 (쉼표로 구분되어 있다)
                 {
+                    dayOfTheWeek = time.Substring(0, 1);
                     startTime = DateTime.ParseExact(time.Substring(2,5), "HH:mm", CultureInfo.InvariantCulture);
                     endTime = DateTime.ParseExact(time.Substring(8, 5), "HH:mm", CultureInfo.InvariantCulture);
 
@@ -107,12 +109,25 @@ namespace _4차_LectureTimeTable.Controller
             }
         }
 
-        public void SetTimeTable(DateTime startTime, DateTime endTime) // 해당 시간에 맞게 시간표 배열에 저장
+        public void GetClassTime(DateTime startTime, DateTime endTime) // 수업시간 구하기
         {
             int countOFHalfHourIntervals; //총 수강시간이 30분단위로 몇번 반복 되는지 저장 ( 1시간 30분의 경우 3이 저장된다.) 
-            TimeSpan difference = endTime - startTime; //수업시간을 구하기 위해 시간 차이 빼기
-            
+            TimeSpan timeDifference = endTime - startTime; //수업시간을 구하기 위해 시간 차이 빼기
+            countOFHalfHourIntervals = (int)(timeDifference.TotalMinutes / 30);
+
         }
+
+        public void SetTimeTable(UserDTO userInformation,int Count,string dayOfTheWeek)
+        {
+            // 배열의 x y 좌표값 구하기
+            //x값 > 요일
+            //for(int i)
+
+            //y값
+            //userInformation.timeTableOfOfflineLecture
+        }
+
+        
 
     }
 

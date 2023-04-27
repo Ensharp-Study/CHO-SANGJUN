@@ -128,15 +128,26 @@ namespace _4차_LectureTimeTable.ExceptionHandling
             {
                 return true;
             }
-            else
-            {
+            
                 Console.SetCursorPosition(cursorPositionX, cursorPositionY);
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("1 부터 999 사이의 숫자를 입력해 주세요");
                 Console.ResetColor();
                 Console.ReadKey(true);
                 return false;
+            
+        }
+
+        public bool JudgeTimeTypeRegularExpression(string inputString, string regularExpression) 
+        {
+            string pattern = regularExpression;
+            bool isMatch = Regex.IsMatch(inputString, pattern);
+            if (isMatch == true) 
+            {
+                return true;
+
             }
+            return false;
         }
     }
 }

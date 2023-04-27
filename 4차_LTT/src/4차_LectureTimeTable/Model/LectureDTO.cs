@@ -8,11 +8,6 @@ namespace _4차_LectureTimeTable.Model
 {
     public class LectureDTO //변수 위로 올리기
     {
-        public LectureDTO() 
-        { 
-        
-        }
-
         private string lectureId;
         public string LectureId
         {
@@ -88,6 +83,13 @@ namespace _4차_LectureTimeTable.Model
         {
             get { return professor; }
             set { professor = value; }
+        }
+
+        private string language;
+        public string Language
+        {
+            get { return language; }
+            set { language = value; }
         }
 
     }

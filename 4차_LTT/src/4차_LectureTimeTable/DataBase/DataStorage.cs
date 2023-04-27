@@ -12,6 +12,7 @@ namespace _4차_LectureTimeTable.DataBase
         public DataStorage()
         {
             userData = new List<UserDTO>();
+            searchedLectureData = new List<int>();
 
             UserDTO userOneData = new UserDTO(); //기존에 저장 된 유저 정보 
             userOneData.UserId = "20011609";
@@ -33,6 +34,7 @@ namespace _4차_LectureTimeTable.DataBase
         }
 
         public List<UserDTO> userData;
+        public List<int> searchedLectureData;
 
         public Array lectureTotalData; //엑셀에서 불러온 데이터 저장하는 배열
 

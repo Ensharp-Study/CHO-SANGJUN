@@ -40,11 +40,11 @@ namespace _4차_LectureTimeTable.Controller
                 switch (selectedMenu)
                 {
                     case (int)MenuList.COURSE_FINDER: //강의 찾기
-                        Console.SetWindowSize(190, 30);
+                        Console.SetWindowSize(192, 30);
                         courseFinder.FindCourse();
                         break;
                     case (int)MenuList.COURSE_OF_INTEREST_ADDER: //관심과목 담기
-                        Console.SetWindowSize(180, 30);
+                        Console.SetWindowSize(192, 30);
                         courseOfInterestAdder.ControllAddInterestLectureMenu(userInformation);
                         break;
 

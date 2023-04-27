@@ -63,7 +63,6 @@ namespace _4차_LectureTimeTable.Controller
             CompareWithData(); //검색한 값과 데이터 값 서로 비교하기
 
             Console.ReadKey(true); //아무키 눌러서 이전 메뉴로 돌아가기
-            Console.Clear();
         }
         
         public void SelectLectureEntriesMenu() //선택한 메뉴 처리하는 함수
@@ -132,36 +131,27 @@ namespace _4차_LectureTimeTable.Controller
         public void CompareWithData() //데이터와 입력 받은값 서로 비교하기
         {
             bool isExistCourseInData = false;
+            dataStorage.searchedLectureData.Clear(); //이전 검색에 대한 기록 삭제
 
             for (int i = 1; i <= dataStorage.lectureTotalData.GetLength(0); i++)
             {
-                // 입력받은 값이 모두 공백인 경우만 제외
-                //if (string.IsNullOrEmpty(lectureName) == false ||   
-                   //string.IsNullOrEmpty(professor) == false ||
-                   //string.IsNullOrEmpty(grade) == false ||
-                   //string.IsNullOrEmpty(courseCode) == false ||
-                   //string.IsNullOrEmpty(courseClass) == false)
-                //{
-                    // 엑셀에서 가져온 데이터와 입력받은값 서로 비교하여 교집합으로 포함되는지 판단하는 함수
-                    if (
-                        (dataStorage.lectureTotalData.GetValue(i, 2).ToString()).Contains(major) &&
-                        (dataStorage.lectureTotalData.GetValue(i, 6).ToString()).Contains(courseClassification) &&
-                        (dataStorage.lectureTotalData.GetValue(i, 5).ToString() ).Contains(lectureName) &&
-                        (dataStorage.lectureTotalData.GetValue(i, 11).ToString()).Contains(professor) &&
-                        (dataStorage.lectureTotalData.GetValue(i, 7).ToString()).Contains(grade) &&
-                        (dataStorage.lectureTotalData.GetValue(i, 3).ToString()).Contains(courseCode) &&
-                        (dataStorage.lectureTotalData.GetValue(i, 4).ToString()).Contains(courseClass)){  
-
-                        isExistCourseInData = true;
-                    }
-
-                //}
+                if (
+                    (dataStorage.lectureTotalData.GetValue(i, 2).ToString()).Contains(major) &&
+                    (dataStorage.lectureTotalData.GetValue(i, 6).ToString()).Contains(courseClassification) &&
+                    (dataStorage.lectureTotalData.GetValue(i, 5).ToString()).Contains(lectureName) &&
+                    (dataStorage.lectureTotalData.GetValue(i, 11).ToString()).Contains(professor) &&
+                    (dataStorage.lectureTotalData.GetValue(i, 7).ToString()).Contains(grade) &&
+                    (dataStorage.lectureTotalData.GetValue(i, 3).ToString()).Contains(courseCode) &&
+                    (dataStorage.lectureTotalData.GetValue(i, 4).ToString()).Contains(courseClass))
+                {
+                    isExistCourseInData = true;
+                    dataStorage.searchedLectureData.Add(i); //검색값과 교집합으로 일치하는 강의의 아이디를 배열에 저장 > 관심과목 담기와 수강신청에서 출력된 강의만 담게 하기 위한 리스트
+                }
 
                 if (isExistCourseInData) // 일치하면 출력
                 {
-                   
-                        SetAndArrangeData(dataStorage.lectureTotalData, i);//문자열 수 확인하는 함수
-                    
+                    SetAndArrangeData(dataStorage.lectureTotalData, i);//문자열 수 확인하는 함수
+
                     isExistCourseInData = false;
                 }
             }
@@ -176,8 +166,7 @@ namespace _4차_LectureTimeTable.Controller
                 //예외처리. 엑셀 값이 공백 일 때
                 if (lectureTotalData.GetValue(index, i) == null) lectureTotalData.SetValue("", index, i);
                 //문자열과 출력해야 하는 공백 칸수 함수에 인자로 전달 
-                menuUi.PrintExistLectureInformation(lectureTotalData.GetValue(index, i).ToString(), lectureTotalData.GetValue(index, i).ToString().Length + Encoding.Default.GetByteCount(maximumLengthOfStringsInEachRow[i - 1])  - Encoding.Default.GetByteCount(lectureTotalData.GetValue(index, i).ToString()) );
-            
+                menuUi.PrintExistLectureInformation(lectureTotalData.GetValue(index, i).ToString(), lectureTotalData.GetValue(index, i).ToString().Length + Encoding.Default.GetByteCount(maximumLengthOfStringsInEachRow[i - 1]) - Encoding.Default.GetByteCount(lectureTotalData.GetValue(index, i).ToString()));
             }
             Console.WriteLine("");//줄 띄우기
 

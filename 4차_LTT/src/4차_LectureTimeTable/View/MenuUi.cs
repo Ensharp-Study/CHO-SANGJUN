@@ -94,16 +94,28 @@ namespace _4차_LectureTimeTable.View
             Console.WriteLine("==============================================================================================================");
         }
 
-        public void PrintAlreadyContainErrorMesseage()
+        public void PrintAlreadyContainErrorMesseage() //예외 1) 이미 관심과목 리스트에 있을 경우
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("이미 관심과목에 담겨진 항목입니다. 다시 선택하세요. ");
             Console.ResetColor();
         }
-        public void PrintExcessCreditsErrorMesseage()
+        public void PrintExcessCreditsErrorMesseage() //예외 2) 학점수가 초과되었을 경우
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("");
+            Console.WriteLine("등록 가능한 학점 수를 초과 하였습니다.");
+            Console.ResetColor();
+        }
+        public void PrintLectureIdIsNotInTheSearchedList() //예외 3) 검색된 리스트에 강의가 없을 경우
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("검색된 리스트에 강의가 없습니다.");
+            Console.ResetColor();
+        }
+        public void PrintInterestLectureStoredSuccess()
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("관심과목에 저장 되었습니다!.");
             Console.ResetColor();
         }
     }

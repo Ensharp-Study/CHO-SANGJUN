@@ -82,7 +82,7 @@ namespace _4차_LectureTimeTable.Controller
                         menuUi.PrintLectureIdIsNotInTheSearchedList();
                     }
                 }
-
+                /*
                 for(int i = 0; i<27; i++)
                 {
                     for(int j =0; j<6; j++)
@@ -90,7 +90,7 @@ namespace _4차_LectureTimeTable.Controller
                         Console.Write(userInformation.TimeTable[i, j]);
                     }
                     Console.WriteLine();
-                }
+                }*/
                 Console.ReadKey(true);
             }
 
@@ -212,14 +212,16 @@ namespace _4차_LectureTimeTable.Controller
 
             for(int i=0; i< countOFHalfHourIntervals; i++)
             {
-                if (userInformation.TimeTable[arrayRow, arrayColumn] == "0")
+                if (userInformation.TimeTable[arrayRow, arrayColumn] == null)
                 {
                     userInformation.TimeTable[arrayRow, arrayColumn] = lectureName;
                     menuUi.PrintLectureIsSuccess();
+                    arrayRow += 1;
                 }
                 else
                 {
                     menuUi.PrintLectureIsTimeoverlaped();
+                    break;
                 }
             }
         }

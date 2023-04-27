@@ -138,7 +138,7 @@ namespace _4차_LectureTimeTable.View
         }
         public void PrintLectureIsSuccess() //수강신청이 성공한 경우
         {
-            Console.ForegroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("수강신청이 완료 되었습니다.");
             Console.ResetColor();
         }

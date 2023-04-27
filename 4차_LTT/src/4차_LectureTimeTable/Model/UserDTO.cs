@@ -14,7 +14,7 @@ namespace _4차_LectureTimeTable.Model
             userRegistratedLecture = new List<LectureDTO>();
 
             timeTable = new string[27, 6]; //시간표 시간 30분 단위, 월~금으로 배열 구성, 마지막줄에는 비대면 강의 
-            Array.Clear(timeTable, 0, timeTable.Length); //초기 NULL값을 다 0으로 초기화
+ 
             timeTable[0, 1] = "월";
             timeTable[0, 2] = "화";
             timeTable[0, 3] = "수";

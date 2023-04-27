@@ -44,8 +44,8 @@ namespace _4차_LectureTimeTable.Controller
         public int majorNumber;
         public int courseClassificationNumber;
 
-        bool isInputValid = false;
-        bool isSearchCompleted = false;
+        private bool isInputValid = false;
+        private bool isSearchCompleted = false;
 
         public void FindCourse()  //강의 찾기 내 메인 함수
         {

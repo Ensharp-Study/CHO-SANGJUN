@@ -48,9 +48,9 @@ namespace _4차_LectureTimeTable.Controller
         }
 
         public string courseRegistrationNumber; //담는 과목 번호
-        bool isInputValid = false;
-        bool isAddPosibility = true;
-        bool isIdInTheSearchList = false;
+        public bool isInputValid = false;
+        public bool isAddPosibility = true;
+        public bool isIdInTheSearchList = false;
         
         public void AddLecture(UserDTO userInformation) //관심과목 호출하는 함수
         {

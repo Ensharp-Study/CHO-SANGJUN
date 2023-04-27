@@ -54,6 +54,8 @@ namespace _4차_LectureTimeTable.Model
         private int availableCreditsForRegistrationOfInterestLecture; //관심과목 담기 가능 학점
         private int earnedCreditsOfInterestLecture; //담은 학점수
         private string userInterestLectureCredits;
+        private int availableCreditsForRegistration;
+        private int earnedCredits;
 
         private List<LectureDTO> userInterestLecture;  //사용자의 관심과목을 저장하는 리스트 선언
         private List<LectureDTO> userRegistratedLecture; //사용자의 수강 신청과목을 저장하는 리스트 선언
@@ -105,7 +107,18 @@ namespace _4차_LectureTimeTable.Model
         {
             get { return userRegistratedLecture; }
         }
+        public int AvailableCreditsForRegistration
+        {
+            get { return availableCreditsForRegistration; }
+            set { availableCreditsForRegistration = value; }
+        }
+        public int EarnedCredits
+        {
 
+            get { return earnedCredits; }
+            set { earnedCredits = value; }
+
+        }
         public string[,] TimeTable
         {
             get { return timeTable; }

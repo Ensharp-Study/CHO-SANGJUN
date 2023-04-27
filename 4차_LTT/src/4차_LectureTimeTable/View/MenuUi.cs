@@ -124,5 +124,23 @@ namespace _4차_LectureTimeTable.View
             Console.WriteLine("등록가능 학점 : {0}    담은학점 : {1}     삭제할 과목 (NO) : ", availableCreditsForRegistration, earnedCredits);
             Console.WriteLine("==============================================================================================================");
         }
+        public void PrintLectureRegistrationByInterestedLecture(int availableCreditsForRegistration, int earnedCredits)
+        {
+            Console.WriteLine("==============================================================================================================");
+            Console.WriteLine("등록가능 학점 : {0}    담은학점 : {1}     담을과목 (NO) : ", availableCreditsForRegistration, earnedCredits);
+            Console.WriteLine("==============================================================================================================");
+        }
+        public void PrintLectureIsTimeoverlaped() //이미 신청된 과목과 시간이 겹치는 경우
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("등록된 강의와 시간이 겹칩니다.");
+            Console.ResetColor();
+        }
+        public void PrintLectureIsSuccess() //수강신청이 성공한 경우
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("수강신청이 완료 되었습니다.");
+            Console.ResetColor();
+        }
     }
 }

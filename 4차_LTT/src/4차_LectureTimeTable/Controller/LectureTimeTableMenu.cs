@@ -4,11 +4,6 @@ using _4차_LectureTimeTable.Model;
 using _4차_LectureTimeTable.Utility;
 using _4차_LectureTimeTable.View;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _4차_LectureTimeTable.Controller
 {
@@ -33,6 +28,7 @@ namespace _4차_LectureTimeTable.Controller
                 MenuSelectController menuSelectController = new MenuSelectController(menuUi);
                 CourseFinder courseFinder = new CourseFinder(dataStorage, lectureException, menuUi, menuSelectController);
                 CourseOfInterestAdder courseOfInterestAdder = new CourseOfInterestAdder(menuUi, dataStorage, lectureException, menuSelectController);
+                CourseRegistration courseRegistration = new CourseRegistration(menuUi, dataStorage, lectureException, menuSelectController);
 
                 menuUi.PrintMenuUi(userInformation.UserName);
                 selectedMenu = menuSelectController.SelectMenuWithUpAndDown(menuList, 4, 42, 12); //초기 메뉴선택 상하키 함수로 선택
@@ -49,6 +45,9 @@ namespace _4차_LectureTimeTable.Controller
                         break;
 
                     case (int)MenuList.COURSE_REGISTRATION: //수강신청하기
+                        Console.SetWindowSize(192, 30);
+                        courseRegistration.ControllCourseRegistrationMenu(userInformation);
+                        break;
 
                     case (int)MenuList.COURSE_REGISTRATION_CHECKER: //시간표 확인하기
                         break;

@@ -34,6 +34,7 @@ namespace _4차_LectureTimeTable.Controller
                 case (int)InterestLectureMenuList.ADDER:
                     AddLecture(userInformation); //관심과목 추가하는 함수 호출
                     break;
+
                 case (int)InterestLectureMenuList.CHECKER:
                     Console.Clear();
                     menuUi.PrintStatusOfInterestedLecture(userInformation.AvailableCreditsForRegistrationOfInterestLecture, userInformation.EarnedCreditsOfInterestLecture);
@@ -43,7 +44,6 @@ namespace _4차_LectureTimeTable.Controller
                 case (int)InterestLectureMenuList.DELETER:
                     DeleteInterestLecture(userInformation);
                     break;
-
             }
         }
 
@@ -200,9 +200,6 @@ namespace _4차_LectureTimeTable.Controller
                 if (Console.ReadKey().Key == ConsoleKey.Escape) isDoGoBackToBeforeMenu = true;
             }
         }
-
-
-
 
     }
 }

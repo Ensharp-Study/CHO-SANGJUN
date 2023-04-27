@@ -21,6 +21,14 @@ namespace _4차_LectureTimeTable.Utility
         DELETER
     }
 
+    enum LectureRegistrationMenuList
+    {
+        LECTURE_REGISTRATION,
+        CHECK_LECTURE_REGISTRATION,
+        TIMETABLE_OF_LECTURE_REGISTRATION,
+        DELETE_REGISTRATED_LECTURE
+    }
+
     enum LectureEntriesList //강의 검색시 강의 세부사항 표현하는 상수 
     {
         MAJOR_LECTURE,

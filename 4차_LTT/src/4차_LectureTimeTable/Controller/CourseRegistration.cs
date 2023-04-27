@@ -117,13 +117,37 @@ namespace _4차_LectureTimeTable.Controller
 
         }
 
-        public void SetTimeTable(UserDTO userInformation,int Count,string dayOfTheWeek)
+        public void SetTimeTable(UserDTO userInformation, DateTime startTime, int countOFHalfHourIntervals, string dayOfTheWeek)
         {
             // 배열의 x y 좌표값 구하기
+            int arrayColumn = 0;
+            int arrayRow = 26;
+
             //x값 > 요일
-            //for(int i)
+            for(int i = 1; i<=5; i++)//월~금 탐색
+            {
+                if (userInformation.TimeTable[0,i] == dayOfTheWeek)
+                {
+                    arrayColumn = i;
+                    break;
+                }
+            }
+            //요일이 없을 경우, 예외값처리하기
 
             //y값
+            for(int i =1; i<=25; i++) 
+            {
+                 //시간표 0번 열(좌측 열)에 저장된 시간값과 강의의 시작시간과 비교해서 시간표에 저장할 위치 찾기
+                if (DateTime.ParseExact(userInformation.TimeTable[i, 0].Substring(0, 5), "HH:mm", CultureInfo.InvariantCulture) == startTime)
+                {
+                    arrayRow = i;
+                }
+            }
+
+            for(int i=0; i< countOFHalfHourIntervals; i++)
+            {
+                userInformation.TimeTable
+            }
             //userInformation.timeTableOfOfflineLecture
         }
 

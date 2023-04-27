@@ -20,9 +20,12 @@ namespace _4차_LectureTimeTable.Controller
 
         public int selectedMenu;
         public string[] menuList = { "○ 관심과목 검색", "○ 관심과목 내역", "○ 관심과목 삭제" };
+        bool isDoGoBackToBeforeMenu = false;
+
         public void ControllAddInterestLectureMenu(UserDTO userInformation) //관심과목 메뉴 선택 함수
         {
             Console.Clear();
+            isDoGoBackToBeforeMenu = false;
             menuUi.PrintMenuUi(userInformation.UserName);
             selectedMenu = menuSelectController.SelectMenuWithUpAndDown(menuList, 3, 42, 12); //관심과목 메뉴 상하키로 선택하는 함수
 
@@ -31,12 +34,14 @@ namespace _4차_LectureTimeTable.Controller
                 case (int)InterestLectureMenuList.ADDER:
                     AddLecture(userInformation); //관심과목 추가하는 함수 호출
                     break;
-                case (int)InterestLectureMenuList.CHECKER: 
+                case (int)InterestLectureMenuList.CHECKER:
+                    Console.Clear();
+                    menuUi.PrintStatusOfInterestedLecture(userInformation.AvailableCreditsForRegistrationOfInterestLecture, userInformation.EarnedCreditsOfInterestLecture);
                     CheckInterestLecture(userInformation); //관심과목 담긴 목록 확인하는 함수 호출
                     break;
 
                 case (int)InterestLectureMenuList.DELETER:
-
+                    DeleteInterestLecture(userInformation);
                     break;
 
             }
@@ -46,9 +51,7 @@ namespace _4차_LectureTimeTable.Controller
         bool isInputValid = false;
         bool isAddPosibility = true;
         bool isIdInTheSearchList = false;
-        bool isDoGoBackToBeforeMenu =false;
-
-
+        
         public void AddLecture(UserDTO userInformation) //관심과목 호출하는 함수
         {
             FindCourse();
@@ -143,8 +146,6 @@ namespace _4차_LectureTimeTable.Controller
 
         public void CheckInterestLecture(UserDTO userInformation)
         {
-            Console.Clear();
-            menuUi.PrintStatusOfInterestedLecture(userInformation.AvailableCreditsForRegistrationOfInterestLecture, userInformation.EarnedCreditsOfInterestLecture);
             for (int i = 0; i < userInformation.UserInterestLecture.Count; i++)
             {
                 string[] maximumLengthOfStringsInEachRow = { "184", "기계항공우주공학부", "004714", "001", "Capstone디자인(산학협력프로젝트)", "공통교양필수", "1", "1", "수 16:30~18:30, 금 09:00~11:00", "센B201,센B209", "Abolghasem Sadeghi-Niaraki", "영어/한국어" };
@@ -167,10 +168,37 @@ namespace _4차_LectureTimeTable.Controller
             Console.ReadKey(true);
         }
 
-        public void DeleteInterestLecture()
+        public void DeleteInterestLecture(UserDTO userInformation)
         {
-           
+            string DeletionLectureId ="";
+            int CursorPositionX = 55;
+            int CursorPositionY = Console.CursorTop + 1;
 
+            Console.Clear();
+            while (!isDoGoBackToBeforeMenu)
+            {
+                isInputValid = false;
+
+                CheckInterestLecture(userInformation); //관심과목 리스트 출력
+                menuUi.PrintDeletionInterestedLecture(userInformation.AvailableCreditsForRegistrationOfInterestLecture, userInformation.EarnedCreditsOfInterestLecture); //관심과목 삭제 메뉴 창 출력
+
+                while (!isInputValid) //삭제할 과목 번호 입력 받기
+                {
+                    DeletionLectureId = ToReceiveInput.ReceiveInput(CursorPositionX, CursorPositionY, 3, Constants.IS_NOT_PASSWORD);
+                    isInputValid = lectureException.JudgeCourseNumberRegularExpression(CursorPositionX, CursorPositionY, DeletionLectureId);
+                }
+
+                for (int i = 0; i < userInformation.UserInterestLecture.Count; i++)
+                {
+                    if (DeletionLectureId == userInformation.UserInterestLecture[i].LectureId)
+                    {
+                        userInformation.UserInterestLecture.RemoveAt(i);
+                    }
+                }
+                Console.WriteLine("삭제가 완료 되었습니다.");
+                Console.SetCursorPosition(0, CursorPositionY - 1);
+                if (Console.ReadKey().Key == ConsoleKey.Escape) isDoGoBackToBeforeMenu = true;
+            }
         }
 
 

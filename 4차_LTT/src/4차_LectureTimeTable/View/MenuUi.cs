@@ -118,5 +118,11 @@ namespace _4차_LectureTimeTable.View
             Console.WriteLine("관심과목에 저장 되었습니다!.");
             Console.ResetColor();
         }
+        public void PrintDeletionInterestedLecture(int availableCreditsForRegistration, int earnedCredits)
+        {
+            Console.WriteLine("==============================================================================================================");
+            Console.WriteLine("등록가능 학점 : {0}    담은학점 : {1}     삭제할 과목 (NO) : ", availableCreditsForRegistration, earnedCredits);
+            Console.WriteLine("==============================================================================================================");
+        }
     }
 }

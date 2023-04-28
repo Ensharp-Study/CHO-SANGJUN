@@ -48,7 +48,7 @@ namespace _4차_LectureTimeTable.Controller
             
         }
         
-        public void RegistrateLecture(UserDTO userInformation)
+        public void RegistrateLecture(UserDTO userInformation) //수강 신청 두번째 메뉴선택 함수
         {
             Console.Clear();
             isDoGoBackToBeforeMenu = false;
@@ -73,8 +73,8 @@ namespace _4차_LectureTimeTable.Controller
 
             Console.Clear();
             CheckInterestLecture(userInformation); //관심과목 담긴 목록 확인하는 함수 호출
-            int CursorPositionX = 55;
-            int CursorPositionY = Console.CursorTop + 1; //관심과목 목록을 출력한 뒤 CursorTop을 이용해서 좌표구하기
+            int CursorPositionX;
+            int CursorPositionY; //관심과목 목록을 출력한 뒤 CursorTop을 이용해서 좌표구하기
 
             string courseRegistrationNumber=""; // 수강신청 강의 번호
             bool isIdInTheSearchList = false;
@@ -89,7 +89,10 @@ namespace _4차_LectureTimeTable.Controller
                 Console.Clear();
                 CheckInterestLecture(userInformation); //관심과목 담긴 목록 확인하는 함수 호출
                 menuUi.PrintLectureRegistrationByInterestedLecture(userInformation.AvailableCreditsForRegistration, userInformation.EarnedCredits); //수강신청 입력창 출력
+                CursorPositionX = 55;
+                CursorPositionY = Console.CursorTop - 2;
 
+                
                 while (!isInputVaild) //신청할 과목 번호 입력 받기
                 {
                     courseRegistrationNumber = ToReceiveInput.ReceiveInput(CursorPositionX, CursorPositionY, 3, Constants.IS_NOT_PASSWORD);
@@ -115,7 +118,7 @@ namespace _4차_LectureTimeTable.Controller
                 }
                 
 
-                for (int i = 0; i < userInformation.UserInterestLecture.Count; i++)
+                for (int i = 0;  i < userInformation.UserInterestLecture.Count; i++)
                 {
                     if (isRegistratePosibility && (courseRegistrationNumber == userInformation.UserInterestLecture[i].LectureId))
                     {
@@ -123,7 +126,6 @@ namespace _4차_LectureTimeTable.Controller
                     }
                 }
 
-                CursorPositionY = Console.CursorTop - 2;
                 Console.ReadKey(true);
             }
 
@@ -242,6 +244,7 @@ namespace _4차_LectureTimeTable.Controller
                 if (DateTime.ParseExact(userInformation.TimeTable[i, 0].Substring(0, 5), "HH:mm", CultureInfo.InvariantCulture) == startTime)
                 {
                     arrayRow = i;
+                    break;
                 }
             }
 
@@ -265,9 +268,11 @@ namespace _4차_LectureTimeTable.Controller
             {
                 Console.SetCursorPosition(CursorPositionX, CursorPositionY);
                 menuUi.PrintLectureIsSuccess();
-                userInformation.UserInterestLecture.RemoveAt(index);
+        
                 userInformation.AvailableCreditsForRegistration -= int.Parse(userInformation.UserInterestLecture[index].Credit);
                 userInformation.EarnedCredits += int.Parse(userInformation.UserInterestLecture[index].Credit);
+
+                userInformation.UserInterestLecture.RemoveAt(index);
             }
             
         }

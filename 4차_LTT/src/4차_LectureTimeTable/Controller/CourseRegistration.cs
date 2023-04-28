@@ -38,7 +38,9 @@ namespace _4차_LectureTimeTable.Controller
                     Console.SetWindowSize(192, 30);
                     RegistrateLecture(userInformation);
                     break;
-                case (int)LectureRegistrationMenuList.CHECK_LECTURE_REGISTRATION:
+                case (int)LectureRegistrationMenuList.CHECK_LECTURE_REGISTRATION: // 수강 신청 내역 조회
+                    Console.SetWindowSize(192, 30);
+                    CheckRegistratedLecture(userInformation);
                     break;
                 case (int)LectureRegistrationMenuList.TIMETABLE_OF_LECTURE_REGISTRATION: //시간표 출력하기
                     Console.SetWindowSize(235, 30);
@@ -64,6 +66,31 @@ namespace _4차_LectureTimeTable.Controller
                 case (int)KindOfLectureRegistration.WITH_SEARCH_FUNCTION: //강의 검색으로 수강신청하기
                     break;
             }
+        }
+        public void CheckRegistratedLecture(UserDTO userInformation)
+        {
+            Console.Clear();
+            for (int i = 0; i < userInformation.UserRegistratedLecture.Count; i++)
+            {
+                string[] maximumLengthOfStringsInEachRow = { "184", "기계항공우주공학부", "004714", "001", "Capstone디자인(산학협력프로젝트)", "공통교양필수", "1", "1", "수 16:30~18:30, 금 09:00~11:00", "센B201,센B209", "Abolghasem Sadeghi-Niaraki", "영어/한국어" };
+
+                //문자열과 출력해야 하는 공백 칸수 함수에 인자로 전달 
+                menuUi.PrintExistLectureInformation(userInformation.UserRegistratedLecture[i].LectureId, userInformation.UserRegistratedLecture[i].LectureId.Length + Encoding.Default.GetByteCount(maximumLengthOfStringsInEachRow[0]) - Encoding.Default.GetByteCount(userInformation.UserRegistratedLecture[i].LectureId));
+                menuUi.PrintExistLectureInformation(userInformation.UserRegistratedLecture[i].Major, userInformation.UserRegistratedLecture[i].Major.Length + Encoding.Default.GetByteCount(maximumLengthOfStringsInEachRow[1]) - Encoding.Default.GetByteCount(userInformation.UserRegistratedLecture[i].Major));
+                menuUi.PrintExistLectureInformation(userInformation.UserRegistratedLecture[i].CourseNumber, userInformation.UserRegistratedLecture[i].CourseNumber.Length + Encoding.Default.GetByteCount(maximumLengthOfStringsInEachRow[2]) - Encoding.Default.GetByteCount(userInformation.UserRegistratedLecture[i].CourseNumber));
+                menuUi.PrintExistLectureInformation(userInformation.UserRegistratedLecture[i].CourseClass, userInformation.UserRegistratedLecture[i].CourseClass.Length + Encoding.Default.GetByteCount(maximumLengthOfStringsInEachRow[3]) - Encoding.Default.GetByteCount(userInformation.UserRegistratedLecture[i].CourseClass));
+                menuUi.PrintExistLectureInformation(userInformation.UserRegistratedLecture[i].LectureName, userInformation.UserRegistratedLecture[i].LectureName.Length + Encoding.Default.GetByteCount(maximumLengthOfStringsInEachRow[4]) - Encoding.Default.GetByteCount(userInformation.UserRegistratedLecture[i].LectureName));
+                menuUi.PrintExistLectureInformation(userInformation.UserRegistratedLecture[i].CourseClassification, userInformation.UserRegistratedLecture[i].CourseClassification.Length + Encoding.Default.GetByteCount(maximumLengthOfStringsInEachRow[5]) - Encoding.Default.GetByteCount(userInformation.UserRegistratedLecture[i].CourseClassification));
+                menuUi.PrintExistLectureInformation(userInformation.UserRegistratedLecture[i].Grade, userInformation.UserRegistratedLecture[i].Grade.Length + Encoding.Default.GetByteCount(maximumLengthOfStringsInEachRow[6]) - Encoding.Default.GetByteCount(userInformation.UserRegistratedLecture[i].Grade));
+                menuUi.PrintExistLectureInformation(userInformation.UserRegistratedLecture[i].Credit, userInformation.UserRegistratedLecture[i].Credit.Length + Encoding.Default.GetByteCount(maximumLengthOfStringsInEachRow[7]) - Encoding.Default.GetByteCount(userInformation.UserRegistratedLecture[i].Credit));
+                menuUi.PrintExistLectureInformation(userInformation.UserRegistratedLecture[i].LectureTime, userInformation.UserRegistratedLecture[i].LectureTime.Length + Encoding.Default.GetByteCount(maximumLengthOfStringsInEachRow[8]) - Encoding.Default.GetByteCount(userInformation.UserRegistratedLecture[i].LectureTime));
+                menuUi.PrintExistLectureInformation(userInformation.UserRegistratedLecture[i].LectureClassroom, userInformation.UserRegistratedLecture[i].LectureClassroom.Length + Encoding.Default.GetByteCount(maximumLengthOfStringsInEachRow[9]) - Encoding.Default.GetByteCount(userInformation.UserRegistratedLecture[i].LectureClassroom));
+                menuUi.PrintExistLectureInformation(userInformation.UserRegistratedLecture[i].Professor, userInformation.UserRegistratedLecture[i].Professor.Length + Encoding.Default.GetByteCount(maximumLengthOfStringsInEachRow[10]) - Encoding.Default.GetByteCount(userInformation.UserRegistratedLecture[i].Professor));
+                menuUi.PrintExistLectureInformation(userInformation.UserRegistratedLecture[i].Language, userInformation.UserRegistratedLecture[i].Language.Length + Encoding.Default.GetByteCount(maximumLengthOfStringsInEachRow[11]) - Encoding.Default.GetByteCount(userInformation.UserRegistratedLecture[i].Language));
+                Console.WriteLine("");//줄 띄우기
+            }
+            Console.ReadKey(true);
+
         }
 
         public bool isInputVaild = false;
@@ -256,7 +283,7 @@ namespace _4차_LectureTimeTable.Controller
 
             for(int i=0; i< countOFHalfHourIntervals; i++)
             {
-                if (userInformation.TimeTable[arrayRow, arrayColumn] == null)
+                if (userInformation.TimeTable[arrayRow, arrayColumn] == null) 
                 {
                     userInformation.TimeTable[arrayRow, arrayColumn] = lectureName;
                     arrayRow += 1;
@@ -274,7 +301,24 @@ namespace _4차_LectureTimeTable.Controller
             {
                 Console.SetCursorPosition(CursorPositionX, CursorPositionY);
                 menuUi.PrintLectureIsSuccess();
-        
+                //수강신청 성공한 과목 리스트에 저장
+                LectureDTO lectureInformation = new LectureDTO();
+                lectureInformation.LectureId = userInformation.UserInterestLecture[index].LectureId;
+                lectureInformation.Major = userInformation.UserInterestLecture[index].Major;
+                lectureInformation.CourseNumber = userInformation.UserInterestLecture[index].CourseNumber;
+                lectureInformation.CourseClass = userInformation.UserInterestLecture[index].CourseClass;
+                lectureInformation.LectureName = userInformation.UserInterestLecture[index].LectureName;
+                lectureInformation.CourseClassification = userInformation.UserInterestLecture[index].CourseClassification;
+                lectureInformation.Grade = userInformation.UserInterestLecture[index].Grade;
+                lectureInformation.Credit = userInformation.UserInterestLecture[index].Credit;
+                lectureInformation.LectureTime = userInformation.UserInterestLecture[index].LectureTime;
+                lectureInformation.LectureClassroom = userInformation.UserInterestLecture[index].LectureClassroom;
+                lectureInformation.Professor = userInformation.UserInterestLecture[index].Professor;
+                lectureInformation.Language = userInformation.UserInterestLecture[index].Language;
+
+                userInformation.UserRegistratedLecture.Add(lectureInformation);
+
+                //수강신청 가능학점 및 등록된 학점 계산
                 userInformation.AvailableCreditsForRegistration -= int.Parse(userInformation.UserInterestLecture[index].Credit);
                 userInformation.EarnedCredits += int.Parse(userInformation.UserInterestLecture[index].Credit);
 

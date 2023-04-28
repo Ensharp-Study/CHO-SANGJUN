@@ -135,9 +135,7 @@ namespace _4차_LectureTimeTable.Controller
                         }
                     }
                     menuUi.PrintInterestLectureStoredSuccess();
-                  
                 }
-
                 Console.SetCursorPosition(0, CursorPositionY - 1);
                 if (Console.ReadKey().Key == ConsoleKey.Escape) isDoGoBackToBeforeMenu = true;
             }

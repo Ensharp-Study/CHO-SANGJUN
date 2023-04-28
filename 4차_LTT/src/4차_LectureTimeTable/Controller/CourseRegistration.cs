@@ -40,7 +40,9 @@ namespace _4차_LectureTimeTable.Controller
                     break;
                 case (int)LectureRegistrationMenuList.CHECK_LECTURE_REGISTRATION:
                     break;
-                case (int)LectureRegistrationMenuList.TIMETABLE_OF_LECTURE_REGISTRATION:  
+                case (int)LectureRegistrationMenuList.TIMETABLE_OF_LECTURE_REGISTRATION: //시간표 출력하기
+                    Console.SetWindowSize(235, 30);
+                    CheckTimeTable(userInformation);
                     break;
                 case (int)LectureRegistrationMenuList.DELETE_REGISTRATED_LECTURE:
                     break;
@@ -96,7 +98,11 @@ namespace _4차_LectureTimeTable.Controller
                 while (!isInputVaild) //신청할 과목 번호 입력 받기
                 {
                     courseRegistrationNumber = ToReceiveInput.ReceiveInput(CursorPositionX, CursorPositionY, 3, Constants.IS_NOT_PASSWORD);
-                    
+                    if(courseRegistrationNumber == "ESC")
+                    {
+                        isDoGoBackToBeforeMenu = true;
+                        break;
+                    }
                     isInputVaild = lectureException.JudgeCourseNumberRegularExpression(CursorPositionX, CursorPositionY, courseRegistrationNumber);
                 }
 
@@ -275,6 +281,23 @@ namespace _4차_LectureTimeTable.Controller
                 userInformation.UserInterestLecture.RemoveAt(index);
             }
             
+        }
+
+        //수강신청 시간표 출력 함수
+        public void CheckTimeTable(UserDTO userInformation)
+        {
+            Console.Clear();
+            menuUi.PrintTimeTableMain();
+            for(int i=0; i <27; i++)
+            {
+                for(int j=0; j<6; j++)
+                {
+                    Console.SetCursorPosition(30 * j, Console.CursorTop);
+                    Console.Write(userInformation.TimeTable[i, j]);
+                }
+                Console.WriteLine();//한줄 띄우기
+            }
+            Console.ReadKey(true);
         }
     }
 }

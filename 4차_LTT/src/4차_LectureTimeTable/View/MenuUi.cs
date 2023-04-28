@@ -127,7 +127,7 @@ namespace _4차_LectureTimeTable.View
         public void PrintLectureRegistrationByInterestedLecture(int availableCreditsForRegistration, int earnedCredits)
         {
             Console.WriteLine("==============================================================================================================");
-            Console.WriteLine("등록가능 학점 : {0}    담은학점 : {1}     담을과목 (NO) : ", availableCreditsForRegistration, earnedCredits);
+            Console.WriteLine("등록가능 학점 : {0}    담은학점 : {1}     신청과목 (NO) : ", availableCreditsForRegistration, earnedCredits);
             Console.WriteLine("==============================================================================================================");
         }
         public void PrintLectureIsTimeOverLaped() //이미 신청된 과목과 시간이 겹치는 경우

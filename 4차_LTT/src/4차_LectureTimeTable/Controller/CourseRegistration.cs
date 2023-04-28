@@ -93,18 +93,20 @@ namespace _4차_LectureTimeTable.Controller
                 while (!isInputVaild) //신청할 과목 번호 입력 받기
                 {
                     courseRegistrationNumber = ToReceiveInput.ReceiveInput(CursorPositionX, CursorPositionY, 3, Constants.IS_NOT_PASSWORD);
+                    
                     isInputVaild = lectureException.JudgeCourseNumberRegularExpression(CursorPositionX, CursorPositionY, courseRegistrationNumber);
                 }
 
                 //예외처리. 리스트에 없는 항목이 추가 되었을때
-                for (int i = 0; i < dataStorage.searchedLectureData.Count; i++)
+                for (int i = 0; i < userInformation.UserInterestLecture.Count; i++)
                 {
-                    if (dataStorage.searchedLectureData[i] == int.Parse(courseRegistrationNumber)) //출력된 리스트에 항목이 있을 경우
+                    if (userInformation.UserInterestLecture[i].LectureId == courseRegistrationNumber) //출력된 리스트에 항목이 있을 경우
                     {
                         isIdInTheSearchList = true;
                         break;
                     }
                 }
+
                 if (isIdInTheSearchList == false) //리스트에 없을 때
                 {
                     Console.SetCursorPosition(CursorPositionX, CursorPositionY);
@@ -117,15 +119,16 @@ namespace _4차_LectureTimeTable.Controller
                 {
                     if (isRegistratePosibility && (courseRegistrationNumber == userInformation.UserInterestLecture[i].LectureId))
                     {
-                        ChangeTimeTypeToDateTimeStruct(userInformation.UserInterestLecture[i].LectureTime, userInformation.UserInterestLecture[i].LectureName, userInformation, i);
+                        ChangeTimeTypeToDateTimeStruct(userInformation.UserInterestLecture[i].LectureTime, userInformation.UserInterestLecture[i].LectureName, userInformation, i, CursorPositionX, CursorPositionY);
                     }
                 }
 
-                CursorPositionY -= 1;
+                CursorPositionY = Console.CursorTop - 2;
                 Console.ReadKey(true);
             }
 
         }
+
 
         public void CheckInterestLecture(UserDTO userInformation)
         {
@@ -151,7 +154,7 @@ namespace _4차_LectureTimeTable.Controller
             Console.ReadKey(true);
         }
 
-        public void  ChangeTimeTypeToDateTimeStruct(string time,string lectureName, UserDTO userInformation, int index)//시간대 저장형태 구분하고 DateTime 형태로 변환 하는 함수
+        public void  ChangeTimeTypeToDateTimeStruct(string time,string lectureName, UserDTO userInformation, int index,int CursorPositionX, int CursorPositionY)//시간대 저장형태 구분하고 DateTime 형태로 변환 하는 함수
         {
             string dayOfTheWeek;
             DateTime startTime;
@@ -166,14 +169,14 @@ namespace _4차_LectureTimeTable.Controller
                     startTime = DateTime.ParseExact(time.Substring(2,5), "HH:mm", CultureInfo.InvariantCulture);
                     endTime = DateTime.ParseExact(time.Substring(8, 5), "HH:mm", CultureInfo.InvariantCulture);
                     GetClassTime(startTime, endTime);
-                    SetTimeTable(userInformation, startTime, countOFHalfHourIntervals, dayOfTheWeek, lectureName, index);
+                    SetTimeTable(userInformation, startTime, countOFHalfHourIntervals, dayOfTheWeek, lectureName, index, CursorPositionX, CursorPositionY);
 
                     //두번 수업중 두번째 요일 처리
                     dayOfTheWeek = time.Substring(15, 1);
                     startTime = DateTime.ParseExact(time.Substring(17, 5), "HH:mm", CultureInfo.InvariantCulture);
                     endTime = DateTime.ParseExact(time.Substring(23, 5), "HH:mm", CultureInfo.InvariantCulture);
                     GetClassTime(startTime, endTime);
-                    SetTimeTable(userInformation, startTime, countOFHalfHourIntervals, dayOfTheWeek, lectureName, index);
+                    SetTimeTable(userInformation, startTime, countOFHalfHourIntervals, dayOfTheWeek, lectureName, index, CursorPositionX, CursorPositionY);
                 }
                 else //일주일에 수업이 두번 있고 서로 시간대가 같은 경우 (쉼표가 없다)
                 {
@@ -182,14 +185,14 @@ namespace _4차_LectureTimeTable.Controller
                     startTime = DateTime.ParseExact(time.Substring(4, 5), "HH:mm", CultureInfo.InvariantCulture);
                     endTime = DateTime.ParseExact(time.Substring(10, 5), "HH:mm", CultureInfo.InvariantCulture);
                     GetClassTime(startTime, endTime);
-                    SetTimeTable(userInformation, startTime, countOFHalfHourIntervals, dayOfTheWeek, lectureName, index);
+                    SetTimeTable(userInformation, startTime, countOFHalfHourIntervals, dayOfTheWeek, lectureName, index, CursorPositionX, CursorPositionY);
 
                     //두번 수업중 두번째 요일 처리
                     dayOfTheWeek = time.Substring(2, 1);
                     startTime = DateTime.ParseExact(time.Substring(4, 5), "HH:mm", CultureInfo.InvariantCulture);
                     endTime = DateTime.ParseExact(time.Substring(10, 5), "HH:mm", CultureInfo.InvariantCulture);
                     GetClassTime(startTime, endTime);
-                    SetTimeTable(userInformation, startTime, countOFHalfHourIntervals, dayOfTheWeek, lectureName, index);
+                    SetTimeTable(userInformation, startTime, countOFHalfHourIntervals, dayOfTheWeek, lectureName, index, CursorPositionX, CursorPositionY);
                 } 
             }
 
@@ -199,7 +202,7 @@ namespace _4차_LectureTimeTable.Controller
                 startTime = DateTime.ParseExact(time.Substring(2, 5), "HH:mm", CultureInfo.InvariantCulture);
                 endTime = DateTime.ParseExact(time.Substring(8, 5), "HH:mm", CultureInfo.InvariantCulture);
                 GetClassTime(startTime, endTime);
-                SetTimeTable(userInformation, startTime, countOFHalfHourIntervals, dayOfTheWeek, lectureName, index);
+                SetTimeTable(userInformation, startTime, countOFHalfHourIntervals, dayOfTheWeek, lectureName, index, CursorPositionX, CursorPositionY);
             }
 
             else if (lectureException.JudgeTimeTypeRegularExpression(time, @"^[가-힣]{0}$")) // 시간 정보란이 공백일 때 > 비대면 강의일 경우
@@ -214,9 +217,9 @@ namespace _4차_LectureTimeTable.Controller
             countOFHalfHourIntervals = (int)(timeDifference.TotalMinutes / 30);
         }
 
-        public void SetTimeTable(UserDTO userInformation, DateTime startTime, int countOFHalfHourIntervals, string dayOfTheWeek,string lectureName,int index)
+        public void SetTimeTable(UserDTO userInformation, DateTime startTime, int countOFHalfHourIntervals, string dayOfTheWeek,string lectureName,int index, int CursorPositionX, int CursorPositionY)
         {
-            int FilledCount = 0; 
+            int filledCount = 0; 
             // 배열의 x y 좌표값 구하기
             int arrayColumn = 0;
             int arrayRow = 26;
@@ -248,17 +251,19 @@ namespace _4차_LectureTimeTable.Controller
                 {
                     userInformation.TimeTable[arrayRow, arrayColumn] = lectureName;
                     arrayRow += 1;
-                    FilledCount +=1;
+                    filledCount +=1;
                 }
                 else // 한칸이라도 겹치면 안내문 출력후 탈출하기
                 {
+                    Console.SetCursorPosition(CursorPositionX, CursorPositionY);
                     menuUi.PrintLectureIsTimeOverLaped(); 
                     break;
                 }
             }
 
-            if(FilledCount == countOFHalfHourIntervals) // 다른강의랑 한칸도 안겹칠 경우
+            if(filledCount == countOFHalfHourIntervals) // 다른강의랑 한칸도 안겹칠 경우(수강신청 가능)
             {
+                Console.SetCursorPosition(CursorPositionX, CursorPositionY);
                 menuUi.PrintLectureIsSuccess();
                 userInformation.UserInterestLecture.RemoveAt(index);
                 userInformation.AvailableCreditsForRegistration -= int.Parse(userInformation.UserInterestLecture[index].Credit);

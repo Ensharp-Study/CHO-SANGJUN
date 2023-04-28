@@ -28,6 +28,11 @@ namespace _4차_LectureTimeTable.Utility
         TIMETABLE_OF_LECTURE_REGISTRATION,
         DELETE_REGISTRATED_LECTURE
     }
+    enum KindOfLectureRegistration
+    {
+        WITH_INTEREST_LECTURE,
+        WITH_SEARCH_FUNCTION
+    }
 
     enum LectureEntriesList //강의 검색시 강의 세부사항 표현하는 상수 
     {

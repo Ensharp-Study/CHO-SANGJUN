@@ -25,6 +25,7 @@ namespace _4차_LectureTimeTable.Controller
         {
             while (true)
             {
+                Console.Clear();
                 MenuSelectController menuSelectController = new MenuSelectController(menuUi);
                 CourseFinder courseFinder = new CourseFinder(dataStorage, lectureException, menuUi, menuSelectController);
                 CourseOfInterestAdder courseOfInterestAdder = new CourseOfInterestAdder(menuUi, dataStorage, lectureException, menuSelectController);

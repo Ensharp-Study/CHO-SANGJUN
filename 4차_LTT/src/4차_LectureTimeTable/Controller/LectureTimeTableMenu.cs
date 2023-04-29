@@ -30,6 +30,7 @@ namespace _4차_LectureTimeTable.Controller
                 CourseFinder courseFinder = new CourseFinder(dataStorage, lectureException, menuUi, menuSelectController);
                 CourseOfInterestAdder courseOfInterestAdder = new CourseOfInterestAdder(menuUi, dataStorage, lectureException, menuSelectController);
                 CourseRegistration courseRegistration = new CourseRegistration(menuUi, dataStorage, lectureException, menuSelectController);
+                CourseRegistrationChecker courseRegistrationChecker = new CourseRegistrationChecker(userInformation);
 
                 menuUi.PrintMenuUi(userInformation.UserName);
                 selectedMenu = menuSelectController.SelectMenuWithUpAndDown(menuList, 4, 42, 12); //초기 메뉴선택 상하키 함수로 선택
@@ -51,6 +52,7 @@ namespace _4차_LectureTimeTable.Controller
                         break;
 
                     case (int)MenuList.COURSE_REGISTRATION_CHECKER: //시간표 확인하기
+                        courseRegistrationChecker.ReportExcelFile();
                         break;
 
                 }

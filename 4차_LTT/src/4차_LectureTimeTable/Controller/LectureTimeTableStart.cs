@@ -15,11 +15,18 @@ namespace _4차_LectureTimeTable.Controller
 {
     public class LectureTimeTableStart
     {
-     
-        public MainUi mainUi = new MainUi();
-        public UserException userException = new UserException();
-        public DataStorage dataStorage = new DataStorage();
 
+        public MainUi mainUi;
+        public UserException userException;
+        public DataStorage dataStorage;
+        LectureTimeTableMenu lectureTimeTableMenu;
+        public LectureTimeTableStart()
+        {
+            this.mainUi = new MainUi();
+            this.userException = new UserException();
+            this.dataStorage = new DataStorage();
+            this.lectureTimeTableMenu = new LectureTimeTableMenu(dataStorage);
+        }
         public string id;
         public string password;
         public bool isInputValid;
@@ -27,7 +34,6 @@ namespace _4차_LectureTimeTable.Controller
 
         public void GetLogin()
         {
-            LectureTimeTableMenu lectureTimeTableMenu = new LectureTimeTableMenu(dataStorage); //메소드 밖에 쓰면 오류 발생?
             GetExcelFile();
             while (true)
             {
@@ -42,7 +48,7 @@ namespace _4차_LectureTimeTable.Controller
                 isAccountExist = false;
                 for (int i = 0; i < dataStorage.userData.Count; i++)
                 {
-                    if (string.Equals(id, dataStorage.userData[i].UserId)) //아이디 및 비밀번호 검사
+                    if (string.Equals(id, dataStorage.userData[i].UserId)) //아이디 및 비밀번호 검사 // 아이디 비밀번호 따로 검사
                     {
                         isAccountExist = true;
                         if (string.Equals(password, dataStorage.userData[i].UserPassword))
@@ -90,7 +96,7 @@ namespace _4차_LectureTimeTable.Controller
             }
         }
 
-        //엑셀 불러오기
+        //엑셀 불러오기 //따로 패키지 하기
         public void GetExcelFile() // EXCEL 클래스 만들어서 밖으로 빼기 (이것보다 밖으로 빼면 (메인클래스로 빼면) 오류 발생)
         {
             try

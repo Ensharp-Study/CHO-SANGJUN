@@ -10,7 +10,7 @@ using System.Text;
 
 namespace _4차_LectureTimeTable.Controller
 {
-    public class CourseOfInterestAdder :CourseFinder //관심과목 담기 클래스 (강의 검색 기능 클래스 상속 받기)
+    public class CourseOfInterestAdder :CourseFinder //관심과목 담기 클래스 (강의 검색 기능 클래스 상속 받기) //네이밍 바꾸기
     {
         LectureOfInterestAdderUi lectureOfInterestAdderUi = new LectureOfInterestAdderUi();
 
@@ -47,12 +47,12 @@ namespace _4차_LectureTimeTable.Controller
             }
         }
 
-        public string courseRegistrationNumber; //담는 과목 번호
+        public string courseRegistrationNumber; //담는 과목 번호 //지역변수로 내리기
         public bool isInputValid = false;
         public bool isAddPosibility = true;
         public bool isIdInTheSearchList = false;
         
-        public void AddLecture(UserDTO userInformation) //관심과목 호출하는 함수
+        public void AddLecture(UserDTO userInformation) //관심과목 호출하는 함수 //함수 길이 줄이기
         {
             FindCourse();
             userInformation.AvailableCreditsForRegistrationOfInterestLecture = 24;
@@ -73,6 +73,8 @@ namespace _4차_LectureTimeTable.Controller
                     courseRegistrationNumber = ToReceiveInput.ReceiveInput(CursorPositionX, CursorPositionY, 3, Constants.IS_NOT_PASSWORD);
                     isInputValid = lectureException.JudgeCourseNumberRegularExpression(CursorPositionX, CursorPositionY, courseRegistrationNumber);
                 }
+
+                //밑에 예외처리를 메소드 빼기 > 메소드는 하나의 기능만 하기
 
                 //예외처리 1.이미 관심과목에 담았을때
                 for (int i = 0; i < userInformation.UserInterestLecture.Count; i++) 
@@ -166,7 +168,7 @@ namespace _4차_LectureTimeTable.Controller
             Console.ReadKey(true);
         }
 
-        public void DeleteInterestLecture(UserDTO userInformation)
+        public void DeleteInterestLecture(UserDTO userInformation) // 삭제 
         {
             string DeletionLectureId ="";
             int CursorPositionX = 55;

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace _4차_LectureTimeTable.Utility
 {
-    public class ToReceiveInput //이름 변경
+    public class ToReceiveInput //이름 변경 // 싱글턴
     {
         public ToReceiveInput() { } //모든 입력을 입력받는 함수(예외처리)
         public static string ReceiveInput(int cursorPositionX, int cursorPositionY , int maxLength, bool isPassword)

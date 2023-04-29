@@ -21,12 +21,12 @@ namespace _4차_LectureTimeTable.Controller
         string[] menuList = { "○ 강의 시간표 조회", "○ 관심과목 담기", "○ 수강 신청", "○ 수강 신청 내역 조회" };
         int selectedMenu;
 
-        public void ControllLectureTimeTableMenu(UserDTO userInformation) //로그인한 유저의 정보 인자로 받아오기
+        public void ControllLectureTimeTableMenu(UserDTO userInformation) //로그인한 유저의 정보 인자로 받아오기 //controller이름빼고 이름 바꾸기
         {
-            while (true)
+            while (true) // 
             {
                 Console.Clear();
-                MenuSelectController menuSelectController = new MenuSelectController(menuUi);
+                MenuSelectController menuSelectController = new MenuSelectController(menuUi); // 다 생성자로 올리기
                 CourseFinder courseFinder = new CourseFinder(dataStorage, lectureException, menuUi, menuSelectController);
                 CourseOfInterestAdder courseOfInterestAdder = new CourseOfInterestAdder(menuUi, dataStorage, lectureException, menuSelectController);
                 CourseRegistration courseRegistration = new CourseRegistration(menuUi, dataStorage, lectureException, menuSelectController);

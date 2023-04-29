@@ -67,7 +67,7 @@ namespace _4차_LectureTimeTable.Controller
                     break;
             }
         }
-        public void CheckRegistratedLecture(UserDTO userInformation)
+        public void CheckRegistratedLecture(UserDTO userInformation) // 공통함수 클래스 만들기 동일한 함수
         {
             Console.Clear();
             for (int i = 0; i < userInformation.UserRegistratedLecture.Count; i++)
@@ -301,8 +301,9 @@ namespace _4차_LectureTimeTable.Controller
             {
                 Console.SetCursorPosition(CursorPositionX, CursorPositionY);
                 menuUi.PrintLectureIsSuccess();
+
                 //수강신청 성공한 과목 리스트에 저장
-                LectureDTO lectureInformation = new LectureDTO();
+                LectureDTO lectureInformation = new LectureDTO(); //굳이 대입 안하고 그냥 리스트에 add 해버리면 그만
                 lectureInformation.LectureId = userInformation.UserInterestLecture[index].LectureId;
                 lectureInformation.Major = userInformation.UserInterestLecture[index].Major;
                 lectureInformation.CourseNumber = userInformation.UserInterestLecture[index].CourseNumber;
@@ -324,7 +325,6 @@ namespace _4차_LectureTimeTable.Controller
 
                 userInformation.UserInterestLecture.RemoveAt(index);
             }
-            
         }
 
         //수강신청 시간표 출력 함수

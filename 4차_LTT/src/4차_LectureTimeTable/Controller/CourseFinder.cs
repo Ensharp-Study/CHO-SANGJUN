@@ -27,6 +27,7 @@ namespace _4차_LectureTimeTable.Controller
             this.menuSelectController = menuSelectController;
         }
 
+        //필드값으로 빼버리면 : 생성자로 뺄때 이거 초기화 안됨
         public string major="";
         public string courseClassification="";
         public string lectureName=""; //과목명
@@ -40,7 +41,7 @@ namespace _4차_LectureTimeTable.Controller
         public string[] courseClassificationPrintList = { "전체", "공통교양필수", "전공필수", "전공선택" };
         public string[] LectureEntries = { "개설학과 전공", "이수구분", "교과목명     :", "교수명       :", "학년         :", "학수번호     :", "분반         :", "<검색하기>" }; 
 
-        public int lectureEntriesNumber; //메뉴 ENTER로 선택 했을때 해당 인덱스 저장하는 변수
+        public int lectureEntriesNumber; //메뉴 ENTER로 선택 했을때 해당 인덱스 저장하는 변수 // 지역변수로 내리고 인자로 넘기기
         public int majorNumber;
         public int courseClassificationNumber;
 
@@ -85,7 +86,7 @@ namespace _4차_LectureTimeTable.Controller
                     break;
 
                 case (int)LectureEntriesList.LECTURE_NAME: //강의 이름 
-                    while (!isInputValid)
+                    while (!isInputValid) //case문안에 while 문 > 메소드로 빼기 // 공통으로 사용하는 클래스에
                     {
                         lectureName = ToReceiveInput.ReceiveInput(20, 13, 30, Constants.IS_NOT_PASSWORD);
                         isInputValid = lectureException.JudgeLectureNameRegularExpression(20, 13, lectureName);
@@ -171,7 +172,7 @@ namespace _4차_LectureTimeTable.Controller
             Console.WriteLine("");//줄 띄우기
 
         }
-
+        //함수 패키징 기능별로 하자
     }
 
 

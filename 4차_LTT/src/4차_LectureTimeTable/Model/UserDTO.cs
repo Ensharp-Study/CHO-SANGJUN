@@ -15,7 +15,7 @@ namespace _4차_LectureTimeTable.Model
 
             timeTable = new string[27, 6]; //시간표 시간 30분 단위, 월~금으로 배열 구성, 마지막줄에는 비대면 강의 
  
-            timeTable[0, 1] = "월";
+            timeTable[0, 1] = "월"; // 그릇이니까 대입은 다른 함수에서 
             timeTable[0, 2] = "화";
             timeTable[0, 3] = "수";
             timeTable[0, 4] = "목";

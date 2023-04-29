@@ -137,10 +137,10 @@ namespace _4차_LectureTimeTable.View
             Console.WriteLine("관심과목 리스트에 해당 아이디가 없습니다! 다시 입력하세요");
             Console.ResetColor();
         }
-        public void PrintDelete]LectureFail()
+        public void PrintDeleteRegistratedLectureFail()
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("관심과목 리스트에 해당 아이디가 없습니다! 다시 입력하세요");
+            Console.WriteLine("수강신청 리스트에 해당 아이디가 없습니다! 다시 입력하세요");
             Console.ResetColor();
         }
 

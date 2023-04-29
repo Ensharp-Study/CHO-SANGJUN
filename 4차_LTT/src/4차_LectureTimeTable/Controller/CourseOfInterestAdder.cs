@@ -169,13 +169,13 @@ namespace _4차_LectureTimeTable.Controller
             Console.ReadKey(true);
         }
 
-        
-        public void DeleteInterestLecture(UserDTO userInformation) // 삭제 
+        public void DeleteInterestLecture(UserDTO userInformation) 
         {
-            string DeletionLectureId ="";
+            string DeletionLectureId = "";
             int CursorPositionX = 55;
             int CursorPositionY = Console.CursorTop + 1;
             bool isIdInTheList = false;
+            bool isInputValid = false;
 
             Console.Clear();
             while (!isDoGoBackToBeforeMenu)
@@ -183,7 +183,7 @@ namespace _4차_LectureTimeTable.Controller
                 isInputValid = false;
 
                 CheckInterestLecture(userInformation); //관심과목 리스트 출력
-                menuUi.PrintDeletionLecture(userInformation.AvailableCreditsForRegistration, userInformation.EarnedCredits); //강의 삭제 메뉴 창 출력
+                menuUi.PrintDeletionLecture(userInformation.AvailableCreditsForRegistrationOfInterestLecture, userInformation.EarnedCreditsOfInterestLecture); //관심과목 삭제 메뉴 창 출력
 
                 while (!isInputValid) //삭제할 과목 번호 입력 받기
                 {
@@ -191,11 +191,11 @@ namespace _4차_LectureTimeTable.Controller
                     isInputValid = lectureException.JudgeCourseNumberRegularExpression(CursorPositionX, CursorPositionY, DeletionLectureId);
                 }
 
-                for (int i = 0; i < userInformation.UserRegistratedLecture.Count; i++) //수강신청 리스트와 비교하면서 탐색
+                for (int i = 0; i < userInformation.UserInterestLecture.Count; i++) //관심과목 리스트와 비교하면서 탐색
                 {
-                    if (DeletionLectureId == userInformation.UserRegistratedLecture[i].LectureId) // 수강신청 리스트에 해당 아이디가 있다면
+                    if (DeletionLectureId == userInformation.UserInterestLecture[i].LectureId) // 관심과목 리스트에 해당 아이디가 있다면
                     {
-                        userInformation.UserRegistratedLecture.RemoveAt(i);
+                        userInformation.UserInterestLecture.RemoveAt(i);
                         isIdInTheList = true;
                         break;
                     }
@@ -204,9 +204,9 @@ namespace _4차_LectureTimeTable.Controller
                 if (isIdInTheList)
                 {
                     menuUi.PrintDeleteLectureSuccess();
-                 
+
                 }
-                else // 수강신청 리스트에 검색한 아이디가 없는 경우
+                else // 관심과목 리스트에 검색한 아이디가 없는 경우
                 {
                     menuUi.PrintDeleteInterestLectureFail();
                 }
@@ -214,7 +214,9 @@ namespace _4차_LectureTimeTable.Controller
                 Console.SetCursorPosition(0, CursorPositionY - 1);
                 if (Console.ReadKey().Key == ConsoleKey.Escape) isDoGoBackToBeforeMenu = true;
             }
+
         }
+
 
     }
 }

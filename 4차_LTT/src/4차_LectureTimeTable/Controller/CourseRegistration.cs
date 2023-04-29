@@ -46,7 +46,9 @@ namespace _4차_LectureTimeTable.Controller
                     Console.SetWindowSize(235, 30);
                     CheckTimeTable(userInformation);
                     break;
-                case (int)LectureRegistrationMenuList.DELETE_REGISTRATED_LECTURE:
+                case (int)LectureRegistrationMenuList.DELETE_REGISTRATED_LECTURE: //신청과목 삭제하기
+                    Console.SetWindowSize(192, 30);
+                    DeleteRegistratedLecture(userInformation);
                     break;
             }
             
@@ -64,10 +66,11 @@ namespace _4차_LectureTimeTable.Controller
                     RegistrateLectureWithInterestList(userInformation);
                     break;
                 case (int)KindOfLectureRegistration.WITH_SEARCH_FUNCTION: //강의 검색으로 수강신청하기
+                    RegistrateLectureWithSearch(userInformation);
                     break;
             }
         }
-        public void CheckRegistratedLecture(UserDTO userInformation) // 공통함수 클래스 만들기 동일한 함수
+        public void CheckRegistratedLecture(UserDTO userInformation) //수강신청 내역 조회 함수   // 공통함수 클래스 만들기 동일한 함수
         {
             Console.Clear();
             for (int i = 0; i < userInformation.UserRegistratedLecture.Count; i++)
@@ -95,7 +98,7 @@ namespace _4차_LectureTimeTable.Controller
 
         public bool isInputVaild = false;
 
-        public void RegistrateLectureWithInterestList(UserDTO userInformation)
+        public void RegistrateLectureWithInterestList(UserDTO userInformation) // 관심과목 리스트로 수강신청하는 함수
         {
             userInformation.AvailableCreditsForRegistration = 24;
             userInformation.EarnedCredits = 0;
@@ -117,7 +120,7 @@ namespace _4차_LectureTimeTable.Controller
 
                 Console.Clear();
                 CheckInterestLecture(userInformation); //관심과목 담긴 목록 확인하는 함수 호출
-                menuUi.PrintLectureRegistrationByInterestedLecture(userInformation.AvailableCreditsForRegistration, userInformation.EarnedCredits); //수강신청 입력창 출력
+                menuUi.PrintLectureRegistration(userInformation.AvailableCreditsForRegistration, userInformation.EarnedCredits); //수강신청 입력창 출력
                 CursorPositionX = 55;
                 CursorPositionY = Console.CursorTop - 2;
 
@@ -165,7 +168,7 @@ namespace _4차_LectureTimeTable.Controller
         }
 
 
-        public void CheckInterestLecture(UserDTO userInformation)
+        public void CheckInterestLecture(UserDTO userInformation) //관심과목 리스트 내역 조회하는 함수
         {
             for (int i = 0; i < userInformation.UserInterestLecture.Count; i++)
             {
@@ -189,6 +192,7 @@ namespace _4차_LectureTimeTable.Controller
             Console.ReadKey(true);
         }
 
+        
         public void  ChangeTimeTypeToDateTimeStruct(string time,string lectureName, UserDTO userInformation, int index,int CursorPositionX, int CursorPositionY)//시간대 저장형태 구분하고 DateTime 형태로 변환 하는 함수
         {
             string dayOfTheWeek;
@@ -252,6 +256,7 @@ namespace _4차_LectureTimeTable.Controller
             countOFHalfHourIntervals = (int)(timeDifference.TotalMinutes / 30);
         }
 
+        //시간표에 저장하는 함수
         public void SetTimeTable(UserDTO userInformation, DateTime startTime, int countOFHalfHourIntervals, string dayOfTheWeek,string lectureName,int index, int CursorPositionX, int CursorPositionY)
         {
             int filledCount = 0; 
@@ -327,6 +332,112 @@ namespace _4차_LectureTimeTable.Controller
             }
         }
 
+        //강의 조회로 수강신청하는 함수
+        public void RegistrateLectureWithSearch(UserDTO userInformation)
+        {
+            FindCourse();
+            userInformation.AvailableCreditsForRegistration = 24;
+            userInformation.EarnedCredits = 0;
+            int CursorPositionX = 55;
+            int CursorPositionY = Console.CursorTop + 1;
+            string courseRegistrationNumber="";
+            bool isInputValid = false;
+            bool isAddPosibility = true;
+            bool isIdInTheSearchList = false;
+
+            while (!isDoGoBackToBeforeMenu)
+            {
+                isInputValid = false;
+                isAddPosibility = true;
+                isIdInTheSearchList = false;
+
+                menuUi.PrintLectureRegistration(userInformation.AvailableCreditsForRegistration, userInformation.EarnedCredits);
+
+                while (!isInputValid) //신청 과목 번호 입력 받기
+                {
+                    courseRegistrationNumber = ToReceiveInput.ReceiveInput(CursorPositionX, CursorPositionY, 3, Constants.IS_NOT_PASSWORD);
+                    isInputValid = lectureException.JudgeCourseNumberRegularExpression(CursorPositionX, CursorPositionY, courseRegistrationNumber);
+                }
+
+                //밑에 예외처리를 메소드 빼기 > 메소드는 하나의 기능만 하기
+
+                //예외처리 1.이미 수강신청 했을때
+                for (int i = 0; i < userInformation.UserRegistratedLecture.Count; i++)
+                {
+                    if (userInformation.UserRegistratedLecture[i].LectureId == courseRegistrationNumber)
+                    {
+                        menuUi.PrintAlreadyRegistratedErrorMesseage(); //오류메세지 출력
+                        isAddPosibility = false;
+                    }
+                }
+                //예외처리 2. 학점수가 초과되었을때
+                if ((userInformation.AvailableCreditsForRegistration - Convert.ToInt32((dataStorage.lectureTotalData.GetValue(int.Parse(courseRegistrationNumber), 8)))) < 0)
+                {
+                    menuUi.PrintExcessCreditsErrorMesseage(); //오류메세지 출력
+
+                    isAddPosibility = false;
+                }
+
+                //예외처리 3. 리스트에 없는 항목이 추가 되었을때
+                for (int i = 0; i < dataStorage.searchedLectureData.Count; i++)
+                {
+                    if (dataStorage.searchedLectureData[i] == int.Parse(courseRegistrationNumber)) //출력된 리스트에 항목이 있을 경우
+                    {
+                        isIdInTheSearchList = true;
+                        break;
+                    }
+                }
+                if (isIdInTheSearchList == false) //리스트에 없을 때
+                {
+                    menuUi.PrintLectureIdIsNotInTheSearchedList();
+
+                    isAddPosibility = false;
+                }
+
+
+                if (isAddPosibility)//예외처리 후 isAddPosibility 가 true 일 경우
+                {
+                    for (int i = 1; i <= dataStorage.lectureTotalData.GetLength(0); i++) //엑셀 모든 열 탐색
+                    {
+                        if (dataStorage.lectureTotalData.GetValue(i, 1).ToString() == courseRegistrationNumber) // 엑셀 번호값이랑 입력번호값이랑 비교
+                        {
+                            LectureDTO lectureDTO = new LectureDTO();
+                            lectureDTO.LectureId = dataStorage.lectureTotalData.GetValue(i, 1).ToString();
+                            lectureDTO.Major = dataStorage.lectureTotalData.GetValue(i, 2).ToString();
+                            lectureDTO.CourseNumber = dataStorage.lectureTotalData.GetValue(i, 3).ToString();
+                            lectureDTO.CourseClass = dataStorage.lectureTotalData.GetValue(i, 4).ToString();
+                            lectureDTO.LectureName = dataStorage.lectureTotalData.GetValue(i, 5).ToString();
+                            lectureDTO.CourseClassification = dataStorage.lectureTotalData.GetValue(i, 6).ToString();
+                            lectureDTO.Grade = dataStorage.lectureTotalData.GetValue(i, 7).ToString();
+                            lectureDTO.Credit = dataStorage.lectureTotalData.GetValue(i, 8).ToString();
+                            lectureDTO.LectureTime = dataStorage.lectureTotalData.GetValue(i, 9).ToString();
+                            lectureDTO.LectureClassroom = dataStorage.lectureTotalData.GetValue(i, 10).ToString();
+                            lectureDTO.Professor = dataStorage.lectureTotalData.GetValue(i, 11).ToString();
+                            lectureDTO.Language = dataStorage.lectureTotalData.GetValue(i, 12).ToString();
+                            //해당 번호 강의 정보 DTO에 저장하기
+
+                            userInformation.AvailableCreditsForRegistration -= int.Parse(lectureDTO.Credit); //신청가능 학점 수 줄이기
+                            userInformation.EarnedCredits += int.Parse(lectureDTO.Credit); //신청학점 수 추가하기
+
+                            userInformation.UserRegistratedLecture.Add(lectureDTO);//해당 DTO 인스턴스 데이터 저장소에 저장
+
+                        }
+                    }
+                    menuUi.PrintLectureIsSuccess();
+                }
+                Console.SetCursorPosition(0, CursorPositionY - 1);
+                if (Console.ReadKey().Key == ConsoleKey.Escape) isDoGoBackToBeforeMenu = true;
+            }
+
+            //시간표에 추가하기
+            for (int i = 0; i < userInformation.UserRegistratedLecture.Count; i++)
+            { 
+                ChangeTimeTypeToDateTimeStruct(userInformation.UserRegistratedLecture[i].LectureTime, userInformation.UserRegistratedLecture[i].LectureName, userInformation, i, CursorPositionX, CursorPositionY);
+            }
+
+        }
+
+
         //수강신청 시간표 출력 함수
         public void CheckTimeTable(UserDTO userInformation)
         {
@@ -342,6 +453,55 @@ namespace _4차_LectureTimeTable.Controller
                 Console.WriteLine();//한줄 띄우기
             }
             Console.ReadKey(true);
+        }
+
+        //수강신청 삭제
+        public void DeleteRegistratedLecture(UserDTO userInformation)
+        {
+            string DeletionLectureId = "";
+            int CursorPositionX = 55;
+            int CursorPositionY = Console.CursorTop + 1;
+            bool isIdInTheList = false;
+            bool isInputValid = false;
+
+            Console.Clear();
+            while (!isDoGoBackToBeforeMenu)
+            {
+                isInputValid = false;
+
+                CheckRegistratedLecture(userInformation); //수강신청 리스트 출력
+                menuUi.PrintDeletionLecture(userInformation.AvailableCreditsForRegistrationOfInterestLecture, userInformation.EarnedCreditsOfInterestLecture); //관심과목 삭제 메뉴 창 출력
+
+                while (!isInputValid) //삭제할 과목 번호 입력 받기
+                {
+                    DeletionLectureId = ToReceiveInput.ReceiveInput(CursorPositionX, CursorPositionY, 3, Constants.IS_NOT_PASSWORD);
+                    isInputValid = lectureException.JudgeCourseNumberRegularExpression(CursorPositionX, CursorPositionY, DeletionLectureId);
+                }
+
+                for (int i = 0; i < userInformation.UserInterestLecture.Count; i++) //관심과목 리스트와 비교하면서 탐색
+                {
+                    if (DeletionLectureId == userInformation.UserInterestLecture[i].LectureId) // 관심과목 리스트에 해당 아이디가 있다면
+                    {
+                        userInformation.UserInterestLecture.RemoveAt(i);
+                        isIdInTheList = true;
+                        break;
+                    }
+                }
+
+                if (isIdInTheList)
+                {
+                    menuUi.PrintDeleteLectureSuccess();
+
+                }
+                else // 관심과목 리스트에 검색한 아이디가 없는 경우
+                {
+                    menuUi.PrintDeleteInterestLectureFail();
+                }
+
+                Console.SetCursorPosition(0, CursorPositionY - 1);
+                if (Console.ReadKey().Key == ConsoleKey.Escape) isDoGoBackToBeforeMenu = true;
+            }
+
         }
     }
 }

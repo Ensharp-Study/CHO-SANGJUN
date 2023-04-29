@@ -100,6 +100,12 @@ namespace _4차_LectureTimeTable.View
             Console.WriteLine("이미 관심과목에 담겨진 항목입니다. 다시 선택하세요. ");
             Console.ResetColor();
         }
+        public void PrintAlreadyRegistratedErrorMesseage() //이미 수강신청 했을 경우
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("이미 신청된 강의 입니다. 다시 신청하세요. ");
+            Console.ResetColor();
+        }
         public void PrintExcessCreditsErrorMesseage() //예외 2) 학점수가 초과되었을 경우
         {
             Console.ForegroundColor = ConsoleColor.Red;
@@ -118,13 +124,33 @@ namespace _4차_LectureTimeTable.View
             Console.WriteLine("관심과목에 저장 되었습니다!.");
             Console.ResetColor();
         }
-        public void PrintDeletionInterestedLecture(int availableCreditsForRegistration, int earnedCredits)
+
+        public void PrintDeleteLectureSuccess()
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("삭제가 완료 되었습니다.");
+            Console.ResetColor();
+        }
+        public void PrintDeleteInterestLectureFail()
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("관심과목 리스트에 해당 아이디가 없습니다! 다시 입력하세요");
+            Console.ResetColor();
+        }
+        public void PrintDelete]LectureFail()
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("관심과목 리스트에 해당 아이디가 없습니다! 다시 입력하세요");
+            Console.ResetColor();
+        }
+
+        public void PrintDeletionLecture(int availableCreditsForRegistration, int earnedCredits)
         {
             Console.WriteLine("==============================================================================================================");
             Console.WriteLine("등록가능 학점 : {0}    담은학점 : {1}     삭제할 과목 (NO) : ", availableCreditsForRegistration, earnedCredits);
             Console.WriteLine("==============================================================================================================");
         }
-        public void PrintLectureRegistrationByInterestedLecture(int availableCreditsForRegistration, int earnedCredits)
+        public void PrintLectureRegistration(int availableCreditsForRegistration, int earnedCredits)
         {
             Console.WriteLine("==============================================================================================================");
             Console.WriteLine("등록가능 학점 : {0}    담은학점 : {1}     신청과목 (NO) : ", availableCreditsForRegistration, earnedCredits);

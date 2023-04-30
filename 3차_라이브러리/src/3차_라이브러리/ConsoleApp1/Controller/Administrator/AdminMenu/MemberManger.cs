@@ -3,12 +3,18 @@ using System.Reflection;
 
 public class MemberManger
 {
+    InputByReadKey InputByReadKey;
+    RegularExpression regularExpression;
     AdministratorModeUi administratorModeUi;
+
     DataStorage dataStorage;
     ProgramProcess programProcess;
     public MemberManger(DataStorage dataStorage, ProgramProcess programProcess)
     {
+        this.InputByReadKey = InputByReadKey.GetInstance();
+        this.regularExpression = RegularExpression.GetInstance();
         this.administratorModeUi = AdministratorModeUi.GetInstance();
+
         this.dataStorage = dataStorage;
         this.programProcess = programProcess;
     }

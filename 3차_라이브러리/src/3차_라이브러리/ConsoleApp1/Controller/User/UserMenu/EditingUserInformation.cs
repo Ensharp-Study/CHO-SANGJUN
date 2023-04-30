@@ -2,20 +2,22 @@
 
 public class EditingUserInformation
 {
+    InputByReadKey InputByReadKey;
+    RegularExpression regularExpression;
     UserModeUi userModeUi;
+
     DataStorage dataStorage;
     UserInformation userInformation;
-    UserInformationException userInformationException;
-    BookInformationException bookInformationException;
     ProgramProcess programProcess;
 
-    public EditingUserInformation(DataStorage dataStorage, UserInformation userInformation, UserInformationException userInformationException, BookInformationException bookInformationException, ProgramProcess programProcess)
+    public EditingUserInformation(DataStorage dataStorage, UserInformation userInformation, ProgramProcess programProcess)
     {
+        this.InputByReadKey = InputByReadKey.GetInstance();
+        this.regularExpression = RegularExpression.GetInstance();
         this.userModeUi = UserModeUi.GetInstance();
-        this.userInformation = userInformation;
+
         this.dataStorage = dataStorage;
-        this.userInformationException = userInformationException;
-        this.bookInformationException = bookInformationException;
+        this.userInformation = userInformation;
         this.programProcess = programProcess;
     }
 
@@ -38,35 +40,35 @@ public class EditingUserInformation
             do//아이디 입력
             {
                 newId = InputByReadKey.ReceiveInput(54, 22, 15, Constants.IS_NOT_PASSWORD);
-                isJudgingCorrectString = userInformationException.JudgeIdWithRegularExpression(54, 22, newId);
+                isJudgingCorrectString = regularExpression.JudgeWithRegularExpression(54, 22, newId, Constants.USER_ID_REGULAR_EXPRESSION, Constants.USER_ID_ERROR_MESSAGE);
             } while (!isJudgingCorrectString);
             
             Console.SetCursorPosition(54, 23);
             do//비밀번호 입력
             {
                 newPassword = InputByReadKey.ReceiveInput(54, 23, 15, Constants.IS_PASSWORD);
-                isJudgingCorrectString = userInformationException.JudgePasswordWithRegularExpression(54, 23, newPassword);
+                isJudgingCorrectString = regularExpression.JudgeWithRegularExpression(54, 23, newPassword, Constants.USER_PASSWORD_REGULAR_EXPRESSION, Constants.USER_PASSWORD_ERROR_MESSAGE);
             } while (!isJudgingCorrectString);
 
             Console.SetCursorPosition(57, 24);
             do//이름 입력
             {
                 newName = InputByReadKey.ReceiveInput(57, 24, 10, Constants.IS_NOT_PASSWORD);
-                isJudgingCorrectString = userInformationException.JudgeUserNameWithRegularExpression(57, 24, newName);
+                isJudgingCorrectString = regularExpression.JudgeWithRegularExpression(57, 24, newName, Constants.USER_NAME_REGULAR_EXPRESSION, Constants.USER_NAME_ERROR_MESSAGE);
             } while (!isJudgingCorrectString);
             
             Console.SetCursorPosition(54, 25);
             do//나이 입력
             {
                 newAge = InputByReadKey.ReceiveInput(54, 25, 3, Constants.IS_NOT_PASSWORD);
-                isJudgingCorrectString = userInformationException.JudgeUserAgeWithRegularExpression(54, 25, newAge);
+                isJudgingCorrectString = regularExpression.JudgeWithRegularExpression(54, 25, newAge, Constants.USER_AGE_REGULAR_EXPRESSION, Constants.USER_AGE_ERROR_MESSAGE);
             } while (!isJudgingCorrectString);
 
             Console.SetCursorPosition(57, 26);
             do//휴대폰 번호 입력
             {
                 newPhoneNumber = InputByReadKey.ReceiveInput(57, 26, 13, Constants.IS_NOT_PASSWORD);
-                isJudgingCorrectString = userInformationException.JudgeUserNumberWithRegularExpression(57, 26, newPhoneNumber);
+                isJudgingCorrectString = regularExpression.JudgeWithRegularExpression(57, 26, newPhoneNumber, Constants.USER_NUMBER_REGULAR_EXPRESSION, Constants.USER_NUMBER_ERROR_MESSAGE);
             } while (!isJudgingCorrectString);
 
             Console.SetCursorPosition(60, 27);

@@ -2,14 +2,14 @@
 
 public class UserMenu //유저 메뉴 진입 기능 클래스
 {
+    InputByReadKey InputByReadKey;
+    RegularExpression regularExpression;
     MainMenuUi mainMenuUi;
     UserModeUi userModeUi;
     CommonFunctionUi commonFunctionUi;
 
     DataStorage dataStorage;
     UserInformation user;
-    UserInformationException userInformationException;
-    BookInformationException bookInformationException;
     ProgramProcess programProcess;
 
     BookFinder bookFinder;
@@ -20,28 +20,26 @@ public class UserMenu //유저 메뉴 진입 기능 클래스
     EditingUserInformation editingUserInformation;
     DeletingUserInformation deletingUserInformation;
 
-    public UserMenu(DataStorage dataStorage, UserInformation user, UserInformationException userInformationException, BookInformationException bookInformationException, ProgramProcess programProcess)
+    public UserMenu(DataStorage dataStorage, UserInformation user, ProgramProcess programProcess)
     {
+        this.InputByReadKey = InputByReadKey.GetInstance();
+        this.regularExpression = RegularExpression.GetInstance();
         this.mainMenuUi = MainMenuUi.GetInstance();
         this.userModeUi = UserModeUi.GetInstance();
         this.commonFunctionUi = CommonFunctionUi.GetInstance();
 
         this.dataStorage = dataStorage;
         this.user = user;
-        this.userInformationException = userInformationException;
-        this.bookInformationException = bookInformationException;
         this.programProcess = programProcess;
 
-        this.bookFinder = new BookFinder(dataStorage, programProcess, bookInformationException);
-        this.borrowingBook = new BorrowingBook(dataStorage, user, programProcess, bookInformationException);
+        this.bookFinder = new BookFinder(dataStorage, programProcess);
+        this.borrowingBook = new BorrowingBook(dataStorage, user, programProcess);
         this.bookBorrowList = new BookBorrowList(dataStorage, user, programProcess);
-        this.returningBook = new ReturningBook(dataStorage, user, programProcess, bookInformationException);
+        this.returningBook = new ReturningBook(dataStorage, user, programProcess);
         this.bookReturnList = new BookReturnList(dataStorage, user, programProcess);
-        this.editingUserInformation = new EditingUserInformation(dataStorage, user, userInformationException, bookInformationException, programProcess);
+        this.editingUserInformation = new EditingUserInformation(dataStorage, user, programProcess);
         this.deletingUserInformation = new DeletingUserInformation(dataStorage, user, programProcess);
     }
-
-    
 
     public void ControllUserMenu() //유저 메뉴 선택 함수
     {

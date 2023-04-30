@@ -2,22 +2,26 @@
 
 public class BorrowingBook
 {
+    InputByReadKey InputByReadKey;
+    RegularExpression regularExpression;
     UserModeUi userModeUi;
     CommonFunctionUi commonFunctionUi;
+
     DataStorage dataStorage;
     UserInformation userInformation;
     ProgramProcess programProcess;
-    BookInformationException bookInformationException;
 
-    public BorrowingBook(DataStorage dataStorage, UserInformation userInformation, ProgramProcess programProcess, BookInformationException bookInformationException) 
+    public BorrowingBook(DataStorage dataStorage, UserInformation userInformation, ProgramProcess programProcess) 
     {
+        this.InputByReadKey = InputByReadKey.GetInstance();
+        this.regularExpression = RegularExpression.GetInstance();
         this.userModeUi = UserModeUi.GetInstance();
         this.commonFunctionUi = CommonFunctionUi.GetInstance();
 
         this.dataStorage = dataStorage;
         this.userInformation = userInformation;
         this.programProcess = programProcess;
-        this.bookInformationException = bookInformationException;
+
     }
 
     bool isJudgingCorrectString;

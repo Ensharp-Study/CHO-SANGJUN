@@ -3,19 +3,24 @@ using System.Net;
 
 public class ReturningBook //책 반납하기
 {
+    InputByReadKey InputByReadKey;
+    RegularExpression regularExpression;
     UserModeUi userModeUi;
+
     DataStorage dataStorage;
     UserInformation userInformation;
     ProgramProcess programProcess;
-    BookInformationException bookInformationException;
 
-    public ReturningBook(DataStorage dataStorage, UserInformation userInformation, ProgramProcess programProcess, BookInformationException bookInformationException) 
+    public ReturningBook(DataStorage dataStorage, UserInformation userInformation, ProgramProcess programProcess) 
     {
+        this.InputByReadKey = InputByReadKey.GetInstance();
+        this.regularExpression = RegularExpression.GetInstance();
         this.userModeUi = UserModeUi.GetInstance();
+
         this.dataStorage = dataStorage;
         this.userInformation = userInformation;
         this.programProcess = programProcess;
-        this.bookInformationException = bookInformationException;
+       
     }
 
     bool isJudgingCorrectString;

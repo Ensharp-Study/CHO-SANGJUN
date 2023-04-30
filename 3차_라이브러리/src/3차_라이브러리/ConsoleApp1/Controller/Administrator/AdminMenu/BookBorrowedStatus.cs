@@ -2,15 +2,23 @@
 
 public class BookBorrowedStatus
 {
+    InputByReadKey InputByReadKey;
+    RegularExpression regularExpression;
+    AdministratorModeUi administratorModeUi;
+
     DataStorage dataStorage;
     ProgramProcess programProcess;
-    AdministratorModeUi administratorModeUi;
+   
 
     public BookBorrowedStatus(DataStorage dataStorage, ProgramProcess programProcess)
     {
+        this.InputByReadKey = InputByReadKey.GetInstance();
+        this.regularExpression = RegularExpression.GetInstance();
+        this.administratorModeUi = AdministratorModeUi.GetInstance();
+
         this.dataStorage = dataStorage;
         this.programProcess = programProcess;
-        this.administratorModeUi = AdministratorModeUi.GetInstance();
+        
     }
 
     public void CheckBookBorrowedList() //빌린 책 출력하는 함수

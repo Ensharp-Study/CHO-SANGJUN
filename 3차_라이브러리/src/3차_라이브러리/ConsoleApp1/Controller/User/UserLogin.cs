@@ -3,21 +3,21 @@ using System.Text.RegularExpressions;
 
 public class UserLogin //유저모드 로그인 기능 클래스
 {
+    InputByReadKey InputByReadKey;
+    RegularExpression regularExpression;
     MainMenuUi mainMenuUi;
     SignUpAndLoginUi signUpAndLoginUi;
     DataStorage dataStorage;
-    UserInformationException userInformationException;
-    BookInformationException bookInformationException;
     ProgramProcess programProcess;
 
-    public UserLogin( DataStorage dataStorage, UserInformationException userInformationException, BookInformationException bookInformationException, ProgramProcess programProcess)
+    public UserLogin( DataStorage dataStorage, ProgramProcess programProcess)
     {
+        this.InputByReadKey = InputByReadKey.GetInstance();
+        this.regularExpression = RegularExpression.GetInstance();
         this.mainMenuUi = MainMenuUi.GetInstance();
         this.signUpAndLoginUi = SignUpAndLoginUi.GetInstance();
 
         this.dataStorage = dataStorage;
-        this.userInformationException = userInformationException;
-        this.bookInformationException = bookInformationException;
         this.programProcess = programProcess;
         
     }
@@ -41,7 +41,7 @@ public class UserLogin //유저모드 로그인 기능 클래스
             do //아이디 입력
             {
                 id = InputByReadKey.ReceiveInput(53, 23, 15, Constants.IS_NOT_PASSWORD); //입력값 키값으로 검사
-                isJudgingCorrectString = userInformationException.JudgeIdWithRegularExpression(53, 23, id); //정규표현식 이용하여 검사
+                isJudgingCorrectString = regularExpression.JudgeWithRegularExpression(53, 23, id, Constants.USER_ID_REGULAR_EXPRESSION, Constants.USER_ID_ERROR_MESSAGE); //정규표현식 이용하여 검사
             } while (!isJudgingCorrectString); //정규표현식 확인후 거짓일 때만 재실행 
 
             
@@ -49,7 +49,7 @@ public class UserLogin //유저모드 로그인 기능 클래스
             do //비밀번호 입력
             {
                 password = InputByReadKey.ReceiveInput(61, 24, 15, Constants.IS_PASSWORD);
-                isJudgingCorrectString = userInformationException.JudgePasswordWithRegularExpression(61, 24, password);
+                isJudgingCorrectString = regularExpression.JudgeWithRegularExpression(53, 23, id, Constants.USER_PASSWORD_REGULAR_EXPRESSION, Constants.USER_PASSWORD_ERROR_MESSAGE);
             } while (!isJudgingCorrectString);
             
 
@@ -64,7 +64,7 @@ public class UserLogin //유저모드 로그인 기능 클래스
                     if (string.Equals(password, dataStorage.userList[indexI].Password)) //비밀번호 비교
                     {
                         Console.Clear() ;
-                        UserMenu usermenu = new UserMenu(dataStorage,  dataStorage.userList[indexI],  userInformationException, bookInformationException, programProcess); //유저메뉴로 진입
+                        UserMenu usermenu = new UserMenu(dataStorage,  dataStorage.userList[indexI], programProcess); //유저메뉴로 진입
                         usermenu.ControllUserMenu();
                         //isJudgingCorrectInput = false;
                     }

@@ -10,19 +10,24 @@ public class DeletingBook
     int deletedBookIdInt;
     int PrintPossiblity = 0;
 
+    InputByReadKey InputByReadKey;
+    RegularExpression regularExpression;
     AdministratorModeUi administratorModeUi;
     CommonFunctionUi commonFunctionUi;
+    
     DataStorage dataStorage;
     ProgramProcess programProcess;
-    BookInformationException bookInformationException;
 
-    public DeletingBook(DataStorage dataStorage, ProgramProcess programProcess, BookInformationException bookInformationException)
+
+    public DeletingBook(DataStorage dataStorage, ProgramProcess programProcess)
     {
+        this.InputByReadKey = InputByReadKey.GetInstance();
+        this.regularExpression = RegularExpression.GetInstance();
         this.administratorModeUi = AdministratorModeUi.GetInstance();
         this.commonFunctionUi = CommonFunctionUi.GetInstance();
+      
         this.dataStorage = dataStorage;
         this.programProcess = programProcess;
-        this.bookInformationException = bookInformationException;
     }
 
     bool isJudgingCorrectString;
@@ -69,21 +74,21 @@ public class DeletingBook
         do
         {
             title = InputByReadKey.ReceiveInput(17, 1, 15, Constants.IS_NOT_PASSWORD);
-            isJudgingCorrectString = bookInformationException.JudgeBookNameRegularExpression(17, 1, title);
+            isJudgingCorrectString = regularExpression.JudgeWithRegularExpression(17, 1, title, Constants.BOOK_NAME_REGULAR_EXPRESSION, Constants.BOOK_NAME_ERROR_MESSAGE);
         } while (!isJudgingCorrectString);
 
-        Console.SetCursorPosition(19, 2);
+        Console.SetCursorPosition(19, 2); //작가
         do
         {
             author = InputByReadKey.ReceiveInput(19, 2, 15, Constants.IS_NOT_PASSWORD);
-            isJudgingCorrectString = bookInformationException.JudgeBookAuthorRegularExpression(19, 2, author);
+            isJudgingCorrectString = regularExpression.JudgeWithRegularExpression(19, 2, author, Constants.BOOK_AUTHOR_REGULAR_EXPRESSION, Constants.BOOK_AUTHOR_ERROR_MESSAGE);
         } while (!isJudgingCorrectString);
 
-        Console.SetCursorPosition(17, 3);
+        Console.SetCursorPosition(17, 3); //출판사
         do
         {
             publisher = InputByReadKey.ReceiveInput(17, 3, 15, Constants.IS_NOT_PASSWORD);
-            isJudgingCorrectString = bookInformationException.JudgeBookPublisherRegularExpression(17, 3, publisher);
+            isJudgingCorrectString = regularExpression.JudgeWithRegularExpression(17, 3, publisher, Constants.BOOK_PUBLISHER_REGULAR_EXPRESSION, Constants.BOOK_PUBLISHER_ERROR_MESSAGE);
         } while (!isJudgingCorrectString);
 
         Console.WriteLine("\n\n\n");

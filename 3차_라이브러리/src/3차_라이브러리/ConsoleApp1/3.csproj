@@ -44,8 +44,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Utility\ProgramProcess.cs" />
-    <Compile Include="ExceptionHandling\BookInformationException.cs" />
-    <Compile Include="Utility\InputByReadKey.cs" />
+    <Compile Include="Utility\Exception\RegularExpression.cs" />
+    <Compile Include="Utility\Exception\InputByReadKey.cs" />
     <Compile Include="Utility\Constants.cs" />
     <Compile Include="Controller\Administrator\AdministratorLogin.cs" />
     <Compile Include="Controller\Administrator\AdministratorMenu.cs" />
@@ -54,7 +54,6 @@
     <Compile Include="Controller\Administrator\AdminMenu\DeletingBook.cs" />
     <Compile Include="Controller\Administrator\AdminMenu\EditingBook.cs" />
     <Compile Include="Controller\Administrator\AdminMenu\MemberManger.cs" />
-    <Compile Include="ExceptionHandling\UserInformationException.cs" />
     <Compile Include="Controller\LibraryMode.cs" />
     <Compile Include="Controller\User\SignUp.cs" />
     <Compile Include="Controller\User\UserLogin.cs" />

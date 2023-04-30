@@ -1,12 +1,12 @@
 ﻿using System;
 
 public class LibraryMode
-{ 
+{
+    InputByReadKey InputByReadKey;
+    RegularExpression regularExpression;
     MainMenuUi mainMenuUi;
     SignUpAndLoginUi signUpAndLoginUi;
     DataStorage dataStorage;
-    UserInformationException userInformationException;
-    BookInformationException bookInformationException;
     ProgramProcess programProcess;
     UserLogin login;
     SignUp signUp;
@@ -14,15 +14,15 @@ public class LibraryMode
 
     public LibraryMode()
     {
+        this.InputByReadKey = InputByReadKey.GetInstance();
+        this.regularExpression = RegularExpression.GetInstance();
         this.mainMenuUi = MainMenuUi.GetInstance();
         this.signUpAndLoginUi = SignUpAndLoginUi.GetInstance();
         this.dataStorage = new DataStorage();
-        this.userInformationException = new UserInformationException();
-        this.bookInformationException = new BookInformationException();
         this.programProcess = new ProgramProcess();
-        this.login = new UserLogin(dataStorage, userInformationException, bookInformationException, programProcess);
-        this.signUp = new SignUp(dataStorage, userInformationException);
-        this.administratorLogin = new AdministratorLogin(dataStorage, userInformationException, bookInformationException, programProcess);
+        this.login = new UserLogin(dataStorage,programProcess);
+        this.signUp = new SignUp(dataStorage);
+        this.administratorLogin = new AdministratorLogin(dataStorage, programProcess);
     }
 
     public void SelectMenu()

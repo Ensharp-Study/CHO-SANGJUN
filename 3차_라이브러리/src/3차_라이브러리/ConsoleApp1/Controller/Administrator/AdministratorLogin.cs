@@ -1,22 +1,24 @@
 ﻿using System;
 public class AdministratorLogin
 {
+    InputByReadKey InputByReadKey;
+    RegularExpression regularExpression;
     MainMenuUi mainMenuUi;
     SignUpAndLoginUi signUpAndLoginUi;
+
     DataStorage dataStorage;
-    UserInformationException userInformationException;
-    BookInformationException bookInformationException;
     ProgramProcess programProcess;
     AdministratorMenu administratorMenu;
-    public AdministratorLogin(DataStorage dataStorage, UserInformationException userInformationException, BookInformationException bookInformationException, ProgramProcess programProcess)
+    public AdministratorLogin(DataStorage dataStorage, ProgramProcess programProcess)
     {
+        this.InputByReadKey = InputByReadKey.GetInstance();
+        this.regularExpression = RegularExpression.GetInstance();
         this.mainMenuUi = MainMenuUi.GetInstance();
         this.signUpAndLoginUi = SignUpAndLoginUi.GetInstance();
+        
         this.dataStorage = dataStorage;
-        this.userInformationException = userInformationException;
-        this.bookInformationException = bookInformationException;
         this.programProcess = programProcess;
-        this.administratorMenu = new AdministratorMenu(dataStorage, programProcess, bookInformationException);
+        this.administratorMenu = new AdministratorMenu(dataStorage, programProcess);
     }
 
     bool isJudgingCorrectString;
@@ -33,14 +35,14 @@ public class AdministratorLogin
             do //아이디 입력
             {
                 id = InputByReadKey.ReceiveInput(53, 23, 15, Constants.IS_NOT_PASSWORD); //입력값 키값으로 검사
-                isJudgingCorrectString = userInformationException.JudgeIdWithRegularExpression(53, 23, id); //정규표현식 이용하여 검사
+                isJudgingCorrectString = regularExpression.JudgeWithRegularExpression(53, 23, id, Constants.USER_ID_REGULAR_EXPRESSION, Constants.USER_ID_ERROR_MESSAGE); //정규표현식 이용하여 검사
             } while (!isJudgingCorrectString); //정규표현식 확인후 거짓일 때만 재실행 
             
             Console.SetCursorPosition(61, 24);
             do //비밀번호 입력
             {
                 password = InputByReadKey.ReceiveInput(61, 24, 15, Constants.IS_PASSWORD);
-                isJudgingCorrectString = userInformationException.JudgePasswordWithRegularExpression(61, 24, password);
+                isJudgingCorrectString = regularExpression.JudgeWithRegularExpression(61, 24, password, Constants.USER_PASSWORD_REGULAR_EXPRESSION, Constants.USER_PASSWORD_ERROR_MESSAGE);
             } while (!isJudgingCorrectString);
 
 

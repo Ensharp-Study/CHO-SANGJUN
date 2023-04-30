@@ -5,10 +5,21 @@ using System.Text;
 using System.Text.RegularExpressions;
 
 
-public class InputByReadKey // 싱글턴
+public class InputByReadKey 
 {
-    public InputByReadKey() { } //모든 입력을 입력받는 함수(예외처리)
-    public static string ReceiveInput(int cursorPositionX, int cursorPositionY, int maxLength, bool isPassword)
+    //싱글톤 디자인 패턴
+    private static InputByReadKey instance;
+    private InputByReadKey() { }
+    public static InputByReadKey GetInstance()
+    {
+        if (instance == null)
+        {
+            instance = new InputByReadKey();
+        }
+        return instance;
+    }
+
+    public string ReceiveInput(int cursorPositionX, int cursorPositionY, int maxLength, bool isPassword)
     {
         StringBuilder stringBuilder = new StringBuilder();
 
@@ -81,15 +92,5 @@ public class InputByReadKey // 싱글턴
         }
         return stringBuilder.ToString();
     }
-
-    public static bool JudgingIsStringNumber(string inputString)
-    {
-        if (Regex.IsMatch(inputString, @"^\d+$")) //숫자인지 검사
-        {
-            return true;
-        }
-        else return false;
-    }
-
 }
 

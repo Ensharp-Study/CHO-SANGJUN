@@ -2,7 +2,10 @@
 
 public class DeletingUserInformation //inf와같이 줄임말 
 {
+    InputByReadKey InputByReadKey;
+    RegularExpression regularExpression;
     UserModeUi userModeUi;
+
     DataStorage dataStorage;
     UserInformation userInformation;
     ProgramProcess programProcess;
@@ -10,7 +13,10 @@ public class DeletingUserInformation //inf와같이 줄임말
 
     public DeletingUserInformation( DataStorage dataStorage, UserInformation userInformation, ProgramProcess programProcess)
     {
+        this.InputByReadKey = InputByReadKey.GetInstance();
+        this.regularExpression = RegularExpression.GetInstance();
         this.userModeUi = UserModeUi.GetInstance();
+
         this.dataStorage = dataStorage;
         this.userInformation = userInformation;
         this.programProcess = programProcess;

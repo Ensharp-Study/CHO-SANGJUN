@@ -14,18 +14,22 @@ public class EditingBook
     string EditedBookIdString;
     int EditedBookIdInt;
 
+    InputByReadKey InputByReadKey;
+    RegularExpression regularExpression;
     AdministratorModeUi administratorModeUi;
     CommonFunctionUi commonFunctionUi;
+    
     DataStorage dataStorage;
-    BookInformationException bookInformationException;
     ProgramProcess programProcess;
 
-    public EditingBook(DataStorage dataStorage, BookInformationException bookInformationException, ProgramProcess programProcess)
+    public EditingBook(DataStorage dataStorage, ProgramProcess programProcess)
     {
+        this.InputByReadKey = InputByReadKey.GetInstance();
+        this.regularExpression = RegularExpression.GetInstance();
         this.administratorModeUi = AdministratorModeUi.GetInstance();
         this.commonFunctionUi = CommonFunctionUi.GetInstance();
+        
         this.dataStorage = dataStorage;
-        this.bookInformationException = bookInformationException;
         this.programProcess = programProcess;
     }
 
@@ -55,45 +59,45 @@ public class EditingBook
             administratorModeUi.PrintEditingBookInformation();
 
             Console.SetCursorPosition(63, 24);
-            do
+            do //책 이름
             {
                 title = InputByReadKey.ReceiveInput(63, 24, 15, Constants.IS_NOT_PASSWORD);
-                isJudgingCorrectString = bookInformationException.JudgeBookNameRegularExpression(63, 24, title);
+                isJudgingCorrectString = regularExpression.JudgeWithRegularExpression(63, 24, title, Constants.BOOK_NAME_REGULAR_EXPRESSION, Constants.BOOK_NAME_ERROR_MESSAGE);
             } while (!isJudgingCorrectString);
          
             Console.SetCursorPosition(63, 25);
-            do
+            do //책 작가
             {
                 author = InputByReadKey.ReceiveInput(63, 25, 15, Constants.IS_NOT_PASSWORD);
-                isJudgingCorrectString = bookInformationException.JudgeBookAuthorRegularExpression(63, 25, author);
+                isJudgingCorrectString = regularExpression.JudgeWithRegularExpression(63, 25, author, Constants.BOOK_AUTHOR_REGULAR_EXPRESSION, Constants.BOOK_AUTHOR_ERROR_MESSAGE);
             } while (!isJudgingCorrectString);
 
             Console.SetCursorPosition(63, 26);
-            do
+            do //출판사
             {
                 publisher = InputByReadKey.ReceiveInput(63, 26, 15, Constants.IS_NOT_PASSWORD);
-                isJudgingCorrectString = bookInformationException.JudgeBookPublisherRegularExpression(63, 26, publisher);
+                isJudgingCorrectString = regularExpression.JudgeWithRegularExpression(63, 26, publisher, Constants.BOOK_PUBLISHER_REGULAR_EXPRESSION, Constants.BOOK_PUBLISHER_ERROR_MESSAGE);
             } while (!isJudgingCorrectString);
 
             Console.SetCursorPosition(63, 27);
-            do
+            do //수량
             {
                 quantity = InputByReadKey.ReceiveInput(63, 27, 3, Constants.IS_NOT_PASSWORD);
-                isJudgingCorrectString = bookInformationException.JudgeBookQuantityRegularExpression(63, 27, quantity);
+                isJudgingCorrectString = regularExpression.JudgeWithRegularExpression(63, 27, quantity, Constants.BOOK_QUANTITY_REGULAR_EXPRESSION, Constants.BOOK_QUANTITY_ERROR_MESSAGE);
             } while (!isJudgingCorrectString);
 
             Console.SetCursorPosition(63, 28);
-            do
+            do //가격
             {
                 price = InputByReadKey.ReceiveInput(63, 28, 6, Constants.IS_NOT_PASSWORD);
-                isJudgingCorrectString = bookInformationException.JudgeBookPriceRegularExpression(63, 28, price);
+                isJudgingCorrectString = regularExpression.JudgeWithRegularExpression(63, 28, price, Constants.BOOK_PRICE_REGULAR_EXPRESSION, Constants.BOOK_PRICE_ERROR_MESSAGE);
             } while (!isJudgingCorrectString);
 
             Console.SetCursorPosition(63, 29);
-            do
+            do //출판 일시
             {
                 publishDate = InputByReadKey.ReceiveInput(63, 29, 10, Constants.IS_NOT_PASSWORD);
-                isJudgingCorrectString = bookInformationException.JudgeBookPublishDateRegularExpression(63, 29, publishDate);
+                isJudgingCorrectString = regularExpression.JudgeWithRegularExpression(63, 29, publishDate, Constants.BOOK_PUBLISH_DATE_REGULAR_EXPRESSION, Constants.BOOK_PUBLISH_DATE_ERROR_MESSAGE);
             } while (!isJudgingCorrectString);
 
             for (int i = 0; i < dataStorage.bookList.Count; i++)

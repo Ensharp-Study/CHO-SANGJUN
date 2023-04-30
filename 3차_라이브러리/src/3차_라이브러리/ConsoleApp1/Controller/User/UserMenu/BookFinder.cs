@@ -40,21 +40,21 @@ public class BookFinder
             //입력값 받기 (책 제목, 저자, 출판사)
             Console.SetCursorPosition(17, 1);
             do {
-                title = InputByReadKey.ReceiveInput(17, 1);
+                title = InputByReadKey.ReceiveInput(17, 1, 15, Constants.IS_NOT_PASSWORD);
                 isJudgingCorrectString = bookInformationException.JudgeBookNameRegularExpression(17, 1, title);
             } while(!isJudgingCorrectString);
 
             Console.SetCursorPosition(19, 2);
             do
             {
-                author = InputByReadKey.ReceiveInput(19, 2);
+                author = InputByReadKey.ReceiveInput(19, 2, 15, Constants.IS_NOT_PASSWORD);
                 isJudgingCorrectString = bookInformationException.JudgeBookAuthorRegularExpression(19, 2, author);
             } while (!isJudgingCorrectString);
 
             Console.SetCursorPosition(17, 3);
             do
             {
-                publisher = InputByReadKey.ReceiveInput(17, 3);
+                publisher = InputByReadKey.ReceiveInput(17, 3, 15, Constants.IS_NOT_PASSWORD);
                 isJudgingCorrectString = bookInformationException.JudgeBookPublisherRegularExpression(17, 3, publisher);
             } while (!isJudgingCorrectString);
      

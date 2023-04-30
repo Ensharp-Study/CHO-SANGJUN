@@ -42,21 +42,21 @@ public class AddingBook
 
         do// 책이름 입력
         {
-            bookInformation.BookName = InputByReadKey.ReceiveInput(29, 11);
+            bookInformation.BookName = InputByReadKey.ReceiveInput(29, 11, 15, Constants.IS_NOT_PASSWORD);
             isJudgingCorrectString = bookInformationException.JudgeBookNameRegularExpression(29, 11, bookInformation.BookName);
         } while (!isJudgingCorrectString);
 
         Console.SetCursorPosition(29, 12);
         do// 저자 입력
         {
-            bookInformation.BookAuthor = InputByReadKey.ReceiveInput(29, 12);
+            bookInformation.BookAuthor = InputByReadKey.ReceiveInput(29, 12, 15, Constants.IS_NOT_PASSWORD);
             isJudgingCorrectString = bookInformationException.JudgeBookAuthorRegularExpression(29, 12, bookInformation.BookAuthor);
         } while (!isJudgingCorrectString);
 
         Console.SetCursorPosition(29, 13);
         do// 출판사 입력
         {
-            bookInformation.BookPublisher = InputByReadKey.ReceiveInput(29, 13);
+            bookInformation.BookPublisher = InputByReadKey.ReceiveInput(29, 13, 15, Constants.IS_NOT_PASSWORD);
             isJudgingCorrectString = bookInformationException.JudgeBookPublisherRegularExpression(29, 13, bookInformation.BookPublisher);
         } while (!isJudgingCorrectString);
 
@@ -64,10 +64,10 @@ public class AddingBook
 
         while (!isJudgingCorrectString)// 수량 입력
         {
-            bool A = InputByReadKey.JudgingIsStringNumber(InputByReadKey.ReceiveInput(29, 14));
+            bool A = InputByReadKey.JudgingIsStringNumber(InputByReadKey.ReceiveInput(29, 14, 3, Constants.IS_NOT_PASSWORD));
             if (A) //문자열이 숫자인지 검사
             {
-                bookInformation.BookQuantity = int.Parse(InputByReadKey.ReceiveInput(29, 14));
+                bookInformation.BookQuantity = int.Parse(InputByReadKey.ReceiveInput(29, 14, 3, Constants.IS_NOT_PASSWORD));
                 isJudgingCorrectString = bookInformationException.JudgeBookQuantityRegularExpression(29, 14, (bookInformation.BookQuantity).ToString());
             }
         }
@@ -75,9 +75,9 @@ public class AddingBook
         Console.SetCursorPosition(29, 15);
         do// 책가격 입력
         {
-            if (InputByReadKey.JudgingIsStringNumber(InputByReadKey.ReceiveInput(29, 14))) //문자열이 숫자인지 검사
+            if (InputByReadKey.JudgingIsStringNumber(InputByReadKey.ReceiveInput(29, 15, 6, Constants.IS_NOT_PASSWORD))) //문자열이 숫자인지 검사
             {
-                bookInformation.BookPrice = int.Parse(InputByReadKey.ReceiveInput(29, 15));
+                bookInformation.BookPrice = int.Parse(InputByReadKey.ReceiveInput(29, 15, 6, Constants.IS_NOT_PASSWORD));
                 isJudgingCorrectString = bookInformationException.JudgeBookPriceRegularExpression(29, 15, (bookInformation.BookPrice).ToString());
             }
 
@@ -86,21 +86,21 @@ public class AddingBook
         Console.SetCursorPosition(29, 16);
         do// 책출시일 입력
         {
-            bookInformation.BookPublicationDate = InputByReadKey.ReceiveInput(29, 16);
+            bookInformation.BookPublicationDate = InputByReadKey.ReceiveInput(29, 16, 10, Constants.IS_NOT_PASSWORD);
             isJudgingCorrectString = bookInformationException.JudgeBookPublishDateRegularExpression(29, 16, bookInformation.BookPublicationDate);
         } while (!isJudgingCorrectString);
 
         Console.SetCursorPosition(29, 17);
         do// 책 isbn 입력
         {
-            bookInformation.Isbn = InputByReadKey.ReceiveInput(29, 17);
+            bookInformation.Isbn = InputByReadKey.ReceiveInput(29, 17, 17, Constants.IS_NOT_PASSWORD);
             isJudgingCorrectString = bookInformationException.JudgeBookIsbnRegularExpression(29, 17, bookInformation.Isbn);
         } while (!isJudgingCorrectString);
 
         Console.SetCursorPosition(29, 18);
         do// 책 설명 입력
         {
-            bookInformation.BookDescription = InputByReadKey.ReceiveInput(29, 18);
+            bookInformation.BookDescription = InputByReadKey.ReceiveInput(29, 18, 200, Constants.IS_NOT_PASSWORD);
             isJudgingCorrectString = bookInformationException.JudgeBookInformationRegularExpression(29, 18, bookInformation.BookDescription);
         } while (!isJudgingCorrectString);
 

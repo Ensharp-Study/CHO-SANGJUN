@@ -18,7 +18,6 @@ public class UserModeUi
     {
         ConsoleKeyInfo inputKey;
         bool isCheckedEnter = false;
-        int selectedMenuNum = -1;
         int menuIndex = 0;
         int i;
         string[] menuArr = { "○ 책 정보 검색", "○ 책 대여하기", "○ 대여 목록 확인", "○ 책 반납하기", "○ 반납 목록 확인", "○ 회원정보 수정", "○ 회원탈퇴" };

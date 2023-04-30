@@ -36,7 +36,7 @@ public class ReturningBook //책 반납하기
             Console.SetCursorPosition(36, 3);
             do // 반납할 책 아이디 입력
             {
-                bookId = InputByReadKey.ReceiveInput(36, 3);
+                bookId = InputByReadKey.ReceiveInput(36, 3, 3, Constants.IS_NOT_PASSWORD);
                 isJudgingCorrectString = true;
             } while (!isJudgingCorrectString); 
             

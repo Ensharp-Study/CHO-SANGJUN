@@ -33,14 +33,14 @@ public class SignUp
         Console.SetCursorPosition(60, 28);
         do //아이디 입력
         {
-            newUserInformation.Id = InputByReadKey.ReceiveInput(60, 28); //입력값 키값으로 검사
+            newUserInformation.Id = InputByReadKey.ReceiveInput(60, 28, 15, Constants.IS_NOT_PASSWORD); //입력값 키값으로 검사
             isJudgingCorrectString = userInformationException.JudgeIdWithRegularExpression(60, 28, newUserInformation.Id); //정규표현식 이용하여 검사
         } while (!isJudgingCorrectString); //정규표현식 확인후 거짓일 때만 재실행 
        
         Console.SetCursorPosition(60, 29);
         do //비밀번호 입력
         {
-            newUserInformation.Password = InputByReadKey.ReceiveInputForMasking(60, 29);
+            newUserInformation.Password = InputByReadKey.ReceiveInput(60, 29, 15, Constants.IS_PASSWORD);
             isJudgingCorrectString = userInformationException.JudgePasswordWithRegularExpression(60, 29, newUserInformation.Password);
         } while (!isJudgingCorrectString);
         
@@ -50,7 +50,7 @@ public class SignUp
             Console.SetCursorPosition(60, 30);
             do //비밀번호 확인 입력
             {
-                passwordConfirmation = InputByReadKey.ReceiveInputForMasking(60, 30);
+                passwordConfirmation = InputByReadKey.ReceiveInput(60, 30, 15, Constants.IS_PASSWORD);
                 isJudgingCorrectString = userInformationException.JudgePasswordWithRegularExpression(60, 30, passwordConfirmation);
             } while (!isJudgingCorrectString);
             
@@ -70,21 +70,21 @@ public class SignUp
         Console.SetCursorPosition(64, 31);
         do//이름 입력
         {
-            newUserInformation.UserName = InputByReadKey.ReceiveInput(64, 31); 
+            newUserInformation.UserName = InputByReadKey.ReceiveInput(64, 31, 15, Constants.IS_NOT_PASSWORD); 
             isJudgingCorrectString = userInformationException.JudgeUserNameWithRegularExpression(64, 31, newUserInformation.UserName);
         } while (!isJudgingCorrectString); 
         
         Console.SetCursorPosition(59, 32);
         do//나이 입력
         {
-            newUserInformation.UserAge = int.Parse(InputByReadKey.ReceiveInput(59, 32));
+            newUserInformation.UserAge = int.Parse(InputByReadKey.ReceiveInput(59, 32, 3, Constants.IS_NOT_PASSWORD));
             isJudgingCorrectString = userInformationException.JudgeUserAgeWithRegularExpression(59, 32, (newUserInformation.UserAge).ToString());
         } while (!isJudgingCorrectString);
        
         Console.SetCursorPosition(62, 33);
         do//핸드폰 번호 입력
         {
-            newUserInformation.UserPhoneNumber = InputByReadKey.ReceiveInput(62, 33);
+            newUserInformation.UserPhoneNumber = InputByReadKey.ReceiveInput(62, 33, 13, Constants.IS_NOT_PASSWORD);
             isJudgingCorrectString = userInformationException.JudgeUserNumberWithRegularExpression(62, 33, newUserInformation.UserPhoneNumber);
         } while (!isJudgingCorrectString);
          
@@ -92,7 +92,7 @@ public class SignUp
         Console.SetCursorPosition(69, 34);
         do//주소 입력
         {
-            newUserInformation.UserAddress = InputByReadKey.ReceiveInput(69, 34);
+            newUserInformation.UserAddress = InputByReadKey.ReceiveInput(69, 34, 30, Constants.IS_NOT_PASSWORD);
             isJudgingCorrectString = true; //아직 주소 정규식 처리 미완료
         } while (!isJudgingCorrectString);
         

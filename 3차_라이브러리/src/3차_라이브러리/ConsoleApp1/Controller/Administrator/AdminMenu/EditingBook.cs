@@ -57,42 +57,42 @@ public class EditingBook
             Console.SetCursorPosition(63, 24);
             do
             {
-                title = InputByReadKey.ReceiveInput(63, 24);
+                title = InputByReadKey.ReceiveInput(63, 24, 15, Constants.IS_NOT_PASSWORD);
                 isJudgingCorrectString = bookInformationException.JudgeBookNameRegularExpression(63, 24, title);
             } while (!isJudgingCorrectString);
          
             Console.SetCursorPosition(63, 25);
             do
             {
-                author = InputByReadKey.ReceiveInput(63, 25);
+                author = InputByReadKey.ReceiveInput(63, 25, 15, Constants.IS_NOT_PASSWORD);
                 isJudgingCorrectString = bookInformationException.JudgeBookAuthorRegularExpression(63, 25, author);
             } while (!isJudgingCorrectString);
 
             Console.SetCursorPosition(63, 26);
             do
             {
-                publisher = InputByReadKey.ReceiveInput(63, 26);
+                publisher = InputByReadKey.ReceiveInput(63, 26, 15, Constants.IS_NOT_PASSWORD);
                 isJudgingCorrectString = bookInformationException.JudgeBookPublisherRegularExpression(63, 26, publisher);
             } while (!isJudgingCorrectString);
 
             Console.SetCursorPosition(63, 27);
             do
             {
-                quantity = InputByReadKey.ReceiveInput(63, 27);
+                quantity = InputByReadKey.ReceiveInput(63, 27, 3, Constants.IS_NOT_PASSWORD);
                 isJudgingCorrectString = bookInformationException.JudgeBookQuantityRegularExpression(63, 27, quantity);
             } while (!isJudgingCorrectString);
 
             Console.SetCursorPosition(63, 28);
             do
             {
-                price = InputByReadKey.ReceiveInput(63, 28);
+                price = InputByReadKey.ReceiveInput(63, 28, 6, Constants.IS_NOT_PASSWORD);
                 isJudgingCorrectString = bookInformationException.JudgeBookPriceRegularExpression(63, 28, price);
             } while (!isJudgingCorrectString);
 
             Console.SetCursorPosition(63, 29);
             do
             {
-                publishDate = InputByReadKey.ReceiveInput(63, 29);
+                publishDate = InputByReadKey.ReceiveInput(63, 29, 10, Constants.IS_NOT_PASSWORD);
                 isJudgingCorrectString = bookInformationException.JudgeBookPublishDateRegularExpression(63, 29, publishDate);
             } while (!isJudgingCorrectString);
 

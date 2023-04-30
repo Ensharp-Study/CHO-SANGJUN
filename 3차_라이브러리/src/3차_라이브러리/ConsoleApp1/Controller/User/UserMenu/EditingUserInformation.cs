@@ -37,42 +37,42 @@ public class EditingUserInformation
             Console.SetCursorPosition(54, 22);
             do//아이디 입력
             {
-                newId = InputByReadKey.ReceiveInput(54, 22);
+                newId = InputByReadKey.ReceiveInput(54, 22, 15, Constants.IS_NOT_PASSWORD);
                 isJudgingCorrectString = userInformationException.JudgeIdWithRegularExpression(54, 22, newId);
             } while (!isJudgingCorrectString);
             
             Console.SetCursorPosition(54, 23);
             do//비밀번호 입력
             {
-                newPassword = InputByReadKey.ReceiveInputForMasking(54, 23);
+                newPassword = InputByReadKey.ReceiveInput(54, 23, 15, Constants.IS_PASSWORD);
                 isJudgingCorrectString = userInformationException.JudgePasswordWithRegularExpression(54, 23, newPassword);
             } while (!isJudgingCorrectString);
 
             Console.SetCursorPosition(57, 24);
             do//이름 입력
             {
-                newName = InputByReadKey.ReceiveInput(57, 24);
+                newName = InputByReadKey.ReceiveInput(57, 24, 10, Constants.IS_NOT_PASSWORD);
                 isJudgingCorrectString = userInformationException.JudgeUserNameWithRegularExpression(57, 24, newName);
             } while (!isJudgingCorrectString);
             
             Console.SetCursorPosition(54, 25);
             do//나이 입력
             {
-                newAge = InputByReadKey.ReceiveInput(54, 25);
+                newAge = InputByReadKey.ReceiveInput(54, 25, 3, Constants.IS_NOT_PASSWORD);
                 isJudgingCorrectString = userInformationException.JudgeUserAgeWithRegularExpression(54, 25, newAge);
             } while (!isJudgingCorrectString);
 
             Console.SetCursorPosition(57, 26);
             do//휴대폰 번호 입력
             {
-                newPhoneNumber = InputByReadKey.ReceiveInput(57, 26);
+                newPhoneNumber = InputByReadKey.ReceiveInput(57, 26, 13, Constants.IS_NOT_PASSWORD);
                 isJudgingCorrectString = userInformationException.JudgeUserNumberWithRegularExpression(57, 26, newPhoneNumber);
             } while (!isJudgingCorrectString);
 
             Console.SetCursorPosition(60, 27);
             do//주소 입력
             {
-                newAddress = InputByReadKey.ReceiveInput(60, 27);
+                newAddress = InputByReadKey.ReceiveInput(60, 27, 30, Constants.IS_NOT_PASSWORD);
                 isJudgingCorrectString = true;  //아직 주소 정규표현식 미 구현
             } while (!isJudgingCorrectString);
           

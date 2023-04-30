@@ -26,7 +26,7 @@ public class MemberManger
             }
             Console.SetCursorPosition(70, 2);
 
-            userNumber = InputByReadKey.ReceiveInput(70, 2);
+            userNumber = InputByReadKey.ReceiveInput(70, 2, 3, Constants.IS_NOT_PASSWORD);
 
             for (int i = 0; i < dataStorage.userList.Count; i++)
             {

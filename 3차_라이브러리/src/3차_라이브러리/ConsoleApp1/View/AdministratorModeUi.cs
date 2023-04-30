@@ -20,7 +20,6 @@ public class AdministratorModeUi{
 
         ConsoleKeyInfo inputKey;
         bool isCheckedEnter = false;
-        int selectedMenuNum = -1;
         int menuIndex = 0;
         int i;
         string[] menuArr = { "○ 책 정보 검색", "○ 책 추가하기", "○ 책 삭제하기", "○ 책 정보 수정하기", "○ 회원관리", "○ 도서 대여 현황" };

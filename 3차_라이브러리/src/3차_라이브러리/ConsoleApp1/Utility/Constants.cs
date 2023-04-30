@@ -42,5 +42,11 @@ enum UserManagementNumber
 public class Constants
 {
     public const int ESC = 10;
+
+    public const bool IS_PASSWORD = true;  //입력값 마스킹 처리 여부 판별용 상수
+    public const bool IS_NOT_PASSWORD = false;
+
+    public const bool IS_PRINT_NEXT_LINE = true; //상하, 좌우키 메뉴 출력 함수 구분용 상수
+    public const bool IS_PRINT_NEXT_SIDE = false;
 }
     

@@ -45,7 +45,7 @@ public class BorrowingBook
 
                 do //책 아이디 입력
                 {
-                    bookId = InputByReadKey.ReceiveInput(36, 3);
+                    bookId = InputByReadKey.ReceiveInput(36, 3, 3, Constants.IS_NOT_PASSWORD);
                     isJudgingCorrectString = true; 
                 } while (!isJudgingCorrectString);
 

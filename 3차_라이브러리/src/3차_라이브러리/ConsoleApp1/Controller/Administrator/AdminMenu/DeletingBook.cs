@@ -68,21 +68,21 @@ public class DeletingBook
         Console.SetCursorPosition(17, 1);  //검색할 책 정보 입력받기
         do
         {
-            title = InputByReadKey.ReceiveInput(17, 1);
+            title = InputByReadKey.ReceiveInput(17, 1, 15, Constants.IS_NOT_PASSWORD);
             isJudgingCorrectString = bookInformationException.JudgeBookNameRegularExpression(17, 1, title);
         } while (!isJudgingCorrectString);
 
         Console.SetCursorPosition(19, 2);
         do
         {
-            author = InputByReadKey.ReceiveInput(19, 2);
+            author = InputByReadKey.ReceiveInput(19, 2, 15, Constants.IS_NOT_PASSWORD);
             isJudgingCorrectString = bookInformationException.JudgeBookAuthorRegularExpression(19, 2, author);
         } while (!isJudgingCorrectString);
 
         Console.SetCursorPosition(17, 3);
         do
         {
-            publisher = InputByReadKey.ReceiveInput(17, 3);
+            publisher = InputByReadKey.ReceiveInput(17, 3, 15, Constants.IS_NOT_PASSWORD);
             isJudgingCorrectString = bookInformationException.JudgeBookPublisherRegularExpression(17, 3, publisher);
         } while (!isJudgingCorrectString);
 

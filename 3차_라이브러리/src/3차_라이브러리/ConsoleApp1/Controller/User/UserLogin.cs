@@ -40,7 +40,7 @@ public class UserLogin //유저모드 로그인 기능 클래스
             Console.SetCursorPosition(53, 23);
             do //아이디 입력
             {
-                id = InputByReadKey.ReceiveInput(53, 23); //입력값 키값으로 검사
+                id = InputByReadKey.ReceiveInput(53, 23, 15, Constants.IS_NOT_PASSWORD); //입력값 키값으로 검사
                 isJudgingCorrectString = userInformationException.JudgeIdWithRegularExpression(53, 23, id); //정규표현식 이용하여 검사
             } while (!isJudgingCorrectString); //정규표현식 확인후 거짓일 때만 재실행 
 
@@ -48,7 +48,7 @@ public class UserLogin //유저모드 로그인 기능 클래스
             Console.SetCursorPosition(61, 24);
             do //비밀번호 입력
             {
-                password = InputByReadKey.ReceiveInputForMasking(61, 24);
+                password = InputByReadKey.ReceiveInput(61, 24, 15, Constants.IS_PASSWORD);
                 isJudgingCorrectString = userInformationException.JudgePasswordWithRegularExpression(61, 24, password);
             } while (!isJudgingCorrectString);
             

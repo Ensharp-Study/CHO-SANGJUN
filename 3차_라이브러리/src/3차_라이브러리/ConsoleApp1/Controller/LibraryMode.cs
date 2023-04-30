@@ -27,8 +27,6 @@ public class LibraryMode
 
     public void SelectMenu()
     {
-        ConsoleKeyInfo inputKey;
-
         while (true)
         {
             int menuNumber;

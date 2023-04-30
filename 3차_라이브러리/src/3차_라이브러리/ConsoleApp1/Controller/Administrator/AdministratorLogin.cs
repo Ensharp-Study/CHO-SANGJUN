@@ -8,15 +8,15 @@ public class AdministratorLogin
     BookInformationException bookInformationException;
     ProgramProcess programProcess;
     AdministratorMenu administratorMenu;
-    public AdministratorLogin(MainMenuUi mainMenuUi,SignUpAndLoginUi signUpAndLoginUi, DataStorage dataStorage, UserInformationException userInformationException, BookInformationException bookInformationException, ProgramProcess programProcess)
+    public AdministratorLogin(DataStorage dataStorage, UserInformationException userInformationException, BookInformationException bookInformationException, ProgramProcess programProcess)
     {
-        this.mainMenuUi = mainMenuUi;
-        this.signUpAndLoginUi = signUpAndLoginUi;
+        this.mainMenuUi = MainMenuUi.GetInstance();
+        this.signUpAndLoginUi = SignUpAndLoginUi.GetInstance();
         this.dataStorage = dataStorage;
         this.userInformationException = userInformationException;
         this.bookInformationException = bookInformationException;
         this.programProcess = programProcess;
-        this.administratorMenu = new AdministratorMenu(mainMenuUi, dataStorage, programProcess, bookInformationException);
+        this.administratorMenu = new AdministratorMenu(dataStorage, programProcess, bookInformationException);
     }
 
     bool isJudgingCorrectString;

@@ -1,6 +1,18 @@
 ﻿using System;
 public class CommonFunctionUi
 {
+    //싱글톤
+    private static CommonFunctionUi instance;
+    private CommonFunctionUi() { }
+    public static CommonFunctionUi GetInstance()
+    {
+        if(instance == null)
+        {
+            instance = new CommonFunctionUi();
+        }
+        return instance;    
+    }
+
     public void ViewMenu()
     {
         Console.SetCursorPosition(0, 21);

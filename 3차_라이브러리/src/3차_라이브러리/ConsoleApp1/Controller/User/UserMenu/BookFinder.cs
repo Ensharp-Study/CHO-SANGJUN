@@ -12,14 +12,16 @@ public class BookFinder
     bool isMenuExecute = true; //메뉴 탈출 진리형 변수
     bool isJudgingCorrectString; //입력값 검사 후 탈출을 위한 변수
 
-    DataStorage dataStorage;
     CommonFunctionUi commonFunctionUi;
+    DataStorage dataStorage;
     ProgramProcess programProcess;
     BookInformationException bookInformationException;
-    public BookFinder(DataStorage dataStorage, CommonFunctionUi commonFunctionUi, ProgramProcess programProcess, BookInformationException bookInformationException)
+
+    public BookFinder(DataStorage dataStorage, ProgramProcess programProcess, BookInformationException bookInformationException)
     {
+        this.commonFunctionUi = CommonFunctionUi.GetInstance();
+
         this.dataStorage = dataStorage;
-        this.commonFunctionUi = commonFunctionUi;
         this.programProcess = programProcess;
         this.bookInformationException = bookInformationException;
     }
@@ -77,9 +79,7 @@ public class BookFinder
 
                 if (printPossiblity > 0) // 일치하면 출력
                 {
-                    {
-                        commonFunctionUi.PrintBookList(dataStorage.bookList[i], i);
-                    }
+                    commonFunctionUi.PrintBookList(dataStorage.bookList[i], i);
                     printPossiblity = 0;
                 }
             }

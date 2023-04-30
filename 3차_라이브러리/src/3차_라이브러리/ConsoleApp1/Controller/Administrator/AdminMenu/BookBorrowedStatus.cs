@@ -3,14 +3,14 @@
 public class BookBorrowedStatus
 {
     DataStorage dataStorage;
-    AdministratorModeUi administratorModeUi;
     ProgramProcess programProcess;
+    AdministratorModeUi administratorModeUi;
 
-    public BookBorrowedStatus(DataStorage dataStorage, AdministratorModeUi administratorModeUi, ProgramProcess programProcess)
+    public BookBorrowedStatus(DataStorage dataStorage, ProgramProcess programProcess)
     {
         this.dataStorage = dataStorage;
-        this.administratorModeUi = administratorModeUi;
         this.programProcess = programProcess;
+        this.administratorModeUi = AdministratorModeUi.GetInstance();
     }
 
     public void CheckBookBorrowedList() //빌린 책 출력하는 함수

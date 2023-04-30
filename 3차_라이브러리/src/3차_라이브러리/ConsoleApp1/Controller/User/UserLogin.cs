@@ -10,10 +10,11 @@ public class UserLogin //유저모드 로그인 기능 클래스
     BookInformationException bookInformationException;
     ProgramProcess programProcess;
 
-    public UserLogin(MainMenuUi mainMenuUi, SignUpAndLoginUi signUpAndLoginUi, DataStorage dataStorage, UserInformationException userInformationException, BookInformationException bookInformationException, ProgramProcess programProcess)
+    public UserLogin( DataStorage dataStorage, UserInformationException userInformationException, BookInformationException bookInformationException, ProgramProcess programProcess)
     {
-        this.mainMenuUi = mainMenuUi;
-        this.signUpAndLoginUi = signUpAndLoginUi;
+        this.mainMenuUi = MainMenuUi.GetInstance();
+        this.signUpAndLoginUi = SignUpAndLoginUi.GetInstance();
+
         this.dataStorage = dataStorage;
         this.userInformationException = userInformationException;
         this.bookInformationException = bookInformationException;
@@ -63,7 +64,7 @@ public class UserLogin //유저모드 로그인 기능 클래스
                     if (string.Equals(password, dataStorage.userList[indexI].Password)) //비밀번호 비교
                     {
                         Console.Clear() ;
-                        UserMenu usermenu = new UserMenu(mainMenuUi, dataStorage,  dataStorage.userList[indexI],  userInformationException, bookInformationException, programProcess); //유저메뉴로 진입
+                        UserMenu usermenu = new UserMenu(dataStorage,  dataStorage.userList[indexI],  userInformationException, bookInformationException, programProcess); //유저메뉴로 진입
                         usermenu.ControllUserMenu();
                         //isJudgingCorrectInput = false;
                     }

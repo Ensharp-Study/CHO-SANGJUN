@@ -1,9 +1,7 @@
 ﻿using System;
 
 public class LibraryMode
-{
-    ConsoleKeyInfo inputKey;
-
+{ 
     MainMenuUi mainMenuUi;
     SignUpAndLoginUi signUpAndLoginUi;
     DataStorage dataStorage;
@@ -16,19 +14,21 @@ public class LibraryMode
 
     public LibraryMode()
     {
-        this.mainMenuUi = new MainMenuUi();
-        this.signUpAndLoginUi = new SignUpAndLoginUi();
+        this.mainMenuUi = MainMenuUi.GetInstance();
+        this.signUpAndLoginUi = SignUpAndLoginUi.GetInstance();
         this.dataStorage = new DataStorage();
         this.userInformationException = new UserInformationException();
         this.bookInformationException = new BookInformationException();
         this.programProcess = new ProgramProcess();
-        this.login = new UserLogin(mainMenuUi, signUpAndLoginUi, dataStorage, userInformationException, bookInformationException, programProcess);
-        this.signUp = new SignUp(mainMenuUi, signUpAndLoginUi, dataStorage, userInformationException);
-        this.administratorLogin = new AdministratorLogin(mainMenuUi, signUpAndLoginUi, dataStorage, userInformationException, bookInformationException, programProcess);
+        this.login = new UserLogin(dataStorage, userInformationException, bookInformationException, programProcess);
+        this.signUp = new SignUp(dataStorage, userInformationException);
+        this.administratorLogin = new AdministratorLogin(dataStorage, userInformationException, bookInformationException, programProcess);
     }
 
     public void SelectMenu()
     {
+        ConsoleKeyInfo inputKey;
+
         while (true)
         {
             int menuNumber;

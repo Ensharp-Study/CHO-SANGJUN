@@ -2,18 +2,19 @@
 
 public class BorrowingBook
 {
-    DataStorage dataStorage;
     UserModeUi userModeUi;
     CommonFunctionUi commonFunctionUi;
+    DataStorage dataStorage;
     UserInformation userInformation;
     ProgramProcess programProcess;
     BookInformationException bookInformationException;
 
-    public BorrowingBook(DataStorage dataStorage, UserModeUi userModeUi, CommonFunctionUi commonFunctionUi, UserInformation userInformation, ProgramProcess programProcess, BookInformationException bookInformationException) 
-    { 
+    public BorrowingBook(DataStorage dataStorage, UserInformation userInformation, ProgramProcess programProcess, BookInformationException bookInformationException) 
+    {
+        this.userModeUi = UserModeUi.GetInstance();
+        this.commonFunctionUi = CommonFunctionUi.GetInstance();
+
         this.dataStorage = dataStorage;
-        this.userModeUi = userModeUi;
-        this.commonFunctionUi = commonFunctionUi;
         this.userInformation = userInformation;
         this.programProcess = programProcess;
         this.bookInformationException = bookInformationException;

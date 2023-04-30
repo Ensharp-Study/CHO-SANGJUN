@@ -3,13 +3,13 @@ using System.Reflection;
 
 public class MemberManger
 {
-    DataStorage dataStorage;
     AdministratorModeUi administratorModeUi;
+    DataStorage dataStorage;
     ProgramProcess programProcess;
-    public MemberManger(DataStorage dataStorage, AdministratorModeUi administratorModeUi, ProgramProcess programProcess)
+    public MemberManger(DataStorage dataStorage, ProgramProcess programProcess)
     {
+        this.administratorModeUi = AdministratorModeUi.GetInstance();
         this.dataStorage = dataStorage;
-        this.administratorModeUi = administratorModeUi;
         this.programProcess = programProcess;
     }
 

@@ -20,24 +20,25 @@ public class UserMenu //유저 메뉴 진입 기능 클래스
     EditingUserInformation editingUserInformation;
     DeletingUserInformation deletingUserInformation;
 
-    public UserMenu(MainMenuUi mainMenuUi, DataStorage dataStorage, UserInformation user, UserInformationException userInformationException, BookInformationException bookInformationException, ProgramProcess programProcess)
+    public UserMenu(DataStorage dataStorage, UserInformation user, UserInformationException userInformationException, BookInformationException bookInformationException, ProgramProcess programProcess)
     {
-        this.mainMenuUi = mainMenuUi;
+        this.mainMenuUi = MainMenuUi.GetInstance();
+        this.userModeUi = UserModeUi.GetInstance();
+        this.commonFunctionUi = CommonFunctionUi.GetInstance();
+
         this.dataStorage = dataStorage;
         this.user = user;
         this.userInformationException = userInformationException;
         this.bookInformationException = bookInformationException;
         this.programProcess = programProcess;
 
-        this.userModeUi = new UserModeUi();
-        this.commonFunctionUi = new CommonFunctionUi();
-        this.bookFinder = new BookFinder(dataStorage, commonFunctionUi, programProcess, bookInformationException);
-        this.borrowingBook = new BorrowingBook(dataStorage, userModeUi, commonFunctionUi, user, programProcess, bookInformationException);
-        this.bookBorrowList = new BookBorrowList(dataStorage, userModeUi, user, programProcess);
-        this.returningBook = new ReturningBook(dataStorage, userModeUi, user, programProcess, bookInformationException);
-        this.bookReturnList = new BookReturnList(dataStorage, userModeUi, user, programProcess);
-        this.editingUserInformation = new EditingUserInformation(dataStorage, userModeUi, user, userInformationException, bookInformationException, programProcess);
-        this.deletingUserInformation = new DeletingUserInformation(userModeUi, dataStorage, user, programProcess);
+        this.bookFinder = new BookFinder(dataStorage, programProcess, bookInformationException);
+        this.borrowingBook = new BorrowingBook(dataStorage, user, programProcess, bookInformationException);
+        this.bookBorrowList = new BookBorrowList(dataStorage, user, programProcess);
+        this.returningBook = new ReturningBook(dataStorage, user, programProcess, bookInformationException);
+        this.bookReturnList = new BookReturnList(dataStorage, user, programProcess);
+        this.editingUserInformation = new EditingUserInformation(dataStorage, user, userInformationException, bookInformationException, programProcess);
+        this.deletingUserInformation = new DeletingUserInformation(dataStorage, user, programProcess);
     }
 
     

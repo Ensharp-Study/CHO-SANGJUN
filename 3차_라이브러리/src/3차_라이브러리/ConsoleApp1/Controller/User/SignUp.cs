@@ -6,25 +6,28 @@ public class SignUp
     SignUpAndLoginUi signUpAndLoginUi;
     DataStorage dataStorage;
     UserInformationException userInformationException;
+    UserInformation newUserInformation;
 
-    UserInformation newUserInformation = new UserInformation();
-
-    public SignUp(MainMenuUi mainMenuUi, SignUpAndLoginUi signUpAndLoginUi, DataStorage dataStorage, UserInformationException userInformationException) 
+    public SignUp(DataStorage dataStorage, UserInformationException userInformationException) 
     {
-        this.mainMenuUi = mainMenuUi;
-        this.signUpAndLoginUi = signUpAndLoginUi;
+        this.mainMenuUi = MainMenuUi.GetInstance();
+        this.signUpAndLoginUi = SignUpAndLoginUi.GetInstance();
+        this.newUserInformation = new UserInformation();
+
         this.dataStorage = dataStorage;
         this.userInformationException = userInformationException;
+        
     }
-
-    bool isJudgingCorrectString;
 
     public void SignUpAccount() //회원가입
 	{
+        bool isJudgingCorrectString;
+
         mainMenuUi.ViewMainMenu();
         mainMenuUi.ViewMenuSquare();
         signUpAndLoginUi.PrintSignUpMenu();
         signUpAndLoginUi.PrintSignUpInputMenu();
+
         string passwordConfirmation;
 
         Console.SetCursorPosition(60, 28);

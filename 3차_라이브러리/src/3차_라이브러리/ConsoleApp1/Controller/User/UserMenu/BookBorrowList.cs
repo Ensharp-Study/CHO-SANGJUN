@@ -2,14 +2,14 @@
 
 public class BookBorrowList
 {
-    DataStorage dataStorage;
     UserModeUi userModeUi;
+    DataStorage dataStorage;
     UserInformation userInformation;
     ProgramProcess programProcess;
-    public BookBorrowList(DataStorage dataStorage, UserModeUi userModeUi, UserInformation userInformation, ProgramProcess programProcess)
+    public BookBorrowList(DataStorage dataStorage, UserInformation userInformation, ProgramProcess programProcess)
     {
+        this.userModeUi = UserModeUi.GetInstance();
         this.dataStorage = dataStorage;
-        this.userModeUi = userModeUi;
         this.userInformation = userInformation;
         this.programProcess = programProcess;
     }

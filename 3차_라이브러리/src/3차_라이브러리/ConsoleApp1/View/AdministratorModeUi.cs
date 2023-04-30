@@ -1,10 +1,23 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 
 public class AdministratorModeUi{
 
+    //싱글턴 디자인 패턴
+    private static AdministratorModeUi instance;
+    private AdministratorModeUi() { }
+    public static AdministratorModeUi GetInstance()
+    {
+        if (instance == null)
+        {
+            instance = new AdministratorModeUi();
+        }
+        return instance;
+    }
 
     public int PrintSelectAdministratorMenu()
     {
+
         ConsoleKeyInfo inputKey;
         bool isCheckedEnter = false;
         int selectedMenuNum = -1;

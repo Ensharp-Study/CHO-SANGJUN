@@ -2,6 +2,18 @@
 
  public class MainMenuUi
 {
+    //싱글턴 디자인 패턴
+    private static MainMenuUi instance;
+    private MainMenuUi() { }
+    public static MainMenuUi GetInstance()
+    {
+        if (instance == null)
+        {
+            instance = new MainMenuUi();
+        }
+        return instance;
+    }
+
     public void ViewMainMenu()
     {
 

@@ -8,9 +8,9 @@ public class DeletingUserInformation //inf와같이 줄임말
     ProgramProcess programProcess;
 
 
-    public DeletingUserInformation(UserModeUi userModeUi, DataStorage dataStorage, UserInformation userInformation, ProgramProcess programProcess)
+    public DeletingUserInformation( DataStorage dataStorage, UserInformation userInformation, ProgramProcess programProcess)
     {
-        this.userModeUi = userModeUi;
+        this.userModeUi = UserModeUi.GetInstance();
         this.dataStorage = dataStorage;
         this.userInformation = userInformation;
         this.programProcess = programProcess;

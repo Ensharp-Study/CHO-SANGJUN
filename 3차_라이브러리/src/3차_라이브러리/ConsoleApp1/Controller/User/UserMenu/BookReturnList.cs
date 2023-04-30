@@ -2,14 +2,14 @@
 
 public class BookReturnList
 {
-    DataStorage dataStorage;
     UserModeUi userModeUi;
+    DataStorage dataStorage;
     UserInformation user;
     ProgramProcess programProcess;
-    public BookReturnList(DataStorage dataStorage, UserModeUi userModeUi, UserInformation user, ProgramProcess programProcess)
+    public BookReturnList(DataStorage dataStorage, UserInformation user, ProgramProcess programProcess)
     {
+        this.userModeUi = UserModeUi.GetInstance();
         this.dataStorage = dataStorage;
-        this.userModeUi = userModeUi;
         this.user = user;
         this.programProcess = programProcess;
     }

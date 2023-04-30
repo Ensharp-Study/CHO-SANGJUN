@@ -3,16 +3,16 @@ using System.Net;
 
 public class ReturningBook //책 반납하기
 {
-    DataStorage dataStorage;
     UserModeUi userModeUi;
+    DataStorage dataStorage;
     UserInformation userInformation;
     ProgramProcess programProcess;
     BookInformationException bookInformationException;
 
-    public ReturningBook(DataStorage dataStorage, UserModeUi userModeUi, UserInformation userInformation, ProgramProcess programProcess, BookInformationException bookInformationException) 
-    { 
+    public ReturningBook(DataStorage dataStorage, UserInformation userInformation, ProgramProcess programProcess, BookInformationException bookInformationException) 
+    {
+        this.userModeUi = UserModeUi.GetInstance();
         this.dataStorage = dataStorage;
-        this.userModeUi = userModeUi;
         this.userInformation = userInformation;
         this.programProcess = programProcess;
         this.bookInformationException = bookInformationException;

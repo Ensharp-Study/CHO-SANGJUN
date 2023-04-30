@@ -10,18 +10,17 @@ public class DeletingBook
     int deletedBookIdInt;
     int PrintPossiblity = 0;
 
-    DataStorage dataStorage;
     AdministratorModeUi administratorModeUi;
     CommonFunctionUi commonFunctionUi;
+    DataStorage dataStorage;
     ProgramProcess programProcess;
     BookInformationException bookInformationException;
 
-
-    public DeletingBook(DataStorage dataStorage, AdministratorModeUi administratorModeUi, CommonFunctionUi commonFunctionUi, ProgramProcess programProcess, BookInformationException bookInformationException)
+    public DeletingBook(DataStorage dataStorage, ProgramProcess programProcess, BookInformationException bookInformationException)
     {
+        this.administratorModeUi = AdministratorModeUi.GetInstance();
+        this.commonFunctionUi = CommonFunctionUi.GetInstance();
         this.dataStorage = dataStorage;
-        this.administratorModeUi = administratorModeUi;
-        this.commonFunctionUi = commonFunctionUi;
         this.programProcess = programProcess;
         this.bookInformationException = bookInformationException;
     }

@@ -2,6 +2,18 @@
 
 public class UserModeUi
 {
+    //싱글턴 디자인 패턴
+    private static UserModeUi instance;
+    private UserModeUi() { }
+    public static UserModeUi GetInstance()
+    {
+        if (instance == null)
+        {
+            instance = new UserModeUi();
+        }
+        return instance;
+    }
+
     public int PrintSelectUserMenu()
     {
         ConsoleKeyInfo inputKey;

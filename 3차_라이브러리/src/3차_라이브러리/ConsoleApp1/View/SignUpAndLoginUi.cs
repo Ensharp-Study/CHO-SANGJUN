@@ -2,6 +2,18 @@
 
 public class SignUpAndLoginUi
 {
+    //싱글턴 디자인 패턴
+    private static SignUpAndLoginUi instance;
+    private SignUpAndLoginUi() { }
+    public static SignUpAndLoginUi GetInstance()
+    {
+        if (instance == null)
+        {
+            instance = new SignUpAndLoginUi();
+        }
+        return instance;
+    }
+
     public int PrintLoginOrSignUpMenu()
     {
         ConsoleKeyInfo inputKey;

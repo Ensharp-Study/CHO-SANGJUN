@@ -14,18 +14,17 @@ public class EditingBook
     string EditedBookIdString;
     int EditedBookIdInt;
 
-    DataStorage dataStorage;
     AdministratorModeUi administratorModeUi;
     CommonFunctionUi commonFunctionUi;
+    DataStorage dataStorage;
     BookInformationException bookInformationException;
     ProgramProcess programProcess;
 
-    public EditingBook(DataStorage dataStorage, AdministratorModeUi administratorModeUi , CommonFunctionUi commonFunctionUi, BookInformationException bookInformationException, ProgramProcess programProcess = null)
+    public EditingBook(DataStorage dataStorage, BookInformationException bookInformationException, ProgramProcess programProcess)
     {
-
+        this.administratorModeUi = AdministratorModeUi.GetInstance();
+        this.commonFunctionUi = CommonFunctionUi.GetInstance();
         this.dataStorage = dataStorage;
-        this.administratorModeUi = administratorModeUi;
-        this.commonFunctionUi = commonFunctionUi;
         this.bookInformationException = bookInformationException;
         this.programProcess = programProcess;
     }

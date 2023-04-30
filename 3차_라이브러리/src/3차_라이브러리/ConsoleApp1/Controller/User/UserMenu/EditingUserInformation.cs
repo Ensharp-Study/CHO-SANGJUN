@@ -2,16 +2,16 @@
 
 public class EditingUserInformation
 {
-    DataStorage dataStorage;
     UserModeUi userModeUi;
+    DataStorage dataStorage;
     UserInformation userInformation;
     UserInformationException userInformationException;
     BookInformationException bookInformationException;
     ProgramProcess programProcess;
 
-    public EditingUserInformation(DataStorage dataStorage, UserModeUi userModeUi, UserInformation userInformation, UserInformationException userInformationException, BookInformationException bookInformationException, ProgramProcess programProcess)
+    public EditingUserInformation(DataStorage dataStorage, UserInformation userInformation, UserInformationException userInformationException, BookInformationException bookInformationException, ProgramProcess programProcess)
     {
-        this.userModeUi = userModeUi;
+        this.userModeUi = UserModeUi.GetInstance();
         this.userInformation = userInformation;
         this.dataStorage = dataStorage;
         this.userInformationException = userInformationException;

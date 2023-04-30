@@ -6,12 +6,12 @@ public class AddingBook
     AdministratorModeUi administratorModeUi;
     BookInformationException bookInformationException;
     ProgramProcess programProcess;
-    BookInformation bookInformation = new BookInformation(); //새로운 책 정보 담을 인스턴스 생성
+    BookInformation bookInformation; //새로운 책 정보 담을 인스턴스 생성
 
-    public AddingBook(DataStorage dataStorage, AdministratorModeUi administratorModeUi, BookInformationException bookInformationException, ProgramProcess programProcess) { 
-    
+    public AddingBook(DataStorage dataStorage, BookInformationException bookInformationException, ProgramProcess programProcess) {
+
+        this.administratorModeUi = AdministratorModeUi.GetInstance();
         this.dataStorage = dataStorage;
-        this.administratorModeUi = administratorModeUi;
         this.bookInformationException = bookInformationException;
         this.programProcess = programProcess;
         this.bookInformation = new BookInformation();
@@ -34,7 +34,6 @@ public class AddingBook
                 break;
             }
         }
-
     }
 
     public BookInformation InputNewBookInformation() //정보 입력 받는 함수
@@ -71,7 +70,6 @@ public class AddingBook
                 bookInformation.BookQuantity = int.Parse(InputByReadKey.ReceiveInput(29, 14));
                 isJudgingCorrectString = bookInformationException.JudgeBookQuantityRegularExpression(29, 14, (bookInformation.BookQuantity).ToString());
             }
-
         }
 
         Console.SetCursorPosition(29, 15);
@@ -105,7 +103,6 @@ public class AddingBook
             bookInformation.BookDescription = InputByReadKey.ReceiveInput(29, 18);
             isJudgingCorrectString = bookInformationException.JudgeBookInformationRegularExpression(29, 18, bookInformation.BookDescription);
         } while (!isJudgingCorrectString);
-
 
         return bookInformation;
     }

@@ -16,21 +16,21 @@ public class AdministratorMenu
     MemberManger memberManger;
     BookBorrowedStatus bookBorrowedStatus;
 
-    public AdministratorMenu(MainMenuUi mainMenuUi,   DataStorage dataStorage, ProgramProcess programProcess, BookInformationException bookInformationException)
+    public AdministratorMenu(DataStorage dataStorage, ProgramProcess programProcess, BookInformationException bookInformationException)
     {
-        this.mainMenuUi = mainMenuUi;
+        this.mainMenuUi = MainMenuUi.GetInstance();
+        this.administratorModeUi = AdministratorModeUi.GetInstance();
+        this.commonFunctionUi = CommonFunctionUi.GetInstance();
         this.dataStorage = dataStorage;
         this.programProcess = programProcess;
         this.bookInformationException = bookInformationException;
-        this.administratorModeUi = new AdministratorModeUi();
-        this.commonFunctionUi = new CommonFunctionUi();
         
-        this.bookFinder = new BookFinder(dataStorage, commonFunctionUi, programProcess, bookInformationException);
-        this.addingBook = new AddingBook(dataStorage, administratorModeUi, bookInformationException, programProcess);
-        this.deletingBook = new DeletingBook(dataStorage, administratorModeUi, commonFunctionUi, programProcess, bookInformationException);
-        this.editingBook = new EditingBook(dataStorage, administratorModeUi, commonFunctionUi, bookInformationException, programProcess);
-        this.memberManger = new MemberManger(dataStorage, administratorModeUi, programProcess);
-        this.bookBorrowedStatus = new BookBorrowedStatus(dataStorage, administratorModeUi, programProcess);
+        this.bookFinder = new BookFinder(dataStorage, programProcess, bookInformationException);
+        this.addingBook = new AddingBook(dataStorage, bookInformationException, programProcess);
+        this.deletingBook = new DeletingBook(dataStorage, programProcess, bookInformationException);
+        this.editingBook = new EditingBook(dataStorage, bookInformationException, programProcess);
+        this.memberManger = new MemberManger(dataStorage, programProcess);
+        this.bookBorrowedStatus = new BookBorrowedStatus(dataStorage, programProcess);
     }
 
     

@@ -31,7 +31,7 @@ namespace ConsoleApp1.DataBase
 
         public void CUD(string queryStatement) //Insert,Update, delete 하는 함수
         {
-            connection.Open();
+            GetInstance().Open();
             MySqlCommand command = new MySqlCommand(queryStatement, GetInstance());
             command.ExecuteNonQuery();
             connection.Close();

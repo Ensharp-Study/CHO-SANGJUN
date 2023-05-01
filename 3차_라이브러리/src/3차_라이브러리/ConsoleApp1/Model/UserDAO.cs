@@ -46,7 +46,7 @@ namespace ConsoleApp1.DataBase
         
         public void NewUserDataCreate(UserDTO newUserInformation)
         {
-            string queryStatement = string.Format("INSERT INTO <user_data> (UserNumber, UserId, UserPassword, UserPhoneNumber, UserName,UserAddress, UserAge) VALUES ({0},{1},{2},{3}, {4},{5},{6});", newUserInformation.Id, newUserInformation.Password,newUserInformation.UserPhoneNumber,newUserInformation.UserName,newUserInformation.UserAddress,newUserInformation.UserAge);
+            string queryStatement = string.Format("INSERT INTO user_data ( UserId, UserPassword, UserPhoneNumber, UserName,UserAddress, UserAge) VALUES ('{0}','{1}','{2}','{3}', '{4}','{5}');", newUserInformation.Id, newUserInformation.Password, newUserInformation.UserPhoneNumber,newUserInformation.UserName,newUserInformation.UserAddress,newUserInformation.UserAge);
             connectionWithServer.CUD(queryStatement);
         }
 

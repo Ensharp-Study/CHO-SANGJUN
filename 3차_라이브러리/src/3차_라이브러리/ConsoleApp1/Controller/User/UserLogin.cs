@@ -11,6 +11,7 @@ public class UserLogin //유저모드 로그인 기능 클래스
     SignUpAndLoginUi signUpAndLoginUi;
     DataStorage dataStorage;
     ProgramProcess programProcess;
+    UserMenu usermenu;
 
     public UserLogin( DataStorage dataStorage, ProgramProcess programProcess)
     {
@@ -22,7 +23,8 @@ public class UserLogin //유저모드 로그인 기능 클래스
 
         this.dataStorage = dataStorage;
         this.programProcess = programProcess;
-        
+
+        this.usermenu = new UserMenu(programProcess);
     }
 
     public void GetUserLogin() 
@@ -60,8 +62,7 @@ public class UserLogin //유저모드 로그인 기능 클래스
             {
                 Console.Clear();
                 Console.Write("성공");
-                //UserMenu usermenu = new UserMenu(dataStorage, userDTO,programProcess); //유저메뉴로 진입
-                //usermenu.ControllUserMenu();
+                usermenu.ControllUserMenu();//유저메뉴로 진입
             }
             
 

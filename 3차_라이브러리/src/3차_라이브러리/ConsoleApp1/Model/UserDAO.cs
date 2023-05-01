@@ -33,7 +33,7 @@ namespace ConsoleApp1.DataBase
                         readedData.Close();
                         return userNumber;
                     }
-                    Console.WriteLine("\n\n                                   비밀번호 입력이 틀렸습니다. 다시 입력하세요        "); //아이디만 맞고 비밀번호는 틀렸을 경우
+                    Console.WriteLine("\n\n                                   비밀번호 입력이 틀렸습니다. 다시 입력하세요"); //아이디만 맞고 비밀번호는 틀렸을 경우
                     break;
                     Console.ReadKey();
                 }
@@ -44,6 +44,11 @@ namespace ConsoleApp1.DataBase
             return null;
         }
         
+        public void NewUserDataCreate(UserDTO newUserInformation)
+        {
+            string queryStatement = string.Format("INSERT INTO <user_data> (UserNumber, UserId, UserPassword, UserPhoneNumber, UserName,UserAddress, UserAge) VALUES ({0},{1},{2},{3}, {4},{5},{6});", newUserInformation.Id, newUserInformation.Password,newUserInformation.UserPhoneNumber,newUserInformation.UserName,newUserInformation.UserAddress,newUserInformation.UserAge);
+            connectionWithServer.CUD(queryStatement);
+        }
 
     }
 }

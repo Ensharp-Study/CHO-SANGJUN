@@ -8,8 +8,6 @@ public class UserMenu //유저 메뉴 진입 기능 클래스
     UserModeUi userModeUi;
     CommonFunctionUi commonFunctionUi;
 
-    DataStorage dataStorage;
-    UserDTO user;
     ProgramProcess programProcess;
 
     BookFinder bookFinder;
@@ -20,7 +18,7 @@ public class UserMenu //유저 메뉴 진입 기능 클래스
     EditingUserInformation editingUserInformation;
     DeletingUserInformation deletingUserInformation;
 
-    public UserMenu(DataStorage dataStorage, UserDTO user, ProgramProcess programProcess)
+    public UserMenu(ProgramProcess programProcess)
     {
         this.InputByReadKey = InputByReadKey.GetInstance();
         this.regularExpression = RegularExpression.GetInstance();
@@ -28,17 +26,15 @@ public class UserMenu //유저 메뉴 진입 기능 클래스
         this.userModeUi = UserModeUi.GetInstance();
         this.commonFunctionUi = CommonFunctionUi.GetInstance();
 
-        this.dataStorage = dataStorage;
-        this.user = user;
         this.programProcess = programProcess;
 
-        this.bookFinder = new BookFinder(dataStorage, programProcess);
-        this.borrowingBook = new BorrowingBook(dataStorage, user, programProcess);
-        this.bookBorrowList = new BookBorrowList(dataStorage, user, programProcess);
-        this.returningBook = new ReturningBook(dataStorage, user, programProcess);
-        this.bookReturnList = new BookReturnList(dataStorage, user, programProcess);
-        this.editingUserInformation = new EditingUserInformation(dataStorage, user, programProcess);
-        this.deletingUserInformation = new DeletingUserInformation(dataStorage, user, programProcess);
+       // this.bookFinder = new BookFinder(programProcess);
+     //   this.borrowingBook = new BorrowingBook( programProcess);
+//this.bookBorrowList = new BookBorrowList( programProcess);
+   //     this.returningBook = new ReturningBook(programProcess);
+   //     this.bookReturnList = new BookReturnList(programProcess);
+   //     this.editingUserInformation = new EditingUserInformation(programProcess);
+    //    this.deletingUserInformation = new DeletingUserInformation(programProcess);
     }
 
     public void ControllUserMenu() //유저 메뉴 선택 함수

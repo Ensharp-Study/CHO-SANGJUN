@@ -71,7 +71,4 @@ public class DataStorage // 모델에 있으면 안됨 //데이터 명 정확하
 
     }
 
-    
-    
-
 }

@@ -1,8 +1,10 @@
-﻿using System;
+﻿using ConsoleApp1.DataBase;
+using System;
 using System.Text.RegularExpressions;
 
 public class UserLogin //유저모드 로그인 기능 클래스
 {
+    UserDAO userDAO;
     InputByReadKey InputByReadKey;
     RegularExpression regularExpression;
     MainMenuUi mainMenuUi;
@@ -12,6 +14,7 @@ public class UserLogin //유저모드 로그인 기능 클래스
 
     public UserLogin( DataStorage dataStorage, ProgramProcess programProcess)
     {
+        this.userDAO = new UserDAO();
         this.InputByReadKey = InputByReadKey.GetInstance();
         this.regularExpression = RegularExpression.GetInstance();
         this.mainMenuUi = MainMenuUi.GetInstance();
@@ -53,34 +56,15 @@ public class UserLogin //유저모드 로그인 기능 클래스
             } while (!isJudgingCorrectString);
             
 
-            //아이디와 비밀번호 : 데이터값과 입력값 비교
-            bool isJudgingCorrectId = false; //아이디가 유저 데이터에 있을 때 참 값인 진리형 변수
-
-            for (int indexI = 0; indexI < dataStorage.userList.Count; indexI++)
+            if (userDAO.CompareAccountInformation(id, password) != null)
             {
-                if (string.Equals(id, dataStorage.userList[indexI].Id)) //아이디 비교
-                {
-                    isJudgingCorrectId = true;
-                    if (string.Equals(password, dataStorage.userList[indexI].Password)) //비밀번호 비교
-                    {
-                        Console.Clear() ;
-                        UserMenu usermenu = new UserMenu(dataStorage,  dataStorage.userList[indexI], programProcess); //유저메뉴로 진입
-                        usermenu.ControllUserMenu();
-                        //isJudgingCorrectInput = false;
-                    }
-                    else
-                    {
-                        Console.WriteLine("\n\n                                   비밀번호 입력이 틀렸습니다. 다시 입력하세요        "); //아이디만 맞고 비밀번호는 틀렸을 경우
-                        Console.ReadKey();
-                    }
-                }
+                Console.Clear();
+                Console.Write("성공");
+                //UserMenu usermenu = new UserMenu(dataStorage, userDTO,programProcess); //유저메뉴로 진입
+                //usermenu.ControllUserMenu();
             }
+            
 
-            if(isJudgingCorrectId == false) //입력한 아이디 유저데이터에 없을 경우
-            {
-                Console.WriteLine("\n\n                             아이디 또는 비밀번호 입력이 틀렸습니다. 다시 입력하세요");
-                Console.ReadKey();
-            }
         }
     }
 }

@@ -80,5 +80,4 @@ public class BookDTO //프로퍼티 문법으로 보안된 변수 접근
         set { returnTime = value; }
     }
 
-
 }

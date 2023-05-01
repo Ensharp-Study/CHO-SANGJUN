@@ -15,22 +15,26 @@ namespace ConsoleApp1.DataBase
         {
             if(connection == null)
             {
-                connection = new MySqlConnection("Server=localhost;Port=3306;Database=bookstorage;Uid=root;Pwd=0000");
+                connection = new MySqlConnection("Server=localhost;Port=3306;Database=library;Uid=root;Pwd=0000");
             }
             return connection;
         }
 
         public MySqlDataReader Select(string queryStatement) {
 
+            GetInstance().Open();
             MySqlCommand command = new MySqlCommand(queryStatement, GetInstance());
-            MySqlDataReader readedData = command.ExecuteReader();
+            MySqlDataReader readedData = command.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
             return readedData;
+
         }
 
         public void CUD(string queryStatement)
         {
+            connection.Open();
             MySqlCommand command = new MySqlCommand(queryStatement, GetInstance());
             command.ExecuteNonQuery();
+            connection.Close();
         }
     }
 

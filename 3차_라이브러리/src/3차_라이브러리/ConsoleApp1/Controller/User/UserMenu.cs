@@ -9,7 +9,7 @@ public class UserMenu //유저 메뉴 진입 기능 클래스
     CommonFunctionUi commonFunctionUi;
 
     DataStorage dataStorage;
-    UserInformation user;
+    UserDTO user;
     ProgramProcess programProcess;
 
     BookFinder bookFinder;
@@ -20,7 +20,7 @@ public class UserMenu //유저 메뉴 진입 기능 클래스
     EditingUserInformation editingUserInformation;
     DeletingUserInformation deletingUserInformation;
 
-    public UserMenu(DataStorage dataStorage, UserInformation user, ProgramProcess programProcess)
+    public UserMenu(DataStorage dataStorage, UserDTO user, ProgramProcess programProcess)
     {
         this.InputByReadKey = InputByReadKey.GetInstance();
         this.regularExpression = RegularExpression.GetInstance();

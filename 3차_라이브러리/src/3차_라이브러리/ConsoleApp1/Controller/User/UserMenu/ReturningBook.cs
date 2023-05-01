@@ -8,10 +8,10 @@ public class ReturningBook //책 반납하기
     UserModeUi userModeUi;
 
     DataStorage dataStorage;
-    UserInformation userInformation;
+    UserDTO userInformation;
     ProgramProcess programProcess;
 
-    public ReturningBook(DataStorage dataStorage, UserInformation userInformation, ProgramProcess programProcess) 
+    public ReturningBook(DataStorage dataStorage, UserDTO userInformation, ProgramProcess programProcess) 
     {
         this.InputByReadKey = InputByReadKey.GetInstance();
         this.regularExpression = RegularExpression.GetInstance();

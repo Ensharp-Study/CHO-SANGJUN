@@ -171,7 +171,7 @@ public class AdministratorModeUi{
         Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
         Console.WriteLine("                                  ENTER : 다시하기                    ESC : 뒤로가기\n\n");
     }
-    public void PrintCurrentSavedBookInformation(BookInformation bookInformation)
+    public void PrintCurrentSavedBookInformation(BookDTO bookInformation)
     {
         Console.WriteLine("                                                       ◈현재 등록되어 있는 정보◈         \n\n");
         Console.WriteLine("                        책제목(영어,한글,숫자,?!+= 1개 이상): " + bookInformation.BookName);
@@ -201,7 +201,7 @@ public class AdministratorModeUi{
         Console.WriteLine("                                  ENTER : 확인                     ESC : 뒤로가기\n\n");
     }
 
-    public void PrintMemberList(UserInformation userInformation)
+    public void PrintMemberList(UserDTO userInformation)
     {
         Console.WriteLine("===========================================================================================================\n");
         Console.WriteLine("유저 Number :{0}", userInformation.UserNumber);
@@ -234,7 +234,7 @@ public class AdministratorModeUi{
         Console.WriteLine("User Name  :" + userName);
         Console.WriteLine("========================================================================================================================");
     }
-    public void PrintUserBorrowedBookList(BookInformation bookInformation)
+    public void PrintUserBorrowedBookList(BookDTO bookInformation)
     {
         Console.WriteLine("책아이디  :  {0}", bookInformation.BookId);
         Console.WriteLine("책 제목   :  " + bookInformation.BookName);

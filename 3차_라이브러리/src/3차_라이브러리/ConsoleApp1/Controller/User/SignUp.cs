@@ -8,7 +8,7 @@ public class SignUp
     SignUpAndLoginUi signUpAndLoginUi;
 
     DataStorage dataStorage;
-    UserInformation newUserInformation;
+    UserDTO newUserInformation;
 
     public SignUp(DataStorage dataStorage) 
     {
@@ -18,7 +18,7 @@ public class SignUp
         this.signUpAndLoginUi = SignUpAndLoginUi.GetInstance();
 
         this.dataStorage = dataStorage;
-        this.newUserInformation = new UserInformation();
+        this.newUserInformation = new UserDTO();
     }
 
     public void SignUpAccount() //회원가입

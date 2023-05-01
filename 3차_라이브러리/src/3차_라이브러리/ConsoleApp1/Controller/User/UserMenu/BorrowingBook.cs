@@ -8,10 +8,10 @@ public class BorrowingBook
     CommonFunctionUi commonFunctionUi;
 
     DataStorage dataStorage;
-    UserInformation userInformation;
+    UserDTO userInformation;
     ProgramProcess programProcess;
 
-    public BorrowingBook(DataStorage dataStorage, UserInformation userInformation, ProgramProcess programProcess) 
+    public BorrowingBook(DataStorage dataStorage, UserDTO userInformation, ProgramProcess programProcess) 
     {
         this.InputByReadKey = InputByReadKey.GetInstance();
         this.regularExpression = RegularExpression.GetInstance();

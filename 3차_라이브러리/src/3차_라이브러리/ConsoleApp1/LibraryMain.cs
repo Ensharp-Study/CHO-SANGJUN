@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Collections.Generic;
+using MySql.Data.MySqlClient;
 
 namespace Library 
 {
@@ -13,6 +14,7 @@ namespace Library
                 LibraryMode libraryStart = new LibraryMode();
                 libraryStart.SelectMenu();
             }
+
         }
     }
 }

@@ -8,7 +8,7 @@ public class AddingBook
     
     DataStorage dataStorage;
     ProgramProcess programProcess;
-    BookInformation bookInformation; //새로운 책 정보 담을 인스턴스 생성
+    BookDTO bookInformation; //새로운 책 정보 담을 인스턴스 생성
 
     public AddingBook(DataStorage dataStorage, ProgramProcess programProcess) {
         
@@ -18,7 +18,7 @@ public class AddingBook
         
         this.dataStorage = dataStorage;
         this.programProcess = programProcess;
-        this.bookInformation = new BookInformation();
+        this.bookInformation = new BookDTO();
     }
 
     bool isJudgingCorrectString = false;
@@ -41,7 +41,7 @@ public class AddingBook
         }
     }
 
-    public BookInformation InputNewBookInformation() //정보 입력 받는 함수
+    public BookDTO InputNewBookInformation() //정보 입력 받는 함수
     {
         isNumber = false;
         Console.SetCursorPosition(29, 11);

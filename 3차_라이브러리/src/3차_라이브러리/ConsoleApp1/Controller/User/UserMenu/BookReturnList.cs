@@ -4,9 +4,9 @@ public class BookReturnList
 {
     UserModeUi userModeUi;
     DataStorage dataStorage;
-    UserInformation user;
+    UserDTO user;
     ProgramProcess programProcess;
-    public BookReturnList(DataStorage dataStorage, UserInformation user, ProgramProcess programProcess)
+    public BookReturnList(DataStorage dataStorage, UserDTO user, ProgramProcess programProcess)
     {
         this.userModeUi = UserModeUi.GetInstance();
         this.dataStorage = dataStorage;

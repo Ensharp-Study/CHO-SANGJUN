@@ -4,9 +4,9 @@ public class BookBorrowList
 {
     UserModeUi userModeUi;
     DataStorage dataStorage;
-    UserInformation userInformation;
+    UserDTO userInformation;
     ProgramProcess programProcess;
-    public BookBorrowList(DataStorage dataStorage, UserInformation userInformation, ProgramProcess programProcess)
+    public BookBorrowList(DataStorage dataStorage, UserDTO userInformation, ProgramProcess programProcess)
     {
         this.userModeUi = UserModeUi.GetInstance();
         this.dataStorage = dataStorage;

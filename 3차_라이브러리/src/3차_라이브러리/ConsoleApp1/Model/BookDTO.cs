@@ -11,8 +11,8 @@ public class BookDTO //프로퍼티 문법으로 보안된 변수 접근
     private string bookPublicationDate;
     private string isbn;
     private string bookDescription;
-    private string borrowTime;
-    private string returnTime;
+    private DateTime borrowTime;
+    private DateTime returnTime;
 
     public int BookId
     {
@@ -68,13 +68,13 @@ public class BookDTO //프로퍼티 문법으로 보안된 변수 접근
         set { bookDescription = value; }
     }
 
-    public string BorrowTime
+    public DateTime BorrowTime
     {
         get { return borrowTime; }
         set { borrowTime = value; }
     }
 
-    public string ReturnTime
+    public DateTime ReturnTime
     {
         get { return returnTime; }
         set { returnTime = value; }

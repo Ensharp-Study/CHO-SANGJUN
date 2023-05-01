@@ -21,7 +21,7 @@ namespace ConsoleApp1.DataBase
         {
             string userNumber;
             string queryStatement = "SELECT * FROM user_data;";
-            MySqlDataReader readedData = connectionWithServer.Select(queryStatement);
+            MySqlDataReader readedData = connectionWithServer.SelectUsedExecuteReader(queryStatement);
 
             while (readedData.Read())
             {

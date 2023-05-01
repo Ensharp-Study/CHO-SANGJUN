@@ -20,13 +20,21 @@ namespace ConsoleApp1.DataBase
             return connection;
         }
 
-        public MySqlDataReader Select(string queryStatement) {
+        public object SelectUsedExecuteScalarMethod(string queryStatement)
+        {
+            GetInstance().Open();
+            MySqlCommand command = new MySqlCommand(queryStatement, GetInstance());
+            object readedData = command.ExecuteScalar();
+            GetInstance().Close();
+            return readedData;
+        }
 
+        public MySqlDataReader SelectUsedExecuteReader(string queryStatement) 
+        {
             GetInstance().Open();
             MySqlCommand command = new MySqlCommand(queryStatement, GetInstance());
             MySqlDataReader readedData = command.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
             return readedData;
-
         }
 
         public void CUD(string queryStatement) //Insert,Update, delete 하는 함수
@@ -34,7 +42,7 @@ namespace ConsoleApp1.DataBase
             GetInstance().Open();
             MySqlCommand command = new MySqlCommand(queryStatement, GetInstance());
             command.ExecuteNonQuery();
-            connection.Close();
+            GetInstance().Close();
         }
     }
 

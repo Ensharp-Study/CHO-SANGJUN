@@ -61,7 +61,6 @@ public class UserLogin //유저모드 로그인 기능 클래스
             if (userDAO.CompareAccountInformation(id, password) != null)
             {
                 Console.Clear();
-                Console.Write("성공");
                 usermenu.ControllUserMenu();//유저메뉴로 진입
             }
             

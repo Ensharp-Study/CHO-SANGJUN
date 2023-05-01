@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleApp1.DataBase;
+using System;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
 using static System.Net.Mime.MediaTypeNames;
@@ -16,17 +17,19 @@ public class BookFinder
     RegularExpression regularExpression;
     CommonFunctionUi commonFunctionUi;
     
-    DataStorage dataStorage;
     ProgramProcess programProcess;
+    BookDTO bookDTO;
+    BookDAO bookDAO;
 
-    public BookFinder(DataStorage dataStorage, ProgramProcess programProcess)
+    public BookFinder(ProgramProcess programProcess, BookDTO bookDTO, BookDAO bookDAO)
     {
         this.InputByReadKey = InputByReadKey.GetInstance();
         this.regularExpression = RegularExpression.GetInstance();
         this.commonFunctionUi = CommonFunctionUi.GetInstance();
 
-        this.dataStorage = dataStorage;
         this.programProcess = programProcess;
+        this.bookDTO = bookDTO;
+        this.bookDAO = bookDAO;
         
     }
 
@@ -36,11 +39,12 @@ public class BookFinder
         {
             //책 리스트 출력
             commonFunctionUi.PrintBookFinderMenu();
-            for (int i = 0; i < dataStorage.bookList.Count; i++)
-            {
-                commonFunctionUi.PrintBookList(dataStorage.bookList[i], i);
-            }
 
+            for (int i = 1; i <= bookDAO.ReadAllBookCount(); i++)
+            {
+                commonFunctionUi.PrintBookList(bookDAO.ReadAllBookData(i), i);
+            }
+            
             //입력값 받기 (책 제목, 저자, 출판사)
             Console.SetCursorPosition(17, 1);
             do { // 제목
@@ -67,15 +71,15 @@ public class BookFinder
             commonFunctionUi.PrintBookFinderMenu();
 
             //입력받은 책과 데이터의 책들 비교
-            for (int i = 0; i < dataStorage.bookList.Count; i++)
+            for (int i = 1; i <= bookDAO.ReadAllBookCount(); i++)
             {
                 if (string.IsNullOrEmpty(title) == false ||
                    string.IsNullOrEmpty(author) == false ||
                    string.IsNullOrEmpty(publisher) == false) // 입력받은 값이 공백인 경우 제외
                 {
-                    if ((dataStorage.bookList[i].BookName).Contains(title) &&
-                        (dataStorage.bookList[i].BookAuthor).Contains(author) &&
-                        (dataStorage.bookList[i].BookPublisher).Contains(publisher)) 
+                    if ((bookDAO.ReadAllBookData(i).BookName).Contains(title) &&
+                        (bookDAO.ReadAllBookData(i).BookAuthor).Contains(author) &&
+                        (bookDAO.ReadAllBookData(i).BookPublisher).Contains(publisher)) 
                     {
                         printPossiblity++;
                     }
@@ -83,7 +87,7 @@ public class BookFinder
 
                 if (printPossiblity > 0) // 일치하면 출력
                 {
-                    commonFunctionUi.PrintBookList(dataStorage.bookList[i], i);
+                    commonFunctionUi.PrintBookList(bookDAO.ReadAllBookData(i), i);
                     printPossiblity = 0;
                 }
             }

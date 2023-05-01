@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleApp1.DataBase;
+using System;
 
 public class UserMenu //유저 메뉴 진입 기능 클래스
 {
@@ -9,6 +10,8 @@ public class UserMenu //유저 메뉴 진입 기능 클래스
     CommonFunctionUi commonFunctionUi;
 
     ProgramProcess programProcess;
+    BookDAO bookDAO;
+    BookDTO bookDTO;
 
     BookFinder bookFinder;
     BorrowingBook borrowingBook;
@@ -27,14 +30,16 @@ public class UserMenu //유저 메뉴 진입 기능 클래스
         this.commonFunctionUi = CommonFunctionUi.GetInstance();
 
         this.programProcess = programProcess;
+        this.bookDTO = new BookDTO();
+        this.bookDAO = new BookDAO(bookDTO);
 
-       // this.bookFinder = new BookFinder(programProcess);
-     //   this.borrowingBook = new BorrowingBook( programProcess);
-//this.bookBorrowList = new BookBorrowList( programProcess);
-   //     this.returningBook = new ReturningBook(programProcess);
-   //     this.bookReturnList = new BookReturnList(programProcess);
-   //     this.editingUserInformation = new EditingUserInformation(programProcess);
-    //    this.deletingUserInformation = new DeletingUserInformation(programProcess);
+        this.bookFinder = new BookFinder(programProcess, bookDTO, bookDAO);
+        //this.borrowingBook = new BorrowingBook( programProcess);
+        //this.bookBorrowList = new BookBorrowList( programProcess);
+        //this.returningBook = new ReturningBook(programProcess);
+        //this.bookReturnList = new BookReturnList(programProcess);
+        //this.editingUserInformation = new EditingUserInformation(programProcess);
+        //this.deletingUserInformation = new DeletingUserInformation(programProcess);
     }
 
     public void ControllUserMenu() //유저 메뉴 선택 함수

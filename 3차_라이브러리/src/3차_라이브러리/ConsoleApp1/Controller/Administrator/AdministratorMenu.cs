@@ -29,7 +29,7 @@ public class AdministratorMenu
         this.dataStorage = dataStorage;
         this.programProcess = programProcess;
         
-        this.bookFinder = new BookFinder(dataStorage, programProcess);
+        //this.bookFinder = new BookFinder(programProcess);
         this.addingBook = new AddingBook(dataStorage, programProcess);
         this.deletingBook = new DeletingBook(dataStorage, programProcess);
         this.editingBook = new EditingBook(dataStorage, programProcess);

@@ -15,8 +15,8 @@ public class UserDTO
     private string userAddress;
     private int userAge;
     private string userPhoneNumber;
-    private List<BookDTO> borrowBookList;
-    private List<BookDTO> returnBookList;
+    private List<BookDTO> borrowBookList; // 사용 필요 없어짐
+    private List<BookDTO> returnBookList; 
 
 
     public string Id

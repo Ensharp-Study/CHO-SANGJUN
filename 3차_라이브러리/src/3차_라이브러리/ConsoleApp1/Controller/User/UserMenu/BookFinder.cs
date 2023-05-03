@@ -2,6 +2,7 @@
 using System;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
+using System.Threading;
 using static System.Net.Mime.MediaTypeNames;
 
 public class BookFinder
@@ -40,7 +41,7 @@ public class BookFinder
             //책 리스트 출력
             commonFunctionUi.PrintBookFinderMenu();
 
-            for (int i = 1; i <= bookDAO.ReadAllBookCount(); i++)
+            for (int i = 1; i <= bookDAO.ReadAllBookCount("SELECT COUNT(*) FROM book_data;"); i++)
             {
                 commonFunctionUi.PrintBookList(bookDAO.ReadAllBookData(i), i);
             }
@@ -71,7 +72,7 @@ public class BookFinder
             commonFunctionUi.PrintBookFinderMenu();
 
             //입력받은 책과 데이터의 책들 비교
-            for (int i = 1; i <= bookDAO.ReadAllBookCount(); i++)
+            for (int i = 1; i <= bookDAO.ReadAllBookCount("SELECT COUNT(*) FROM book_data;"); i++)
             {
                 if (string.IsNullOrEmpty(title) == false ||
                    string.IsNullOrEmpty(author) == false ||
@@ -93,7 +94,7 @@ public class BookFinder
             }
             commonFunctionUi.SelectEndorReturnInTheProgram(); //다시하기 또는 나가기 출력
 
-            //프로그램 뒤로 나가기
+            //프로그램 뒤로 나가기 //공통함수
             if ((programProcess.SelectProgramDirection()).Key == ConsoleKey.Escape)
             {
                 isMenuExecute = false;

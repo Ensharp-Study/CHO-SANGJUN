@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1.DataBase
+namespace ConsoleApp1
 {
     public class ConnectionWithServer
     {
@@ -22,8 +22,8 @@ namespace ConsoleApp1.DataBase
 
         public object SelectUsedExecuteScalarMethod(string queryStatement)
         {
-            GetInstance().Open();
             MySqlCommand command = new MySqlCommand(queryStatement, GetInstance());
+            GetInstance().Open();
             object readedData = command.ExecuteScalar();
             GetInstance().Close();
             return readedData;
@@ -31,16 +31,16 @@ namespace ConsoleApp1.DataBase
 
         public MySqlDataReader SelectUsedExecuteReader(string queryStatement) 
         {
-            GetInstance().Open();
             MySqlCommand command = new MySqlCommand(queryStatement, GetInstance());
+            GetInstance().Open();
             MySqlDataReader readedData = command.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
             return readedData;
         }
 
-        public void CUD(string queryStatement) //Insert,Update, delete 하는 함수
+        public void CreateUpdateDelete(string queryStatement) //Insert,Update, delete 하는 함수
         {
-            GetInstance().Open();
             MySqlCommand command = new MySqlCommand(queryStatement, GetInstance());
+            GetInstance().Open();
             command.ExecuteNonQuery();
             GetInstance().Close();
         }

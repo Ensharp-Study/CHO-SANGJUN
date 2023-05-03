@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ConsoleApp1.DataBase;
+using System;
+using System.Xml.Linq;
+
 public class AdministratorLogin
 {
     InputByReadKey InputByReadKey;
@@ -6,62 +9,56 @@ public class AdministratorLogin
     MainMenuUi mainMenuUi;
     SignUpAndLoginUi signUpAndLoginUi;
 
-    DataStorage dataStorage;
     ProgramProcess programProcess;
     AdministratorMenu administratorMenu;
-    public AdministratorLogin(DataStorage dataStorage, ProgramProcess programProcess)
+    UserDAO userDAO;
+
+    public AdministratorLogin(ProgramProcess programProcess)
     {
         this.InputByReadKey = InputByReadKey.GetInstance();
         this.regularExpression = RegularExpression.GetInstance();
         this.mainMenuUi = MainMenuUi.GetInstance();
         this.signUpAndLoginUi = SignUpAndLoginUi.GetInstance();
         
-        this.dataStorage = dataStorage;
         this.programProcess = programProcess;
-        this.administratorMenu = new AdministratorMenu(dataStorage, programProcess);
+        this.administratorMenu = new AdministratorMenu(programProcess);
+        this.userDAO = new UserDAO();
     }
 
-    bool isJudgingCorrectString;
+    private bool isJudgingCorrectString;
+    private string id;
+    private string password;
+
     public void GetAdministratorLogin()
     {
-        string id;
-        string password;
-
+        /*
+        int userDataCount;
+        UserDTO userinformation;  
         while (true)
         {
             signUpAndLoginUi.PrintAdministratorLoginMenu();
+            ReceiveIdAndPassword();
 
-            Console.SetCursorPosition(53, 23);
-            do //아이디 입력
-            {
-                id = InputByReadKey.ReceiveInput(53, 23, 15, Constants.IS_NOT_PASSWORD); //입력값 키값으로 검사
-                isJudgingCorrectString = regularExpression.JudgeWithRegularExpression(53, 23, id, Constants.USER_ID_REGULAR_EXPRESSION, Constants.USER_ID_ERROR_MESSAGE); //정규표현식 이용하여 검사
-            } while (!isJudgingCorrectString); //정규표현식 확인후 거짓일 때만 재실행 
+           userDataCount = userDAO.ReadAllUserCount("SELECT COUNT(*) FROM adminstrator_data;"); //데이터 베이스에 저장된 모든 관리자의 수 구하기
             
-            Console.SetCursorPosition(61, 24);
-            do //비밀번호 입력
+            for(int i=1; i<= userDataCount; i++)
             {
-                password = InputByReadKey.ReceiveInput(61, 24, 15, Constants.IS_PASSWORD);
-                isJudgingCorrectString = regularExpression.JudgeWithRegularExpression(61, 24, password, Constants.USER_PASSWORD_REGULAR_EXPRESSION, Constants.USER_PASSWORD_ERROR_MESSAGE);
-            } while (!isJudgingCorrectString);
+               userinformation = userDAO.CompareAccountInformation("SELECT id, password FROM adminstrator_data;", i); //쿼리문 ID PASSWORD값만 데이터 베이스 테이블에서 가져오기
 
-
-            if (string.Equals(id, dataStorage.administratorInformation.Id)) //아이디 및 비밀번호 검사
-            {
-                if (string.Equals(password, dataStorage.administratorInformation.Password))
+                if (string.Equals(id, userinformation.Id)) //아이디 및 비밀번호 검사
                 {
-                    Console.Clear();
-                    administratorMenu.ControllAdministratorMenu(); //매니저 모드 메뉴로 진입
+                    if (string.Equals(password, userinformation.Password))
+                    {
+                        Console.Clear();
+                        administratorMenu.ControllAdministratorMenu(); //매니저 모드 메뉴로 진입
+                        break;
+                    }
+                    Console.WriteLine("\n\n                                   비밀번호 입력이 틀렸습니다. 다시 입력하세요");
                 }
                 else
                 {
-                    Console.WriteLine("\n\n                                   비밀번호 입력이 틀렸습니다. 다시 입력하세요");
+                    Console.WriteLine("\n\n                             아이디 또는 비밀번호 입력이 틀렸습니다. 다시 입력하세요");
                 }
-            }
-
-            else
-            {
-                Console.WriteLine("\n\n                             아이디 또는 비밀번호 입력이 틀렸습니다. 다시 입력하세요");
             }
 
             //프로그램 탈출
@@ -70,6 +67,25 @@ public class AdministratorLogin
                 break;
             }
 
+        }*/
+    }
+
+    public void ReceiveIdAndPassword()
+    {
+        isJudgingCorrectString = false;
+        Console.SetCursorPosition(53, 23);
+        while (!isJudgingCorrectString)//정규표현식 확인후 거짓일 때만 재실행  
+        {
+            id = InputByReadKey.ReceiveInput(53, 23, 15, Constants.IS_NOT_PASSWORD); //아이디 입력
+            isJudgingCorrectString = regularExpression.JudgeWithRegularExpression(53, 23, id, Constants.USER_ID_REGULAR_EXPRESSION, Constants.USER_ID_ERROR_MESSAGE); //정규표현식 이용하여 검사
+        }
+
+        isJudgingCorrectString = false;
+        Console.SetCursorPosition(61, 24);
+        while (!isJudgingCorrectString)
+        {
+            password = InputByReadKey.ReceiveInput(61, 24, 15, Constants.IS_PASSWORD);//비밀번호 입력
+            isJudgingCorrectString = regularExpression.JudgeWithRegularExpression(61, 24, password, Constants.USER_PASSWORD_REGULAR_EXPRESSION, Constants.USER_PASSWORD_ERROR_MESSAGE);
         }
     }
 

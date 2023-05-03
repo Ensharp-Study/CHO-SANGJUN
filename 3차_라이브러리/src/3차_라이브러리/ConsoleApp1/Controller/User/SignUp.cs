@@ -11,7 +11,7 @@ public class SignUp
     UserDTO newUserInformation;
     UserDAO userDAO;
 
-    public SignUp(DataStorage dataStorage) 
+    public SignUp() 
     {
         this.inputByReadKey = InputByReadKey.GetInstance();
         this.regularExpression = RegularExpression.GetInstance();
@@ -25,6 +25,7 @@ public class SignUp
     public void SignUpAccount() //회원가입
 	{
         bool isJudgingCorrectString = false;
+
         string passwordConfirmation = "";
 
         mainMenuUi.ViewMainMenu();
@@ -63,10 +64,7 @@ public class SignUp
                 Console.ReadKey(true);
                 continue;
             }
-            else
-            {
-                break;
-            }
+            break;
 
         }
         isJudgingCorrectString = false;
@@ -101,7 +99,7 @@ public class SignUp
             isJudgingCorrectString = true; //아직 주소 정규식 처리 미완료
         }
 
-        userDAO.NewUserDataCreate(newUserInformation); //DAO로 새 유저정보 넘겨주기
+        userDAO.NewUserDataCreate(newUserInformation, "INSERT INTO user_data ( UserId, UserPassword, UserPhoneNumber, UserName,UserAddress, UserAge) VALUES ('{0}','{1}','{2}','{3}', '{4}','{5}');");      //DAO로 새 유저정보 넘겨주기
         
         Console.Clear();
         signUpAndLoginUi.PrintAccountDeletionSentence(newUserInformation.UserName);

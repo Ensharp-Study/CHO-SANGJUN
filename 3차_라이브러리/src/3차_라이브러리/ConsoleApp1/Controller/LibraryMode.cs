@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleApp1.DataBase;
+using System;
 
 public class LibraryMode
 {
@@ -20,9 +21,9 @@ public class LibraryMode
         this.signUpAndLoginUi = SignUpAndLoginUi.GetInstance();
         this.dataStorage = new DataStorage();
         this.programProcess = new ProgramProcess();
-        this.login = new UserLogin(dataStorage,programProcess);
-        this.signUp = new SignUp(dataStorage);
-        this.administratorLogin = new AdministratorLogin(dataStorage, programProcess);
+        this.login = new UserLogin(programProcess);
+        this.signUp = new SignUp();
+        this.administratorLogin = new AdministratorLogin( programProcess);
     }
 
     public void SelectMenu()

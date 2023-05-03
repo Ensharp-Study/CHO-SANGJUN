@@ -8,7 +8,6 @@ public class AdministratorMenu
     AdministratorModeUi administratorModeUi;
     CommonFunctionUi commonFunctionUi;
 
-    DataStorage dataStorage;
     ProgramProcess programProcess;
  
     BookFinder bookFinder;
@@ -18,7 +17,7 @@ public class AdministratorMenu
     MemberManger memberManger;
     BookBorrowedStatus bookBorrowedStatus;
 
-    public AdministratorMenu(DataStorage dataStorage, ProgramProcess programProcess)
+    public AdministratorMenu(ProgramProcess programProcess)
     {
         this.InputByReadKey = InputByReadKey.GetInstance();
         this.regularExpression = RegularExpression.GetInstance();
@@ -26,15 +25,14 @@ public class AdministratorMenu
         this.administratorModeUi = AdministratorModeUi.GetInstance();
         this.commonFunctionUi = CommonFunctionUi.GetInstance();
         
-        this.dataStorage = dataStorage;
         this.programProcess = programProcess;
         
         //this.bookFinder = new BookFinder(programProcess);
-        this.addingBook = new AddingBook(dataStorage, programProcess);
-        this.deletingBook = new DeletingBook(dataStorage, programProcess);
-        this.editingBook = new EditingBook(dataStorage, programProcess);
-        this.memberManger = new MemberManger(dataStorage, programProcess);
-        this.bookBorrowedStatus = new BookBorrowedStatus(dataStorage, programProcess);
+        //this.addingBook = new AddingBook( programProcess);
+        //this.deletingBook = new DeletingBook( programProcess);
+        //this.editingBook = new EditingBook( programProcess);
+        //this.memberManger = new MemberManger( programProcess);
+        //this.bookBorrowedStatus = new BookBorrowedStatus( programProcess);
     }
 
     

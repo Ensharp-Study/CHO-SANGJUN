@@ -31,6 +31,5 @@ public class RegularExpression
         Console.ResetColor();
         Console.ReadKey(true);
         return false;
-
     }
 }

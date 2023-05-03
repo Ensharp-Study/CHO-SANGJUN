@@ -19,15 +19,14 @@ namespace ConsoleApp1.DataBase
             this.bookDTO = bookDTO;
         }
 
-        public int ReadAllBookCount() //저장된 모든 책들의 개수 구하는 함수 
+        public int ReadAllBookCount(string queryStatement) //저장된 모든 책들의 개수 구하는 함수 
         {
-            string queryStatement = "SELECT COUNT(*) FROM book_data;";
             object readedData = connectionWithServer.SelectUsedExecuteScalarMethod(queryStatement);
             return Convert.ToInt32(readedData);
         }
         public BookDTO ReadAllBookData(int bookId)
         {
-            string queryStatement = "SELECT * FROM book_data;";
+            string queryStatement = "SELECT * FROM book_data ;";
             MySqlDataReader readedData = connectionWithServer.SelectUsedExecuteReader(queryStatement);
 
             for (int i = 0; i < bookId; i++) 

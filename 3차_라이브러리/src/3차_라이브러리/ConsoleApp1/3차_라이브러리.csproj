@@ -120,7 +120,7 @@
     <Compile Include="Controller\User\UserMenu\BookFinder.cs" />
     <Compile Include="Controller\User\UserMenu\BookReturnList.cs" />
     <Compile Include="Controller\User\UserMenu\BorrowingBook.cs" />
-    <Compile Include="Controller\User\UserMenu\DeleteUserInf.cs" />
+    <Compile Include="Controller\User\UserMenu\DeleteUserInformation.cs" />
     <Compile Include="Controller\User\UserMenu\EditingUserInformation.cs" />
     <Compile Include="Controller\User\UserMenu\ReturningBook.cs" />
     <Compile Include="LibraryMain.cs" />

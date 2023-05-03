@@ -26,6 +26,7 @@ public class InputByReadKey
         Console.SetCursorPosition(cursorPositionX, cursorPositionY);
         Console.Write("                                       ");
         Console.SetCursorPosition(cursorPositionX, cursorPositionY);
+
         while (true)
         {
             Console.TreatControlCAsInput = true; //control C로 강제종료 막기
@@ -54,11 +55,13 @@ public class InputByReadKey
                     stringBuilder.Remove(0, stringBuilder.Length);
                 }
             }
+
             else if (inputKey.Key == ConsoleKey.Backspace && stringBuilder.Length > 0) //백스페이스 눌렀을때 처리
             {
                 Console.Write("\b \b");
                 stringBuilder.Remove(stringBuilder.Length - 1, 1);
             }
+
             else if ((inputKey.Modifiers == ConsoleModifiers.Control && inputKey.Key == ConsoleKey.C)
                 || (inputKey.Modifiers == ConsoleModifiers.Control && inputKey.Key == ConsoleKey.V)
                 || (inputKey.Modifiers == ConsoleModifiers.Control && inputKey.Key == ConsoleKey.Z)) //Control 조합키 막기
@@ -74,10 +77,11 @@ public class InputByReadKey
                 Console.Write("                                       ");
                 Console.SetCursorPosition(cursorPositionX, cursorPositionY);
             }
+
             else if ((Char.IsLetterOrDigit(inputKey.KeyChar)
                 || Char.IsWhiteSpace(inputKey.KeyChar)
                 || Char.IsPunctuation(inputKey.KeyChar)
-                || Char.IsSymbol(inputKey.KeyChar)) && stringBuilder.Length < maxLength)    //문자,숫자,기호,구두점 입력 받았을 시
+                || Char.IsSymbol(inputKey.KeyChar)) && stringBuilder.Length < maxLength) //문자,숫자,기호,구두점 입력 받았을 시
             {
                 stringBuilder.Append(inputKey.KeyChar);
                 if (isPassword)
@@ -90,6 +94,7 @@ public class InputByReadKey
                 }
             }
         }
+
         return stringBuilder.ToString();
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-public class AdministratorModeUi{
+public class AdministratorModeUi{ // ui 메모리 더 쌓일 수 있다.
 
     //싱글턴 디자인 패턴
     private static AdministratorModeUi instance;
@@ -17,7 +17,6 @@ public class AdministratorModeUi{
 
     public int PrintSelectAdministratorMenu()
     {
-
         ConsoleKeyInfo inputKey;
         bool isCheckedEnter = false;
         int menuIndex = 0;

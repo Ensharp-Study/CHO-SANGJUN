@@ -113,9 +113,7 @@ public class DeletingBook
 
             if (PrintPossiblity > 0) // 일치하면 출력
             {
-                {
-                    commonFunctionUi.PrintBookList(dataStorage.bookList[i], i);
-                }
+                commonFunctionUi.PrintBookList(dataStorage.bookList[i], i);
                 PrintPossiblity = 0;
             }
         }

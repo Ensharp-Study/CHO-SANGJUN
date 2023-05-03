@@ -13,7 +13,7 @@ public class BookReturnList
         this.user = user;
         this.programProcess = programProcess;
     }
-    public void ShowBookReturnList()
+    public void ShowBookReturnList() // 함수 명 변경
     {
         while (true)
         {
@@ -22,7 +22,6 @@ public class BookReturnList
             for (int i = 0; i < user.ReturnBookList.Count; i++)
             {
                 userModeUi.PrintUserBorrowingList(user.ReturnBookList[i]);
-
             }
 
             //프로그램 뒤로 나가기

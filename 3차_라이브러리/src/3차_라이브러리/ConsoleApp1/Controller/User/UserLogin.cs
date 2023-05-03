@@ -44,8 +44,8 @@ public class UserLogin //유저모드 로그인 기능 클래스
             mainMenuUi.ViewMenuSquare();
             signUpAndLoginUi.PrintUserLoginMenu();  //메뉴 인터페이스 출력
 
-            ReceieveIdAndPassword(); //아이디 비밀번호 입력 받기
-            userinformation = userDAO.CompareAccountInformation(id); //일치하는 id가 있는지 판단
+            ReceiveIdAndPassword(); //아이디 비밀번호 입력 받기
+            userinformation = userDAO.CompareUserAccountInformation(id); //일치하는 id가 있는지 판단
 
             if (userinformation.Count == 0) //리스트 원소가 없는경우 == 일치하는 id가 없는 경우
             {
@@ -61,7 +61,8 @@ public class UserLogin //유저모드 로그인 기능 클래스
                 }
                 else //비밀번호가 틀릴경우
                 {
-                    Console.WriteLine("\n\n                                   비밀번호 입력이 틀렸습니다. 다시 입력하세요");
+                    Console.SetCursorPosition(40, 27);
+                    Console.WriteLine("비밀번호 입력이 틀렸습니다. 다시 입력하세요");
                     Console.ReadKey(true);
                 }
             }
@@ -69,7 +70,7 @@ public class UserLogin //유저모드 로그인 기능 클래스
         Console.Clear();
         usermenu.ControllUserMenu(); //유저 모드 메뉴로 진입
     }
-    public void ReceieveIdAndPassword()
+    public void ReceiveIdAndPassword()
     {
         bool isJudgingCorrectString; //입력값 검사 후 탈출용 진리형 변수 
 

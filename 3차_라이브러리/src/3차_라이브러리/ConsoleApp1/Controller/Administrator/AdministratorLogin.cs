@@ -1,5 +1,6 @@
 ﻿using ConsoleApp1.DataBase;
 using System;
+using System.Collections.Generic;
 using System.Xml.Linq;
 
 public class AdministratorLogin
@@ -25,53 +26,54 @@ public class AdministratorLogin
         this.userDAO = new UserDAO();
     }
 
-    private bool isJudgingCorrectString;
     private string id;
     private string password;
 
     public void GetAdministratorLogin()
     {
-        /*
-        int userDataCount;
-        UserDTO userinformation;  
-        while (true)
+        bool isJudgingCorrectInput = false; //로그인 성공여부를 판단하는 bool형 변수
+        List<UserDTO> administratorInformation;
+
+        while (!isJudgingCorrectInput)
         {
-            signUpAndLoginUi.PrintAdministratorLoginMenu();
-            ReceiveIdAndPassword();
+            Console.Clear();
+            mainMenuUi.ViewMainMenu();
+            mainMenuUi.ViewMenuSquare();
+            signUpAndLoginUi.PrintAdministratorLoginMenu();  //메뉴 인터페이스 출력
 
-           userDataCount = userDAO.ReadAllUserCount("SELECT COUNT(*) FROM adminstrator_data;"); //데이터 베이스에 저장된 모든 관리자의 수 구하기
-            
-            for(int i=1; i<= userDataCount; i++)
+            ReceiveIdAndPassword(); //아이디 비밀번호 입력 받기
+            administratorInformation = userDAO.CompareAdministratorAccountInformation(id); //일치하는 id가 있는지 판단
+
+            if (administratorInformation.Count == 0) //리스트 원소가 없는경우 == 일치하는 id가 없는 경우
             {
-               userinformation = userDAO.CompareAccountInformation("SELECT id, password FROM adminstrator_data;", i); //쿼리문 ID PASSWORD값만 데이터 베이스 테이블에서 가져오기
-
-                if (string.Equals(id, userinformation.Id)) //아이디 및 비밀번호 검사
+                Console.SetCursorPosition(40, 27);
+                Console.WriteLine("해당 아이디가 없습니다. 다시 입력하세요");
+                Console.ReadKey(true);
+            }
+            else //일치하는 id가 있는 경우
+            {
+                if (administratorInformation[0].Password == password) //비밀번호가 일치할 경우 로그인 성공
                 {
-                    if (string.Equals(password, userinformation.Password))
-                    {
-                        Console.Clear();
-                        administratorMenu.ControllAdministratorMenu(); //매니저 모드 메뉴로 진입
-                        break;
-                    }
-                    Console.WriteLine("\n\n                                   비밀번호 입력이 틀렸습니다. 다시 입력하세요");
+                    isJudgingCorrectInput = true; //반복문 탈출
                 }
-                else
+                else //비밀번호가 틀릴경우
                 {
-                    Console.WriteLine("\n\n                             아이디 또는 비밀번호 입력이 틀렸습니다. 다시 입력하세요");
+                    Console.SetCursorPosition(40, 27);
+                    Console.WriteLine("비밀번호 입력이 틀렸습니다. 다시 입력하세요");
+                    Console.ReadKey(true);
                 }
             }
+        }
+        Console.Clear();
+        administratorMenu.ControllAdministratorMenu(); //관리자 모드 메뉴로 진입
 
-            //프로그램 탈출
-            if ((programProcess.SelectProgramDirection()).Key == ConsoleKey.Escape)
-            {
-                break;
-            }
-
-        }*/
+    
     }
 
     public void ReceiveIdAndPassword()
     {
+        bool isJudgingCorrectString;
+
         isJudgingCorrectString = false;
         Console.SetCursorPosition(53, 23);
         while (!isJudgingCorrectString)//정규표현식 확인후 거짓일 때만 재실행  

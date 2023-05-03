@@ -27,7 +27,7 @@ namespace ConsoleApp1.DataBase
 
             return count;
         }
-        public List<UserDTO> CompareAccountInformation(string id) // 아이디 패스워드와 비교하는 함수
+        public List<UserDTO> CompareUserAccountInformation(string id) // 유저모드 아이디 패스워드와 비교하는 함수
         {
             List<UserDTO> userDTOList = new List<UserDTO>();
 
@@ -42,6 +42,29 @@ namespace ConsoleApp1.DataBase
                 userDTO.UserNumber = Convert.ToInt32(readedData["UserNumber"]);
 
                 userDTOList.Add(userDTO); //해당 유저 정보를 리스트에 추가하기 (리스트로 반환해주는 이유: 일치하는 값이 없을 경우 list의 원소개수가 0이므로 이 경우를 판단해주기 위해)
+                readedData.Close();
+                return userDTOList;
+            }
+
+            readedData.Close(); // MySqlDataReader 객체 닫아줌과 동시에 connection 닫아주기
+            return userDTOList; //일치하는 아이디가 없으므로 리스트의 원소 개수는 0개 이다.
+        }
+
+        public List<UserDTO> CompareAdministratorAccountInformation(string id) // 관리자 모드 아이디 패스워드와 비교하는 함수
+        {
+            List<UserDTO> userDTOList = new List<UserDTO>();
+
+            string queryStatement = string.Format("SELECT * FROM administrator_data WHERE UserId = '{0}';", id);
+            MySqlDataReader readedData = connectionWithServer.SelectUsedExecuteReader(queryStatement);
+
+            if (readedData.Read()) //일치하는 아이디가 있는경우
+            {
+                UserDTO userDTO = new UserDTO(); //해당 레코드 값을 담을 UserDTO 그릇을 만들어주기
+                userDTO.Id = readedData["UserId"].ToString();
+                userDTO.Password = readedData["UserPassword"].ToString();
+                userDTO.UserNumber = Convert.ToInt32(readedData["UserNumber"]);
+
+                userDTOList.Add(userDTO); //해당 관리자 정보를 리스트에 추가하기 (리스트로 반환해주는 이유: 일치하는 값이 없을 경우 list의 원소개수가 0이므로 이 경우를 판단해주기 위해)
                 readedData.Close();
                 return userDTOList;
             }

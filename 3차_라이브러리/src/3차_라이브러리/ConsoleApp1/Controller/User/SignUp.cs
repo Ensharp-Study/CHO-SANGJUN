@@ -99,14 +99,9 @@ public class SignUp
             isJudgingCorrectString = true; //아직 주소 정규식 처리 미완료
         }
 
-        userDAO.NewUserDataCreate(newUserInformation, "INSERT INTO user_data ( UserId, UserPassword, UserPhoneNumber, UserName,UserAddress, UserAge) VALUES ('{0}','{1}','{2}','{3}', '{4}','{5}');");      //DAO로 새 유저정보 넘겨주기
+        userDAO.NewUserDataCreate(newUserInformation);      //DAO로 새 유저정보 넘겨주기
         
         Console.Clear();
         signUpAndLoginUi.PrintAccountDeletionSentence(newUserInformation.UserName);
-        
-        Console.ReadKey();
-        Console.SetCursorPosition(60, 28);
-        
-        return;
     }
 }

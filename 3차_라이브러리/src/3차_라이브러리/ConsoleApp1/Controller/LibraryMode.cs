@@ -54,7 +54,6 @@ public class LibraryMode
                 {
                     Console.Clear();
                     signUp.SignUpAccount();
-                    Console.Clear();
                 }
             }
 

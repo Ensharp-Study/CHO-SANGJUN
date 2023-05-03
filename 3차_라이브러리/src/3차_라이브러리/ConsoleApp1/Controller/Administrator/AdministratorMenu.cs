@@ -27,7 +27,7 @@ public class AdministratorMenu
         
         this.programProcess = programProcess;
         
-        //this.bookFinder = new BookFinder(programProcess);
+        this.bookFinder = new BookFinder(programProcess);
         //this.addingBook = new AddingBook( programProcess);
         //this.deletingBook = new DeletingBook( programProcess);
         //this.editingBook = new EditingBook( programProcess);

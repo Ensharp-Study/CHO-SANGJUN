@@ -67,7 +67,7 @@ public class DeletingBook
 
         for (int i = 0; i < dataStorage.bookList.Count; i++) //모든책 리스트 접근
         {
-            commonFunctionUi.PrintBookList(dataStorage.bookList[i], i);
+            //commonFunctionUi.PrintBookList(dataStorage.bookList[i], i);
         }
 
         Console.SetCursorPosition(17, 1);  //검색할 책 정보 입력받기
@@ -113,7 +113,7 @@ public class DeletingBook
 
             if (PrintPossiblity > 0) // 일치하면 출력
             {
-                commonFunctionUi.PrintBookList(dataStorage.bookList[i], i);
+                //commonFunctionUi.PrintBookList(dataStorage.bookList[i], i);
                 PrintPossiblity = 0;
             }
         }

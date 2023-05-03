@@ -127,7 +127,7 @@ public class EditingBook
         commonFunctionUi.PrintBookFinderMenu();
         for (int i = 0; i < dataStorage.bookList.Count; i++)
         {
-            commonFunctionUi.PrintBookList(dataStorage.bookList[i], i);
+            //commonFunctionUi.PrintBookList(dataStorage.bookList[i], i);
         }
 
         Console.SetCursorPosition(17, 1);
@@ -158,7 +158,7 @@ public class EditingBook
             if (PrintPossiblity > 0) // 일치하면 출력
             {
                 {
-                    commonFunctionUi.PrintBookList(dataStorage.bookList[i], i);
+                   // commonFunctionUi.PrintBookList(dataStorage.bookList[i], i);
                 }
                 PrintPossiblity = 0;
             }

@@ -35,6 +35,7 @@ public class UserLogin //유저모드 로그인 기능 클래스
     public void GetUserLogin()
     {
         bool isJudgingCorrectInput = false; //로그인 성공여부를 판단하는 bool형 변수
+        UserDTO loggedInUserInformation = null; //로그인 성공 후 로그인 한 유저 정보를 담을 DTO (빌린책 정보나 반납한 책 정보 저장할때 유저 아이디가 필요하기 때문)
         List<UserDTO> userinformation;
 
         while (!isJudgingCorrectInput)
@@ -57,6 +58,8 @@ public class UserLogin //유저모드 로그인 기능 클래스
             {
                 if (userinformation[0].Password == password) //비밀번호가 일치할 경우 로그인 성공
                 {
+                    
+                    loggedInUserInformation = userinformation[0];//로그인 한 회원정보 담기
                     isJudgingCorrectInput = true; //반복문 탈출
                 }
                 else //비밀번호가 틀릴경우
@@ -67,8 +70,9 @@ public class UserLogin //유저모드 로그인 기능 클래스
                 }
             }
         }
+        
         Console.Clear();
-        usermenu.ControllUserMenu(); //유저 모드 메뉴로 진입
+        usermenu.ControllUserMenu(loggedInUserInformation); //유저 모드 메뉴로 진입
     }
     public void ReceiveIdAndPassword()
     {

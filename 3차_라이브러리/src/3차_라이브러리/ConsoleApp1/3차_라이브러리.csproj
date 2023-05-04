@@ -117,7 +117,7 @@
     <Compile Include="Controller\User\UserLogin.cs" />
     <Compile Include="Controller\User\UserMenu.cs" />
     <Compile Include="Controller\User\UserMenu\BookBorrowList.cs" />
-    <Compile Include="Controller\User\UserMenu\BookFinder.cs" />
+    <Compile Include="Controller\Common\BookFinder.cs" />
     <Compile Include="Controller\User\UserMenu\BookReturnList.cs" />
     <Compile Include="Controller\User\UserMenu\BorrowingBook.cs" />
     <Compile Include="Controller\User\UserMenu\DeleteUserInformation.cs" />

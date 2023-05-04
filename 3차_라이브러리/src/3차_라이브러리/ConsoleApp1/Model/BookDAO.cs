@@ -43,5 +43,15 @@ namespace ConsoleApp1.DataBase
             readedData.Close();
             return allBookInformation; //모든 책정보가 담겨 있는 리스트 전달
         }
+        public void DecreaseBookQuantity(BookDTO bookDTO) //책 빌린후 책 수량 1개 감소 된 상태 데이터 베이스에 업데이트 하는 함수
+        {
+            string queryStatement = string.Format("UPDATE book_data SET BookQuantity = '{0}' WHERE BookId = '{1}';" , bookDTO.BookQuantity, bookDTO.BookId );
+            connectionWithServer.CreateUpdateDelete(queryStatement);
+        }
+        public void SaveBorrowedBookToData(BookDTO bookDTO , UserDTO loggedInUserInformation)
+        {
+            string queryStatement = string.Format("INSERT INTO user_borrowed_book_list (UserId, BookId, BookName, BookAuthor, BookPublisher, BookQuantity, BookPrice, BookPublicationDate, Isbn, BookDescription, BorrowTime, ReturnTime ) VALUES ('{0}', '{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}');", loggedInUserInformation.UserNumber, bookDTO.BookId, bookDTO.BookName, bookDTO.BookAuthor, bookDTO.BookPublisher, bookDTO.BookQuantity, bookDTO.BookPrice, bookDTO.BookPublicationDate,bookDTO.Isbn, bookDTO.BookDescription, bookDTO.BorrowTime.ToString("yyyy-MM-dd HH:mm:ss"), bookDTO.ReturnTime.ToString("yyyy-MM-dd HH:mm:ss"));
+            connectionWithServer.CreateUpdateDelete(queryStatement);
+        }
     }
 }

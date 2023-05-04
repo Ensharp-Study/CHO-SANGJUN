@@ -30,7 +30,7 @@ public class UserMenu //유저 메뉴 진입 기능 클래스
         this.programProcess = programProcess;
 
         this.bookFinder = new BookFinder(programProcess);
-        //this.borrowingBook = new BorrowingBook( programProcess);
+        this.borrowingBook = new BorrowingBook( programProcess);
         //this.bookBorrowList = new BookBorrowList( programProcess);
         //this.returningBook = new ReturningBook(programProcess);
         //this.bookReturnList = new BookReturnList(programProcess);
@@ -38,7 +38,7 @@ public class UserMenu //유저 메뉴 진입 기능 클래스
         //this.deletingUserInformation = new DeletingUserInformation(programProcess);
     }
 
-    public void ControllUserMenu() //유저 메뉴 선택 함수
+    public void ControllUserMenu(UserDTO loggedInUserInformation) //유저 메뉴 선택 함수
     {
         while (true)
         {
@@ -55,7 +55,7 @@ public class UserMenu //유저 메뉴 진입 기능 클래스
                     break;
 
                 case (int)(UserMenuNumber.BORROWING_BOOK):
-                    borrowingBook.BorrowBook();
+                    borrowingBook.BorrowBook(loggedInUserInformation);
                     break;
 
                 case (int)(UserMenuNumber.BOOK_BORROW_LIST):

@@ -154,5 +154,10 @@ namespace ConsoleApp1.Model
             connectionWithServer.CreateUpdateDelete(queryStatement);
         } 
 
+        public void AddNewBookToData(BookDTO newBookDTO)
+        {
+            string queryStatement = string.Format("INSERT INTO book_data (BookName, BookAuthor, BookPublisher, BookQuantity, BookPrice, BookPublicationDate, Isbn, BookDescription) VALUES ('{0}', '{1}','{2}','{3}','{4}','{5}','{6}','{7}');", newBookDTO.BookName, newBookDTO.BookAuthor, newBookDTO.BookPublisher, newBookDTO.BookQuantity, newBookDTO.BookPrice, newBookDTO.BookPublicationDate, newBookDTO.Isbn, newBookDTO.BookDescription);
+            connectionWithServer.CreateUpdateDelete(queryStatement);
+        }
     }
 }

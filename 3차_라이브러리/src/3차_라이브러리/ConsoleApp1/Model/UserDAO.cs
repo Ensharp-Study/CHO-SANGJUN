@@ -9,7 +9,7 @@ using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1.DataBase
+namespace ConsoleApp1.Model
 {
     public class UserDAO
     {

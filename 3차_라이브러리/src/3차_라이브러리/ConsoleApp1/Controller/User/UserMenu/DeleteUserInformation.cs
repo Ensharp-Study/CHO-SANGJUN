@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleApp1.DataBase;
+using System;
 
 public class DeletingUserInformation //inf와같이 줄임말 
 {
@@ -6,23 +7,21 @@ public class DeletingUserInformation //inf와같이 줄임말
     RegularExpression regularExpression;
     UserModeUi userModeUi;
 
-    DataStorage dataStorage;
-    UserDTO userInformation;
     ProgramProcess programProcess;
+    UserDAO userDAO;
 
 
-    public DeletingUserInformation( DataStorage dataStorage, UserDTO userInformation, ProgramProcess programProcess)
+    public DeletingUserInformation(ProgramProcess programProcess)
     {
         this.InputByReadKey = InputByReadKey.GetInstance();
         this.regularExpression = RegularExpression.GetInstance();
         this.userModeUi = UserModeUi.GetInstance();
 
-        this.dataStorage = dataStorage;
-        this.userInformation = userInformation;
         this.programProcess = programProcess;
+        this.userDAO = new UserDAO();
     }
 
-    public void DeleteUserInformation()
+    public void DeleteUserInformation(UserDTO loggedInUserInformation)
     {
         while (true)
         {
@@ -70,15 +69,10 @@ public class DeletingUserInformation //inf와같이 줄임말
                     isCheckedEnter = true;
                 }
             }
+
             if (selectedMenuNumber == (int)(UserManagementNumber.DELETEING_USER))
             {
-                for (int i = 0; i < dataStorage.userList.Count; i++)
-                {
-                    if (dataStorage.userList[i] == userInformation)
-                    {
-                        dataStorage.userList.RemoveAt(i);
-                    }
-                }
+                userDAO.DeleteUserInformation(loggedInUserInformation); // 유저정보 삭제
                 Console.Clear();
                 userModeUi.PrintAccountDeletionSentence();
             }

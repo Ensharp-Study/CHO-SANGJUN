@@ -4,6 +4,7 @@ using MySqlX.XDevAPI.Relational;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
@@ -86,6 +87,12 @@ namespace ConsoleApp1.DataBase
         public void EditUserDataUpdate(UserDTO editedUserInformation)
         {
             string queryStatement = string.Format("UPDATE user_data SET UserId = '{0}', UserPassword = '{1}', UserName = '{2}', UserAge = '{3}', UserPhoneNumber = '{4}', UserAddress = '{5}' WHERE UserNumber = '{6}';", editedUserInformation.Id, editedUserInformation.Password, editedUserInformation.UserName, editedUserInformation.UserAge, editedUserInformation.UserPhoneNumber, editedUserInformation.UserAddress, editedUserInformation.UserNumber);
+            connectionWithServer.CreateUpdateDelete(queryStatement);
+        }
+
+        public void DeleteUserInformation(UserDTO loggedInUserInformation)
+        {
+            string queryStatement = string.Format("DELETE FROM user_data WHERE UserNumber = '{0}';", loggedInUserInformation.UserNumber);
             connectionWithServer.CreateUpdateDelete(queryStatement);
         }
     }

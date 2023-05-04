@@ -35,7 +35,7 @@ public class UserMenu //유저 메뉴 진입 기능 클래스
         this.returningBook = new ReturningBook(programProcess);
         this.bookReturnList = new BookReturnList(programProcess);
         this.editingUserInformation = new EditingUserInformation(programProcess);
-        //this.deletingUserInformation = new DeletingUserInformation(programProcess);
+        this.deletingUserInformation = new DeletingUserInformation(programProcess);
     }
 
     public void ControllUserMenu(UserDTO loggedInUserInformation) //유저 메뉴 선택 함수
@@ -75,7 +75,7 @@ public class UserMenu //유저 메뉴 진입 기능 클래스
                     break;
 
                 case (int)(UserMenuNumber.DELETE_USER_INFORMATION):
-                    deletingUserInformation.DeleteUserInformation();
+                    deletingUserInformation.DeleteUserInformation(loggedInUserInformation);
                     break;
             }
         }

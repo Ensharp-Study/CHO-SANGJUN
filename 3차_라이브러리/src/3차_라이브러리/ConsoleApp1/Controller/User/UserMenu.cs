@@ -40,9 +40,11 @@ public class UserMenu //유저 메뉴 진입 기능 클래스
 
     public void ControllUserMenu(UserDTO loggedInUserInformation) //유저 메뉴 선택 함수
     {
-        while (true)
+        bool isMenuExecute = true; //메뉴 탈출 진리형 변수
+        while (isMenuExecute)
         {
             int menuNumber;
+
             mainMenuUi.ViewMainMenu();
             commonFunctionUi.ViewMenu();
             menuNumber = userModeUi.PrintSelectUserMenu(); //선택한 유저 메뉴 저장
@@ -75,7 +77,7 @@ public class UserMenu //유저 메뉴 진입 기능 클래스
                     break;
 
                 case (int)(UserMenuNumber.DELETE_USER_INFORMATION):
-                    deletingUserInformation.DeleteUserInformation(loggedInUserInformation);
+                    isMenuExecute = !deletingUserInformation.DeleteUserInformation(loggedInUserInformation); //회원탈퇴 성공시 true가 반환됨
                     break;
             }
         }

@@ -21,9 +21,10 @@ public class DeletingUserInformation //inf와같이 줄임말
         this.userDAO = new UserDAO();
     }
 
-    public void DeleteUserInformation(UserDTO loggedInUserInformation)
+    public bool DeleteUserInformation(UserDTO loggedInUserInformation)
     {
-        while (true)
+        bool isMenuExecute = true; //메뉴 탈출 진리형 변수
+        while (isMenuExecute)
         {
             userModeUi.confirmAccountDeletion();
             ConsoleKeyInfo inputKey;
@@ -75,6 +76,8 @@ public class DeletingUserInformation //inf와같이 줄임말
                 userDAO.DeleteUserInformation(loggedInUserInformation); // 유저정보 삭제
                 Console.Clear();
                 userModeUi.PrintAccountDeletionSentence();
+                Console.ReadKey(true);
+                return Constants.IS_CANCELLATION_OF_MEMBERSHIP; // 유저정보 삭제 여부 불리언 변수로 반환
             }
             else if (selectedMenuNumber == (int)(UserManagementNumber.SAVING_USER))
             {
@@ -88,5 +91,7 @@ public class DeletingUserInformation //inf와같이 줄임말
                 break;
             }
         }
+
+        return Constants.IS_NOT_CANCELLATION_OF_MEMBERSHIP; // 유저 삭제가 안되었을 경우 
     }
 }

@@ -30,6 +30,7 @@ public class LibraryMode
     {
         while (true)
         {
+            Console.Clear();
             int menuNumber;
             mainMenuUi.ViewMainMenu();
             mainMenuUi.ViewMenuSquare();

@@ -49,6 +49,9 @@ public class Constants
     public const bool IS_PRINT_NEXT_LINE = true; //상하, 좌우키 메뉴 출력 함수 구분용 상수
     public const bool IS_PRINT_NEXT_SIDE = false;
 
+    public const bool IS_CANCELLATION_OF_MEMBERSHIP = true; //user모드에서 회원탈퇴 성공시 로그인 메뉴로 돌아가기 위한 불리언 변수
+    public const bool IS_NOT_CANCELLATION_OF_MEMBERSHIP = false;
+
     public const string BOOK_NAME_REGULAR_EXPRESSION = @"^[A-Za-z가-힣0-9?!+=]{1,15}$"; //책이름
     public const string BOOK_AUTHOR_REGULAR_EXPRESSION = @"^[A-Za-z가-힣]{1,15}$"; //저자
     public const string BOOK_PUBLISHER_REGULAR_EXPRESSION = @"^[A-Za-z가-힣0-9]{1,15}$"; //출판사

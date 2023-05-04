@@ -1,4 +1,4 @@
-﻿using ConsoleApp1.DataBase;
+﻿using ConsoleApp1.Model;
 using System;
 
 public class UserMenu //유저 메뉴 진입 기능 클래스
@@ -31,10 +31,10 @@ public class UserMenu //유저 메뉴 진입 기능 클래스
 
         this.bookFinder = new BookFinder(programProcess);
         this.borrowingBook = new BorrowingBook( programProcess);
-        //this.bookBorrowList = new BookBorrowList( programProcess);
-        //this.returningBook = new ReturningBook(programProcess);
-        //this.bookReturnList = new BookReturnList(programProcess);
-        //this.editingUserInformation = new EditingUserInformation(programProcess);
+        this.bookBorrowList = new BookBorrowList( programProcess);
+        this.returningBook = new ReturningBook(programProcess);
+        this.bookReturnList = new BookReturnList(programProcess);
+        this.editingUserInformation = new EditingUserInformation(programProcess);
         //this.deletingUserInformation = new DeletingUserInformation(programProcess);
     }
 
@@ -59,19 +59,19 @@ public class UserMenu //유저 메뉴 진입 기능 클래스
                     break;
 
                 case (int)(UserMenuNumber.BOOK_BORROW_LIST):
-                    bookBorrowList.ShowBookBorrowList();
+                    bookBorrowList.ShowBookBorrowList(loggedInUserInformation);
                     break;
 
                 case (int)(UserMenuNumber.RETURNING_BOOK):
-                    returningBook.ReturnBook();
+                    returningBook.ReturnBook(loggedInUserInformation);
                     break;
 
                 case (int)(UserMenuNumber.BOOK_RETURN_LIST):
-                    bookReturnList.ShowBookReturnList();
+                    bookReturnList.ShowBookReturnList(loggedInUserInformation);
                     break;
 
                 case (int)(UserMenuNumber.EDIT_USER_INF):
-                    editingUserInformation.EditUserInformation();
+                    editingUserInformation.EditUserInformation(loggedInUserInformation);
                     break;
 
                 case (int)(UserMenuNumber.DELETE_USER_INFORMATION):

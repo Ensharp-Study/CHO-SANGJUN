@@ -1,4 +1,4 @@
-﻿using ConsoleApp1.DataBase;
+﻿using ConsoleApp1.Model;
 using System;
 using System.ComponentModel;
 using System.Text.RegularExpressions;

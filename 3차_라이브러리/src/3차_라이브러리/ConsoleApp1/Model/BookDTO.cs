@@ -32,7 +32,6 @@ public class BookDTO //프로퍼티 문법으로 보안된 변수 접근
         set { bookAuthor = value; }
     }
 
-
     public string BookPublisher
     {
         get { return bookPublisher; }
@@ -50,6 +49,7 @@ public class BookDTO //프로퍼티 문법으로 보안된 변수 접근
         get { return bookPrice; }
         set { bookPrice = value; }
     }
+
     public string BookPublicationDate
     {
         get { return bookPublicationDate; }

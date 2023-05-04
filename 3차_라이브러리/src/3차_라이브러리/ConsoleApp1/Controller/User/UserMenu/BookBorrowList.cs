@@ -1,27 +1,32 @@
 ﻿using System;
+using System.Collections.Generic;
+using ConsoleApp1.Model;
 
 public class BookBorrowList
 {
     UserModeUi userModeUi;
-    DataStorage dataStorage;
-    UserDTO userInformation;
     ProgramProcess programProcess;
-    public BookBorrowList(DataStorage dataStorage, UserDTO userInformation, ProgramProcess programProcess)
+    BookDAO bookDAO;
+    public BookBorrowList(ProgramProcess programProcess)
     {
         this.userModeUi = UserModeUi.GetInstance();
-        this.dataStorage = dataStorage;
-        this.userInformation = userInformation;
         this.programProcess = programProcess;
+        this.bookDAO = new BookDAO();
     }
 
-    public void ShowBookBorrowList()
+    public void ShowBookBorrowList(UserDTO loggedInUserInformation)
 	{
-		while (true)
+        bool isMenuExecute = true; //메뉴 탈출 진리형 변수
+        List<BookDTO> borrowedBookInformation;
+
+        while (isMenuExecute)
 		{
 			userModeUi.PrintBorrowingList();
-			for (int i = 0; i < userInformation.BorrowBookList.Count; i++)
+            borrowedBookInformation = bookDAO.ReadBorrowedBookList(loggedInUserInformation);
+
+            for (int i = 0; i < borrowedBookInformation.Count; i++)
 			{
-				userModeUi.PrintUserBorrowingList(userInformation.BorrowBookList[i]);
+				userModeUi.PrintUserBorrowingList(borrowedBookInformation[i]);
 			}
 
             //프로그램 뒤로 나가기

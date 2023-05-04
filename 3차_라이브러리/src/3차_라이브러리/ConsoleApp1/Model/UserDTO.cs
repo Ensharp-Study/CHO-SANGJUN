@@ -5,8 +5,6 @@ public class UserDTO
 {
     public UserDTO() //생성자
     {
-        borrowBookList = new List<BookDTO>();
-        returnBookList = new List<BookDTO>();
     }
     private string id;
     private string password;
@@ -15,9 +13,6 @@ public class UserDTO
     private string userAddress;
     private int userAge;
     private string userPhoneNumber;
-    private List<BookDTO> borrowBookList; // 사용 필요 없어짐
-    private List<BookDTO> returnBookList; 
-
 
     public string Id
     {
@@ -56,15 +51,5 @@ public class UserDTO
     {
         get { return userPhoneNumber; }
         set { userPhoneNumber = value; }
-    }
-
-    public List<BookDTO> BorrowBookList
-    {
-        get { return borrowBookList; }
-    }
-
-    public List<BookDTO> ReturnBookList
-    {
-        get { return returnBookList; }
     }
 }

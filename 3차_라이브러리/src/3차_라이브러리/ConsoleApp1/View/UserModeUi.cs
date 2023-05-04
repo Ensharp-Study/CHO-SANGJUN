@@ -129,10 +129,32 @@ public class UserModeUi
         Console.WriteLine(" 출판사    : " + book.BookPublisher);
         Console.WriteLine(" 책 수량   : " + book.BookQuantity);
         Console.WriteLine(" 책 가격   : " + book.BookPrice);
-        Console.WriteLine(" 대여 일시 : " + book.BookPublicationDate);
+        Console.WriteLine(" 대여 일시 : " + book.BorrowTime);
+        Console.WriteLine(" 반납 의무 일시 : " + book.ReturnTime);
         Console.WriteLine(" ISBN      : " + book.Isbn);
         Console.WriteLine("============================================================");
     }
+    public void PrintUserReturningList(BookDTO book)
+    {
+        Console.WriteLine(" 책 아이디 : " + book.BookId);
+        Console.WriteLine(" 책 이름   : " + book.BookName);
+        Console.WriteLine(" 작가      : " + book.BookAuthor);
+        Console.WriteLine(" 출판사    : " + book.BookPublisher);
+        Console.WriteLine(" 책 수량   : " + book.BookQuantity);
+        Console.WriteLine(" 책 가격   : " + book.BookPrice);
+        Console.WriteLine(" 대여 일시 : " + book.BorrowTime);
+        Console.WriteLine(" 반납 일시 : " + book.ReturnTime);
+        Console.WriteLine(" ISBN      : " + book.Isbn);
+        Console.WriteLine("============================================================");
+    }
+
+    public void PrintNoShouldReturnBook()
+    {
+        Console.WriteLine("============================================================");
+        Console.WriteLine("                    반납할 책이 없습니다!                   ");
+        Console.WriteLine("============================================================");
+    }
+
     public void PrintReturningBook()
     {
         Console.WriteLine("\n\n");
@@ -150,12 +172,6 @@ public class UserModeUi
     {
         Console.WriteLine("============================================================");
         Console.WriteLine("                    현재 반납한 도서 목록                   ");
-        Console.WriteLine("============================================================");
-    }
-    public void PrintShouldReturningList(BookDTO book)
-    {
-
-        Console.WriteLine(" 책 이름 : " + book.BookName);
         Console.WriteLine("============================================================");
     }
 
@@ -219,6 +235,16 @@ public class UserModeUi
         Console.WriteLine("                        _______________________________________________________________                        ");
         Console.WriteLine("                       |                                                               |                       ");
         Console.WriteLine("                       |                   회원 탈퇴가 거절 되었습니다.                |                       ");
+        Console.WriteLine("                       |                                                               |                       ");
+        Console.WriteLine("                       -----------------------------------------------------------------                       ");
+
+    }
+
+    public void PrintUserInformationUpdateSuccess()
+    {
+        Console.WriteLine("                        _______________________________________________________________                        ");
+        Console.WriteLine("                       |                                                               |                       ");
+        Console.WriteLine("                       |                 회원정보 수정이 완료 되었습니다.              |                       ");
         Console.WriteLine("                       |                                                               |                       ");
         Console.WriteLine("                       -----------------------------------------------------------------                       ");
 

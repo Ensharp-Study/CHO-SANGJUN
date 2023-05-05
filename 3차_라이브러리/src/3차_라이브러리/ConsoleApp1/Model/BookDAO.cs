@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
@@ -187,6 +188,19 @@ namespace ConsoleApp1.Model
             }
             readedData.Close();
             return borrowedBookInformationOfSpecificUser; //모든 책정보가 담겨 있는 리스트 전달
+        }
+
+        public int FindBookInBorrowedList(string bookId) // 책 아이디가 대여 리스트에 있을때
+        {
+            int bookCount;
+            string queryStatement = string.Format("SELECT COUNT(*) FROM  user_borrowed_book_list WHERE BooKId = '{0}';", bookId);
+            bookCount = Convert.ToInt32(connectionWithServer.SelectUsedExecuteScalarMethod(queryStatement));
+            return bookCount;
+        }
+        public void DeleteBook(string deletedBookId)
+        {
+            string queryStatement = string.Format("DELETE FROM book_data WHERE BookId = '{0}';", deletedBookId);
+            connectionWithServer.CreateUpdateDelete(queryStatement);
         }
     }
 }

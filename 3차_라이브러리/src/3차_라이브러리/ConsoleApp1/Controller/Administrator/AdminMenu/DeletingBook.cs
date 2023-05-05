@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Security.Policy;
+using System.Collections.Generic;
+using ConsoleApp1.Model;
+using System.Net;
+using System.Threading;
 
 public class DeletingBook
 {
     string title;
     string author;
     string publisher;
-    string deletedBookIdString;
-    int deletedBookIdInt;
+    string deletedBookId;
     int PrintPossiblity = 0;
 
     InputByReadKey InputByReadKey;
@@ -16,9 +19,11 @@ public class DeletingBook
     CommonFunctionUi commonFunctionUi;
 
     ProgramProcess programProcess;
+    BookFinder bookFinder;
+    BookDAO bookDAO;
 
 
-    public DeletingBook(ProgramProcess programProcess)
+    public DeletingBook(ProgramProcess programProcess, BookFinder bookFinder)
     {
         this.InputByReadKey = InputByReadKey.GetInstance();
         this.regularExpression = RegularExpression.GetInstance();
@@ -26,93 +31,73 @@ public class DeletingBook
         this.commonFunctionUi = CommonFunctionUi.GetInstance();
  
         this.programProcess = programProcess;
+        this.bookFinder = bookFinder;
+        this.bookDAO = new BookDAO();
     }
 
-    bool isJudgingCorrectString;
     public void DeleteABook() //책 삭제하기
     {
+        List<BookDTO> selectedBookInformation;
+        bool isJudgingCorrectString;
+        bool isBookExistInList;
+
         while (true)
         {
             //책 검색하기
-            FindBook();
+            bookFinder.PrintBookFinderMenu(); // 메뉴 검색 창 및 책 리스트 출력
+            bookFinder.InputBookSearchData(); //책 검색 입력하기
+            Console.Clear();
+
+            administratorModeUi.PrintDeletingBookMenu(); // 삭제 메뉴 출력
+            selectedBookInformation = bookFinder.CompareAndPrintBookList(); // 검색 정보와 책 정보 비교 후 출력, 출력된 책 리스트 저장
 
             //책 삭제하기
+
+            //삭제할 책 아이디 입력
             Console.SetCursorPosition(64, 2);
-            deletedBookIdString = Console.ReadLine();  //삭제할 책 아이디 입력
-            deletedBookIdInt = int.Parse(deletedBookIdString); 
-            for (int i = 0; i < dataStorage.bookList.Count; i++) //모든 책 접근
+            isJudgingCorrectString = false;
+            while (!isJudgingCorrectString) 
             {
-                if (dataStorage.bookList[i].BookId == deletedBookIdInt)
+                deletedBookId = InputByReadKey.ReceiveInput(64, 2, 3, Constants.IS_NOT_PASSWORD);
+                isJudgingCorrectString = regularExpression.JudgeWithRegularExpression(64, 2, deletedBookId, Constants.NUMBER_REGULAR_EXPRESSION, Constants.NUMBER_ERROR_MESSAGE);
+            }
+
+            //1. 검색 결과 리스트에 있는지 확인
+            isBookExistInList = false;
+            for (int i=0; i< selectedBookInformation.Count; i++) 
+            { 
+                if(int.Parse (deletedBookId) == selectedBookInformation[i].BookId) //있다면 삭제
                 {
-                    dataStorage.bookList.RemoveAt(i);
+                    isBookExistInList = true;
                     break;
                 }
             }
-            Console.Clear();
-            administratorModeUi.PrintDeletingBookSuccessSentence();
 
+            if(isBookExistInList) 
+            {
+                int bookCountInBorrowedList= bookDAO.FindBookInBorrowedList(deletedBookId); // 2. 해당 책이 이미 대여중일 경우
+                if (bookCountInBorrowedList != 0) //대여 중일 경우
+                {
+                    Console.Clear();
+                    administratorModeUi.PrintDeletingBookFailAlreadyBorrowedSentence();
+                }
+                else // 대여 목록에 없을 경우
+                {
+                    bookDAO.DeleteBook(deletedBookId);//책 삭제
+
+                    Console.Clear();
+                    administratorModeUi.PrintDeletingBookSuccessSentence();  //삭제 성공 메시지 출력
+                }
+            }
+            else // 검색된 리스트에 존재 하지않을때
+            {
+                Console.Clear();
+                administratorModeUi.PrintDeletingBookFailNotExistInListSentence();
+            }
+          
             if ((programProcess.SelectProgramDirection()).Key == ConsoleKey.Escape)
             {
                 break;
-            }
-        }
-    }
-
-    public void FindBook()
-    {
-        //책 검색하기 기능
-        commonFunctionUi.PrintBookFinderMenu(); //책 검색하는 인터페이스
-
-        for (int i = 0; i < dataStorage.bookList.Count; i++) //모든책 리스트 접근
-        {
-            //commonFunctionUi.PrintBookList(dataStorage.bookList[i], i);
-        }
-
-        Console.SetCursorPosition(17, 1);  //검색할 책 정보 입력받기
-        do
-        {
-            title = InputByReadKey.ReceiveInput(17, 1, 15, Constants.IS_NOT_PASSWORD);
-            isJudgingCorrectString = regularExpression.JudgeWithRegularExpression(17, 1, title, Constants.BOOK_NAME_REGULAR_EXPRESSION, Constants.BOOK_NAME_ERROR_MESSAGE);
-        } while (!isJudgingCorrectString);
-
-        Console.SetCursorPosition(19, 2); //작가
-        do
-        {
-            author = InputByReadKey.ReceiveInput(19, 2, 15, Constants.IS_NOT_PASSWORD);
-            isJudgingCorrectString = regularExpression.JudgeWithRegularExpression(19, 2, author, Constants.BOOK_AUTHOR_REGULAR_EXPRESSION, Constants.BOOK_AUTHOR_ERROR_MESSAGE);
-        } while (!isJudgingCorrectString);
-
-        Console.SetCursorPosition(17, 3); //출판사
-        do
-        {
-            publisher = InputByReadKey.ReceiveInput(17, 3, 15, Constants.IS_NOT_PASSWORD);
-            isJudgingCorrectString = regularExpression.JudgeWithRegularExpression(17, 3, publisher, Constants.BOOK_PUBLISHER_REGULAR_EXPRESSION, Constants.BOOK_PUBLISHER_ERROR_MESSAGE);
-        } while (!isJudgingCorrectString);
-
-        Console.WriteLine("\n\n\n");
-
-        Console.Clear();
-
-        administratorModeUi.PrintDeletingBookMenu(); //삭제 메뉴 및 검색된 책 리스트 출력
-        for (int i = 0; i < dataStorage.bookList.Count; i++)
-        {
-
-            if (string.IsNullOrEmpty(title) == false ||
-                string.IsNullOrEmpty(author) == false ||
-                string.IsNullOrEmpty(publisher) == false) // 입력받은 값이 공백인 경우 제외
-            {
-                if ((dataStorage.bookList[i].BookName).Contains(title) &&
-                    (dataStorage.bookList[i].BookAuthor).Contains(author) &&
-                    (dataStorage.bookList[i].BookPublisher).Contains(publisher)) //제목 일치하는지 확인
-                {
-                    PrintPossiblity++;
-                }
-            }
-
-            if (PrintPossiblity > 0) // 일치하면 출력
-            {
-                //commonFunctionUi.PrintBookList(dataStorage.bookList[i], i);
-                PrintPossiblity = 0;
             }
         }
     }

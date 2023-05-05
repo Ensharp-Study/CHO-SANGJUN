@@ -141,6 +141,20 @@ public class AdministratorModeUi{ // ui 메모리 더 쌓일 수 있다.
         Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
         Console.WriteLine("                                ENTER : 확인                       ESC : 뒤로가기\n\n");
     }
+    public void PrintDeletingBookFailNotExistInListSentence()
+    {
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                             책이 검색 목록에 없습니다!\n");
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                  ENTER : 다시입력                  ESC : 뒤로가기\n\n");
+    }
+    public void PrintDeletingBookFailAlreadyBorrowedSentence()
+    {
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                        책이 대여 중이라 삭제 할 수 없습니다!\n");
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                  ENTER : 다시입력                  ESC : 뒤로가기\n\n");
+    }
     public void PrintDeletingBookSuccessSentence()
     {
         Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");

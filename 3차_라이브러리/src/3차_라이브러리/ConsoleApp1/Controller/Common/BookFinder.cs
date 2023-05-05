@@ -27,6 +27,7 @@ public class BookFinder
     }
 
     List<BookDTO> allBookInformation;
+    List<BookDTO> selectedBookInformation;
     bool isJudgingCorrectString; //입력값 검사 후 탈출을 위한 변수
     bool isPrintPossiblity;
     string title;
@@ -98,14 +99,17 @@ public class BookFinder
         }
     }
 
-    public void CompareAndPrintBookList()
+    public List<BookDTO> CompareAndPrintBookList()
     {
         //입력받은 책과 데이터의 책들 비교
         isPrintPossiblity = false;
+        selectedBookInformation = new List<BookDTO>();
+
         for (int i = 0; i < allBookInformation.Count; i++)
         {
             if ((allBookInformation[i].BookName).Contains(title) && (allBookInformation[i].BookAuthor).Contains(author) && (allBookInformation[i].BookPublisher).Contains(publisher))
             {
+                selectedBookInformation.Add(allBookInformation[i]); //검색된 책만 저장하는 리스트
                 isPrintPossiblity = true;
             }
 
@@ -115,6 +119,7 @@ public class BookFinder
                 isPrintPossiblity = false;
             }
         }
+        return selectedBookInformation;
     }
 
 }

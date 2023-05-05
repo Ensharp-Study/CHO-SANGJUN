@@ -1,4 +1,5 @@
 ﻿using ConsoleApp1.Model;
+using ConsoleApp1.Utility;
 using System;
 
 public class UserMenu //유저 메뉴 진입 기능 클래스
@@ -8,6 +9,7 @@ public class UserMenu //유저 메뉴 진입 기능 클래스
     MainMenuUi mainMenuUi;
     UserModeUi userModeUi;
     CommonFunctionUi commonFunctionUi;
+    MenuSelectController menuSelectController;
 
     ProgramProcess programProcess;
 
@@ -26,6 +28,7 @@ public class UserMenu //유저 메뉴 진입 기능 클래스
         this.mainMenuUi = MainMenuUi.GetInstance();
         this.userModeUi = UserModeUi.GetInstance();
         this.commonFunctionUi = CommonFunctionUi.GetInstance();
+        this.menuSelectController = MenuSelectController.GetInstance();
 
         this.programProcess = programProcess;
 
@@ -41,13 +44,15 @@ public class UserMenu //유저 메뉴 진입 기능 클래스
     public void ControllUserMenu(UserDTO loggedInUserInformation) //유저 메뉴 선택 함수
     {
         bool isMenuExecute = true; //메뉴 탈출 진리형 변수
+        int menuNumber;
+        string[] userMenuList = { "○ 책 정보 검색", "○ 책 대여하기", "○ 대여 목록 확인", "○ 책 반납하기", "○ 반납 목록 확인", "○ 회원정보 수정", "○ 회원탈퇴" };
+
         while (isMenuExecute)
         {
-            int menuNumber;
             Console.Clear();
             mainMenuUi.ViewMainMenu();
             commonFunctionUi.ViewMenu();
-            menuNumber = userModeUi.PrintSelectUserMenu(); //선택한 유저 메뉴 저장
+            menuNumber = menuSelectController.SelectMenuWithUpAndDown(userMenuList, 7, 49, 26);
             Console.Clear();
 
             switch (menuNumber)

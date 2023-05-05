@@ -46,9 +46,6 @@ public class Constants
     public const bool IS_PASSWORD = true;  //입력값 마스킹 처리 여부 판별용 상수
     public const bool IS_NOT_PASSWORD = false;
 
-    public const bool IS_PRINT_NEXT_LINE = true; //상하, 좌우키 메뉴 출력 함수 구분용 상수
-    public const bool IS_PRINT_NEXT_SIDE = false;
-
     public const bool IS_CANCELLATION_OF_MEMBERSHIP = true; //user모드에서 회원탈퇴 성공시 로그인 메뉴로 돌아가기 위한 불리언 변수
     public const bool IS_NOT_CANCELLATION_OF_MEMBERSHIP = false;
 

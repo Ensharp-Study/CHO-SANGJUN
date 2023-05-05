@@ -1,4 +1,6 @@
 ﻿using ConsoleApp1.Model;
+using ConsoleApp1.Utility;
+using System.Collections.Generic;
 using System;
 
 public class LibraryMode
@@ -7,6 +9,8 @@ public class LibraryMode
     RegularExpression regularExpression;
     MainMenuUi mainMenuUi;
     SignUpAndLoginUi signUpAndLoginUi;
+    MenuSelectController menuSelectController;
+
     ProgramProcess programProcess;
     UserLogin login;
     SignUp signUp;
@@ -18,6 +22,8 @@ public class LibraryMode
         this.regularExpression = RegularExpression.GetInstance();
         this.mainMenuUi = MainMenuUi.GetInstance();
         this.signUpAndLoginUi = SignUpAndLoginUi.GetInstance();
+        this.menuSelectController = MenuSelectController.GetInstance();
+
         this.programProcess = new ProgramProcess();
         this.login = new UserLogin(programProcess);
         this.signUp = new SignUp();
@@ -26,41 +32,40 @@ public class LibraryMode
 
     public void SelectMenu()
     {
+        string[] mainMenuList = { "○ 유저모드", "○ 관리자 모드" };
+        string[] userMenuList = { "○ 로그인", "○ 회원가입" };
+        int mainMenuNumber;
+        int userMenuNumber;
+
         while (true)
         {
             Console.Clear();
-            int menuNumber;
             mainMenuUi.ViewMainMenu();
             mainMenuUi.ViewMenuSquare();
-            menuNumber = mainMenuUi.PrintSelectMenu();
 
-            if (menuNumber == (int)(ModeNumber.USER_MODE)) //유저 모드 진입
+            mainMenuNumber = menuSelectController.SelectMenuWithUpAndDown(mainMenuList, 2, 50, 23);
+
+            if (mainMenuNumber == (int)(ModeNumber.USER_MODE)) //유저 모드 진입
             {
-                int judgementLoginOrSignUP;
-
                 Console.Clear();
                 mainMenuUi.ViewMainMenu();
                 mainMenuUi.ViewMenuSquare();
-               
-                judgementLoginOrSignUP = signUpAndLoginUi.PrintLoginOrSignUpMenu();
 
-                if (judgementLoginOrSignUP == (int)(LoginOrSignUpNumber.LOGIN))
+                userMenuNumber = menuSelectController.SelectMenuWithUpAndDown(userMenuList, 2, 50, 23);
+              
+                if (userMenuNumber == (int)(LoginOrSignUpNumber.LOGIN))
                 {
                     login.GetUserLogin();
                     return;
                 }
-                else if (judgementLoginOrSignUP == (int)(LoginOrSignUpNumber.SIGN_UP))
+                else if (userMenuNumber == (int)(LoginOrSignUpNumber.SIGN_UP))
                 {
-                    Console.Clear();
                     signUp.SignUpAccount();
                 }
             }
 
-            else if (menuNumber == (int)(ModeNumber.ADMIN_MODE))//관리자 모드 진입
+            else if (mainMenuNumber == (int)(ModeNumber.ADMIN_MODE))//관리자 모드 진입
             {
-                Console.Clear();
-                mainMenuUi.ViewMainMenu();
-                mainMenuUi.ViewMenuSquare();
                 administratorLogin.GetAdministratorLogin();
             }
 

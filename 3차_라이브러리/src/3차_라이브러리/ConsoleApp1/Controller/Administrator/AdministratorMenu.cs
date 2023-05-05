@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleApp1.Utility;
+using System;
 
 public class AdministratorMenu
 {
@@ -7,6 +8,7 @@ public class AdministratorMenu
     MainMenuUi mainMenuUi;
     AdministratorModeUi administratorModeUi;
     CommonFunctionUi commonFunctionUi;
+    MenuSelectController menuSelectController;
 
     ProgramProcess programProcess;
  
@@ -16,7 +18,7 @@ public class AdministratorMenu
     EditingBook editingBook;
     MemberManger memberManger;
     BookBorrowedStatus bookBorrowedStatus;
-
+    
     public AdministratorMenu(ProgramProcess programProcess)
     {
         this.InputByReadKey = InputByReadKey.GetInstance();
@@ -24,7 +26,8 @@ public class AdministratorMenu
         this.mainMenuUi = MainMenuUi.GetInstance();
         this.administratorModeUi = AdministratorModeUi.GetInstance();
         this.commonFunctionUi = CommonFunctionUi.GetInstance();
-        
+        this.menuSelectController = MenuSelectController.GetInstance();
+
         this.programProcess = programProcess;
         
         this.bookFinder = new BookFinder(programProcess);
@@ -39,13 +42,14 @@ public class AdministratorMenu
     public void ControllAdministratorMenu()
     {
         int menuNumber;
+        string[] administratorMenuList = { "○ 책 정보 검색", "○ 책 추가하기", "○ 책 삭제하기", "○ 책 정보 수정하기", "○ 회원관리", "○ 도서 대여 현황" };
 
         while (true)
         {
             mainMenuUi.ViewMainMenu();
             commonFunctionUi.ViewMenu();
-            
-            menuNumber = administratorModeUi.PrintSelectAdministratorMenu();
+
+            menuNumber = menuSelectController.SelectMenuWithUpAndDown(administratorMenuList, 6, 49, 26);
             Console.Clear();
 
             switch (menuNumber)

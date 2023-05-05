@@ -101,6 +101,7 @@
     <Compile Include="Model\BookDAO.cs" />
     <Compile Include="Model\ConnectionWithServer.cs" />
     <Compile Include="Model\UserDAO.cs" />
+    <Compile Include="Utility\MenuSelectController.cs" />
     <Compile Include="Utility\ProgramProcess.cs" />
     <Compile Include="Utility\Exception\RegularExpression.cs" />
     <Compile Include="Utility\Exception\InputByReadKey.cs" />
@@ -130,6 +131,7 @@
     <Compile Include="View\AdministratorModeUi.cs" />
     <Compile Include="View\CommonFunctionUi.cs" />
     <Compile Include="View\MainMenuUi.cs" />
+    <Compile Include="View\MenuUi.cs" />
     <Compile Include="View\SignUpAndLoginUi.cs" />
     <Compile Include="View\UserModeUi.cs" />
   </ItemGroup>

@@ -25,9 +25,9 @@ public class SignUp
     public void SignUpAccount() //회원가입
 	{
         bool isJudgingCorrectString = false;
-
         string passwordConfirmation = "";
 
+        Console.Clear();
         mainMenuUi.ViewMainMenu();
         mainMenuUi.ViewMenuSquare();
         signUpAndLoginUi.PrintSignUpMenu();

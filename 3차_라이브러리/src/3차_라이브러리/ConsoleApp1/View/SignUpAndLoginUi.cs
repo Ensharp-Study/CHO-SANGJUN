@@ -14,61 +14,6 @@ public class SignUpAndLoginUi
         return instance;
     }
 
-    public int PrintLoginOrSignUpMenu()
-    {
-        ConsoleKeyInfo inputKey;
-        bool isCheckedEnter = false;
-        int selectedMenuNum = -1;
-
-        Console.SetCursorPosition(50, 23);
-        Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine("○ 로그인                         ");
-        Console.SetCursorPosition(50, 24);
-        Console.ForegroundColor = ConsoleColor.White;
-        Console.WriteLine("○ 회원가입                       ");
-        selectedMenuNum = (int)(ModeNumber.USER_MODE);
-
-        while (isCheckedEnter == false)
-        {
-            inputKey = Console.ReadKey();
-            if (inputKey.Key == ConsoleKey.UpArrow)
-            {
-                Console.SetCursorPosition(50, 23);
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("○ 로그인                  ");
-                Console.SetCursorPosition(50, 24);
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine("○ 회원가입                ");
-                selectedMenuNum = (int)(LoginOrSignUpNumber.LOGIN);
-            }
-            else if (inputKey.Key == ConsoleKey.DownArrow)
-            {
-                Console.SetCursorPosition(50, 23);
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine("○ 로그인                  ");
-                Console.SetCursorPosition(50, 24);
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("○ 회원가입                ");
-                Console.ResetColor();
-                selectedMenuNum = (int)(LoginOrSignUpNumber.SIGN_UP);
-            }
-            else if (inputKey.Key == ConsoleKey.Enter)
-            {
-                isCheckedEnter = true;
-            }
-        }
-        if (selectedMenuNum == (int)(LoginOrSignUpNumber.LOGIN))
-        {
-            return (int)(LoginOrSignUpNumber.LOGIN);
-        }
-        else if (selectedMenuNum == (int)(LoginOrSignUpNumber.SIGN_UP))
-        {
-            return (int)(LoginOrSignUpNumber.SIGN_UP);
-        }
-
-        return -1;
-
-    }
     public void PrintSignUpMenu()
     {
         Console.SetCursorPosition(50, 22);

@@ -9,12 +9,8 @@ namespace Library
     {
         static void Main(string[] args)
         {
-            while (true)
-            {
-                LibraryMode libraryStart = new LibraryMode();
-                libraryStart.SelectMenu();
-            }
-
+            LibraryMode libraryStart = new LibraryMode();
+            libraryStart.SelectMenu();
         }
     }
 }

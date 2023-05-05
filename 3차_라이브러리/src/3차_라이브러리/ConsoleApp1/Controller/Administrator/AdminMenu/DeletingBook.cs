@@ -14,19 +14,17 @@ public class DeletingBook
     RegularExpression regularExpression;
     AdministratorModeUi administratorModeUi;
     CommonFunctionUi commonFunctionUi;
-    
-    DataStorage dataStorage;
+
     ProgramProcess programProcess;
 
 
-    public DeletingBook(DataStorage dataStorage, ProgramProcess programProcess)
+    public DeletingBook(ProgramProcess programProcess)
     {
         this.InputByReadKey = InputByReadKey.GetInstance();
         this.regularExpression = RegularExpression.GetInstance();
         this.administratorModeUi = AdministratorModeUi.GetInstance();
         this.commonFunctionUi = CommonFunctionUi.GetInstance();
-      
-        this.dataStorage = dataStorage;
+ 
         this.programProcess = programProcess;
     }
 

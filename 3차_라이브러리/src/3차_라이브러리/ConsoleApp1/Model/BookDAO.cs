@@ -202,5 +202,11 @@ namespace ConsoleApp1.Model
             string queryStatement = string.Format("DELETE FROM book_data WHERE BookId = '{0}';", deletedBookId);
             connectionWithServer.CreateUpdateDelete(queryStatement);
         }
+
+        public void EditBook(BookDTO editedBookDTO, string editedBookId)
+        {
+            string queryStatement = string.Format("UPDATE book_data SET BookName = '{0}', BookAuthor = '{1}', BookPublisher = '{2}', BookQuantity = '{3}', BookPrice = '{4}', BookPublicationDate = '{5}' WHERE BookId = '{6}';", editedBookDTO.BookName, editedBookDTO.BookAuthor, editedBookDTO.BookPublisher, editedBookDTO.BookQuantity, editedBookDTO.BookPrice, editedBookDTO.BookPublicationDate, editedBookId);
+            connectionWithServer.CreateUpdateDelete(queryStatement);
+        }
     }
 }

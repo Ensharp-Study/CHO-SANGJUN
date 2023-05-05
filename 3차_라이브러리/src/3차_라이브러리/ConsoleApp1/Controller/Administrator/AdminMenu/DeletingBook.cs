@@ -38,10 +38,11 @@ public class DeletingBook
     public void DeleteABook() //책 삭제하기
     {
         List<BookDTO> selectedBookInformation;
+        bool isMenuExecute = true; //메뉴 탈출 진리형 변수
         bool isJudgingCorrectString;
         bool isBookExistInList;
 
-        while (true)
+        while (isMenuExecute)
         {
             //책 검색하기
             bookFinder.PrintBookFinderMenu(); // 메뉴 검색 창 및 책 리스트 출력
@@ -92,9 +93,9 @@ public class DeletingBook
             else // 검색된 리스트에 존재 하지않을때
             {
                 Console.Clear();
-                administratorModeUi.PrintDeletingBookFailNotExistInListSentence();
+                administratorModeUi.PrintFailNotExistInListSentence();
             }
-          
+    
             if ((programProcess.SelectProgramDirection()).Key == ConsoleKey.Escape)
             {
                 break;

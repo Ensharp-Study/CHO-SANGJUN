@@ -44,7 +44,7 @@ public class UserMenu //유저 메뉴 진입 기능 클래스
         while (isMenuExecute)
         {
             int menuNumber;
-
+            Console.Clear();
             mainMenuUi.ViewMainMenu();
             commonFunctionUi.ViewMenu();
             menuNumber = userModeUi.PrintSelectUserMenu(); //선택한 유저 메뉴 저장

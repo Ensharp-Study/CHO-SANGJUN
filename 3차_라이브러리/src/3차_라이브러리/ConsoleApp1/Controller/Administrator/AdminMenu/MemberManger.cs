@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ConsoleApp1.Model;
+using System;
+using System.Collections.Generic;
 using System.Reflection;
 
 public class MemberManger
@@ -7,52 +9,80 @@ public class MemberManger
     RegularExpression regularExpression;
     AdministratorModeUi administratorModeUi;
 
-    DataStorage dataStorage;
     ProgramProcess programProcess;
-    public MemberManger(DataStorage dataStorage, ProgramProcess programProcess)
+    UserDAO userDAO;
+    BookDAO bookDAO;
+
+    public MemberManger(ProgramProcess programProcess)
     {
         this.InputByReadKey = InputByReadKey.GetInstance();
         this.regularExpression = RegularExpression.GetInstance();
         this.administratorModeUi = AdministratorModeUi.GetInstance();
 
-        this.dataStorage = dataStorage;
         this.programProcess = programProcess;
+        this.userDAO = new UserDAO();
+        this.bookDAO = new BookDAO();
     }
 
     public void ManageMember()
     {
-        while (true)
+        bool isMenuExecute = true; //메뉴 탈출 진리형 변수
+        bool isJudgingCorrectString;
+        string userNumber="";
+        int userCount;
+        List<UserDTO> userInformationList = new List<UserDTO>();
+
+        while (isMenuExecute)
         {
-            string userNumber;
-
-            administratorModeUi.PrintMemberManagerMenu();
-            for (int i = 0; i < dataStorage.userList.Count; i++)
-            {
-                administratorModeUi.PrintMemberList(dataStorage.userList[i]);
-            }
-            Console.SetCursorPosition(70, 2);
-
-            userNumber = InputByReadKey.ReceiveInput(70, 2, 3, Constants.IS_NOT_PASSWORD);
-
-            for (int i = 0; i < dataStorage.userList.Count; i++)
-            {
-                if (int.Parse(userNumber) == dataStorage.userList[i].UserNumber)
-                {
-                    dataStorage.userList.RemoveAt(i);
-                }
-            }
-
             Console.Clear();
-            administratorModeUi.PrintDeletingUserSuccessSentence();
-            for (int i = 0; i < dataStorage.userList.Count; i++)
+            administratorModeUi.PrintMemberManagerMenu();
+
+            //삭제할 유저 아이디 입력
+            Console.SetCursorPosition(70, 2);
+            isJudgingCorrectString = false;
+            while (!isJudgingCorrectString)
             {
-                administratorModeUi.PrintMemberList(dataStorage.userList[i]);
+                userNumber = InputByReadKey.ReceiveInput(70, 2, 3, Constants.IS_NOT_PASSWORD);
+                isJudgingCorrectString = regularExpression.JudgeWithRegularExpression(70, 2, userNumber, Constants.NUMBER_REGULAR_EXPRESSION, Constants.NUMBER_ERROR_MESSAGE);
+            }
+
+            //예외처리 1.삭제할 유저 번호가 있는지 판단
+            userInformationList = userDAO.FindUserById(userNumber);
+            if(userInformationList.Count != 0) //입력받은 번호와 일치하는 유저가 있을때
+            {
+                //예외처리 2.있다면 빌린 책 있는지 확인
+                userCount = bookDAO.FindUserNumberInBorrowedBookList(userNumber);
+                if(userCount == 0) //빌린책이 없을때 회원삭제 가능!
+                {
+                    //유저 삭제
+                    userDAO.DeleteUserInformation(userNumber);
+                    //유저 빌린책 리스트에서 삭제
+                    bookDAO.DeleteUserInBorrowedList(userNumber);
+                    //유저 반납책 리스트에서 삭제
+                    bookDAO.DeleteUserInReturnedList(userNumber);
+
+                     Console.Clear();
+                    administratorModeUi.PrintDeletingUserSuccessSentence();
+                }
+
+                else//빌린 책이 있을 때
+                {
+                    Console.Clear();
+                    administratorModeUi.PrintUserBorrowedSomeBook();
+                }
+
+            }
+            else //입력받은 번호와 일치하는 유저가 없을때
+            {
+                Console.Clear();
+                administratorModeUi.PrintNotExistUser();
             }
 
             if ((programProcess.SelectProgramDirection()).Key == ConsoleKey.Escape)
             {
                 break;
             }
+
         }
     } 
 

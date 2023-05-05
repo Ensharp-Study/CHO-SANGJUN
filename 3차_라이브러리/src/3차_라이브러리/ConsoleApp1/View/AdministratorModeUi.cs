@@ -221,6 +221,22 @@ public class AdministratorModeUi{ // ui 메모리 더 쌓일 수 있다.
         Console.WriteLine("                                  ENTER : 확인                     ESC : 뒤로가기\n\n");
     }
 
+    public void PrintNotExistUser()
+    {
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                             입력한 사용자가 없습니다 :\n");
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                  ENTER : 확인                     ESC : 뒤로가기\n\n");
+    }
+
+    public void PrintUserBorrowedSomeBook()
+    {
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                    대여중인 도서가 있어 회원삭제가 불가능합니다. :\n");
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                  ENTER : 확인                     ESC : 뒤로가기\n\n");
+    }
+
     public void PrintMemberList(UserDTO userInformation)
     {
         Console.WriteLine("===========================================================================================================\n");

@@ -96,9 +96,9 @@ namespace ConsoleApp1.Model
             string queryStatement = string.Format("UPDATE user_data SET UserId = '{0}', UserPassword = '{1}', UserName = '{2}', UserAge = '{3}', UserPhoneNumber = '{4}', UserAddress = '{5}' WHERE UserNumber = '{6}';", editedUserInformation.Id, editedUserInformation.Password, editedUserInformation.UserName, editedUserInformation.UserAge, editedUserInformation.UserPhoneNumber, editedUserInformation.UserAddress, editedUserInformation.UserNumber);
             connectionWithServer.CreateUpdateDelete(queryStatement);
         }
-        public void DeleteUserInformation(UserDTO loggedInUserInformation)
+        public void DeleteUserInformation(string userNumber)
         {
-            string queryStatement = string.Format("DELETE FROM user_data WHERE UserNumber = '{0}';", loggedInUserInformation.UserNumber);
+            string queryStatement = string.Format("DELETE FROM user_data WHERE UserNumber = '{0}';", userNumber);
             connectionWithServer.CreateUpdateDelete(queryStatement);
         }
         public string FindUserNameByUserNumber(int userNumber)
@@ -107,5 +107,22 @@ namespace ConsoleApp1.Model
             string userName =  (connectionWithServer.SelectUsedExecuteScalarMethod(queryStatement)).ToString();
             return userName;
         }
+        public List <UserDTO> FindUserById(string userNumber) 
+        {
+            List<UserDTO> userInformationList = new List<UserDTO>();
+            string queryStatement = string.Format("SELECT * FROM user_data WHERE UserNumber = '{0}';", userNumber);
+            MySqlDataReader readedData = connectionWithServer.SelectUsedExecuteReader(queryStatement);
+
+            while(readedData.Read())
+            {
+                UserDTO userInformation = new UserDTO();
+                userInformation.UserNumber = readedData.GetInt32(0);
+                userInformationList.Add(userInformation);
+            }
+            readedData.Close(); // MySqlDataReader 객체 닫아줌과 동시에 connection 닫아주기
+            return userInformationList; 
+        }
+      
+
     }
 }

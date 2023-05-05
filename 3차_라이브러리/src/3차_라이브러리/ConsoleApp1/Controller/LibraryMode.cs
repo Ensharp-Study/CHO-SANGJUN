@@ -7,7 +7,6 @@ public class LibraryMode
     RegularExpression regularExpression;
     MainMenuUi mainMenuUi;
     SignUpAndLoginUi signUpAndLoginUi;
-    DataStorage dataStorage;
     ProgramProcess programProcess;
     UserLogin login;
     SignUp signUp;
@@ -19,7 +18,6 @@ public class LibraryMode
         this.regularExpression = RegularExpression.GetInstance();
         this.mainMenuUi = MainMenuUi.GetInstance();
         this.signUpAndLoginUi = SignUpAndLoginUi.GetInstance();
-        this.dataStorage = new DataStorage();
         this.programProcess = new ProgramProcess();
         this.login = new UserLogin(programProcess);
         this.signUp = new SignUp();

@@ -119,7 +119,7 @@ namespace ConsoleApp1.Model
             BookDTO bookDTO;
             List<BookDTO> borrowedBookInformationOfInputId = new List<BookDTO>();  //반납할 책 정보를 담을 리스트 선언
 
-            string queryStatement = string.Format("SELECT * FROM  user_borrowed_book_list WHERE UserNumber = '{0}' AND BookId = '{1}' ;", loggedInUserInformation.UserNumber, bookId);
+            string queryStatement = string.Format("SELECT * FROM  user_borrowed_book_list WHERE UserId = '{0}' AND BookId = '{1}' ;", loggedInUserInformation.UserNumber, bookId);
             MySqlDataReader readedData = connectionWithServer.SelectUsedExecuteReader(queryStatement);
 
             while (readedData.Read())
@@ -206,6 +206,24 @@ namespace ConsoleApp1.Model
         public void EditBook(BookDTO editedBookDTO, string editedBookId)
         {
             string queryStatement = string.Format("UPDATE book_data SET BookName = '{0}', BookAuthor = '{1}', BookPublisher = '{2}', BookQuantity = '{3}', BookPrice = '{4}', BookPublicationDate = '{5}' WHERE BookId = '{6}';", editedBookDTO.BookName, editedBookDTO.BookAuthor, editedBookDTO.BookPublisher, editedBookDTO.BookQuantity, editedBookDTO.BookPrice, editedBookDTO.BookPublicationDate, editedBookId);
+            connectionWithServer.CreateUpdateDelete(queryStatement);
+        }
+        public int FindUserNumberInBorrowedBookList(string userNumber)
+        {
+            int userCount;
+            string queryStatement = string.Format("SELECT COUNT(*) FROM  user_borrowed_book_list WHERE UserId = '{0}';", userNumber);
+            userCount = Convert.ToInt32(connectionWithServer.SelectUsedExecuteScalarMethod(queryStatement));
+            return userCount;
+        }
+        public void DeleteUserInBorrowedList(string userNumber)
+        {
+            string queryStatement = string.Format("DELETE FROM user_borrowed_book_list WHERE UserId = '{0}';", userNumber);
+            connectionWithServer.CreateUpdateDelete(queryStatement);
+        }
+
+        public void DeleteUserInReturnedList(string userNumber)
+        {
+            string queryStatement = string.Format("DELETE FROM user_returned_book_list WHERE UserId = '{0}';", userNumber);
             connectionWithServer.CreateUpdateDelete(queryStatement);
         }
     }

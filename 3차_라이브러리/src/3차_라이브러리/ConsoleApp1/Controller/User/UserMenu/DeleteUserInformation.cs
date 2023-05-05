@@ -73,7 +73,7 @@ public class DeletingUserInformation //inf와같이 줄임말
 
             if (selectedMenuNumber == (int)(UserManagementNumber.DELETEING_USER))
             {
-                userDAO.DeleteUserInformation(loggedInUserInformation); // 유저정보 삭제
+                userDAO.DeleteUserInformation((loggedInUserInformation.UserNumber).ToString()); // 유저정보 삭제
                 Console.Clear();
                 userModeUi.PrintAccountDeletionSentence();
                 Console.ReadKey(true);

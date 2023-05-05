@@ -31,7 +31,7 @@ public class AdministratorMenu
         this.addingBook = new AddingBook(programProcess);
         this.deletingBook = new DeletingBook( programProcess, bookFinder);
         this.editingBook = new EditingBook( programProcess, bookFinder);
-        //this.memberManger = new MemberManger( programProcess);
+        this.memberManger = new MemberManger( programProcess);
         this.bookBorrowedStatus = new BookBorrowedStatus(programProcess);
     }
 

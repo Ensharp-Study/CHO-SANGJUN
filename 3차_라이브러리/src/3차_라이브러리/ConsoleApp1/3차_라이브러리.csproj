@@ -125,7 +125,6 @@
     <Compile Include="Controller\User\UserMenu\ReturningBook.cs" />
     <Compile Include="LibraryMain.cs" />
     <Compile Include="Model\BookDTO.cs" />
-    <Compile Include="DataBase\DataStorage.cs" />
     <Compile Include="Model\UserDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View\AdministratorModeUi.cs" />

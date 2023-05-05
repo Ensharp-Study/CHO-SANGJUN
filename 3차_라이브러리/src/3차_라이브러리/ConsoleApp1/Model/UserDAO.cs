@@ -19,14 +19,21 @@ namespace ConsoleApp1.Model
             this.connectionWithServer = new ConnectionWithServer();
         }
 
-        public int ReadAllUserCount() //저장된 모든 책들의 개수 구하는 함수 
+        public List<UserDTO> ReadAllUserNumber() //모든 유저의 번호를 불러오는 함수
         {
-            string queryStatement = "SELECT COUNT(*) FROM user_data;";
+            List<UserDTO> userDTOList = new List<UserDTO>();
 
-            object readedData = connectionWithServer.SelectUsedExecuteScalarMethod(queryStatement);
-            int count = Convert.ToInt32(readedData);
+            string queryStatement = "SELECT UserNumber FROM user_data;";
+            MySqlDataReader readedData = connectionWithServer.SelectUsedExecuteReader(queryStatement);
 
-            return count;
+            while (readedData.Read())
+            {
+                UserDTO userDTO = new UserDTO();
+                userDTO.UserNumber = readedData.GetInt32(0);
+                userDTOList.Add(userDTO);
+            }
+            readedData.Close();
+            return userDTOList;
         }
         public List<UserDTO> CompareUserAccountInformation(string id) // 유저모드 아이디 패스워드와 비교하는 함수
         {
@@ -89,11 +96,16 @@ namespace ConsoleApp1.Model
             string queryStatement = string.Format("UPDATE user_data SET UserId = '{0}', UserPassword = '{1}', UserName = '{2}', UserAge = '{3}', UserPhoneNumber = '{4}', UserAddress = '{5}' WHERE UserNumber = '{6}';", editedUserInformation.Id, editedUserInformation.Password, editedUserInformation.UserName, editedUserInformation.UserAge, editedUserInformation.UserPhoneNumber, editedUserInformation.UserAddress, editedUserInformation.UserNumber);
             connectionWithServer.CreateUpdateDelete(queryStatement);
         }
-
         public void DeleteUserInformation(UserDTO loggedInUserInformation)
         {
             string queryStatement = string.Format("DELETE FROM user_data WHERE UserNumber = '{0}';", loggedInUserInformation.UserNumber);
             connectionWithServer.CreateUpdateDelete(queryStatement);
+        }
+        public string FindUserNameByUserNumber(int userNumber)
+        {
+            string queryStatement = string.Format("SELECT UserName FROM user_data WHERE UserNumber = '{0}';", userNumber);
+            string userName =  (connectionWithServer.SelectUsedExecuteScalarMethod(queryStatement)).ToString();
+            return userName;
         }
     }
 }

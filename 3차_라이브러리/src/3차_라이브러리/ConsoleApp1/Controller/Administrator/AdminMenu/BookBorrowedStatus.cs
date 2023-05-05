@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ConsoleApp1.Model;
+using System;
+using System.Collections.Generic;
 
 public class BookBorrowedStatus
 {
@@ -6,35 +8,47 @@ public class BookBorrowedStatus
     RegularExpression regularExpression;
     AdministratorModeUi administratorModeUi;
 
-    DataStorage dataStorage;
     ProgramProcess programProcess;
-   
+    UserDAO userDAO;
+    BookDAO bookDAO;
 
-    public BookBorrowedStatus(DataStorage dataStorage, ProgramProcess programProcess)
+    public BookBorrowedStatus(ProgramProcess programProcess)
     {
         this.InputByReadKey = InputByReadKey.GetInstance();
         this.regularExpression = RegularExpression.GetInstance();
         this.administratorModeUi = AdministratorModeUi.GetInstance();
 
-        this.dataStorage = dataStorage;
         this.programProcess = programProcess;
-        
+        this.userDAO = new UserDAO();
+        this.bookDAO = new BookDAO();
+
     }
 
     public void CheckBookBorrowedList() //빌린 책 출력하는 함수
     {
-        while (true)
+        bool isMenuExecute = true; //메뉴 탈출 진리형 변수
+        string userName="";
+        List<BookDTO> borrowedBookInformationOfSpecificUser;
+        List<UserDTO> userNumber;
+        while (isMenuExecute)
         {
             administratorModeUi.PrintBookBorrowedMenu(); //빌린 책 출력하는 함수 인터페이스 출력 
 
-            for (int i = 0; i < dataStorage.userList.Count; i++) //모든 유저정보 for문으로 접근
+            userNumber = userDAO.ReadAllUserNumber(); //모든 User의 number 가져오기
+
+            for (int i = 0; i< userNumber.Count; i++) //모든 유저 수만큼 탐색
             {
-                administratorModeUi.PrintUserName(dataStorage.userList[i].UserName); //유저 이름 출력 인터페이스
-                //for (int j = 0; j < dataStorage.userList[i].BorrowBookList.Count; j++) //유저정보 내 빌린책 리스트 접근
+                userName = userDAO.FindUserNameByUserNumber(userNumber[i].UserNumber); // userNumber 값을 이용해서 userName 구하기
+                administratorModeUi.PrintUserName(userName); //유저 이름 출력 인터페이스
+
+                borrowedBookInformationOfSpecificUser = bookDAO.SpecificUserBorrowedBook(userNumber[i].UserNumber); //유저 번호 넘겨 주고 일치하는 빌린 리스트 출력
+              
+                for (int j = 0; j < borrowedBookInformationOfSpecificUser.Count; j++)
                 {
-                  //  administratorModeUi.PrintUserBorrowedBookList(dataStorage.userList[i].BorrowBookList[j]); //빌린책 리스트 출력
+                    administratorModeUi.PrintUserBorrowedBookList(borrowedBookInformationOfSpecificUser[j]); //빌린책 리스트 출력
                 }
             }
+
 
             if ((programProcess.SelectProgramDirection()).Key == ConsoleKey.Escape)
             {

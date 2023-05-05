@@ -118,7 +118,7 @@ namespace ConsoleApp1.Model
             BookDTO bookDTO;
             List<BookDTO> borrowedBookInformationOfInputId = new List<BookDTO>();  //반납할 책 정보를 담을 리스트 선언
 
-            string queryStatement = string.Format("SELECT * FROM  user_borrowed_book_list WHERE UserId = '{0}' AND BookId = '{1}' ;", loggedInUserInformation.UserNumber, bookId);
+            string queryStatement = string.Format("SELECT * FROM  user_borrowed_book_list WHERE UserNumber = '{0}' AND BookId = '{1}' ;", loggedInUserInformation.UserNumber, bookId);
             MySqlDataReader readedData = connectionWithServer.SelectUsedExecuteReader(queryStatement);
 
             while (readedData.Read())
@@ -158,6 +158,35 @@ namespace ConsoleApp1.Model
         {
             string queryStatement = string.Format("INSERT INTO book_data (BookName, BookAuthor, BookPublisher, BookQuantity, BookPrice, BookPublicationDate, Isbn, BookDescription) VALUES ('{0}', '{1}','{2}','{3}','{4}','{5}','{6}','{7}');", newBookDTO.BookName, newBookDTO.BookAuthor, newBookDTO.BookPublisher, newBookDTO.BookQuantity, newBookDTO.BookPrice, newBookDTO.BookPublicationDate, newBookDTO.Isbn, newBookDTO.BookDescription);
             connectionWithServer.CreateUpdateDelete(queryStatement);
+        }
+
+        public List<BookDTO> SpecificUserBorrowedBook(int userNumber)
+        {
+            BookDTO bookDTO;
+            List<BookDTO> borrowedBookInformationOfSpecificUser = new List<BookDTO>();  //반납할 책 정보를 담을 리스트 선언
+
+            string queryStatement = string.Format("SELECT * FROM  user_borrowed_book_list WHERE UserId = '{0}';", userNumber);
+            MySqlDataReader readedData = connectionWithServer.SelectUsedExecuteReader(queryStatement);
+
+            while (readedData.Read())
+            {
+                bookDTO = new BookDTO(); //왜 와일문 밖에 작성하면 마지막 값으로 다 저장되는지 물어보기
+                bookDTO.BookId = readedData.GetInt32(1);
+                bookDTO.BookName = readedData.GetString(2);
+                bookDTO.BookAuthor = readedData.GetString(3);
+                bookDTO.BookPublisher = readedData.GetString(4);
+                bookDTO.BookQuantity = readedData.GetInt32(5);
+                bookDTO.BookPrice = readedData.GetInt32(6);
+                bookDTO.BookPublicationDate = readedData.GetString(7);
+                bookDTO.Isbn = readedData.GetString(8);
+                bookDTO.BookDescription = readedData.GetString(9);
+                bookDTO.BorrowTime = readedData.GetDateTime(10);
+                bookDTO.ReturnTime = readedData.GetDateTime(11);
+
+                borrowedBookInformationOfSpecificUser.Add(bookDTO);//책 리스트에 추가
+            }
+            readedData.Close();
+            return borrowedBookInformationOfSpecificUser; //모든 책정보가 담겨 있는 리스트 전달
         }
     }
 }

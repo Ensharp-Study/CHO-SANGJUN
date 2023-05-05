@@ -229,7 +229,7 @@ public class AdministratorModeUi{ // ui 메모리 더 쌓일 수 있다.
 
     public void PrintUserName(string userName)
     {
-        Console.WriteLine("========================================================================================================================\n");
+        Console.WriteLine("========================================================================================================================");
         Console.WriteLine("User Name  :" + userName);
         Console.WriteLine("========================================================================================================================");
     }
@@ -244,7 +244,7 @@ public class AdministratorModeUi{ // ui 메모리 더 쌓일 수 있다.
         Console.WriteLine("출시일    :  " + bookInformation.BookPublicationDate);
         Console.WriteLine("ISBN      :  " + bookInformation.Isbn);
         Console.WriteLine("빌린 시간 :  " + bookInformation.BorrowTime);
-        Console.WriteLine("반납 시간 :  " + bookInformation.ReturnTime);
+        Console.WriteLine("반납 의무 시간 :  " + bookInformation.ReturnTime);
         Console.WriteLine("============================================================");
     }
 }

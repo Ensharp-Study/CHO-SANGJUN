@@ -25,9 +25,10 @@ public class AddingBook
     bool isNumber = false;
     public void AddNewBook() //새로운 책 추가하기
 	{
+        bool isMenuExecute = true; //메뉴 탈출 진리형 변수
         BookDTO newBookDTO = new BookDTO();
 
-        while (true)
+        while (isMenuExecute)
         {
             administratorModeUi.PrintAddingBookMenu();  // 책 추가 메뉴 인터페이스 출력
 

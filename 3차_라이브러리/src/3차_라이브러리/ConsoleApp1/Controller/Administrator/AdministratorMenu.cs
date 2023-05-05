@@ -32,7 +32,7 @@ public class AdministratorMenu
         //this.deletingBook = new DeletingBook( programProcess);
         //this.editingBook = new EditingBook( programProcess);
         //this.memberManger = new MemberManger( programProcess);
-        //this.bookBorrowedStatus = new BookBorrowedStatus( programProcess);
+        this.bookBorrowedStatus = new BookBorrowedStatus(programProcess);
     }
 
     

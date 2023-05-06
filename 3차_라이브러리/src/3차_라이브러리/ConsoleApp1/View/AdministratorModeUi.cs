@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-public class AdministratorModeUi{ // ui 메모리 더 쌓일 수 있다.
+public class AdministratorModeUi{ 
 
     //싱글턴 디자인 패턴
     private static AdministratorModeUi instance;

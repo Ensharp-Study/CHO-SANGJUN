@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 using ConsoleApp1.Utility;
+using ConsoleApp1.Controller.User.UserMenu;
 
 namespace Library 
 {
@@ -13,8 +14,8 @@ namespace Library
             //LibraryMode libraryStart = new LibraryMode();
             //libraryStart.SelectMenu();
 
-            NaverSearchFunctionAPI searchFunction = new NaverSearchFunctionAPI();
-            searchFunction.SearchBook();
+            FindBookInNaverAndApply findBookInNaverAndApply = new FindBookInNaverAndApply();
+            findBookInNaverAndApply.FindBookInNaverAndApplyMain();
         }
     }
 }

@@ -13,11 +13,10 @@ namespace ConsoleApp1.Utility
 {
     public class NaverSearchFunctionAPI
     {
+        List<BookDTO> searchBookList = new List<BookDTO>();
 
-        public void SearchBook()
+        public List<BookDTO> SearchBook(string bookName, string bookCount)
         {
-            string bookName = "김현아";
-            string bookCount = "5";
             string url = string.Format(Constants.URL, bookName, bookCount);
             string id = "OX9S3Tu5F_h3qCJCerI3";
             string secret = "OdL8kKSsRm";
@@ -40,20 +39,19 @@ namespace ConsoleApp1.Utility
                 StreamReader reader = new StreamReader(stream, Encoding.UTF8); //응답 스트림 읽기
                 string jsonString = reader.ReadToEnd(); //응답 본문 문자열에 저장
                 reader.Close();
-                Console.WriteLine(jsonString);
-                ParseJSON(jsonString); // 파싱하기
+                ParseJSON(jsonString); // 파싱하고 불러온 데이터 DTO에 담기
             }
 
             else
             {
                 Console.WriteLine("Error 발생=" + status);
             }
+
+            return searchBookList; //위에 else문 에러 발생시 리스트 원소 값 0개
         }
 
         public void ParseJSON(string jsonString)
         {
-            List <BookDTO> searchBookList = new List<BookDTO>();
-
             // Native Object 생성
             JObject json = JObject.Parse(jsonString);
             JArray itemsArray = (JArray)json["items"];
@@ -73,7 +71,5 @@ namespace ConsoleApp1.Utility
                 searchBookList.Add(searchedBookDTO);
             }
         }
-
-
     }
 }

@@ -101,10 +101,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\User\UserMenu\FindBookInNaverAndApply.cs" />
     <Compile Include="Model\BookDAO.cs" />
     <Compile Include="Model\ConnectionWithServer.cs" />
     <Compile Include="Model\UserDAO.cs" />
     <Compile Include="Utility\GoBackMenu.cs" />
+    <Compile Include="Utility\InputProcess.cs" />
     <Compile Include="Utility\MenuSelectController.cs" />
     <Compile Include="Utility\Exception\RegularExpression.cs" />
     <Compile Include="Utility\Exception\InputByReadKey.cs" />

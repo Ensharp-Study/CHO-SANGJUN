@@ -41,6 +41,9 @@ enum UserManagementNumber
 
 public class Constants
 {
+    public const string URL = "https://openapi.naver.com/v1/search/book?query={0}&display={1}";
+
+
     public const int ESC = 10;
 
     public const bool IS_PASSWORD = true;  //입력값 마스킹 처리 여부 판별용 상수
@@ -81,5 +84,7 @@ public class Constants
 
     public const string NUMBER_REGULAR_EXPRESSION = @"^\d+$"; //숫자인지 판단하는 정규표현식
     public const string NUMBER_ERROR_MESSAGE = "숫자를 입력해 주세요!";
+
+
 }
     

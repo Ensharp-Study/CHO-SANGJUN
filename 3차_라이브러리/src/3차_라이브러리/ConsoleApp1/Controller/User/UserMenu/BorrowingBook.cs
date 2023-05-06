@@ -11,21 +11,19 @@ public class BorrowingBook
     UserModeUi userModeUi;
     CommonFunctionUi commonFunctionUi;
 
-    ProgramProcess programProcess;
     BookDAO bookDAO;
 
-    public BorrowingBook(ProgramProcess programProcess) 
+    public BorrowingBook() 
     {
         this.InputByReadKey = InputByReadKey.GetInstance();
         this.regularExpression = RegularExpression.GetInstance();
         this.userModeUi = UserModeUi.GetInstance();
         this.commonFunctionUi = CommonFunctionUi.GetInstance();
 
-        this.programProcess = programProcess;
         this.bookDAO = new BookDAO();
     }
 
-    public void BorrowBook(UserDTO loggedInUserInformation)
+    public void BorrowBook(UserDTO loggedInUserInformation) //함수 분리
 	{
         bool isMenuExecute = true; //메뉴 탈출 진리형 변수
         bool isIdIncludedInList;
@@ -47,7 +45,8 @@ public class BorrowingBook
             commonFunctionUi.PrintBookFinderMenu();
 
             //모든 책 리스트 출력
-            allBookInformation = bookDAO.ReadAllBookData();
+            allBookInformation = bookDAO.ReadAllBookData(); //while
+
             for (int i = 0; i < allBookInformation.Count; i++)
             {
                 commonFunctionUi.PrintBookList(allBookInformation[i]);
@@ -156,11 +155,6 @@ public class BorrowingBook
                     Console.ReadKey(true);//창 넘기기
                 }
 
-            }
-
-            if ((programProcess.SelectProgramDirection()).Key == ConsoleKey.Escape) //메뉴 탈출하기
-            {
-                break;
             }
         }
         

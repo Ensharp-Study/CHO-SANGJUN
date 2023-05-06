@@ -5,12 +5,10 @@ using ConsoleApp1.Model;
 public class BookBorrowList
 {
     UserModeUi userModeUi;
-    ProgramProcess programProcess;
     BookDAO bookDAO;
-    public BookBorrowList(ProgramProcess programProcess)
+    public BookBorrowList()
     {
         this.userModeUi = UserModeUi.GetInstance();
-        this.programProcess = programProcess;
         this.bookDAO = new BookDAO();
     }
 
@@ -29,11 +27,6 @@ public class BookBorrowList
 				userModeUi.PrintUserBorrowingList(borrowedBookInformation[i]);
 			}
 
-            //프로그램 뒤로 나가기
-            if ((programProcess.SelectProgramDirection()).Key == ConsoleKey.Escape)
-            {
-                break;
-            }
         }
 
     }

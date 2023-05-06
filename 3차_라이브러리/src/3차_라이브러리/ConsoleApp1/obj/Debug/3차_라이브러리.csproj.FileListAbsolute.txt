@@ -32,3 +32,5 @@ C:\Users\junch\OneDrive\바탕 화면\en#\3차_라이브러리\src\3차_라이�
 C:\Users\junch\OneDrive\바탕 화면\en#\3차_라이브러리\src\3차_라이브러리\ConsoleApp1\obj\Debug\3차_라이브러리.csproj.CopyComplete
 C:\Users\junch\OneDrive\바탕 화면\en#\3차_라이브러리\src\3차_라이브러리\ConsoleApp1\obj\Debug\ConsoleApp1.exe
 C:\Users\junch\OneDrive\바탕 화면\en#\3차_라이브러리\src\3차_라이브러리\ConsoleApp1\obj\Debug\ConsoleApp1.pdb
+C:\Users\junch\OneDrive\바탕 화면\en#\3차_라이브러리\src\3차_라이브러리\ConsoleApp1\bin\Debug\Newtonsoft.Json.dll
+C:\Users\junch\OneDrive\바탕 화면\en#\3차_라이브러리\src\3차_라이브러리\ConsoleApp1\bin\Debug\Newtonsoft.Json.xml

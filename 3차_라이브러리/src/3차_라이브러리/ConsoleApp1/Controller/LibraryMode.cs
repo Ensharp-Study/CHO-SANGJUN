@@ -2,6 +2,7 @@
 using ConsoleApp1.Utility;
 using System.Collections.Generic;
 using System;
+using System.Threading;
 
 public class LibraryMode
 {
@@ -11,7 +12,6 @@ public class LibraryMode
     SignUpAndLoginUi signUpAndLoginUi;
     MenuSelectController menuSelectController;
 
-    ProgramProcess programProcess;
     UserLogin login;
     SignUp signUp;
     AdministratorLogin administratorLogin;
@@ -24,10 +24,9 @@ public class LibraryMode
         this.signUpAndLoginUi = SignUpAndLoginUi.GetInstance();
         this.menuSelectController = MenuSelectController.GetInstance();
 
-        this.programProcess = new ProgramProcess();
-        this.login = new UserLogin(programProcess);
+        this.login = new UserLogin();
         this.signUp = new SignUp();
-        this.administratorLogin = new AdministratorLogin( programProcess);
+        this.administratorLogin = new AdministratorLogin();
     }
 
     public void SelectMenu()
@@ -36,8 +35,9 @@ public class LibraryMode
         string[] userMenuList = { "○ 로그인", "○ 회원가입" };
         int mainMenuNumber;
         int userMenuNumber;
+        bool isMenuExecute = true; //메뉴 탈출 진리형 변수
 
-        while (true)
+        while (isMenuExecute)
         {
             Console.Clear();
             mainMenuUi.ViewMainMenu();
@@ -56,7 +56,6 @@ public class LibraryMode
                 if (userMenuNumber == (int)(LoginOrSignUpNumber.LOGIN))
                 {
                     login.GetUserLogin();
-                    return;
                 }
                 else if (userMenuNumber == (int)(LoginOrSignUpNumber.SIGN_UP))
                 {
@@ -69,11 +68,6 @@ public class LibraryMode
                 administratorLogin.GetAdministratorLogin();
             }
 
-            //프로그램 종료하기
-            if ((programProcess.SelectProgramDirection()).Key == ConsoleKey.Escape)
-            {
-                break;
-            }
         }
     }
 	

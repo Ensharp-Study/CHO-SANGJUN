@@ -7,17 +7,15 @@ public class DeletingUserInformation //inf와같이 줄임말
     RegularExpression regularExpression;
     UserModeUi userModeUi;
 
-    ProgramProcess programProcess;
     UserDAO userDAO;
 
 
-    public DeletingUserInformation(ProgramProcess programProcess)
+    public DeletingUserInformation()
     {
         this.InputByReadKey = InputByReadKey.GetInstance();
         this.regularExpression = RegularExpression.GetInstance();
         this.userModeUi = UserModeUi.GetInstance();
 
-        this.programProcess = programProcess;
         this.userDAO = new UserDAO();
     }
 
@@ -83,13 +81,7 @@ public class DeletingUserInformation //inf와같이 줄임말
             {
                 Console.Clear();
                 userModeUi.PrintMaintainingAccountSentence();
-            }
-
-            //프로그램 뒤로 나가기
-            if ((programProcess.SelectProgramDirection()).Key == ConsoleKey.Escape)
-            {
-                break;
-            }
+            }   
         }
 
         return Constants.IS_NOT_CANCELLATION_OF_MEMBERSHIP; // 유저 삭제가 안되었을 경우 

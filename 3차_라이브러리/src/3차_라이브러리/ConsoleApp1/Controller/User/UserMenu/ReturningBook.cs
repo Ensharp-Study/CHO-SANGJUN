@@ -10,16 +10,14 @@ public class ReturningBook //책 반납하기
     RegularExpression regularExpression;
     UserModeUi userModeUi;
 
-    ProgramProcess programProcess;
     BookDAO bookDAO;
 
-    public ReturningBook(ProgramProcess programProcess) 
+    public ReturningBook() 
     {
         this.InputByReadKey = InputByReadKey.GetInstance();
         this.regularExpression = RegularExpression.GetInstance();
         this.userModeUi = UserModeUi.GetInstance();
 
-        this.programProcess = programProcess;
         this.bookDAO = new BookDAO();
     }
 
@@ -92,12 +90,6 @@ public class ReturningBook //책 반납하기
 
             }
         
-            //프로그램 뒤로 나가기
-            if ((programProcess.SelectProgramDirection()).Key == ConsoleKey.Escape)
-            {
-                break;
-            }
-
         }
     }
 }

@@ -7,16 +7,14 @@ public class AddingBook
     RegularExpression regularExpression;
     AdministratorModeUi administratorModeUi;
 
-    ProgramProcess programProcess;
     BookDAO bookDAO;
 
-    public AddingBook(ProgramProcess programProcess) {
+    public AddingBook() {
         
         this.InputByReadKey = InputByReadKey.GetInstance();
         this.regularExpression = RegularExpression.GetInstance();
         this.administratorModeUi = AdministratorModeUi.GetInstance();
 
-        this.programProcess = programProcess;
         this.bookDAO = new BookDAO();
     }
 
@@ -38,10 +36,7 @@ public class AddingBook
             Console.Clear();
             administratorModeUi.PrintAddingBookSuccessSentence(); //책 추가 완료 인터페이스 출력
 
-            if ((programProcess.SelectProgramDirection()).Key == ConsoleKey.Escape)
-            {
-                break;
-            }
+            
         }
     }
 

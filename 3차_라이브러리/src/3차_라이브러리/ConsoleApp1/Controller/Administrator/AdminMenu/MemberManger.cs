@@ -9,17 +9,15 @@ public class MemberManger
     RegularExpression regularExpression;
     AdministratorModeUi administratorModeUi;
 
-    ProgramProcess programProcess;
     UserDAO userDAO;
     BookDAO bookDAO;
 
-    public MemberManger(ProgramProcess programProcess)
+    public MemberManger()
     {
         this.InputByReadKey = InputByReadKey.GetInstance();
         this.regularExpression = RegularExpression.GetInstance();
         this.administratorModeUi = AdministratorModeUi.GetInstance();
 
-        this.programProcess = programProcess;
         this.userDAO = new UserDAO();
         this.bookDAO = new BookDAO();
     }
@@ -48,11 +46,11 @@ public class MemberManger
 
             //예외처리 1.삭제할 유저 번호가 있는지 판단
             userInformationList = userDAO.FindUserById(userNumber);
-            if(userInformationList.Count != 0) //입력받은 번호와 일치하는 유저가 있을때
+            if (userInformationList.Count != 0) //입력받은 번호와 일치하는 유저가 있을때
             {
                 //예외처리 2.있다면 빌린 책 있는지 확인
                 userCount = bookDAO.FindUserNumberInBorrowedBookList(userNumber);
-                if(userCount == 0) //빌린책이 없을때 회원삭제 가능!
+                if (userCount == 0) //빌린책이 없을때 회원삭제 가능!
                 {
                     //유저 삭제
                     userDAO.DeleteUserInformation(userNumber);
@@ -61,7 +59,7 @@ public class MemberManger
                     //유저 반납책 리스트에서 삭제
                     bookDAO.DeleteUserInReturnedList(userNumber);
 
-                     Console.Clear();
+                    Console.Clear();
                     administratorModeUi.PrintDeletingUserSuccessSentence();
                 }
 
@@ -77,12 +75,6 @@ public class MemberManger
                 Console.Clear();
                 administratorModeUi.PrintNotExistUser();
             }
-
-            if ((programProcess.SelectProgramDirection()).Key == ConsoleKey.Escape)
-            {
-                break;
-            }
-
         }
     } 
 

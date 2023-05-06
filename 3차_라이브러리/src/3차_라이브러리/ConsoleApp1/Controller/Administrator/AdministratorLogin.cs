@@ -10,20 +10,17 @@ public class AdministratorLogin
     MainMenuUi mainMenuUi;
     SignUpAndLoginUi signUpAndLoginUi;
 
-    ProgramProcess programProcess;
     AdministratorMenu administratorMenu;
     UserDAO userDAO;
 
-    public AdministratorLogin(ProgramProcess programProcess)
+    public AdministratorLogin( )
     {
         this.InputByReadKey = InputByReadKey.GetInstance();
         this.regularExpression = RegularExpression.GetInstance();
         this.mainMenuUi = MainMenuUi.GetInstance();
         this.signUpAndLoginUi = SignUpAndLoginUi.GetInstance();
-        
-        this.programProcess = programProcess;
-        this.administratorMenu = new AdministratorMenu(programProcess);
-        this.userDAO = new UserDAO();
+
+        this.administratorMenu = new AdministratorMenu();
     }
 
     private string id;

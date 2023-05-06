@@ -12,17 +12,15 @@ public class BookFinder
     InputByReadKey InputByReadKey;
     RegularExpression regularExpression;
     CommonFunctionUi commonFunctionUi;
-    
-    ProgramProcess programProcess;
+
     BookDAO bookDAO;
 
-    public BookFinder(ProgramProcess programProcess)
+    public BookFinder( )
     {
         this.InputByReadKey = InputByReadKey.GetInstance();
         this.regularExpression = RegularExpression.GetInstance();
         this.commonFunctionUi = CommonFunctionUi.GetInstance();
 
-        this.programProcess = programProcess;
         this.bookDAO = new BookDAO();
     }
 
@@ -50,12 +48,6 @@ public class BookFinder
             CompareAndPrintBookList(); // 검색 정보와 책 정보 비교 후 출력
 
             commonFunctionUi.SelectEndorReturnInTheProgram(); //다시하기 또는 나가기 출력
-
-            //프로그램 뒤로 나가기 //공통함수
-            if ((programProcess.SelectProgramDirection()).Key == ConsoleKey.Escape)
-            {
-                isMenuExecute = false;
-            }
         }
     }
 

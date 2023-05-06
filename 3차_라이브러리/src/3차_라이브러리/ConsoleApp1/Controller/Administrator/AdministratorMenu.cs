@@ -10,8 +10,6 @@ public class AdministratorMenu
     CommonFunctionUi commonFunctionUi;
     MenuSelectController menuSelectController;
 
-    ProgramProcess programProcess;
- 
     BookFinder bookFinder;
     AddingBook addingBook;
     DeletingBook deletingBook;
@@ -19,7 +17,7 @@ public class AdministratorMenu
     MemberManger memberManger;
     BookBorrowedStatus bookBorrowedStatus;
     
-    public AdministratorMenu(ProgramProcess programProcess)
+    public AdministratorMenu( )
     {
         this.InputByReadKey = InputByReadKey.GetInstance();
         this.regularExpression = RegularExpression.GetInstance();
@@ -28,14 +26,12 @@ public class AdministratorMenu
         this.commonFunctionUi = CommonFunctionUi.GetInstance();
         this.menuSelectController = MenuSelectController.GetInstance();
 
-        this.programProcess = programProcess;
-        
-        this.bookFinder = new BookFinder(programProcess);
-        this.addingBook = new AddingBook(programProcess);
-        this.deletingBook = new DeletingBook( programProcess, bookFinder);
-        this.editingBook = new EditingBook( programProcess, bookFinder);
-        this.memberManger = new MemberManger( programProcess);
-        this.bookBorrowedStatus = new BookBorrowedStatus(programProcess);
+        this.bookFinder = new BookFinder();
+        this.addingBook = new AddingBook();
+        this.deletingBook = new DeletingBook(bookFinder);
+        this.editingBook = new EditingBook(bookFinder);
+        this.memberManger = new MemberManger();
+        this.bookBorrowedStatus = new BookBorrowedStatus();
     }
 
     
@@ -79,7 +75,7 @@ public class AdministratorMenu
                     break;
             }
 
-            if(menuNumber == Constants.ESC)
+            if(menuNumber == Constants.ESC) // case문 안에서
             {
                 break;
             }

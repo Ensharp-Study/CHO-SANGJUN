@@ -11,8 +11,6 @@ public class UserMenu //유저 메뉴 진입 기능 클래스
     CommonFunctionUi commonFunctionUi;
     MenuSelectController menuSelectController;
 
-    ProgramProcess programProcess;
-
     BookFinder bookFinder;
     BorrowingBook borrowingBook;
     BookBorrowList bookBorrowList;
@@ -21,7 +19,7 @@ public class UserMenu //유저 메뉴 진입 기능 클래스
     EditingUserInformation editingUserInformation;
     DeletingUserInformation deletingUserInformation;
 
-    public UserMenu(ProgramProcess programProcess)
+    public UserMenu()
     {
         this.InputByReadKey = InputByReadKey.GetInstance();
         this.regularExpression = RegularExpression.GetInstance();
@@ -30,15 +28,13 @@ public class UserMenu //유저 메뉴 진입 기능 클래스
         this.commonFunctionUi = CommonFunctionUi.GetInstance();
         this.menuSelectController = MenuSelectController.GetInstance();
 
-        this.programProcess = programProcess;
-
-        this.bookFinder = new BookFinder(programProcess);
-        this.borrowingBook = new BorrowingBook( programProcess);
-        this.bookBorrowList = new BookBorrowList( programProcess);
-        this.returningBook = new ReturningBook(programProcess);
-        this.bookReturnList = new BookReturnList(programProcess);
-        this.editingUserInformation = new EditingUserInformation(programProcess);
-        this.deletingUserInformation = new DeletingUserInformation(programProcess);
+        this.bookFinder = new BookFinder();
+        this.borrowingBook = new BorrowingBook( );
+        this.bookBorrowList = new BookBorrowList( );
+        this.returningBook = new ReturningBook();
+        this.bookReturnList = new BookReturnList();
+        this.editingUserInformation = new EditingUserInformation();
+        this.deletingUserInformation = new DeletingUserInformation();
     }
 
     public void ControllUserMenu(UserDTO loggedInUserInformation) //유저 메뉴 선택 함수

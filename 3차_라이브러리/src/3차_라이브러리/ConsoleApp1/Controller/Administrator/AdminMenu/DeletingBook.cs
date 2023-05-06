@@ -18,19 +18,17 @@ public class DeletingBook
     AdministratorModeUi administratorModeUi;
     CommonFunctionUi commonFunctionUi;
 
-    ProgramProcess programProcess;
     BookFinder bookFinder;
     BookDAO bookDAO;
 
 
-    public DeletingBook(ProgramProcess programProcess, BookFinder bookFinder)
+    public DeletingBook(BookFinder bookFinder)
     {
         this.InputByReadKey = InputByReadKey.GetInstance();
         this.regularExpression = RegularExpression.GetInstance();
         this.administratorModeUi = AdministratorModeUi.GetInstance();
         this.commonFunctionUi = CommonFunctionUi.GetInstance();
- 
-        this.programProcess = programProcess;
+
         this.bookFinder = bookFinder;
         this.bookDAO = new BookDAO();
     }
@@ -96,10 +94,7 @@ public class DeletingBook
                 administratorModeUi.PrintFailNotExistInListSentence();
             }
     
-            if ((programProcess.SelectProgramDirection()).Key == ConsoleKey.Escape)
-            {
-                break;
-            }
+            
         }
     }
 }

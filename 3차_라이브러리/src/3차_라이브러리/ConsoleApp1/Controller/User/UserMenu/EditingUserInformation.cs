@@ -7,16 +7,14 @@ public class EditingUserInformation
     RegularExpression regularExpression;
     UserModeUi userModeUi;
 
-    ProgramProcess programProcess;
     UserDAO userDAO;
 
-    public EditingUserInformation(ProgramProcess programProcess)
+    public EditingUserInformation()
     {
         this.InputByReadKey = InputByReadKey.GetInstance();
         this.regularExpression = RegularExpression.GetInstance();
         this.userModeUi = UserModeUi.GetInstance();
 
-        this.programProcess = programProcess;
         this.userDAO = new UserDAO();
     }
 
@@ -88,7 +86,7 @@ public class EditingUserInformation
           
             UserDTO editedUserInformation = new UserDTO();
 
-            //데이터에 입력 받은 값 저장
+            //데이터에 입력 받은 값 저장 //생성자로 저장해서 건네기
             editedUserInformation.UserNumber = loggedInUserInformation.UserNumber;
             editedUserInformation.Id = newId;
             editedUserInformation.Password = newPassword;
@@ -101,11 +99,7 @@ public class EditingUserInformation
 
             Console.Clear();
             userModeUi.PrintUserInformationUpdateSuccess();
-            //프로그램 뒤로 나가기
-            if ((programProcess.SelectProgramDirection()).Key == ConsoleKey.Escape)
-            {
-                break;
-            }
+            
         }
     }
 }

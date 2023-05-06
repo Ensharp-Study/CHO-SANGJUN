@@ -5,13 +5,11 @@ using ConsoleApp1.Model;
 public class BookReturnList
 {
     UserModeUi userModeUi;
-    ProgramProcess programProcess;
     BookDAO bookDAO;
 
-    public BookReturnList(ProgramProcess programProcess)
+    public BookReturnList()
     {
         this.userModeUi = UserModeUi.GetInstance();
-        this.programProcess = programProcess;
         this.bookDAO = new BookDAO();
     }
 
@@ -30,11 +28,6 @@ public class BookReturnList
                 userModeUi.PrintUserReturningList(returnedBookInformation[i]);
             }
 
-            //프로그램 뒤로 나가기
-            if ((programProcess.SelectProgramDirection()).Key == ConsoleKey.Escape)
-            {
-                break;
-            }
         }
     }
 }

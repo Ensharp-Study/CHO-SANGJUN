@@ -1,4 +1,5 @@
 ﻿using ConsoleApp1.Model;
+using ConsoleApp1.Utility;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -8,6 +9,7 @@ public class MemberManger
     InputByReadKey InputByReadKey;
     RegularExpression regularExpression;
     AdministratorModeUi administratorModeUi;
+    DataLogging dataLogging;
 
     UserDAO userDAO;
     BookDAO bookDAO;
@@ -17,6 +19,7 @@ public class MemberManger
         this.InputByReadKey = InputByReadKey.GetInstance();
         this.regularExpression = RegularExpression.GetInstance();
         this.administratorModeUi = AdministratorModeUi.GetInstance();
+        this.dataLogging = DataLogging.GetInstance();
 
         this.userDAO = new UserDAO();
         this.bookDAO = new BookDAO();
@@ -61,6 +64,9 @@ public class MemberManger
 
                     Console.Clear();
                     administratorModeUi.PrintDeletingUserSuccessSentence();
+
+                    //로그 수집
+                    dataLogging.SetLog(Constants.ADMINSTRATOR, Constants.USER_NUMBER + userNumber, Constants.MEMBER_MANAGER);
                 }
 
                 else//빌린 책이 있을 때

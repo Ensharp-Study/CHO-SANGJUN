@@ -1,11 +1,13 @@
 ﻿using System;
 using ConsoleApp1.Model;
+using ConsoleApp1.Utility;
 
 public class AddingBook
 {
     InputByReadKey InputByReadKey;
     RegularExpression regularExpression;
     AdministratorModeUi administratorModeUi;
+    DataLogging dataLogging;
 
     BookDAO bookDAO;
 
@@ -14,6 +16,7 @@ public class AddingBook
         this.InputByReadKey = InputByReadKey.GetInstance();
         this.regularExpression = RegularExpression.GetInstance();
         this.administratorModeUi = AdministratorModeUi.GetInstance();
+        this.dataLogging = DataLogging.GetInstance();
 
         this.bookDAO = new BookDAO();
     }
@@ -36,7 +39,9 @@ public class AddingBook
             Console.Clear();
             administratorModeUi.PrintAddingBookSuccessSentence(); //책 추가 완료 인터페이스 출력
 
-            
+            //로그 수집
+            dataLogging.SetLog(Constants.ADMINSTRATOR, newBookDTO.BookName, Constants.ADDING_BOOK);
+
         }
     }
 

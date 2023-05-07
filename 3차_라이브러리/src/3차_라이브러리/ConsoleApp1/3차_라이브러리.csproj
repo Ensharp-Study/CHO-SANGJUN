@@ -105,7 +105,10 @@
     <Compile Include="Controller\User\UserMenu\FindBookInNaverAndApply.cs" />
     <Compile Include="Model\BookDAO.cs" />
     <Compile Include="Model\ConnectionWithServer.cs" />
+    <Compile Include="Model\LogDAO.cs" />
+    <Compile Include="Model\LogDTO.cs" />
     <Compile Include="Model\UserDAO.cs" />
+    <Compile Include="Utility\DataLogging.cs" />
     <Compile Include="Utility\GoBackMenu.cs" />
     <Compile Include="Utility\InputProcess.cs" />
     <Compile Include="Utility\MenuSelectController.cs" />

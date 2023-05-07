@@ -3,12 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using ConsoleApp1.Model;
+using ConsoleApp1.Utility;
 
 public class ReturningBook //책 반납하기
 {
     InputByReadKey InputByReadKey;
     RegularExpression regularExpression;
     UserModeUi userModeUi;
+    DataLogging dataLogging;
 
     BookDAO bookDAO;
 
@@ -17,6 +19,7 @@ public class ReturningBook //책 반납하기
         this.InputByReadKey = InputByReadKey.GetInstance();
         this.regularExpression = RegularExpression.GetInstance();
         this.userModeUi = UserModeUi.GetInstance();
+        this.dataLogging = DataLogging.GetInstance();
 
         this.bookDAO = new BookDAO();
     }
@@ -83,6 +86,9 @@ public class ReturningBook //책 반납하기
                 borrowedBookInformationOfInputId[0].ReturnTime = DateTime.Now;
                 //user_returned_book_list에 추가
                 bookDAO.SaveReturnedBookToData(borrowedBookInformationOfInputId[0], loggedInUserInformation);
+
+                //로그 수집
+                dataLogging.SetLog(loggedInUserInformation.UserName, Constants.BOOK_ID + bookId, Constants.RETURNING_BOOK);
 
                 Console.SetCursorPosition(0, 3);
                 Console.WriteLine("      책 반납 성공!                          ");

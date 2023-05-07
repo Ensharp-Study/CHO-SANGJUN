@@ -6,36 +6,41 @@ using System.Collections.Generic;
 using System.Threading;
 using static System.Net.Mime.MediaTypeNames;
 using System.Security.Policy;
+using ConsoleApp1.Utility;
 
 public class BookFinder
 {
     InputByReadKey InputByReadKey;
     RegularExpression regularExpression;
     CommonFunctionUi commonFunctionUi;
+    DataLogging dataLogging;
 
     BookDAO bookDAO;
 
-    public BookFinder( )
+    public BookFinder()
     {
         this.InputByReadKey = InputByReadKey.GetInstance();
         this.regularExpression = RegularExpression.GetInstance();
         this.commonFunctionUi = CommonFunctionUi.GetInstance();
+        this.dataLogging = DataLogging.GetInstance();
 
         this.bookDAO = new BookDAO();
     }
 
     List<BookDTO> allBookInformation;
     List<BookDTO> selectedBookInformation;
+    UserDTO loggedInUserInformation;
     bool isJudgingCorrectString; //입력값 검사 후 탈출을 위한 변수
     bool isPrintPossiblity;
     string title;
     string author;
     string publisher;
 
-    public void FindBook()
+    public void FindBook(UserDTO loggedInUserInformation)
     {
         bool isMenuExecute = true; //메뉴 탈출 진리형 변수
- 
+        this.loggedInUserInformation = loggedInUserInformation;
+
         while (isMenuExecute)
         {
             PrintBookFinderMenu(); // 메뉴 검색 창 및 책 리스트 출력
@@ -89,6 +94,8 @@ public class BookFinder
             publisher = InputByReadKey.ReceiveInput(17, 3, 15, Constants.IS_NOT_PASSWORD);
             isJudgingCorrectString = regularExpression.JudgeWithRegularExpression(17, 3, publisher, Constants.BOOK_PUBLISHER_REGULAR_EXPRESSION, Constants.BOOK_PUBLISHER_ERROR_MESSAGE);
         }
+
+        dataLogging.SetLog(loggedInUserInformation.UserName, title, Constants.FIND_BOOK);
     }
 
     public List<BookDTO> CompareAndPrintBookList()

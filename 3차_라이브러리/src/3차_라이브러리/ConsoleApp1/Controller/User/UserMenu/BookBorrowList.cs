@@ -1,15 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using ConsoleApp1.Model;
+using ConsoleApp1.Utility;
 
 public class BookBorrowList
 {
     UserModeUi userModeUi;
+    DataLogging dataLogging;
     BookDAO bookDAO;
+    
     public BookBorrowList()
     {
         this.userModeUi = UserModeUi.GetInstance();
+        this.dataLogging = DataLogging.GetInstance();
         this.bookDAO = new BookDAO();
+       
     }
 
     public void ShowBookBorrowList(UserDTO loggedInUserInformation)
@@ -21,6 +26,8 @@ public class BookBorrowList
 		{
 			userModeUi.PrintBorrowingList();
             borrowedBookInformation = bookDAO.ReadBorrowedBookList(loggedInUserInformation);
+
+            dataLogging.SetLog(loggedInUserInformation.UserName, Constants.ALL_BOOK_VIEW, Constants.BOOK_BORROW_LIST);
 
             for (int i = 0; i < borrowedBookInformation.Count; i++)
 			{

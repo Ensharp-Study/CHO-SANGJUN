@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Security.Policy;
 using ConsoleApp1.Model;
+using ConsoleApp1.Utility;
 
 public class BorrowingBook
 {
@@ -10,6 +11,7 @@ public class BorrowingBook
     RegularExpression regularExpression;
     UserModeUi userModeUi;
     CommonFunctionUi commonFunctionUi;
+    DataLogging dataLogging;
 
     BookDAO bookDAO;
 
@@ -19,6 +21,7 @@ public class BorrowingBook
         this.regularExpression = RegularExpression.GetInstance();
         this.userModeUi = UserModeUi.GetInstance();
         this.commonFunctionUi = CommonFunctionUi.GetInstance();
+        this.dataLogging = DataLogging.GetInstance();
 
         this.bookDAO = new BookDAO();
     }
@@ -136,6 +139,9 @@ public class BorrowingBook
                             //최종적으로 빌린 책 정보들 저장하는 데이터 베이스 테이블(user_borrowed_book_list 테이블)에 저장
                             bookDAO.SaveBorrowedBookToData(selectedBookInformation[i], loggedInUserInformation); // 사용자 정보와 빌린 책정보를 넘겨, 빌린책에 대한 정보를 데이터 베이스에 저장
                             isBookQuantityExist = true;
+
+                            //로그 수집
+                            dataLogging.SetLog(loggedInUserInformation.UserName,Constants.BOOK_ID + bookId, Constants.BORROWING_BOOK);
                         }
 
                         else if (selectedBookInformation[i].BookQuantity == 0)

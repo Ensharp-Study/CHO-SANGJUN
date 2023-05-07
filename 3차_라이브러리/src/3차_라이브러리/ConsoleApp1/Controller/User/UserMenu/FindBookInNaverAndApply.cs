@@ -14,34 +14,38 @@ namespace ConsoleApp1.Controller.User.UserMenu
         public InputProcess inputProcess;
         public NaverSearchFunctionAPI naverSearchFunctionAPI;
         public BookDAO bookDAO;
+        public DataLogging dataLogging;
 
         public List<BookDTO> searchedBookList;
-        public List<BookDTO> userSelectedBookList;  
+        public List<BookDTO> userSelectedBookList;
+        UserDTO loggedInUserInformation;
 
         public FindBookInNaverAndApply()
         {
             this.userModeUi = UserModeUi.GetInstance();
             this.inputProcess = InputProcess.GetInstance();
             this.naverSearchFunctionAPI =  new NaverSearchFunctionAPI();
-            this.bookDAO = new BookDAO();   
+            this.bookDAO = new BookDAO();
+            this.dataLogging = DataLogging.GetInstance();
         }
 
-        public void FindBookInNaverAndApplyMain()
+        public void FindBookInNaverAndApplyMain(UserDTO loggedInUserInformation)
         {
+            this.loggedInUserInformation = loggedInUserInformation;
             bool isMenuExecute = true; //메뉴 탈출 진리형 변수
             Console.CursorVisible = true;
             while (isMenuExecute)
             {
                 Console.SetWindowSize(115, 40);
 
-                SearchBookInNaver();
+                SearchBookInNaver(loggedInUserInformation);
                 Console.ReadKey(true);
                 
-                ApplyBookToAdministrator();
+                ApplyBookToAdministrator(loggedInUserInformation);
             }
         }
 
-        public void SearchBookInNaver()
+        public void SearchBookInNaver(UserDTO loggedInUserInformation)
         {
             bool isMenuExecute = true; //메뉴 탈출 진리형 변수
 
@@ -54,6 +58,10 @@ namespace ConsoleApp1.Controller.User.UserMenu
 
                 string bookName = inputProcess.InputProcessFunction(48, 10, 15, Constants.IS_NOT_PASSWORD, Constants.BOOK_NAME_REGULAR_EXPRESSION, Constants.BOOK_NAME_ERROR_MESSAGE); // 책이름 검색
                 string bookCount = inputProcess.InputProcessFunction(48, 11, 3, Constants.IS_NOT_PASSWORD, Constants.NUMBER_REGULAR_EXPRESSION, Constants.NUMBER_ERROR_MESSAGE); // 검색 책 수량 검색
+
+                //로그 수집
+                dataLogging.SetLog(loggedInUserInformation.UserName, bookName, Constants.FIND_BOOK);
+
 
                 searchedBookList = naverSearchFunctionAPI.SearchBook(bookName, bookCount);  // 네이버 api연결 (url에 보내줄 책이름, 수량 전달)
 
@@ -82,7 +90,7 @@ namespace ConsoleApp1.Controller.User.UserMenu
             }
         }
 
-        public void ApplyBookToAdministrator()
+        public void ApplyBookToAdministrator(UserDTO loggedInUserInformation)
         {
             bool isMenuExecute = true; //메뉴 탈출 진리형 변수
             int bookCount;
@@ -136,6 +144,8 @@ namespace ConsoleApp1.Controller.User.UserMenu
                 //DAO 통해 데이터 베이스에 전달하기
                 bookDAO.AddBookInUserApplyBookList(userSelectedBookList);
 
+                //로그 수집
+                dataLogging.SetLog(loggedInUserInformation.UserName, userSelectedBookList[0].BookName, Constants.BOOK_APPLY);
 
                 //뒤로가기
                 userModeUi.PrintBlueColorSentence(Constants.GOBACK_OR_AGAIN, 35, 12);

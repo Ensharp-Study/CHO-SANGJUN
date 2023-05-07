@@ -1,4 +1,5 @@
 ﻿using ConsoleApp1.Model;
+using ConsoleApp1.Utility;
 using System;
 
 public class EditingUserInformation
@@ -6,6 +7,7 @@ public class EditingUserInformation
     InputByReadKey InputByReadKey;
     RegularExpression regularExpression;
     UserModeUi userModeUi;
+    DataLogging dataLogging;
 
     UserDAO userDAO;
 
@@ -14,6 +16,7 @@ public class EditingUserInformation
         this.InputByReadKey = InputByReadKey.GetInstance();
         this.regularExpression = RegularExpression.GetInstance();
         this.userModeUi = UserModeUi.GetInstance();
+        this.dataLogging = DataLogging.GetInstance();
 
         this.userDAO = new UserDAO();
     }
@@ -96,6 +99,9 @@ public class EditingUserInformation
             editedUserInformation.UserPhoneNumber = newPhoneNumber;
 
             userDAO.EditUserDataUpdate(editedUserInformation);
+
+            //로그 수집
+            dataLogging.SetLog(loggedInUserInformation.UserName, loggedInUserInformation.Id + Constants.CHANGE + newId, Constants.EDIT_USER_INF);
 
             Console.Clear();
             userModeUi.PrintUserInformationUpdateSuccess();

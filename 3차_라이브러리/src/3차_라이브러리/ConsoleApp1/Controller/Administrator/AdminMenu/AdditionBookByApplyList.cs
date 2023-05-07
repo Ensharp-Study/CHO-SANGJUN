@@ -13,11 +13,14 @@ namespace ConsoleApp1.Controller.Administrator.AdminMenu
         AdministratorModeUi administratorModeUi;
         InputProcess inputProcess;
         BookDAO bookDAO;
+        DataLogging dataLogging;
+
         public AdditionBookByApplyList()
         {
             this.administratorModeUi = AdministratorModeUi.GetInstance();
             this.inputProcess = InputProcess.GetInstance();
             this.bookDAO = new BookDAO();
+            this.dataLogging = DataLogging.GetInstance();
         }
 
         public void AddBookByApplyListMain()
@@ -68,6 +71,9 @@ namespace ConsoleApp1.Controller.Administrator.AdminMenu
                     bookDAO.AddNewBookInLibraryWithAppliedBook(bookDTO); // 도서관 도서목록에 추가
                     bookDAO.DeleteBookInAppliedList(bookId); // 도서 요청 리스트에서 삭제   
                     administratorModeUi.PrintGreenColorSentence(Constants.BOOK_REGISTRATE_SUCCESS, 48, 11); //성공 메시지
+
+                    //로그 수집
+                    dataLogging.SetLog(Constants.ADMINSTRATOR, bookDTO.BookName, Constants.REQUESTED_BOOK);
 
                     //뒤로가기
                     administratorModeUi.PrintBlueColorSentence(Constants.GOBACK_OR_AGAIN, 35, 12);

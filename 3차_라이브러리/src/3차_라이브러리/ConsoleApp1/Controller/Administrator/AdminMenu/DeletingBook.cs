@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using ConsoleApp1.Model;
 using System.Net;
 using System.Threading;
+using ConsoleApp1.Utility;
 
 public class DeletingBook
 {
@@ -17,6 +18,7 @@ public class DeletingBook
     RegularExpression regularExpression;
     AdministratorModeUi administratorModeUi;
     CommonFunctionUi commonFunctionUi;
+    DataLogging dataLogging;
 
     BookFinder bookFinder;
     BookDAO bookDAO;
@@ -28,6 +30,7 @@ public class DeletingBook
         this.regularExpression = RegularExpression.GetInstance();
         this.administratorModeUi = AdministratorModeUi.GetInstance();
         this.commonFunctionUi = CommonFunctionUi.GetInstance();
+        this.dataLogging = DataLogging.GetInstance();
 
         this.bookFinder = bookFinder;
         this.bookDAO = new BookDAO();
@@ -86,6 +89,9 @@ public class DeletingBook
 
                     Console.Clear();
                     administratorModeUi.PrintDeletingBookSuccessSentence();  //삭제 성공 메시지 출력
+                                                                             
+                    //로그 수집
+                    dataLogging.SetLog(Constants.ADMINSTRATOR, Constants.BOOK_ID + deletedBookId, Constants.DELETING_BOOK);
                 }
             }
             else // 검색된 리스트에 존재 하지않을때

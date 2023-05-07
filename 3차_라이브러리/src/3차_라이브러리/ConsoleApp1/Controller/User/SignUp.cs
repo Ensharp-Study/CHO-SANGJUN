@@ -1,4 +1,5 @@
 ﻿using ConsoleApp1.Model;
+using ConsoleApp1.Utility;
 using System;
 
 public class SignUp
@@ -7,6 +8,7 @@ public class SignUp
     RegularExpression regularExpression;
     MainMenuUi mainMenuUi;
     SignUpAndLoginUi signUpAndLoginUi;
+    DataLogging dataLogging;
 
     UserDTO newUserInformation;
     UserDAO userDAO;
@@ -17,6 +19,7 @@ public class SignUp
         this.regularExpression = RegularExpression.GetInstance();
         this.mainMenuUi = MainMenuUi.GetInstance();
         this.signUpAndLoginUi = SignUpAndLoginUi.GetInstance();
+        this.dataLogging = DataLogging.GetInstance();
 
         this.newUserInformation = new UserDTO();
         this.userDAO = new UserDAO();
@@ -100,7 +103,10 @@ public class SignUp
         }
 
         userDAO.NewUserDataCreate(newUserInformation);      //DAO로 새 유저정보 넘겨주기
-        
+
+        //로그 수집
+        dataLogging.SetLog(newUserInformation.UserName, newUserInformation.Id, Constants.SIGN_UP);
+
         Console.Clear();
         signUpAndLoginUi.PrintAccountDeletionSentence(newUserInformation.UserName);
     }

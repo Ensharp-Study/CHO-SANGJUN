@@ -1,4 +1,5 @@
 ﻿using ConsoleApp1.Model;
+using ConsoleApp1.Utility;
 using System;
 using System.Collections.Generic;
 using System.Security.Policy;
@@ -20,6 +21,7 @@ public class EditingBook
     RegularExpression regularExpression;
     AdministratorModeUi administratorModeUi;
     CommonFunctionUi commonFunctionUi;
+    DataLogging dataLogging;
 
     BookFinder bookFinder;
     BookDAO bookDAO;
@@ -30,7 +32,8 @@ public class EditingBook
         this.regularExpression = RegularExpression.GetInstance();
         this.administratorModeUi = AdministratorModeUi.GetInstance();
         this.commonFunctionUi = CommonFunctionUi.GetInstance();
- 
+        this.dataLogging = DataLogging.GetInstance();
+
         this.bookFinder = bookFinder;
         this.bookDAO = new BookDAO();
     }
@@ -104,6 +107,9 @@ public class EditingBook
 
                     Console.Clear();
                     administratorModeUi.PrintEditingBookSuccessSentence();  //수정 성공 메시지 출력
+                                                                            
+                    //로그 수집
+                    dataLogging.SetLog(Constants.ADMINSTRATOR, Constants.BOOK_ID + editedBookId, Constants.EDITING_BOOK);
                 }
             }
             else // 검색된 리스트에 존재 하지않을때

@@ -30,7 +30,7 @@ public class AdministratorLogin
     public void GetAdministratorLogin()
     {
         bool isJudgingCorrectInput = false; //로그인 성공여부를 판단하는 bool형 변수
-        List<UserDTO> administratorInformation;
+        List<UserDTO> administratorInformation = new List<UserDTO>();
 
         while (!isJudgingCorrectInput)
         {
@@ -63,7 +63,7 @@ public class AdministratorLogin
             }
         }
         Console.Clear();
-        administratorMenu.ControllAdministratorMenu(); //관리자 모드 메뉴로 진입
+        administratorMenu.ControllAdministratorMenu(administratorInformation[0]); //관리자 모드 메뉴로 진입
 
     
     }

@@ -1,4 +1,5 @@
 ﻿using ConsoleApp1.Model;
+using ConsoleApp1.Utility;
 using System;
 
 public class DeletingUserInformation //inf와같이 줄임말 
@@ -6,6 +7,7 @@ public class DeletingUserInformation //inf와같이 줄임말
     InputByReadKey InputByReadKey;
     RegularExpression regularExpression;
     UserModeUi userModeUi;
+    DataLogging dataLogging;
 
     UserDAO userDAO;
 
@@ -15,6 +17,7 @@ public class DeletingUserInformation //inf와같이 줄임말
         this.InputByReadKey = InputByReadKey.GetInstance();
         this.regularExpression = RegularExpression.GetInstance();
         this.userModeUi = UserModeUi.GetInstance();
+        this.dataLogging = DataLogging.GetInstance();
 
         this.userDAO = new UserDAO();
     }
@@ -75,6 +78,10 @@ public class DeletingUserInformation //inf와같이 줄임말
                 Console.Clear();
                 userModeUi.PrintAccountDeletionSentence();
                 Console.ReadKey(true);
+
+                //로그 수집
+                dataLogging.SetLog(loggedInUserInformation.UserName, loggedInUserInformation.Id, Constants.DELETE_USER_INFORMATION);
+
                 return Constants.IS_CANCELLATION_OF_MEMBERSHIP; // 유저정보 삭제 여부 불리언 변수로 반환
             }
             else if (selectedMenuNumber == (int)(UserManagementNumber.SAVING_USER))

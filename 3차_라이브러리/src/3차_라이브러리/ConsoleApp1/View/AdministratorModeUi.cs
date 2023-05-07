@@ -204,4 +204,68 @@ public class AdministratorModeUi{
         Console.WriteLine("반납 의무 시간 :  " + bookInformation.ReturnTime);
         Console.WriteLine("============================================================");
     }
+
+    public void PrintApplyBookInNaverMenu()
+    {
+        Console.SetCursorPosition(0, 0);
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                                   도서 신청\n");
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                 ENTER : 입력                      ESC : 뒤로가기\n\n");
+        Console.WriteLine("                        ----------------------------------------------------------------\n");
+        Console.WriteLine("                                신청 도서번호 :                                          \n");
+        Console.WriteLine("                        -----------------------------------------------------------------\n");
+    }
+    public void PrintBookIsNotExistMessage()
+    {
+        Console.WriteLine("========================================================================================================================");
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("신청 도서가 없습니다.");
+        Console.ResetColor();
+        Console.WriteLine("========================================================================================================================");
+    }
+    public void PrintBookListAppliedBookList(BookDTO book)
+    {
+        Console.WriteLine("========================================================================================================================");
+        Console.WriteLine("책 번호   :  " + book.BookId);
+        Console.WriteLine("책 제목   :  " + book.BookName);
+        Console.WriteLine("작가      :  " + book.BookAuthor);
+        Console.WriteLine("출판사    :  " + book.BookPublisher);
+        Console.WriteLine("가격      :  {0}", book.BookPrice);
+        Console.WriteLine("출시일    :  " + book.BookPublicationDate);
+        Console.WriteLine("ISBN      :  " + book.Isbn);
+        Console.WriteLine("책 정보   :  " + book.BookDescription);
+        Console.WriteLine("========================================================================================================================");
+    }
+    public void PrintBlueColorSentence(string sentence, int cursorPositionX, int cursorPositionY)
+    {
+        Console.ForegroundColor = ConsoleColor.Blue;
+        Console.SetCursorPosition(cursorPositionX, cursorPositionY);
+        Console.WriteLine(sentence);
+        Console.ResetColor();
+    }
+
+    public void PrintGreenColorSentence(string sentence, int cursorPositionX, int cursorPositionY)
+    {
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.SetCursorPosition(cursorPositionX, cursorPositionY);
+        Console.WriteLine(sentence);
+        Console.ResetColor();
+    }
+
+    public void PrintRedColorSentence(string sentence, int cursorPositionX, int cursorPositionY)
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.SetCursorPosition(cursorPositionX, cursorPositionY);
+        Console.WriteLine(sentence);
+        Console.ResetColor();
+    }
+    public void ResetMenuScreen()
+    {
+        Console.SetCursorPosition(0, 0);
+        for (int i = 0; i < 14; i++)
+        {
+            Console.WriteLine("                                                                                           ");
+        }
+    }
 }

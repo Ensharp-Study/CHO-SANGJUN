@@ -101,6 +101,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\Administrator\AdminMenu\AdditionBookByApplyList.cs" />
     <Compile Include="Controller\User\UserMenu\FindBookInNaverAndApply.cs" />
     <Compile Include="Model\BookDAO.cs" />
     <Compile Include="Model\ConnectionWithServer.cs" />

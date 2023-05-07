@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.SqlServer.Server;
+using Org.BouncyCastle.Bcpg;
+using System;
 using System.Linq.Expressions;
 
 enum ModeNumber
@@ -27,7 +29,11 @@ enum AdministratorMenuNumber
     DELETING_BOOK,
     EDITING_BOOK,
     MEMBER_MANAGER,
-    BOOK_BORROWING_STATUS
+    BOOK_BORROWING_STATUS,
+    SEARCHING_NAVER,
+    CONTROLL_LOG,
+    REQUESTED_BOOK
+
 }
 enum LoginOrSignUpNumber
 {
@@ -92,11 +98,12 @@ public class Constants
     public const string BOOK_APPLY_SUCCESS = "도서 신청이 완료 되었습니다!";
     public const string BOOK_ALREADY_IN_APPLY_LIST = "이미 신청된 도서 입니다. 다시 입력해주세요";
     public const string BOOK_ALREADY_IN_BOOK_DATA = "도서관에 존재하는 도서 입니다.";
-    public const string BLANK_MESSAGE = "                                          ";
     public const string GOBACK_OR_AGAIN = "다시 신청하려면 ENTER, 뒤로가려면 ESC를 눌러주세요";
-
     public const string NO_BOOK_IN_LIST = "리스트에 책이 없습니다. 다시 검색하세요.";
-   
+    public const string BOOK_REGISTRATE_SUCCESS = "도서 추가에 성공 했습니다.";
+
+
+
 
 }
     

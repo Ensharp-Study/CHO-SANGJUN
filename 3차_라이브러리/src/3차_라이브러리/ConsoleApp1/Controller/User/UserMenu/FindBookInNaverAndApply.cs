@@ -115,7 +115,7 @@ namespace ConsoleApp1.Controller.User.UserMenu
                 }
 
                 // 2. 이미 신청된 책일 경우 - isbn으로 탐색
-                bookCount = bookDAO.FindBookInApplyBookList(userSelectedBookList[0].Isbn);
+                bookCount = bookDAO.FindBookInApplyBookListWithIsbn(userSelectedBookList[0].Isbn);
                 if(bookCount != 0) //이미 신청된 책일 경우
                 {
                     userModeUi.PrintRedColorSentence(Constants.BOOK_ALREADY_IN_APPLY_LIST, 48, 11);

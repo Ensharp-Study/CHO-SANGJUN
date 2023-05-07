@@ -1,4 +1,5 @@
-﻿using ConsoleApp1.Utility;
+﻿using ConsoleApp1.Controller.Administrator.AdminMenu;
+using ConsoleApp1.Utility;
 using System;
 
 public class AdministratorMenu
@@ -16,6 +17,7 @@ public class AdministratorMenu
     EditingBook editingBook;
     MemberManger memberManger;
     BookBorrowedStatus bookBorrowedStatus;
+    AdditionBookByApplyList additionBookByApplyList;
     
     public AdministratorMenu( )
     {
@@ -32,6 +34,7 @@ public class AdministratorMenu
         this.editingBook = new EditingBook(bookFinder);
         this.memberManger = new MemberManger();
         this.bookBorrowedStatus = new BookBorrowedStatus();
+        this.additionBookByApplyList = new AdditionBookByApplyList();
     }
 
     
@@ -80,7 +83,8 @@ public class AdministratorMenu
                 case 200: //로그
                     break;
 
-                case 300: //요청도서
+                case (int)(AdministratorMenuNumber.REQUESTED_BOOK):
+                    additionBookByApplyList.AddBookByApplyListMain();
                     break;
             }
 

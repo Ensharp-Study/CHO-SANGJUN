@@ -236,7 +236,7 @@ namespace ConsoleApp1.Model
             }
         }
 
-        public int FindBookInApplyBookList(string isbn) // 책이 신청리스트에 이미 신청된 책일 경우
+        public int FindBookInApplyBookListWithIsbn(string isbn) // 책이 신청리스트에 이미 신청된 책일 경우
         {
             int bookCount;
             string queryStatement = string.Format("SELECT COUNT(*) FROM user_apply_book_list WHERE BookIsbn = '{0}';", isbn);
@@ -252,5 +252,65 @@ namespace ConsoleApp1.Model
             return bookCount;
         }
 
+        public List<BookDTO> ReadApplyBookList()
+        {
+            BookDTO bookDTO;
+            List<BookDTO> appliedBookInformation = new List<BookDTO>();  //모든 책 정보를 담을 리스트 선언
+
+            string queryStatement = "SELECT * FROM  user_apply_book_list;";
+            MySqlDataReader readedData = connectionWithServer.SelectUsedExecuteReader(queryStatement);
+
+            while (readedData.Read())
+            {
+                bookDTO = new BookDTO(); //왜 와일문 밖에 작성하면 마지막 값으로 다 저장되는지 물어보기
+                bookDTO.BookId = readedData.GetInt32(0);
+                bookDTO.BookName = readedData.GetString(1);
+                bookDTO.BookAuthor = readedData.GetString(2);
+                bookDTO.BookPublisher = readedData.GetString(3);
+                bookDTO.BookPrice = readedData.GetInt32(4);
+                bookDTO.BookPublicationDate = readedData.GetString(5);
+                bookDTO.Isbn = readedData.GetString(6);
+                bookDTO.BookDescription = readedData.GetString(7);
+
+                appliedBookInformation.Add(bookDTO);//책 리스트에 추가
+            }
+            readedData.Close();
+            return appliedBookInformation; //모든 책정보가 담겨 있는 리스트 전달
+        }
+        public BookDTO FindBookInApplyBookListWithId(string bookId) // 책이 신청리스트에 있는지 확인
+        {
+            BookDTO bookDTO = new BookDTO();
+
+            string queryStatement = string.Format("SELECT * FROM user_apply_book_list WHERE BookId = '{0}';", bookId);
+            MySqlDataReader readedData = connectionWithServer.SelectUsedExecuteReader(queryStatement);
+
+            while (readedData.Read())
+            {
+                bookDTO = new BookDTO();
+                bookDTO.BookId = readedData.GetInt32(0);
+                bookDTO.BookName = readedData.GetString(1);
+                bookDTO.BookAuthor = readedData.GetString(2);
+                bookDTO.BookPublisher = readedData.GetString(3);
+                bookDTO.BookPrice = readedData.GetInt32(4);
+                bookDTO.BookPublicationDate = readedData.GetString(5);
+                bookDTO.Isbn = readedData.GetString(6);
+                bookDTO.BookDescription = readedData.GetString(7);
+            }
+            readedData.Close();
+            return bookDTO; //해당 id의 책 반환
+
+        }
+
+        public void AddNewBookInLibraryWithAppliedBook(BookDTO newBook)
+        {
+            string queryStatement = string.Format("INSERT INTO book_data (BookName, BookAuthor, BookPublisher, BookQuantity ,BookPrice, BookPublicationDate, Isbn, BookDescription ) VALUES ('{0}', '{1}','{2}','5', '{3}','{4}','{5}','{6}');", newBook.BookName, newBook.BookAuthor, newBook.BookPublisher, newBook.BookPrice, newBook.BookPublicationDate, newBook.Isbn, newBook.BookDescription);
+            connectionWithServer.CreateUpdateDelete(queryStatement);
+        }
+
+        public void DeleteBookInAppliedList(string bookId)
+        {
+            string queryStatement = string.Format("DELETE FROM user_apply_book_list WHERE BookId = '{0}';", bookId);
+            connectionWithServer.CreateUpdateDelete(queryStatement);
+        }
     }
 }

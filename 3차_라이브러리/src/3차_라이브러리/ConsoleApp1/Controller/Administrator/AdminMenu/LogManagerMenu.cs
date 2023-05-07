@@ -50,15 +50,19 @@ namespace ConsoleApp1.Controller.Administrator.AdminMenu
                 switch (menuNumber)
                 {
                     case (int)(LogManagerMenuNumber.LOG_EDIT):
+                        dataLogging.SetLog(Constants.ADMINSTRATOR, Constants.EDIT_LOG, Constants.SELECT_MENU);
                         logEdition.DeleteLog();
                         break;
                     case (int)(LogManagerMenuNumber.LOG_SAVE_TEXT_FILE):
+                        dataLogging.SetLog(Constants.ADMINSTRATOR, Constants.SAVE_LOG, Constants.SELECT_MENU);
                         loggingTextFile.SaveLogDateToTEXT();
                         break;
                     case (int)(LogManagerMenuNumber.LOG_DELETE_TEXT_FILE):
+                        dataLogging.SetLog(Constants.ADMINSTRATOR, Constants.DELETE_LOG, Constants.SELECT_MENU);
                         deletionLogTextFile.DeleteTextFile();
                         break;
                     case (int)(LogManagerMenuNumber.LOG_RESET):
+                        dataLogging.SetLog(Constants.ADMINSTRATOR, Constants.RESET_LOG, Constants.SELECT_MENU);
                         logReset.ResetLog();
                         break;
                 }

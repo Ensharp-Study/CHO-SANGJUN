@@ -141,9 +141,12 @@ public class Constants
     public const string REQUESTED_BOOK = "신청 도서 추가하기";
     public const string CONTROLL_LOG = "로그 관리";
 
+    public const string DELETE_LOG = "로그 TEXT 파일 삭제";
+    public const string SAVE_LOG = "로그 TEXT 파일 저장";
+    public const string EDIT_LOG = "로그 수정";
     public const string RESET_LOG = "로그 초기화";
     public const string RESET = "초기화";
-
+    public const string LOG_ID_SUB = "로그 아이디: ";
     public const string BOOK_ID = "책 아이디: ";
     public const string USER_NUMBER = "유저 번호: ";
     public const string CHANGE = "->";

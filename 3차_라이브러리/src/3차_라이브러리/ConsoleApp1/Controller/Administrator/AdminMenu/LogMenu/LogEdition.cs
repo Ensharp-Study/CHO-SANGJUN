@@ -13,12 +13,14 @@ namespace ConsoleApp1.Controller.Administrator.AdminMenu.LogMenu
         LogDAO logDAO;
         AdministratorModeUi administratorModeUi;
         InputProcess inputProcess;
+        DataLogging dataLogging;
 
         public LogEdition()
         {
             logDAO = new LogDAO();
             this.administratorModeUi = AdministratorModeUi.GetInstance();
             this.inputProcess = InputProcess.GetInstance();
+            this.dataLogging = DataLogging.GetInstance();
         }
 
         public void DeleteLog()
@@ -53,7 +55,10 @@ namespace ConsoleApp1.Controller.Administrator.AdminMenu.LogMenu
                 }
                 //삭제가능!
                 logDAO.DeleteLogData(logId);//로그 삭제
-                administratorModeUi.PrintGreenColorSentence(Constants.LOG_DELETE_SUCCESS, 48, 11); //삭제 성공 메시지 출력
+                administratorModeUi.PrintGreenColorSentence(Constants.LOG_DELETE_SUCCESS, 48, 11); //삭제 성공 메시지 출력                                                
+                //로그 수집
+                dataLogging.SetLog(Constants.ADMINSTRATOR, Constants.LOG_ID_SUB + logId, Constants.EDIT_LOG);
+
 
                 //뒤로가기
                 administratorModeUi.PrintBlueColorSentence(Constants.GOBACK_OR_AGAIN, 35, 12);

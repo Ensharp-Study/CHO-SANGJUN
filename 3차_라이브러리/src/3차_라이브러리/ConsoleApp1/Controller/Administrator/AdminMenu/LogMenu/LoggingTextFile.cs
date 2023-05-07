@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,10 +14,12 @@ namespace ConsoleApp1.Controller.Administrator.AdminMenu.LogMenu
     {
         LogDAO logDAO;
         AdministratorModeUi administratorModeUi;
+        DataLogging dataLogging;
         public LoggingTextFile()
         {
             this.logDAO = new LogDAO();
             this.administratorModeUi = AdministratorModeUi.GetInstance();
+            this.dataLogging = DataLogging.GetInstance();   
         }
 
         public void SaveLogDateToTEXT()
@@ -47,6 +50,8 @@ namespace ConsoleApp1.Controller.Administrator.AdminMenu.LogMenu
 
             //파일 저장하기
             File.WriteAllText(filePath, text);
+            //로그 수집
+            dataLogging.SetLog(Constants.ADMINSTRATOR, "로그정보.txt", Constants.SAVE_LOG);
 
             Console.Clear();
             administratorModeUi.PrintSaveLogSuccess();

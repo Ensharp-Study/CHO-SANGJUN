@@ -291,4 +291,16 @@ public class AdministratorModeUi{
         Console.WriteLine("로그 활동   :  " + log.LogAction);
         Console.WriteLine("========================================================================================================================");
     }
+
+    public void PrintResetLogMenu()
+    {
+        Console.SetCursorPosition(0, 0);
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                                   로그 리셋\n");
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                 ENTER : 입력                      ESC : 뒤로가기\n\n");
+        Console.WriteLine("                        ----------------------------------------------------------------\n");
+        Console.WriteLine("                                         초기화 하려면 ENTER을 눌러주세요                 \n");
+        Console.WriteLine("                        -----------------------------------------------------------------\n");
+    }
 }

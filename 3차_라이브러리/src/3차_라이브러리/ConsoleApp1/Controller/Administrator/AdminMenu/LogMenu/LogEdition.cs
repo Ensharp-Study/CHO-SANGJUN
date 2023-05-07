@@ -32,7 +32,7 @@ namespace ConsoleApp1.Controller.Administrator.AdminMenu.LogMenu
             {
                 Console.Clear();
                 administratorModeUi.PrintEditLogMenu(); // 로그 삭제 메뉴 출력
-                allLogData = logDAO.ReadAllLogDate();
+                allLogData = logDAO.ReadAllLogData();
 
                 foreach (LogDTO logDTO in allLogData) //모든 로그 출력 
                 {

@@ -23,7 +23,7 @@ namespace ConsoleApp1.Model
             connectionWithServer.CreateUpdateDelete(queryStatement);
         }
 
-        public List<LogDTO> ReadAllLogDate()
+        public List<LogDTO> ReadAllLogData()
         {
             LogDTO logDTO;
             List<LogDTO> allLogList = new List<LogDTO>();  //모든 로그 정보를 담을 리스트 선언
@@ -74,5 +74,12 @@ namespace ConsoleApp1.Model
             string queryStatement = string.Format("DELETE FROM log_data WHERE logNumber = '{0}';", logNumber);
             connectionWithServer.CreateUpdateDelete(queryStatement);
         }
+
+        public void ResetLogData()
+        {
+            string queryStatement = string.Format("DELETE FROM log_data;");
+            connectionWithServer.CreateUpdateDelete(queryStatement);
+        }
+
     }
 }

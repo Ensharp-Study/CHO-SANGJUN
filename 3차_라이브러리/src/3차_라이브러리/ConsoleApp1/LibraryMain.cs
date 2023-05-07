@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 using ConsoleApp1.Utility;
 using ConsoleApp1.Controller.User.UserMenu;
+using ConsoleApp1.Controller.Administrator.AdminMenu.LogMenu;
 
 namespace Library 
 {

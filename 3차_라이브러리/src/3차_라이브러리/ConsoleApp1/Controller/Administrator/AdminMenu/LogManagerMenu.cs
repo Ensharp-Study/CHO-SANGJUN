@@ -16,6 +16,8 @@ namespace ConsoleApp1.Controller.Administrator.AdminMenu
         MenuSelectController menuSelectController;
 
         LogEdition logEdition;
+        LogReset logReset;
+        LoggingTextFile loggingTextFile;
 
         public LogManagerMenu()
         {
@@ -25,6 +27,8 @@ namespace ConsoleApp1.Controller.Administrator.AdminMenu
             this.menuSelectController = MenuSelectController.GetInstance();
 
             this.logEdition = new LogEdition();
+            this.logReset = new LogReset();
+            this.loggingTextFile = new LoggingTextFile();
         }
 
         public void LogManagerSelectMenu()
@@ -34,6 +38,7 @@ namespace ConsoleApp1.Controller.Administrator.AdminMenu
 
             while (true)
             {
+                Console.Clear();
                 mainMenuUi.ViewMainMenu();
                 commonFunctionUi.ViewMenu();
 
@@ -46,10 +51,12 @@ namespace ConsoleApp1.Controller.Administrator.AdminMenu
                         logEdition.DeleteLog();
                         break;
                     case (int)(LogManagerMenuNumber.LOG_SAVE_TEXT_FILE):
+                        loggingTextFile.SaveLogDateToTEXT();
                         break;
                     case (int)(LogManagerMenuNumber.LOG_DELETE_TEXT_FILE):
                         break;
                     case (int)(LogManagerMenuNumber.LOG_RESET):
+                        logReset.ResetLog();
                         break;
                 }
 

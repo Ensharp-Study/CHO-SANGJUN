@@ -112,6 +112,10 @@ public class Constants
     public const string BOOK_REGISTRATE_SUCCESS = "도서 추가에 성공 했습니다.";
     public const string NO_LOG_IN_LIST = "리스트에 로그가 없습니다. 다시 검색하세요.";
     public const string LOG_DELETE_SUCCESS = "로그 삭제에 성공 했습니다.";
+    public const string BLANK = "                                                                                       ";
+    public const string REASK_RESET_INTENTION = "정말로 초기화 하시겠습니까?";
+    public const string LOG_RESET_SUCCESS = "로그 초기화에 성공 했습니다.";
+
 
     //로그활동
     public const string LOGIN = "로그인";
@@ -137,6 +141,8 @@ public class Constants
     public const string REQUESTED_BOOK = "신청 도서 추가하기";
     public const string CONTROLL_LOG = "로그 관리";
 
+    public const string RESET_LOG = "로그 초기화";
+    public const string RESET = "초기화";
 
     public const string BOOK_ID = "책 아이디: ";
     public const string USER_NUMBER = "유저 번호: ";
@@ -144,5 +150,20 @@ public class Constants
 
     public const string ADMINSTRATOR = "관리자";
     public const string ADMINSTRATOR_AUTHORITY = "관리자 권한";
+
+    public const string LOG_TEXT_FRAME_1 = "========================================================================================================================\n";
+    public const string LOG_TEXT_FRAME_2 = "                                                     로그 목록\n";
+    public const string LOG_TEXT_FRAME_3 = "========================================================================================================================\n";
+
+    public const string LOG_LIST_FRAME_1 = "========================================================================================================================";
+    public const string LOG_ID = "\n로그 ID     :  ";
+    public const string LOG_TIME = "\n로그 시간   :  ";
+    public const string LOG_USER = "\n로그 사용자 :  ";
+    public const string LOG_INFORMATION = "\n로그 정보   :  ";
+    public const string LOG_ACTION = "\n로그 활동   :  ";
+    public const string LOG_LIST_FRAME_2 = "\n========================================================================================================================\n";
+
+
+
 
 }

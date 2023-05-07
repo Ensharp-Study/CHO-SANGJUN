@@ -107,6 +107,7 @@
     <Compile Include="Controller\Administrator\AdminMenu\LogMenu\LogEdition.cs" />
     <Compile Include="Controller\Administrator\AdminMenu\LogMenu\LoggingTextFile.cs" />
     <Compile Include="Controller\Administrator\AdminMenu\LogMenu\LogReset.cs" />
+    <Compile Include="Controller\Administrator\AdminMenu\SearchingBookByNaver.cs" />
     <Compile Include="Controller\User\UserMenu\FindBookInNaverAndApply.cs" />
     <Compile Include="Model\BookDAO.cs" />
     <Compile Include="Model\ConnectionWithServer.cs" />

@@ -104,6 +104,7 @@ public class Constants
     public const string NUMBER_ERROR_MESSAGE = "숫자를 입력해 주세요!";
 
     public const string BOOK_APPLY_REQUEST = "신청하려면 ENTER를 눌러 주세요";
+    public const string BOOK_ADD = "도서관에 추가하려면 ENTER를 눌러 주세요";
     public const string BOOK_APPLY_SUCCESS = "도서 신청이 완료 되었습니다!";
     public const string BOOK_ALREADY_IN_APPLY_LIST = "이미 신청된 도서 입니다. 다시 입력해주세요";
     public const string BOOK_ALREADY_IN_BOOK_DATA = "도서관에 존재하는 도서 입니다.";
@@ -140,6 +141,7 @@ public class Constants
     public const string BOOK_BORROWING_STATUS = "대여 리스트 현황";
     public const string REQUESTED_BOOK = "신청 도서 추가하기";
     public const string CONTROLL_LOG = "로그 관리";
+    public const string SEARCH_NAVER_ADD_BOOK = "네이버 도서검색 및 도서 추가";
 
     public const string DELETE_LOG = "로그 TEXT 파일 삭제";
     public const string SAVE_LOG = "로그 TEXT 파일 저장";

@@ -301,7 +301,7 @@ namespace ConsoleApp1.Model
 
         }
 
-        public void AddNewBookInLibraryWithAppliedBook(BookDTO newBook)
+        public void AddNewBookInLibrary(BookDTO newBook)
         {
             string queryStatement = string.Format("INSERT INTO book_data (BookName, BookAuthor, BookPublisher, BookQuantity ,BookPrice, BookPublicationDate, Isbn, BookDescription ) VALUES ('{0}', '{1}','{2}','5', '{3}','{4}','{5}','{6}');", newBook.BookName, newBook.BookAuthor, newBook.BookPublisher, newBook.BookPrice, newBook.BookPublicationDate, newBook.Isbn, newBook.BookDescription);
             connectionWithServer.CreateUpdateDelete(queryStatement);

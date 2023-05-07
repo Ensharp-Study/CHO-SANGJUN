@@ -20,6 +20,7 @@ public class AdministratorMenu
     BookBorrowedStatus bookBorrowedStatus;
     AdditionBookByApplyList additionBookByApplyList;
     LogManagerMenu logManagerMenu;
+    SearchingBookByNaver searchingBookByNaver;
 
     public AdministratorMenu( )
     {
@@ -39,6 +40,7 @@ public class AdministratorMenu
         this.bookBorrowedStatus = new BookBorrowedStatus();
         this.additionBookByApplyList = new AdditionBookByApplyList();
         this.logManagerMenu = new LogManagerMenu();
+        this.searchingBookByNaver = new SearchingBookByNaver();
     }
 
     
@@ -90,7 +92,9 @@ public class AdministratorMenu
                     bookBorrowedStatus.CheckBookBorrowedList();
                     break;
 
-                case 100: //네이버 검색 
+                case (int)(AdministratorMenuNumber.SEARCHING_NAVER):
+                    dataLogging.SetLog(Constants.ADMINSTRATOR, Constants.SEARCH_NAVER_ADD_BOOK, Constants.SELECT_MENU);
+                    searchingBookByNaver.FindBookInNaverMain();
                     break;
 
                 case (int)(AdministratorMenuNumber.CONTROLL_LOG): 

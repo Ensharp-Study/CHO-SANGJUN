@@ -33,7 +33,6 @@ namespace ConsoleApp1.Controller.Administrator.AdminMenu
             while (isMenuExecute)
             {
                 Console.SetCursorPosition(0, 0);
-                administratorModeUi.ResetMenuScreen();
                 administratorModeUi.PrintApplyBookInNaverMenu();
 
                 //요청 도서 리스트 불러오기
@@ -63,12 +62,13 @@ namespace ConsoleApp1.Controller.Administrator.AdminMenu
                 {
                     administratorModeUi.PrintRedColorSentence(Constants.NO_BOOK_IN_LIST, 48, 11);
                     GoBackMenu.GetInstance().ensureUiVisibility();
+                    Console.Clear();
 
                 }
 
                 else//책이 있는 경우 - 도서 추가하기
                 {
-                    bookDAO.AddNewBookInLibraryWithAppliedBook(bookDTO); // 도서관 도서목록에 추가
+                    bookDAO.AddNewBookInLibrary(bookDTO); // 도서관 도서목록에 추가
                     bookDAO.DeleteBookInAppliedList(bookId); // 도서 요청 리스트에서 삭제   
                     administratorModeUi.PrintGreenColorSentence(Constants.BOOK_REGISTRATE_SUCCESS, 48, 11); //성공 메시지
 

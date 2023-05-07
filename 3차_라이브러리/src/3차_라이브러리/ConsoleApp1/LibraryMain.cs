@@ -11,11 +11,9 @@ namespace Library
     {
         static void Main(string[] args)
         {
-            //LibraryMode libraryStart = new LibraryMode();
-            //libraryStart.SelectMenu();
+            LibraryMode libraryStart = new LibraryMode();
+            libraryStart.SelectMenu();
 
-            FindBookInNaverAndApply findBookInNaverAndApply = new FindBookInNaverAndApply();
-            findBookInNaverAndApply.FindBookInNaverAndApplyMain();
         }
     }
 }

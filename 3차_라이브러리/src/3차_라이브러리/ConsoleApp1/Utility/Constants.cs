@@ -15,7 +15,9 @@ enum UserMenuNumber
     RETURNING_BOOK,
     BOOK_RETURN_LIST,
     EDIT_USER_INF,
-    DELETE_USER_INFORMATION
+    DELETE_USER_INFORMATION,
+    SEARCH_APPLY_NAVER_BOOK_API
+
 }
 enum AdministratorMenuNumber
 {
@@ -44,7 +46,8 @@ public class Constants
     public const string URL = "https://openapi.naver.com/v1/search/book?query={0}&display={1}";
 
 
-    public const int ESC = 10;
+    public const bool ESC_END_FUNCTION = false; // 뒤로가기
+    public const bool ENTER_AGAIN_FUNCTION = true; //다시하기 while문 재실행
 
     public const bool IS_PASSWORD = true;  //입력값 마스킹 처리 여부 판별용 상수
     public const bool IS_NOT_PASSWORD = false;
@@ -85,6 +88,15 @@ public class Constants
     public const string NUMBER_REGULAR_EXPRESSION = @"^\d+$"; //숫자인지 판단하는 정규표현식
     public const string NUMBER_ERROR_MESSAGE = "숫자를 입력해 주세요!";
 
+    public const string BOOK_APPLY_REQUEST = "신청하려면 ENTER를 눌러 주세요";
+    public const string BOOK_APPLY_SUCCESS = "도서 신청이 완료 되었습니다!";
+    public const string BOOK_ALREADY_IN_APPLY_LIST = "이미 신청된 도서 입니다. 다시 입력해주세요";
+    public const string BOOK_ALREADY_IN_BOOK_DATA = "도서관에 존재하는 도서 입니다.";
+    public const string BLANK_MESSAGE = "                                          ";
+    public const string GOBACK_OR_AGAIN = "다시 신청하려면 ENTER, 뒤로가려면 ESC를 눌러주세요";
+
+    public const string NO_BOOK_IN_LIST = "리스트에 책이 없습니다. 다시 검색하세요.";
+   
 
 }
     

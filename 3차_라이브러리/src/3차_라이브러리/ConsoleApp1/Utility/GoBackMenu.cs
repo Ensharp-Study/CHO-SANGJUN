@@ -20,14 +20,27 @@ namespace ConsoleApp1.Utility
             return instance;
         }
 
-        public bool GoBackToBeforeFunction()
+        private void CancelKeyEvent(object sender, ConsoleCancelEventArgs e) //ctrl 조합키 막기 위한 함수
         {
-            if (Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.Escape)
-            {
-                return false;
-            }
-            return true;
+            e.Cancel = true;
         }
 
+        public bool GoBackToBeforeFunction() // ESC 눌렀을때
+        {
+            Console.CancelKeyPress += CancelKeyEvent; //ctrl 조합키 막기
+            if (Console.ReadKey().Key == ConsoleKey.Escape)
+            {
+                return Constants.ESC_END_FUNCTION;
+            }
+            return Constants.ENTER_AGAIN_FUNCTION;
+        }
+
+        public void ensureUiVisibility() // UI ConsoleClear로 묻히지 않도록 막는 함수
+        {
+            Console.CancelKeyPress += CancelKeyEvent; //ctrl 조합키 막기
+            Console.ReadKey(true);
+        }
+
+        
     }
 }

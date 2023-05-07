@@ -37,24 +37,8 @@ public class UserLogin //유저모드 로그인 기능 클래스
 
         while (isMenuExecute) {
 
-            var thread = new Thread(() =>
-            {
-                while (true)
-                {
-                    if (Console.ReadKey(true).Key == ConsoleKey.Escape)
-                    {
-                        isMenuExecute = false; // while 문 탈출
-                        break; // 쓰레드 종료
-                    }
-                }
-            });
-            // 쓰레드 시작
-            thread.Start();
-
             while (!isJudgingCorrectInput)
             {
-
-
                 Console.Clear();
                 mainMenuUi.ViewMainMenu();
                 mainMenuUi.ViewMenuSquare();
@@ -88,8 +72,7 @@ public class UserLogin //유저모드 로그인 기능 클래스
 
             Console.Clear();
             usermenu.ControllUserMenu(loggedInUserInformation); //유저 모드 메뉴로 진입
-                                                                
-            thread.Join(); // 쓰레드 종료 대기
+           
         }
     }
     public void ReceiveIdAndPassword()

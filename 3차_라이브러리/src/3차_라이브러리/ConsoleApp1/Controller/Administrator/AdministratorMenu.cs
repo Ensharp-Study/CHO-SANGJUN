@@ -38,14 +38,14 @@ public class AdministratorMenu
     public void ControllAdministratorMenu()
     {
         int menuNumber;
-        string[] administratorMenuList = { "○ 책 정보 검색", "○ 책 추가하기", "○ 책 삭제하기", "○ 책 정보 수정하기", "○ 회원관리", "○ 도서 대여 현황" };
+        string[] administratorMenuList = { "○ 책 정보 검색", "○ 책 추가하기", "○ 책 삭제하기", "○ 책 정보 수정하기", "○ 회원관리", "○ 도서 대여 현황", "○ NAVER검색", "○ 로그관리", "○ 요청도서" };
 
         while (true)
         {
             mainMenuUi.ViewMainMenu();
             commonFunctionUi.ViewMenu();
 
-            menuNumber = menuSelectController.SelectMenuWithUpAndDown(administratorMenuList, 6, 49, 26);
+            menuNumber = menuSelectController.SelectMenuWithUpAndDown(administratorMenuList, 9, 49, 26);
             Console.Clear();
 
             switch (menuNumber)
@@ -73,12 +73,18 @@ public class AdministratorMenu
                 case (int)(AdministratorMenuNumber.BOOK_BORROWING_STATUS):
                     bookBorrowedStatus.CheckBookBorrowedList();
                     break;
+
+                case 100: //네이버 검색 
+                    break;
+
+                case 200: //로그
+                    break;
+
+                case 300: //요청도서
+                    break;
             }
 
-            if(menuNumber == Constants.ESC) // case문 안에서
-            {
-                break;
-            }
+         
         }
 
     }

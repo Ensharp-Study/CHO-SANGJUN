@@ -226,5 +226,31 @@ namespace ConsoleApp1.Model
             string queryStatement = string.Format("DELETE FROM user_returned_book_list WHERE UserId = '{0}';", userNumber);
             connectionWithServer.CreateUpdateDelete(queryStatement);
         }
+
+        public void AddBookInUserApplyBookList(List<BookDTO> userApplyBooks) //user가 요청한 도서, 데이터베이스에 저장하는 함수
+        {
+            foreach (BookDTO book in userApplyBooks)
+            {
+                string queryStatement = string.Format("INSERT INTO user_apply_book_list (BookName, BookAuthor, BookPublisher, BookPrice, BookPublicationDate, BookIsbn, BookDescription ) VALUES ('{0}', '{1}','{2}','{3}','{4}','{5}','{6}');", book.BookName, book.BookAuthor, book.BookPublisher, book.BookPrice, book.BookPublicationDate, book.Isbn, book.BookDescription);
+                connectionWithServer.CreateUpdateDelete(queryStatement);
+            }
+        }
+
+        public int FindBookInApplyBookList(string isbn) // 책이 신청리스트에 이미 신청된 책일 경우
+        {
+            int bookCount;
+            string queryStatement = string.Format("SELECT COUNT(*) FROM user_apply_book_list WHERE BookIsbn = '{0}';", isbn);
+            bookCount = Convert.ToInt32(connectionWithServer.SelectUsedExecuteScalarMethod(queryStatement));   
+            return bookCount;
+        }
+
+        public int FindBookInBookDataList(string isbn) // 책이 이미 도서관에 있을 경우
+        {
+            int bookCount;
+            string queryStatement = string.Format("SELECT COUNT(*) FROM book_data WHERE Isbn = '{0}';", isbn);
+            bookCount = Convert.ToInt32(connectionWithServer.SelectUsedExecuteScalarMethod(queryStatement));
+            return bookCount;
+        }
+
     }
 }

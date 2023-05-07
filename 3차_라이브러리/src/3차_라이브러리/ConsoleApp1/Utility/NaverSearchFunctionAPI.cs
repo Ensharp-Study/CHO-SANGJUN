@@ -13,10 +13,11 @@ namespace ConsoleApp1.Utility
 {
     public class NaverSearchFunctionAPI
     {
-        List<BookDTO> searchBookList = new List<BookDTO>();
 
         public List<BookDTO> SearchBook(string bookName, string bookCount)
         {
+            List<BookDTO> searchBookList = new List<BookDTO>();
+
             string url = string.Format(Constants.URL, bookName, bookCount);
             string id = "OX9S3Tu5F_h3qCJCerI3";
             string secret = "OdL8kKSsRm";
@@ -39,7 +40,7 @@ namespace ConsoleApp1.Utility
                 StreamReader reader = new StreamReader(stream, Encoding.UTF8); //응답 스트림 읽기
                 string jsonString = reader.ReadToEnd(); //응답 본문 문자열에 저장
                 reader.Close();
-                ParseJSON(jsonString); // 파싱하고 불러온 데이터 DTO에 담기
+                searchBookList = ParseJSON(jsonString); // 파싱하고 불러온 데이터 DTO에 담기
             }
 
             else
@@ -50,26 +51,38 @@ namespace ConsoleApp1.Utility
             return searchBookList; //위에 else문 에러 발생시 리스트 원소 값 0개
         }
 
-        public void ParseJSON(string jsonString)
+        public List<BookDTO> ParseJSON(string jsonString)
         {
+            List<BookDTO> searchBookList = new List<BookDTO>();
+
             // Native Object 생성
             JObject json = JObject.Parse(jsonString);
             JArray itemsArray = (JArray)json["items"];
+            string isbnFormating;
+            int id = 1;
 
             foreach (JObject index in itemsArray)
             {
                 BookDTO searchedBookDTO = new BookDTO();
 
-                searchedBookDTO.BookName = (string)index["title"];
+                searchedBookDTO.BookId = id;
+                id++;
+                searchedBookDTO.BookName = ((string)index["title"]).Replace("'", "\""); // '따움표가 쿼리문에 걸리지 않게 하기 위해서 처리
                 searchedBookDTO.BookAuthor = (string)index["author"];
                 searchedBookDTO.BookPublisher = (string)index["publisher"];
-                searchedBookDTO.BookPrice = (int)index["discount"];        
+                searchedBookDTO.BookPrice = (int)index["discount"];
                 searchedBookDTO.BookPublicationDate = (string)index["pubdate"];              
-                searchedBookDTO.Isbn = (string)index["isbn"];
-                searchedBookDTO.BookDescription = (string)index["description"];
+                searchedBookDTO.BookDescription = ((string)index["description"]).Replace("'", "\""); ;
+                isbnFormating = (string)index["isbn"]; // isbn 문자열 틀에 맞게 저장
+                isbnFormating = isbnFormating.Insert(3, "-");
+                isbnFormating = isbnFormating.Insert(6, "-");
+                isbnFormating = isbnFormating.Insert(13, "-");
+                isbnFormating = isbnFormating.Insert(15, "-");
+                searchedBookDTO.Isbn = isbnFormating;
 
                 searchBookList.Add(searchedBookDTO);
             }
+            return searchBookList;
         }
     }
 }

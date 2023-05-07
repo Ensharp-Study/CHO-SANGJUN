@@ -21,6 +21,7 @@ public class AdministratorLogin
         this.signUpAndLoginUi = SignUpAndLoginUi.GetInstance();
 
         this.administratorMenu = new AdministratorMenu();
+        userDAO = new UserDAO();
     }
 
     private string id;

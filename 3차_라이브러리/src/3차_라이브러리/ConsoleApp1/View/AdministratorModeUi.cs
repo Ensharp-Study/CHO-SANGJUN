@@ -303,4 +303,28 @@ public class AdministratorModeUi{
         Console.WriteLine("                                         초기화 하려면 ENTER을 눌러주세요                 \n");
         Console.WriteLine("                        -----------------------------------------------------------------\n");
     }
+
+    public void PrintSaveLogMenu()
+    {
+        Console.SetCursorPosition(0, 0);
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                         로그 TEXT 파일로 바탕화면에 저장\n");
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                 ENTER : 입력                      ESC : 뒤로가기\n\n");
+        Console.WriteLine("                        ----------------------------------------------------------------\n");
+        Console.WriteLine("                                         저장 하려면 ENTER을 눌러주세요                 \n");
+        Console.WriteLine("                        -----------------------------------------------------------------\n");
+    }
+
+    public void PrintSaveLogSuccess()
+    {
+        Console.SetCursorPosition(0, 0);
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                         로그 TEXT 파일로 바탕화면에 저장\n");
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                 ENTER : 입력                      ESC : 뒤로가기\n\n");
+        Console.WriteLine("                        ----------------------------------------------------------------\n");
+        Console.WriteLine("                                      바탕화면에 성공적으로 저장 되었습니다!                 \n");
+        Console.WriteLine("                        -----------------------------------------------------------------\n");
+    }
 }

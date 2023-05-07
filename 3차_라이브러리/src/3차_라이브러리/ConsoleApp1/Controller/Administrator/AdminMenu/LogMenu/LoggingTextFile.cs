@@ -1,4 +1,5 @@
 ﻿using ConsoleApp1.Model;
+using ConsoleApp1.Utility;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,9 +12,11 @@ namespace ConsoleApp1.Controller.Administrator.AdminMenu.LogMenu
     public class LoggingTextFile
     {
         LogDAO logDAO;
+        AdministratorModeUi administratorModeUi;
         public LoggingTextFile()
         {
             this.logDAO = new LogDAO();
+            this.administratorModeUi = AdministratorModeUi.GetInstance();
         }
 
         public void SaveLogDateToTEXT()
@@ -22,7 +25,9 @@ namespace ConsoleApp1.Controller.Administrator.AdminMenu.LogMenu
             string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop); //바탕화면 경로 설정
             string filePath = Path.Combine(desktopPath, "로그정보.txt");
 
-            // ui.
+            administratorModeUi.PrintSaveLogMenu();
+            if (!(GoBackMenu.GetInstance().GoBackToBeforeFunction())) return;//ESC눌러서 뒤로가기 기능 구현
+            
             //모든 로그정보 불러오기
             allLogData = logDAO.ReadAllLogData();
 
@@ -42,6 +47,10 @@ namespace ConsoleApp1.Controller.Administrator.AdminMenu.LogMenu
 
             //파일 저장하기
             File.WriteAllText(filePath, text);
+
+            Console.Clear();
+            administratorModeUi.PrintSaveLogSuccess();
+            GoBackMenu.GetInstance().ensureUiVisibility();
         }
     }
 }

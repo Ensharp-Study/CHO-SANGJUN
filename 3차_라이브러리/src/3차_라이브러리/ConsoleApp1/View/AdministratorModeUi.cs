@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleApp1.Model;
+using System;
 using System.Runtime.CompilerServices;
 
 public class AdministratorModeUi{ 
@@ -267,5 +268,27 @@ public class AdministratorModeUi{
         {
             Console.WriteLine("                                                                                           ");
         }
+    }
+
+    public void PrintEditLogMenu()
+    {
+        Console.SetCursorPosition(0, 0);
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                                   로그 삭제\n");
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                 ENTER : 입력                      ESC : 뒤로가기\n\n");
+        Console.WriteLine("                        ----------------------------------------------------------------\n");
+        Console.WriteLine("                                삭제 로그 번호 :                                          \n");
+        Console.WriteLine("                        -----------------------------------------------------------------\n");
+    }
+    public void PrintLogList(LogDTO log)
+    {
+        Console.WriteLine("========================================================================================================================");
+        Console.WriteLine("로그 ID     :  " + (log.LogNumber).ToString());
+        Console.WriteLine("로그 시간   :  " + log.LogTime);
+        Console.WriteLine("로그 사용자 :  " + log.LogUser);
+        Console.WriteLine("로그 정보   :  " + log.LogInformation);
+        Console.WriteLine("로그 활동   :  " + log.LogAction);
+        Console.WriteLine("========================================================================================================================");
     }
 }

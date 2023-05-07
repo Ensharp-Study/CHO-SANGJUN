@@ -19,7 +19,8 @@ public class AdministratorMenu
     MemberManger memberManger;
     BookBorrowedStatus bookBorrowedStatus;
     AdditionBookByApplyList additionBookByApplyList;
-    
+    LogManagerMenu logManagerMenu;
+
     public AdministratorMenu( )
     {
         this.InputByReadKey = InputByReadKey.GetInstance();
@@ -37,6 +38,7 @@ public class AdministratorMenu
         this.memberManger = new MemberManger();
         this.bookBorrowedStatus = new BookBorrowedStatus();
         this.additionBookByApplyList = new AdditionBookByApplyList();
+        this.logManagerMenu = new LogManagerMenu();
     }
 
     
@@ -91,7 +93,9 @@ public class AdministratorMenu
                 case 100: //네이버 검색 
                     break;
 
-                case 200: //로그
+                case (int)(AdministratorMenuNumber.CONTROLL_LOG): 
+                    dataLogging.SetLog(Constants.ADMINSTRATOR, Constants.CONTROLL_LOG, Constants.SELECT_MENU);
+                    logManagerMenu.LogManagerSelectMenu();
                     break;
 
                 case (int)(AdministratorMenuNumber.REQUESTED_BOOK):

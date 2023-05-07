@@ -35,6 +35,15 @@ enum AdministratorMenuNumber
     REQUESTED_BOOK
 
 }
+
+enum LogManagerMenuNumber
+{
+    //로그 메뉴 번호 할당
+    LOG_EDIT,
+    LOG_SAVE_TEXT_FILE,
+    LOG_DELETE_TEXT_FILE,
+    LOG_RESET
+}
 enum LoginOrSignUpNumber
 {
     LOGIN,
@@ -101,6 +110,8 @@ public class Constants
     public const string GOBACK_OR_AGAIN = "다시 신청하려면 ENTER, 뒤로가려면 ESC를 눌러주세요";
     public const string NO_BOOK_IN_LIST = "리스트에 책이 없습니다. 다시 검색하세요.";
     public const string BOOK_REGISTRATE_SUCCESS = "도서 추가에 성공 했습니다.";
+    public const string NO_LOG_IN_LIST = "리스트에 로그가 없습니다. 다시 검색하세요.";
+    public const string LOG_DELETE_SUCCESS = "로그 삭제에 성공 했습니다.";
 
     //로그활동
     public const string LOGIN = "로그인";
@@ -124,6 +135,7 @@ public class Constants
     public const string MEMBER_MANAGER = "회원 관리";
     public const string BOOK_BORROWING_STATUS = "대여 리스트 현황";
     public const string REQUESTED_BOOK = "신청 도서 추가하기";
+    public const string CONTROLL_LOG = "로그 관리";
 
 
     public const string BOOK_ID = "책 아이디: ";

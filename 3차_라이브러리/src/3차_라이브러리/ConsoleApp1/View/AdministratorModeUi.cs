@@ -327,4 +327,26 @@ public class AdministratorModeUi{
         Console.WriteLine("                                      바탕화면에 성공적으로 저장 되었습니다!                 \n");
         Console.WriteLine("                        -----------------------------------------------------------------\n");
     }
+    public void PrintDeleteLogTextMenu()
+    {
+        Console.SetCursorPosition(0, 0);
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                       바탕화면에 저장된 로그 파일 삭제\n");
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                 ENTER : 입력                      ESC : 뒤로가기\n\n");
+        Console.WriteLine("                        ----------------------------------------------------------------\n");
+        Console.WriteLine("                                         삭제 하려면 ENTER을 눌러주세요                 \n");
+        Console.WriteLine("                        -----------------------------------------------------------------\n");
+    }
+    public void PrintDeleteLogTextSuccess()
+    {
+        Console.SetCursorPosition(0, 0);
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                         바탕화면에 저장된 로그 파일 삭제\n");
+        Console.WriteLine("                        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+        Console.WriteLine("                                 ENTER : 입력                      ESC : 뒤로가기\n\n");
+        Console.WriteLine("                        ----------------------------------------------------------------\n");
+        Console.WriteLine("                                           성공적으로 삭제 되었습니다!                 \n");
+        Console.WriteLine("                        -----------------------------------------------------------------\n");
+    }
 }

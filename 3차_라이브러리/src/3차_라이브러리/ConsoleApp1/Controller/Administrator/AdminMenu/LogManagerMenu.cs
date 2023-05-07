@@ -18,6 +18,7 @@ namespace ConsoleApp1.Controller.Administrator.AdminMenu
         LogEdition logEdition;
         LogReset logReset;
         LoggingTextFile loggingTextFile;
+        DeletionLogTextFile deletionLogTextFile;
 
         public LogManagerMenu()
         {
@@ -29,6 +30,7 @@ namespace ConsoleApp1.Controller.Administrator.AdminMenu
             this.logEdition = new LogEdition();
             this.logReset = new LogReset();
             this.loggingTextFile = new LoggingTextFile();
+            this.deletionLogTextFile = new DeletionLogTextFile();
         }
 
         public void LogManagerSelectMenu()
@@ -54,6 +56,7 @@ namespace ConsoleApp1.Controller.Administrator.AdminMenu
                         loggingTextFile.SaveLogDateToTEXT();
                         break;
                     case (int)(LogManagerMenuNumber.LOG_DELETE_TEXT_FILE):
+                        deletionLogTextFile.DeleteTextFile();
                         break;
                     case (int)(LogManagerMenuNumber.LOG_RESET):
                         logReset.ResetLog();

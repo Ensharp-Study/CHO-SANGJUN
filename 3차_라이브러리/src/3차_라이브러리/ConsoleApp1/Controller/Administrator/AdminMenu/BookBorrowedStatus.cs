@@ -52,6 +52,9 @@ public class BookBorrowedStatus
 
             //로그 수집
             dataLogging.SetLog(Constants.ADMINSTRATOR, Constants.ALL_BOOK_VIEW, Constants.BOOK_BORROW_LIST);
+
+            //뒤로가기
+            isMenuExecute = GoBackMenu.GetInstance().GoBackToBeforeFunction();
         }
     }
 }

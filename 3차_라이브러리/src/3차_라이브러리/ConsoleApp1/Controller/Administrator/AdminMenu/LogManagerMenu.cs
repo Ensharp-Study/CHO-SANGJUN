@@ -37,8 +37,9 @@ namespace ConsoleApp1.Controller.Administrator.AdminMenu
         {
             int menuNumber;
             string[] logMenuList = { "○ 로그 수정", "○ 로그 TEXT 파일저장", "○ 로그 삭제", "○ 로그 리셋" };
+            bool isMenuExecute = true; //메뉴 탈출 진리형 변수
 
-            while (true)
+            while (isMenuExecute)
             {
                 Console.Clear();
                 mainMenuUi.ViewMainMenu();
@@ -67,7 +68,8 @@ namespace ConsoleApp1.Controller.Administrator.AdminMenu
                         break;
                 }
 
-
+                //뒤로가기
+                isMenuExecute = GoBackMenu.GetInstance().GoBackToBeforeFunction();
             }
 
         }

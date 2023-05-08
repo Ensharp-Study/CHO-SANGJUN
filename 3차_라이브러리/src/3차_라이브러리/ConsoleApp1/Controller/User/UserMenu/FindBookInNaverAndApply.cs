@@ -42,6 +42,9 @@ namespace ConsoleApp1.Controller.User.UserMenu
                 Console.ReadKey(true);
                 
                 ApplyBookToAdministrator(loggedInUserInformation);
+
+                //뒤로가기
+                isMenuExecute = GoBackMenu.GetInstance().GoBackToBeforeFunction();
             }
         }
 
@@ -141,15 +144,14 @@ namespace ConsoleApp1.Controller.User.UserMenu
 
                 //성공시
                 userModeUi.PrintGreenColorSentence(Constants.BOOK_APPLY_SUCCESS, 48, 11);
+                isMenuExecute = false;
                 //DAO 통해 데이터 베이스에 전달하기
                 bookDAO.AddBookInUserApplyBookList(userSelectedBookList);
 
                 //로그 수집
                 dataLogging.SetLog(loggedInUserInformation.UserName, userSelectedBookList[0].BookName, Constants.BOOK_APPLY);
 
-                //뒤로가기
-                userModeUi.PrintBlueColorSentence(Constants.GOBACK_OR_AGAIN, 35, 12);
-                isMenuExecute = GoBackMenu.GetInstance().GoBackToBeforeFunction();
+             
             }
         }
 

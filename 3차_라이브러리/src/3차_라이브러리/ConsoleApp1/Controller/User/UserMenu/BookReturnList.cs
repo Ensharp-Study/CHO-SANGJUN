@@ -35,7 +35,8 @@ public class BookReturnList
             {
                 userModeUi.PrintUserReturningList(returnedBookInformation[i]);
             }
-
+            //뒤로가기
+            isMenuExecute = GoBackMenu.GetInstance().GoBackToBeforeFunction();
         }
     }
 }

@@ -40,6 +40,9 @@ namespace ConsoleApp1.Controller.Administrator.AdminMenu
 
                 SearchBookInNaver();
                 AddBookInLibrary();
+
+                //뒤로가기
+                isMenuExecute = GoBackMenu.GetInstance().GoBackToBeforeFunction();
             }
         }
 

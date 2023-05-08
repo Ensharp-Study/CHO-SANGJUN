@@ -99,8 +99,10 @@ public class DeletingBook
                 Console.Clear();
                 administratorModeUi.PrintFailNotExistInListSentence();
             }
-    
-            
+
+            //뒤로가기
+            isMenuExecute = GoBackMenu.GetInstance().GoBackToBeforeFunction();
+
         }
     }
 }

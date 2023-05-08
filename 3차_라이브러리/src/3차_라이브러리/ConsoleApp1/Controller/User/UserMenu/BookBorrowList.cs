@@ -34,6 +34,8 @@ public class BookBorrowList
 				userModeUi.PrintUserBorrowingList(borrowedBookInformation[i]);
 			}
 
+            //뒤로가기
+            isMenuExecute = GoBackMenu.GetInstance().GoBackToBeforeFunction();
         }
 
     }

@@ -102,6 +102,9 @@ public class UserMenu //유저 메뉴 진입 기능 클래스
                     findBookInNaverAndApply.FindBookInNaverAndApplyMain(loggedInUserInformation);
                     break;
             }
+
+            //뒤로가기
+            isMenuExecute = GoBackMenu.GetInstance().GoBackToBeforeFunction();
         }
     }
 }

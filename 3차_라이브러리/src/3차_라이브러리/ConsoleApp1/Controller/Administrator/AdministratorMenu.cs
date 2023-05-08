@@ -48,11 +48,12 @@ public class AdministratorMenu
     {
         int menuNumber;
         string[] administratorMenuList = { "○ 책 정보 검색", "○ 책 추가하기", "○ 책 삭제하기", "○ 책 정보 수정하기", "○ 회원관리", "○ 도서 대여 현황", "○ NAVER검색", "○ 로그관리", "○ 요청도서" };
+        bool isMenuExecute = true; //메뉴 탈출 진리형 변수
 
         //로그 수집
         dataLogging.SetLog(Constants.ADMINSTRATOR, Constants.ADMINSTRATOR_AUTHORITY, Constants.LOGIN);
 
-        while (true)
+        while (isMenuExecute)
         {
             mainMenuUi.ViewMainMenu();
             commonFunctionUi.ViewMenu();
@@ -107,8 +108,8 @@ public class AdministratorMenu
                     additionBookByApplyList.AddBookByApplyListMain();
                     break;
             }
-
-         
+            //뒤로가기
+            isMenuExecute = GoBackMenu.GetInstance().GoBackToBeforeFunction();
         }
 
     }

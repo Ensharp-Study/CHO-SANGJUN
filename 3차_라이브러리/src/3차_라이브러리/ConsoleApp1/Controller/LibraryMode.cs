@@ -68,6 +68,7 @@ public class LibraryMode
                 administratorLogin.GetAdministratorLogin();
             }
 
+            isMenuExecute = GoBackMenu.GetInstance().GoBackToBeforeFunction();
         }
     }
 	

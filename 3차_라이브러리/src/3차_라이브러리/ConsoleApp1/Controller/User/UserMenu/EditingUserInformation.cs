@@ -105,7 +105,9 @@ public class EditingUserInformation
 
             Console.Clear();
             userModeUi.PrintUserInformationUpdateSuccess();
-            
+
+            //뒤로가기
+            isMenuExecute = GoBackMenu.GetInstance().GoBackToBeforeFunction();
         }
     }
 }

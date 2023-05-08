@@ -95,7 +95,9 @@ public class ReturningBook //책 반납하기
                 Console.WriteLine("                                               ");
 
             }
-        
+
+            //뒤로가기
+            isMenuExecute = GoBackMenu.GetInstance().GoBackToBeforeFunction();
         }
     }
 }

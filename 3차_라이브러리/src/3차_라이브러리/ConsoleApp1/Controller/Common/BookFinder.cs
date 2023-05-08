@@ -53,6 +53,9 @@ public class BookFinder
             CompareAndPrintBookList(); // 검색 정보와 책 정보 비교 후 출력
 
             commonFunctionUi.SelectEndorReturnInTheProgram(); //다시하기 또는 나가기 출력
+
+            //뒤로가기
+            isMenuExecute = GoBackMenu.GetInstance().GoBackToBeforeFunction();
         }
     }
 

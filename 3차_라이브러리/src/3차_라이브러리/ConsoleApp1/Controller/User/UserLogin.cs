@@ -73,8 +73,10 @@ public class UserLogin //유저모드 로그인 기능 클래스
 
             Console.Clear();
             usermenu.ControllUserMenu(loggedInUserInformation); //유저 모드 메뉴로 진입
-           
         }
+   
+        //뒤로가기
+        isMenuExecute = GoBackMenu.GetInstance().GoBackToBeforeFunction();
     }
     public void ReceiveIdAndPassword()
     {

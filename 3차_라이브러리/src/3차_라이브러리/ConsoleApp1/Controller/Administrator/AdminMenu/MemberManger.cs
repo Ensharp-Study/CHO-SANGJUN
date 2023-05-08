@@ -81,6 +81,9 @@ public class MemberManger
                 Console.Clear();
                 administratorModeUi.PrintNotExistUser();
             }
+
+            //뒤로가기
+            isMenuExecute = GoBackMenu.GetInstance().GoBackToBeforeFunction();
         }
     } 
 

@@ -3,7 +3,6 @@ package Utility;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import swing.MainFrame;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -16,7 +15,7 @@ public class KakaoRESTAPI {
     private final static String API_URL = "https://dapi.kakao.com/v2/search/image"; // 검색 API URL
     private final static String API_KEY = "e2685cab5b4653d5ac752f1d4b988428"; // REST API 키
 
-    public void ConnectionHTTP() {
+    public String[] ConnectionHTTP() {
 
         String[] imageURL = new String[2];
 
@@ -56,15 +55,14 @@ public class KakaoRESTAPI {
             for(int i=0; i<2; i++) {
                 JSONObject document = (JSONObject) documents.get(i);
                 imageURL[i]=document.get("image_url").toString();
+                System.out.println("imageURL = " + imageURL[i]);
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        new MainFrame(imageURL);
-
-
+        return imageURL;
     }
 
 }

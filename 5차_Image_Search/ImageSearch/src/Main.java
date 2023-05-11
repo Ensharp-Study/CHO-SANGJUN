@@ -1,13 +1,8 @@
-import Utility.KakaoRESTAPI;
+import swing.MainFrame;
 
 public class Main {
-
     public static void main(String[] args) {
-        /*ImageSearchMode imageSearchMode = new ImageSearchMode();
-        imageSearchMode.ImageSearchStart();*/
-        
-        KakaoRESTAPI kakaoRESTAPI = new KakaoRESTAPI();
-        kakaoRESTAPI.ConnectionHTTP();
+        new MainFrame();
     }
 
 }

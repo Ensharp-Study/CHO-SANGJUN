@@ -6,6 +6,8 @@ import Utility.KakaoRESTAPI;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URL;
 
@@ -20,13 +22,11 @@ public class MainFrame extends JFrame {
         setLocationRelativeTo(null);// 창이 가운데에 나오게 설정
         setResizable(false); //사이즈 조절 불가능
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.add(SearchMainPanel());
-        //this.add(AfterSearchPanel());
-
+        this.add(SearchMainPanelProduce());
         setVisible(true);
     }
 
-    public JPanel SearchMainPanel() {
+    public JPanel SearchMainPanelProduce() {
         JPanel searchMainPanel = new JPanel() { //패널 생성과 동시에 배경 채우기
             Image background = new ImageIcon(MainFrame.class.getResource("image/Wallpapers.jpeg")).getImage();
             public void paintComponent(Graphics g) {//그리는 함수
@@ -47,8 +47,25 @@ public class MainFrame extends JFrame {
         textField.setPreferredSize(new Dimension(100, 30));
         searchMainPanel.add(textField);
 
+        //검색 버튼 추가
+        JButton searchButton = new JButton("검색");
+
+
+        //버튼 키 이벤트 추가
+        searchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == searchButton) {
+                    //버튼 눌렀을 때 이벤트 처리
+                    MainFrame.add(AfterSearchPanel());
+                }
+            }
+        });
+
+        searchMainPanel.add(searchButton);
         return searchMainPanel;
     }
+
 
     public JPanel AfterSearchPanel(){
         JPanel afterSearchPanel = new JPanel();

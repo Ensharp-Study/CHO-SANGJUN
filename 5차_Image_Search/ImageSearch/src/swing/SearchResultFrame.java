@@ -22,22 +22,22 @@ public class SearchResultFrame extends JFrame{
         TotalPanelProduce.setLayout(new BorderLayout());
         TotalPanelProduce.setPreferredSize(new Dimension(800,500));
 
-        TotalPanelProduce.add(SearchResultPanelProduce(searchData),BorderLayout.NORTH);
+        TotalPanelProduce.add(SearchResultNoticePanelProduce(searchData),BorderLayout.NORTH);
         TotalPanelProduce.add(ImagePanelProduce(imageURL),BorderLayout.SOUTH);
 
         return TotalPanelProduce;
     }
 
 
-    public JPanel SearchResultPanelProduce(String searchData){
+    public JPanel SearchResultNoticePanelProduce(String searchData){
         JPanel searchResultNoticePanel = new JPanel();
-        searchResultNoticePanel.setLayout(null);
-        searchResultNoticePanel.setPreferredSize(new Dimension(100,100));
+        searchResultNoticePanel.setLayout(new FlowLayout());
+        searchResultNoticePanel.setPreferredSize(new Dimension(800,100));
 
         //textfield 설정 및 String 값 대입
         JTextField searchDataTextField = new JTextField(searchData);
-        searchDataTextField.setPreferredSize(new Dimension(100,30));
-        //searchDataTextField.setLocation(350,50);
+        searchDataTextField.setPreferredSize(new Dimension(500,30));
+        searchDataTextField.setHorizontalAlignment(JTextField.CENTER);
         searchResultNoticePanel.add(searchDataTextField);
         return searchResultNoticePanel;
     }
@@ -45,13 +45,13 @@ public class SearchResultFrame extends JFrame{
     public JPanel ImagePanelProduce(String[] imageURL){
         JPanel imagePanel = new JPanel();
         imagePanel.setLayout(new FlowLayout());
-        imagePanel.setPreferredSize(new Dimension(250,250));
+        imagePanel.setPreferredSize(new Dimension(800,350));
 
         //이미지 출력
         JLabel imageLabel = new JLabel();
         for(int i=0; i<10; i++){
             imageLabel = ImageProduceByURL(imageURL[i]);
-            imageLabel.setSize(20, 20);
+            imageLabel.setSize(100, 100);
             imagePanel.add(imageLabel);
         }
 
@@ -69,7 +69,7 @@ public class SearchResultFrame extends JFrame{
             e.printStackTrace();
         }
 
-        Image updateImage = image.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+        Image updateImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         ImageIcon updateIcon = new ImageIcon(updateImage);
 
         mainImageLabel.setIcon(updateIcon);

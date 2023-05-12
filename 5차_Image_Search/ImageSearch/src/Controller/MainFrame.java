@@ -1,5 +1,5 @@
 
-package swing;
+package Controller;
 
 import Utility.KakaoRESTAPI;
 
@@ -47,7 +47,7 @@ public class MainFrame extends JFrame {
         //검색 버튼 추가
         JButton searchButton = new JButton("검색");
         //버튼 키 이벤트 추가
-        searchButton.addActionListener(new ActionListener() {
+        searchButton.addActionListener(new ActionListener() { // 인터페이스 생성
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == searchButton) {
@@ -59,8 +59,14 @@ public class MainFrame extends JFrame {
                 }
             }
         });
-
         searchMainPanel.add(searchButton);
+
+        //로그 메뉴 들어가기 버튼 구현
+        JButton logStatusButton = new JButton("로그 확인하기");
+        logStatusButton.setPreferredSize(new Dimension(200,30));
+        logStatusButton.setLocation(300,100);
+        searchMainPanel.add(logStatusButton);
+
         return searchMainPanel;
     }
 

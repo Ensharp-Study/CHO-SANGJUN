@@ -1,8 +1,10 @@
-package swing;
+package Controller;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URL;
 
@@ -30,15 +32,34 @@ public class SearchResultFrame extends JFrame{
 
 
     public JPanel SearchResultNoticePanelProduce(String searchData){
+        String[] count= {"10","20","30"};
+
         JPanel searchResultNoticePanel = new JPanel();
         searchResultNoticePanel.setLayout(new FlowLayout());
         searchResultNoticePanel.setPreferredSize(new Dimension(800,100));
+
+        //뒤로가기 버튼
+        JButton gobackMainButton = new JButton("뒤로가기");
+        gobackMainButton.setPreferredSize(new Dimension(100,30));
+        gobackMainButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //뒤로가기 버튼 이벤트 구현
+            }
+        });
+        searchResultNoticePanel.add(gobackMainButton);
 
         //textfield 설정 및 String 값 대입
         JTextField searchDataTextField = new JTextField(searchData);
         searchDataTextField.setPreferredSize(new Dimension(500,30));
         searchDataTextField.setHorizontalAlignment(JTextField.CENTER);
         searchResultNoticePanel.add(searchDataTextField);
+
+        //콤보박스 생성
+        JComboBox countSelection = new JComboBox(count);
+        countSelection.setPreferredSize(new Dimension(100,30));
+        searchResultNoticePanel.add(countSelection);
+
         return searchResultNoticePanel;
     }
 

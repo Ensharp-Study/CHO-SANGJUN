@@ -1,4 +1,4 @@
-import swing.MainFrame;
+import Controller.MainFrame;
 
 public class Main {
     public static void main(String[] args) {

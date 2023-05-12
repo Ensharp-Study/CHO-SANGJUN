@@ -15,13 +15,13 @@ public class KakaoRESTAPI {
     private final static String API_URL = "https://dapi.kakao.com/v2/search/image"; // 검색 API URL
     private final static String API_KEY = "e2685cab5b4653d5ac752f1d4b988428"; // REST API 키
 
-    public String[] ConnectionHTTP() {
+    public String[] ConnectionHTTP(String searchData) {
 
-        String[] imageURL = new String[2];
+        String[] imageURL = new String[10];
 
         try {
-            String query = "고양이"; // 검색어
-            int size = 2; // 한 페이지에 포함되는 문서의 수
+            String query = searchData; // 검색어
+            int size = 10; // 한 페이지에 포함되는 문서의 수
             int page = 1; // 페이지 번호
             String sort = "accuracy"; // 정렬 방법
 
@@ -52,10 +52,10 @@ public class KakaoRESTAPI {
             JSONObject jsonObject = (JSONObject) parser.parse(result);
             JSONArray documents = (JSONArray)jsonObject.get("documents"); // 배열 뽑아내기
 
-            for(int i=0; i<2; i++) {
+            for(int i=0; i<10; i++) {
                 JSONObject document = (JSONObject) documents.get(i);
                 imageURL[i]=document.get("image_url").toString();
-                //System.out.println("imageURL = " + imageURL[i]);
+                System.out.println("imageURL = " + imageURL[i]);
             }
 
         } catch (Exception e) {

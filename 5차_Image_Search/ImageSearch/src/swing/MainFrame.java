@@ -3,13 +3,10 @@ package swing;
 
 import Utility.KakaoRESTAPI;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.net.URL;
 
 public class MainFrame extends JFrame {
     KakaoRESTAPI kakaoRESTAPI;
@@ -49,15 +46,16 @@ public class MainFrame extends JFrame {
 
         //검색 버튼 추가
         JButton searchButton = new JButton("검색");
-
-
         //버튼 키 이벤트 추가
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == searchButton) {
                     //버튼 눌렀을 때 이벤트 처리
-                    MainFrame.add(AfterSearchPanel());
+                    String searchData = textField.getText();
+                    String[] imageURL  = kakaoRESTAPI.ConnectionHTTP(searchData);
+                    new SearchResultFrame(imageURL,searchData);
+                    setVisible(false);
                 }
             }
         });
@@ -67,23 +65,8 @@ public class MainFrame extends JFrame {
     }
 
 
-    public JPanel AfterSearchPanel(){
-        JPanel afterSearchPanel = new JPanel();
-        afterSearchPanel.setLayout(new FlowLayout());
-
-        String[] imageURL  = kakaoRESTAPI.ConnectionHTTP(); //카카오 API에서 이미지 불러오기
-        JLabel imageLabel = new JLabel();
-
-        for(int i=0; i<2; i++){
-            imageLabel = ImageProduceByURL(imageURL[i]);
-            imageLabel.setSize(100, 100);
-            afterSearchPanel.add(imageLabel);
-        }
-
-        return afterSearchPanel;
-    }
-
-
+    /*
+    //로컬파일에서 이미지 불러오기
     public JLabel ImageProduceByLocalFile(String path){
         JLabel ImageLabel = new JLabel(); //이미지 출력할 라벨 설정
         ImageIcon icon = new ImageIcon(MainFrame.class.getResource(path));
@@ -97,25 +80,9 @@ public class MainFrame extends JFrame {
         ImageLabel.setHorizontalAlignment(JLabel.CENTER); // 가운데 정렬
 
         return ImageLabel;
-    }
+    }*/
 
-    public JLabel ImageProduceByURL(String imageURL) {
-        JLabel mainImageLabel = new JLabel(); //이미지 출력할 라벨 설정
-        Image image = null;
 
-        try {
-            URL url = new URL(imageURL);
-            image = ImageIO.read(url);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        Image updateImage = image.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
-        ImageIcon updateIcon = new ImageIcon(updateImage);
-
-        mainImageLabel.setIcon(updateIcon);
-        return mainImageLabel;
-    }
 
 }
 

@@ -44,7 +44,8 @@ public class SearchResultFrame extends JFrame{
         gobackMainButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //뒤로가기 버튼 이벤트 구현
+                new MainFrame();
+                dispose();
             }
         });
         searchResultNoticePanel.add(gobackMainButton);

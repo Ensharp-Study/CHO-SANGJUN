@@ -55,7 +55,7 @@ public class MainFrame extends JFrame {
                     String searchData = textField.getText();
                     String[] imageURL  = kakaoRESTAPI.ConnectionHTTP(searchData);
                     new SearchResultFrame(imageURL,searchData);
-                    setVisible(false);
+                    dispose();
                 }
             }
         });
@@ -69,7 +69,6 @@ public class MainFrame extends JFrame {
 
         return searchMainPanel;
     }
-
 
     /*
     //로컬파일에서 이미지 불러오기

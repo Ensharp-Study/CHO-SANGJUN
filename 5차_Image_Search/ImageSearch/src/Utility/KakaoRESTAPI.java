@@ -55,7 +55,7 @@ public class KakaoRESTAPI {
             for(int i=0; i<2; i++) {
                 JSONObject document = (JSONObject) documents.get(i);
                 imageURL[i]=document.get("image_url").toString();
-                System.out.println("imageURL = " + imageURL[i]);
+                //System.out.println("imageURL = " + imageURL[i]);
             }
 
         } catch (Exception e) {

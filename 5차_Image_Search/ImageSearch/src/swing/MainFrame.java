@@ -20,14 +20,39 @@ public class MainFrame extends JFrame {
         setLocationRelativeTo(null);// 창이 가운데에 나오게 설정
         setResizable(false); //사이즈 조절 불가능
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.add(SearchMainPanel());
+        //this.add(AfterSearchPanel());
 
-        this.add(FirstPanel());
         setVisible(true);
     }
 
-    public JPanel FirstPanel(){
-        JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new FlowLayout());
+    public JPanel SearchMainPanel() {
+        JPanel searchMainPanel = new JPanel() { //패널 생성과 동시에 배경 채우기
+            Image background = new ImageIcon(MainFrame.class.getResource("image/Wallpapers.jpeg")).getImage();
+            public void paintComponent(Graphics g) {//그리는 함수
+                super.paintComponent(g);
+                g.drawImage(background, 0, 0, getWidth(), getHeight(), this);//background를 그려줌
+            }
+        };
+        searchMainPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 30));
+        searchMainPanel.setSize(800, 500); //원하는 크기로 설정
+
+        //검색 입력 안내문
+        JLabel inputNotice = new JLabel("검색어 입력");
+        inputNotice.setSize(100,30);
+        searchMainPanel.add(inputNotice);
+
+        //검색 입력 textField 선언 및 panel에 추가
+        JTextField textField = new JTextField();
+        textField.setPreferredSize(new Dimension(100, 30));
+        searchMainPanel.add(textField);
+
+        return searchMainPanel;
+    }
+
+    public JPanel AfterSearchPanel(){
+        JPanel afterSearchPanel = new JPanel();
+        afterSearchPanel.setLayout(new FlowLayout());
 
         String[] imageURL  = kakaoRESTAPI.ConnectionHTTP(); //카카오 API에서 이미지 불러오기
         JLabel imageLabel = new JLabel();
@@ -35,15 +60,16 @@ public class MainFrame extends JFrame {
         for(int i=0; i<2; i++){
             imageLabel = ImageProduceByURL(imageURL[i]);
             imageLabel.setSize(100, 100);
-            mainPanel.add(imageLabel);
+            afterSearchPanel.add(imageLabel);
         }
 
-        return mainPanel;
+        return afterSearchPanel;
     }
 
-    public JLabel ImageProduceByLocalFile(){
+
+    public JLabel ImageProduceByLocalFile(String path){
         JLabel ImageLabel = new JLabel(); //이미지 출력할 라벨 설정
-        ImageIcon icon = new ImageIcon(MainFrame.class.getResource("/test/image/icon.png"));
+        ImageIcon icon = new ImageIcon(MainFrame.class.getResource(path));
         Image img = icon.getImage();
 
         Image updateImg = img.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
@@ -73,17 +99,6 @@ public class MainFrame extends JFrame {
         mainImageLabel.setIcon(updateIcon);
         return mainImageLabel;
     }
-
-    /*public void SearchField() {
-        startMenuContainer.setLayout(null);
-
-        JTextField textField = new JTextField();
-        textField.setSize(30, 30);
-        textField.setLocation(100, 100);
-        startMenuContainer.add(textField);
-    }*/
-
-
 
 }
 

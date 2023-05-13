@@ -31,8 +31,8 @@ public class SearchResultFrame extends JFrame{
     }
 
 
-    public JPanel SearchResultNoticePanelProduce(String searchData){
-        String[] count= {"10","20","30"};
+    public JPanel SearchResultNoticePanelProduce(String searchData){ //함수명 변경
+        String[] countList= {"10","20","30"};
 
         JPanel searchResultNoticePanel = new JPanel();
         searchResultNoticePanel.setLayout(new FlowLayout());
@@ -57,8 +57,15 @@ public class SearchResultFrame extends JFrame{
         searchResultNoticePanel.add(searchDataTextField);
 
         //콤보박스 생성
-        JComboBox countSelection = new JComboBox(count);
+        JComboBox countSelection = new JComboBox(countList);
         countSelection.setPreferredSize(new Dimension(100,30));
+        countSelection.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String count = countSelection.getSelectedItem().toString();
+            }
+        });
+
         searchResultNoticePanel.add(countSelection);
 
         return searchResultNoticePanel;

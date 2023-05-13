@@ -25,7 +25,7 @@ public class MainFrame extends JFrame {
 
     public JPanel SearchMainPanelProduce() {
         JPanel searchMainPanel = new JPanel() { //패널 생성과 동시에 배경 채우기
-            Image background = new ImageIcon(MainFrame.class.getResource("image/Wallpapers.jpeg")).getImage();
+            Image background = new ImageIcon(MainFrame.class.getResource("../Utility/Image/Wallpapers.jpeg")).getImage();
             public void paintComponent(Graphics g) {//그리는 함수
                 super.paintComponent(g);
                 g.drawImage(background, 0, 0, getWidth(), getHeight(), this);//background를 그려줌

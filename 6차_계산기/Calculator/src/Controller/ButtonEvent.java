@@ -19,17 +19,12 @@ public class ButtonEvent{
             JButton numberButton = (JButton)e.getSource(); //버튼 가져오기
             String number = numberButton.getText();//버튼에 대응하는 숫자
 
-            //초기 입력창이 0값이면 0 지워주기
-            if(calculatorFrame.numberInputTextArea.getText().equals("0")){
-                calculatorFrame.numberInputTextArea.setText("");
-            }
-
             //앞서 operator가 입력이 되었으면
             if( !(calculatorFrame.operator.equals("")) ) {
                 //숫자1 + 연산자 + 숫자2 중 숫자2까지도 입력되었을 경우 > 숫자2 뒤에 덧붙인다.
                 if ( calculatorFrame.number != null ){
-                    String formatNumber = String.format( Double.toString(calculatorFrame.number), number);
-                    calculatorFrame.number = Double.parseDouble(formatNumber);
+                    String appendedNumber = Double.toString(calculatorFrame.number) + number;
+                    calculatorFrame.number = Double.parseDouble(appendedNumber);
                     printNumber(number);
                 }
                 //연산자까지 만 입력되고 숫자2가 입력 되지 않았을 경우
@@ -42,15 +37,18 @@ public class ButtonEvent{
 
             //앞서 operate가 없는 경우. 즉, 숫자1 입력 받는 경우
             else{
-                //숫자1이 입력 되어 있지 않을 경우
+                //숫자1이 0인 경우
                 if ( calculatorFrame.savedNumber.equals(0.0) ){
+                    calculatorFrame.numberInputTextArea.setText(""); // 0 지워주기
+                    calculatorFrame.preNumberTextArea.setText("");//입력 기록 창도 지워주기
+
                     calculatorFrame.savedNumber = Double.parseDouble(number);
                     printNumber(number);
                 }
-                //연산자까지만 입력되고 숫자2가 입력 되지 않았을 경우
+                //숫자1이 이미 입력된 경우 > 뒤에 이어서 붙여서 숫자 만들어줌
                 else{
-                    String formatNumber = String.format( Double.toString(calculatorFrame.savedNumber), number);
-                    calculatorFrame.savedNumber = Double.parseDouble(formatNumber);
+                    String appendedNumber = Double.toString(calculatorFrame.savedNumber) + number;
+                    calculatorFrame.savedNumber = Double.parseDouble(appendedNumber);
                     printNumber(number);
                 }
             }
@@ -94,7 +92,7 @@ public class ButtonEvent{
 
             //숫자 1만 들어가 있는 경우 (초기 아무 버튼도 누르자 않았을 경우 숫자1 은 0값이다.)
             if ((calculatorFrame.number == null) && (calculatorFrame.operator.equals(""))) {
-                // 로그만 추가
+                calculatorFrame.preNumberTextArea.setText(Double.toString(calculatorFrame.savedNumber) + "=");
             }
             //숫자 1과 연산자만 들어가 있는 경우 > 자기 자신과 같은 값과 연산
             else if((calculatorFrame.number == null) && !(calculatorFrame.operator.equals(""))){
@@ -109,12 +107,29 @@ public class ButtonEvent{
             else if((calculatorFrame.number != null) && !(calculatorFrame.operator.equals(""))){
                 calculatorFrame.preNumberTextArea.setText("");
                 calculatorFrame.preNumberTextArea.setText(Double.toString(calculatorFrame.savedNumber) + calculatorFrame.operator + Double.toString(calculatorFrame.number) + "=");
+
                 calculateNumbers(calculatorFrame.operator, calculatorFrame.number);
-                calculatorFrame.number = null;
-                calculatorFrame.operator =""; // 연산 수행 완료 후 number 값과 연산자 값 초기화
                 calculatorFrame.numberInputTextArea.setText("");
                 calculatorFrame.numberInputTextArea.setText(Double.toString(calculatorFrame.savedNumber));
+
+                // 연산 수행 완료 후 number 값과 savedNumber값, 연산자 값 초기화
+                calculatorFrame.savedNumber = 0.0;
+                calculatorFrame.number = null;
+                calculatorFrame.operator ="";
             }
+
+        }
+    }
+
+    //4. C버튼 눌렀을 때 이벤트 처리 > 모두 초기화
+    public class ClearButtonEventListenerClass implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            calculatorFrame.operator = "";
+            calculatorFrame.number = null;
+            calculatorFrame.savedNumber = 0.0;
+
+            calculatorFrame.numberInputTextArea.setText("0");
+            calculatorFrame.preNumberTextArea.setText("");
 
         }
     }
@@ -136,6 +151,7 @@ public class ButtonEvent{
 
         }
     }
+
 
 
 }

@@ -1,10 +1,10 @@
 package Controller;
 
 import View.CalculatorFrame;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Stack;
 
 public class ButtonEvent{
 
@@ -40,7 +40,8 @@ public class ButtonEvent{
                 }
             }
 
-            else{ //맨처음 숫자1을 입력받을 경우
+            //앞서 operate가 없는 경우. 즉, 숫자1 입력 받는 경우
+            else{
                 //숫자1이 입력 되어 있지 않을 경우
                 if ( calculatorFrame.savedNumber.equals(0.0) ){
                     calculatorFrame.savedNumber = Double.parseDouble(number);
@@ -53,7 +54,6 @@ public class ButtonEvent{
                     printNumber(number);
                 }
             }
-
         }
         public void printNumber(String Number){
             calculatorFrame.numberInputTextArea.append(Number); //누른 버튼의 숫자 출력
@@ -82,10 +82,44 @@ public class ButtonEvent{
                 calculatorFrame.preNumberTextArea.setText(Double.toString(calculatorFrame.savedNumber) + operator);
                 calculatorFrame.operator = operator;
             }
+        }
+    }
+
+    //3. Equal 버튼 클릭시 처리하는 ActionListener
+    public class EqualButtonEventListenerClass implements ActionListener {
+        String itselfNumber; // 연산자 이후 바로 =가 들어올 경우 자기 자신의 숫자를 저장해둘 변수
+        public void actionPerformed(ActionEvent e) {
+            JButton equalButton = (JButton) e.getSource(); //버튼 가져오기
+            String equal = equalButton.getText();
+
+            //숫자 1만 들어가 있는 경우 (초기 아무 버튼도 누르자 않았을 경우 숫자1 은 0값이다.)
+            if ((calculatorFrame.number == null) && (calculatorFrame.operator.equals(""))) {
+                // 로그만 추가
+            }
+            //숫자 1과 연산자만 들어가 있는 경우 > 자기 자신과 같은 값과 연산
+            else if((calculatorFrame.number == null) && !(calculatorFrame.operator.equals(""))){
+                Double numberItself = calculatorFrame.savedNumber;
+                calculatorFrame.preNumberTextArea.setText("");
+                calculatorFrame.preNumberTextArea.setText(Double.toString(calculatorFrame.savedNumber) + calculatorFrame.operator + Double.toString(numberItself) + "=");
+                calculateNumbers(calculatorFrame.operator, numberItself);
+                calculatorFrame.numberInputTextArea.setText("");
+                calculatorFrame.numberInputTextArea.setText(Double.toString(calculatorFrame.savedNumber));
+            }
+            // 숫자 1과 연산자 그리고 숫자2 까지 모두 들어가 있는경우 > 연산이 가능하다.
+            else if((calculatorFrame.number != null) && !(calculatorFrame.operator.equals(""))){
+                calculatorFrame.preNumberTextArea.setText("");
+                calculatorFrame.preNumberTextArea.setText(Double.toString(calculatorFrame.savedNumber) + calculatorFrame.operator + Double.toString(calculatorFrame.number) + "=");
+                calculateNumbers(calculatorFrame.operator, calculatorFrame.number);
+                calculatorFrame.number = null;
+                calculatorFrame.operator =""; // 연산 수행 완료 후 number 값과 연산자 값 초기화
+                calculatorFrame.numberInputTextArea.setText("");
+                calculatorFrame.numberInputTextArea.setText(Double.toString(calculatorFrame.savedNumber));
+            }
 
         }
     }
-    public void calculateNumbers(String operator, Double number){
+
+    public void calculateNumbers(String operator, Double number){ //연산 함수
         switch (operator){
             case "+":
                 calculatorFrame.savedNumber += number;
@@ -102,5 +136,6 @@ public class ButtonEvent{
 
         }
     }
+
 
 }

@@ -24,6 +24,7 @@ public class CalculatorFrame extends JFrame {
     ButtonEvent buttonEvent;
     ButtonEvent.NumberButtonEventListenerClass numberButtonEventListenerClass;
     ButtonEvent.OperatorButtonEventListenerClass operatorButtonEventListenerClass;
+    ButtonEvent.EqualButtonEventListenerClass equalButtonEventListenerClass;
 
     //계산시 사용하는 변수들 선언
     public Double savedNumber = 0.0; //이전까지 계산된 합계 (초기값 0)
@@ -43,7 +44,7 @@ public class CalculatorFrame extends JFrame {
         this.buttonEvent = new ButtonEvent(this);
         this.numberButtonEventListenerClass = buttonEvent.new NumberButtonEventListenerClass();
         this.operatorButtonEventListenerClass = buttonEvent.new OperatorButtonEventListenerClass();
-
+        this.equalButtonEventListenerClass = buttonEvent.new EqualButtonEventListenerClass();
         setVisible(true);
     }
 
@@ -66,8 +67,12 @@ public class CalculatorFrame extends JFrame {
                 calculabuttons[i].addActionListener((new ButtonEvent(this)).new NumberButtonEventListenerClass());
             }
             //2. 연산자버튼인 경우
-            else{
+            else if((i == 3) ||(i == 7) ||(i == 11) ||(i == 15) ){
                 calculabuttons[i].addActionListener((new ButtonEvent(this)).new OperatorButtonEventListenerClass());
+            }
+            //3. Equal버튼인 경우
+            else if(i == 19){
+                calculabuttons[i].addActionListener((new ButtonEvent(this)).new EqualButtonEventListenerClass());
             }
 
             //버튼패널 위에 버튼 올리기

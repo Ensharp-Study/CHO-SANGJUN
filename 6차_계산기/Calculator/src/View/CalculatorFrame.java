@@ -4,7 +4,6 @@ import Controller.ButtonEvent;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.*;
 
 public class CalculatorFrame extends JFrame {
 
@@ -19,7 +18,7 @@ public class CalculatorFrame extends JFrame {
 
     //buttonPanel의 Components
     public String[] buttonTitle = {"CE", "C", "←", "÷", "7", "8", "9", "x", "4", "5", "6", "-", "1", "2", "3", "+", "±", "0", ".", "="};
-    public JButton[] calculabuttons = new JButton[20];
+    public JButton[] calculatebuttons = new JButton[20];
 
     //버튼 클릭에 대한 ActionListener 클래스 인스턴스 생성
     ButtonEvent buttonEvent;
@@ -62,30 +61,30 @@ public class CalculatorFrame extends JFrame {
 
         //2. 하단부 버튼 패널 구성
         for (int i = 0; i < 20; i++) {
-            calculabuttons[i] = new JButton(buttonTitle[i]);
+            calculatebuttons[i] = new JButton(buttonTitle[i]);
 
             //버튼에 ActionListener 할당
             //1. 숫자버튼인 경우 (위에서 미리 객체 생성한거 쓰면 안되는 이유?)
             if((i == 4) || (i == 5) ||(i == 6) ||(i == 8) ||(i == 9) ||(i == 10) ||(i == 12) ||(i == 13) ||(i == 14) ||(i == 17)){
-                calculabuttons[i].addActionListener((new ButtonEvent(this)).new NumberButtonEventListenerClass());
+                calculatebuttons[i].addActionListener((new ButtonEvent(this)).new NumberButtonEventListenerClass());
             }
             //2. 연산자버튼인 경우
             else if((i == 3) ||(i == 7) ||(i == 11) ||(i == 15) ){
-                calculabuttons[i].addActionListener((new ButtonEvent(this)).new OperatorButtonEventListenerClass());
+                calculatebuttons[i].addActionListener((new ButtonEvent(this)).new OperatorButtonEventListenerClass());
             }
             //3. Equal버튼인 경우
             else if(i == 19){
-                calculabuttons[i].addActionListener((new ButtonEvent(this)).new EqualButtonEventListenerClass());
+                calculatebuttons[i].addActionListener((new ButtonEvent(this)).new EqualButtonEventListenerClass());
             }
             //4. CLEAR 버튼인 경우
             else if(i == 1){
-                calculabuttons[i].addActionListener((new ButtonEvent(this)).new ClearButtonEventListenerClass());
+                calculatebuttons[i].addActionListener((new ButtonEvent(this)).new ClearButtonEventListenerClass());
             }
 
             //버튼패널 위에 버튼 올리기
-            buttonPanel.add(calculabuttons[i]);
+            buttonPanel.add(calculatebuttons[i]);
         }
-        buttonPanel.addKeyListener();
+        //buttonPanel.addKeyListener();
 
         // 두개의 패널을 base 패널에 올리기
         basePanel.add(inputPanel, BorderLayout.NORTH);

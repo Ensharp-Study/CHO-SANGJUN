@@ -13,8 +13,8 @@ public class CalculatorFrame extends JFrame {
     public Panel buttonPanel = new Panel(new GridLayout(5, 4, 0, 0));
 
     //inputPanel의 Components
-    public JTextArea preNumberTextArea = new JTextArea();
-    public JTextArea numberInputTextArea = new JTextArea("0");
+    public JLabel preNumberLabel = new JLabel();
+    public JLabel numberInputLabel = new JLabel("0");
 
     //buttonPanel의 Components
     public String[] buttonTitle = {"CE", "C", "←", "÷", "7", "8", "9", "x", "4", "5", "6", "-", "1", "2", "3", "+", "±", "0", ".", "="};
@@ -56,8 +56,8 @@ public class CalculatorFrame extends JFrame {
         buttonPanel.setPreferredSize(new Dimension(324, 305));
 
         //1. 상단부 숫자 입력 패널 구성
-        inputPanel.add(preNumberTextArea);
-        inputPanel.add(numberInputTextArea);
+        inputPanel.add(preNumberLabel);
+        inputPanel.add(numberInputLabel);
 
         //2. 하단부 버튼 패널 구성
         for (int i = 0; i < 20; i++) {

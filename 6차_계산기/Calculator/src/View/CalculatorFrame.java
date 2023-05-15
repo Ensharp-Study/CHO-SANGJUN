@@ -56,6 +56,10 @@ public class CalculatorFrame extends JFrame {
         buttonPanel.setPreferredSize(new Dimension(324, 305));
 
         //1. 상단부 숫자 입력 패널 구성
+        preNumberLabel.setHorizontalAlignment(JLabel.RIGHT);
+        preNumberLabel.setFont(new Font("나눔고딕", Font.PLAIN, 20));
+        numberInputLabel.setHorizontalAlignment(JLabel.RIGHT);
+        numberInputLabel.setFont(new Font("나눔고딕", Font.BOLD, 50));
         inputPanel.add(preNumberLabel);
         inputPanel.add(numberInputLabel);
 

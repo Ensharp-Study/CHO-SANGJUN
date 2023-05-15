@@ -85,6 +85,7 @@ public class CalculatorFrame extends JFrame {
             //버튼패널 위에 버튼 올리기
             buttonPanel.add(calculabuttons[i]);
         }
+        buttonPanel.addKeyListener();
 
         // 두개의 패널을 base 패널에 올리기
         basePanel.add(inputPanel, BorderLayout.NORTH);

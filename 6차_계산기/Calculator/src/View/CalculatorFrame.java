@@ -1,6 +1,7 @@
 package View;
 
 import Controller.ButtonEvent;
+import Controller.KeyEvent;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,6 +27,11 @@ public class CalculatorFrame extends JFrame {
     ButtonEvent.OperatorButtonEventListenerClass operatorButtonEventListenerClass;
     ButtonEvent.EqualButtonEventListenerClass equalButtonEventListenerClass;
     ButtonEvent.ClearButtonEventListenerClass clearButtonEventListenerClass;
+
+    //키 입력에 대한 ActionListener 클래스 인스턴스 생성
+    java.awt.event.KeyEvent keyEvent;
+    KeyEvent.KeyInputListener keyInputListener;
+
     //계산시 사용하는 변수들 선언
     public Double savedNumber = 0.0; //이전까지 계산된 합계 (초기값 0)
     public Double number = null;
@@ -40,6 +46,8 @@ public class CalculatorFrame extends JFrame {
 
         composeBasePanel(); //패널 구성
         add(basePanel); //base 패널 Frame 위에 올리기
+        this.addKeyListener((new KeyEvent(this)).new KeyInputListener());
+        this.setFocusable(true);
 
         //버튼에 대한 리스너 객체 생성하기 (이렇게 생성해서 쓰면 왜 안되는지)
         this.buttonEvent = new ButtonEvent(this);
@@ -56,10 +64,12 @@ public class CalculatorFrame extends JFrame {
         buttonPanel.setPreferredSize(new Dimension(324, 305));
 
         //1. 상단부 숫자 입력 패널 구성
+        //패널에 올라갈 JLabel 크기 및 폰트 설정
         preNumberLabel.setHorizontalAlignment(JLabel.RIGHT);
         preNumberLabel.setFont(new Font("나눔고딕", Font.PLAIN, 20));
         numberInputLabel.setHorizontalAlignment(JLabel.RIGHT);
         numberInputLabel.setFont(new Font("나눔고딕", Font.BOLD, 50));
+        // inputPanel 위에 컴포넌트 올리기
         inputPanel.add(preNumberLabel);
         inputPanel.add(numberInputLabel);
 
@@ -88,9 +98,9 @@ public class CalculatorFrame extends JFrame {
             //버튼패널 위에 버튼 올리기
             buttonPanel.add(calculatebuttons[i]);
         }
-        //buttonPanel.addKeyListener();
 
-        // 두개의 패널을 base 패널에 올리기
+
+        // basePanel에 키 이벤트 독점 설정 및 두개의 패널을 base 패널에 올리기
         basePanel.add(inputPanel, BorderLayout.NORTH);
         basePanel.add(buttonPanel, BorderLayout.SOUTH);
     }

@@ -7,6 +7,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.lang.reflect.Array;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.ArrayList;
 
 public class CalculatorFrame extends JFrame {
 
@@ -14,7 +18,7 @@ public class CalculatorFrame extends JFrame {
     public Panel basePanel =new Panel(new GridBagLayout());
     public Panel inputPanel = new Panel(new GridLayout(2, 1));
     public Panel buttonPanel = new Panel(new GridLayout(5, 4, 0, 0));
-    //public Panel LogPanel = new Panel(new )
+    public Panel LogPanel = new Panel(new FlowLayout());
 
     //inputPanel의 Components
     public JLabel preNumberLabel = new JLabel();
@@ -25,16 +29,18 @@ public class CalculatorFrame extends JFrame {
     public JButton[] calculatebuttons = new JButton[20];
 
     //계산시 사용하는 변수들 선언
-    public Double savedNumber = 0.0; //이전까지 계산된 합계 (초기값 0)
-    public Double number = null;
+    public String savedNumber= "";
+    public String number1 = "0";
+    public String number2 = "";
     public String operator = ""; //입력 받은 연산자
+    public Boolean isEqualExist = false;
 
     //버튼 클릭에 대한 ActionListener 클래스 인스턴스 생성
     ButtonEvent buttonEvent;
     ButtonEvent.NumberButtonEventListenerClass numberButtonEventListenerClass;
     ButtonEvent.OperatorButtonEventListenerClass operatorButtonEventListenerClass;
     ButtonEvent.EqualButtonEventListenerClass equalButtonEventListenerClass;
-    ButtonEvent.ClearButtonEventListenerClass clearButtonEventListenerClass;
+    //ButtonEvent.ClearButtonEventListenerClass clearButtonEventListenerClass;
 
     //키 입력에 대한 ActionListener 클래스 인스턴스 생성
     java.awt.event.KeyEvent keyEvent;
@@ -58,7 +64,7 @@ public class CalculatorFrame extends JFrame {
         this.numberButtonEventListenerClass = buttonEvent.new NumberButtonEventListenerClass();
         this.operatorButtonEventListenerClass = buttonEvent.new OperatorButtonEventListenerClass();
         this.equalButtonEventListenerClass = buttonEvent.new EqualButtonEventListenerClass();
-        this.clearButtonEventListenerClass = buttonEvent.new ClearButtonEventListenerClass();
+        //this.clearButtonEventListenerClass = buttonEvent.new ClearButtonEventListenerClass();
         setVisible(true);
     }
 
@@ -82,12 +88,12 @@ public class CalculatorFrame extends JFrame {
         preNumberLabel.setHorizontalAlignment(JLabel.RIGHT);
         preNumberLabel.setFont(new Font("나눔고딕", Font.PLAIN, 20));
         numberInputLabel.setHorizontalAlignment(JLabel.RIGHT);
-        numberInputLabel.setFont(new Font("나눔고딕", Font.PLAIN, numberInputLabel.getHeight() * 3 / 4));
+        numberInputLabel.setFont(new Font("나눔고딕", Font.BOLD, 24));
         //Frame을 키움에 따라 입력받은 숫자 JLabel의 사이즈도 함께 증가
         numberInputLabel.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
-                int fontSize = numberInputLabel.getHeight() * 3 / 4;
+                int fontSize = e.getComponent().getHeight() * 3 / 4; // 창의 높이를 이용한 폰트 크기 계산
                 numberInputLabel.setFont(new Font("나눔고딕", Font.BOLD, fontSize));
             }
         });
@@ -96,7 +102,6 @@ public class CalculatorFrame extends JFrame {
         inputPanel.add(numberInputLabel);
 
         basePanel.add(inputPanel, componentGridBagConstraints);
-
 
         //2. 하단부 버튼 패널 구성
         componentGridBagConstraints = new GridBagConstraints();
@@ -124,10 +129,10 @@ public class CalculatorFrame extends JFrame {
             else if(i == 19){
                 calculatebuttons[i].addActionListener((new ButtonEvent(this)).new EqualButtonEventListenerClass());
             }
-            //4. CLEAR 버튼인 경우
+            /*//4. CLEAR 버튼인 경우
             else if(i == 1){
                 calculatebuttons[i].addActionListener((new ButtonEvent(this)).new ClearButtonEventListenerClass());
-            }
+            }*/
 
             //버튼패널 위에 버튼 올리기
             buttonPanel.add(calculatebuttons[i]);
@@ -136,9 +141,17 @@ public class CalculatorFrame extends JFrame {
     }
 
     public void composeLogPanel(){
+
+        //로그창에 수식 및 결과값 저장할 리스트 생성
+        ArrayList<String> expressions = new ArrayList<>();
+        ArrayList<String> result = new ArrayList<>();
+        JList expressionList = new JList();
+        JList resultList = new JList();
+
         //창크기가 늘어났을때와 버튼 눌렀을때로 구분
+        //1. 버튼 누르고 창이 커졌을 경우
     }
-    
+
 
 }
 

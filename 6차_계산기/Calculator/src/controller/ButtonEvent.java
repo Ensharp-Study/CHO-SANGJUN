@@ -4,6 +4,7 @@ import view.CalculatorFrame;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
 
 public class ButtonEvent{
 
@@ -16,44 +17,44 @@ public class ButtonEvent{
     public class NumberButtonEventListenerClass implements ActionListener{
         public void actionPerformed(ActionEvent e){
             JButton numberButton = (JButton)e.getSource(); //버튼 가져오기
-            String number = numberButton.getText();//버튼에 대응하는 숫자
 
-            //앞서 operator가 입력이 되었으면
-            if( !(calculatorFrame.operator.equals("")) ) {
-                //숫자1 + 연산자 + 숫자2 중 숫자2까지도 입력되었을 경우 > 숫자2 뒤에 덧붙인다.
-                if ( calculatorFrame.number != null ){
-                    String appendedNumber = Double.toString(calculatorFrame.number) + number;
-                    calculatorFrame.number = Double.parseDouble(appendedNumber);
-                    printNumber(number);
-                }
-                //연산자까지 만 입력되고 숫자2가 입력 되지 않았을 경우
-                else{
-                    calculatorFrame.numberInputLabel.setText("");
-                    printNumber(number);
-                    calculatorFrame.number = Double.parseDouble(number);
-                }
+            if(calculatorFrame.isEqualExist){ // 이전에 equal이 입력 되었을 경우
+                calculatorFrame.savedNumber= "";
+                calculatorFrame.number1 = "0";
+                calculatorFrame.number2 = "";
+                calculatorFrame.operator = ""; //입력 받은 연산자
+                calculatorFrame.isEqualExist = false;
+                calculatorFrame.preNumberLabel.setText("");
             }
 
-            //앞서 operate가 없는 경우. 즉, 숫자1 입력 받는 경우
-            else{
-                //숫자1이 0인 경우
-                if ( calculatorFrame.savedNumber.equals(0.0) ){
-                    calculatorFrame.numberInputLabel.setText(""); // 0 지워주기
-                    calculatorFrame.preNumberLabel.setText("");//입력 기록 창도 지워주기
-
-                    calculatorFrame.savedNumber = Double.parseDouble(number);
-                    printNumber(number);
-                }
-                //숫자1이 이미 입력된 경우 > 뒤에 이어서 붙여서 숫자 만들어줌
-                else{
-                    String appendedNumber = Double.toString(calculatorFrame.savedNumber) + number;
-                    calculatorFrame.savedNumber = Double.parseDouble(appendedNumber);
-                    printNumber(number);
-                }
+            if(calculatorFrame.operator == "") { //연산자가 없을 때 숫자1 입력 받기
+                calculatorFrame.number1 += numberButton.getText();//버튼에 대응하는 숫자
+                calculatorFrame.number1 = removeUnnecessaryZero(calculatorFrame.number1);
+                printNumber(calculatorFrame.number1);
             }
+            else{ // 연산자가 있을 때 숫자2 입력받기
+                calculatorFrame.number2 += numberButton.getText();//버튼에 대응하는 숫자
+                calculatorFrame.number2 = removeUnnecessaryZero(calculatorFrame.number2);
+                clearInputNumber(); //입력창에 뜬 숫자1 지우기
+                printNumber(calculatorFrame.number2);
+            }
+            saveNumber1ToSavedNumber(calculatorFrame.number1);
         }
-        public void printNumber(String Number){
-            calculatorFrame.numberInputLabel.setText(calculatorFrame.numberInputLabel.getText() + Number); //누른 버튼의 숫자 출력
+        public void printNumber(String number){
+            if(calculatorFrame.numberInputLabel.getText() == "0"){
+                clearInputNumber();
+            }
+            calculatorFrame.numberInputLabel.setText(number); //누른 버튼의 숫자 출력
+        }
+        public void clearInputNumber(){
+            calculatorFrame.numberInputLabel.setText("");
+        }
+        public String removeUnnecessaryZero(String number){ //string 값으로 저장된 숫자 중에 맨앞이나 맨뒤에 불필요한 0을 삭제해주기 위한 함수
+            // string > Big Decimal > string 으로 바꿔준다
+
+            BigDecimal bigDecimalNumber = new BigDecimal(number);
+            number = bigDecimalNumber.toString();
+            return number;
         }
     }
 
@@ -63,64 +64,97 @@ public class ButtonEvent{
             JButton operatorButton = (JButton) e.getSource(); //버튼 가져오기
             String operator = operatorButton.getText();
 
-            //연산자가 입력 되면 앞서 입력된 숫자는
-
-            //앞서 연산자와 두가지 숫자가 모두 입력 되었을 경우 연산진행 (즉, 앞서 숫자 + 연산자 + 숫자가 작성되어 있었고 방금 연산자가 입력된 경우)
-            if( (!(calculatorFrame.operator.equals(""))) && (calculatorFrame.number != null ) ){
-                calculateNumbers(calculatorFrame.operator, calculatorFrame.number);
-                //연산 결과 값 및 다음 입력 연산자 출력
-                calculatorFrame.preNumberLabel.setText( Double.toString(calculatorFrame.savedNumber) + operator);
+            //앞서 연산자가 없는 경우 연산자 추가
+            if(calculatorFrame.operator == "") {
                 calculatorFrame.operator = operator;
-                calculatorFrame.number = null;
+                printExpression(calculatorFrame.operator);
             }
-
-            //연산을 수행 하지 못하는 경우 ( 즉, 앞서 숫자만 입력 되어 있었고 방금 연산자가 입력된 경우)
-            else{
-                calculatorFrame.preNumberLabel.setText(Double.toString(calculatorFrame.savedNumber) + operator);
-                calculatorFrame.operator = operator;
+            else{ // 앞서 연산자가 있는경우 또 연산자가 나왔을때
+                if(calculatorFrame.number2 == ""){ //숫자2가 안나왔을때 > 즉, 숫자1 나오고 연산자가 두번 이상 연속으로 나왔을 경우
+                    //연산자 교체
+                    calculatorFrame.operator = operator;
+                    printExpression(calculatorFrame.operator);
+                }
+                else{ //앞서 숫자1, 연산자, 숫자2 가 나왔고 현재 연산자 버튼을 눌렀을 경우 > 앞의 수식의 계산을 진행
+                    calculateNumbers(calculatorFrame.operator); // 기존의 연산자로 계산을 진행
+                    calculatorFrame.number2 = ""; //숫자2 초기화
+                    calculatorFrame.operator = operator; //계산이 끝난 후 새로 입력받은 연산자를 입력
+                    printExpression(calculatorFrame.operator);
+                }
             }
+            saveNumber1ToSavedNumber(calculatorFrame.number1);
         }
     }
 
     //3. Equal 버튼 클릭시 처리하는 ActionListener
     public class EqualButtonEventListenerClass implements ActionListener {
-        String itselfNumber; // 연산자 이후 바로 =가 들어올 경우 자기 자신의 숫자를 저장해둘 변수
         public void actionPerformed(ActionEvent e) {
-            JButton equalButton = (JButton) e.getSource(); //버튼 가져오기
-            String equal = equalButton.getText();
+            //equal값 들어왔는지 확인하는 변수
+            calculatorFrame.isEqualExist = true;
 
-            //숫자 1만 들어가 있는 경우 (초기 아무 버튼도 누르자 않았을 경우 숫자1 은 0값이다.)
-            if ((calculatorFrame.number == null) && (calculatorFrame.operator.equals(""))) {
-                calculatorFrame.preNumberLabel.setText(Double.toString(calculatorFrame.savedNumber) + "=");
+            if(calculatorFrame.operator == ""){ //앞서 연산자가 나오지 않은 경우 > 숫자2도 없다.
+                printExpression("=");
+                //로그에 추가하기
             }
-            //숫자 1과 연산자만 들어가 있는 경우 > 자기 자신과 같은 값과 연산
-            else if((calculatorFrame.number == null) && !(calculatorFrame.operator.equals(""))){
-                Double numberItself = calculatorFrame.savedNumber;
-                calculatorFrame.preNumberLabel.setText("");
-                calculatorFrame.preNumberLabel.setText(Double.toString(calculatorFrame.savedNumber) + calculatorFrame.operator + Double.toString(numberItself) + "=");
-                calculateNumbers(calculatorFrame.operator, numberItself);
-                calculatorFrame.numberInputLabel.setText("");
-                calculatorFrame.numberInputLabel.setText(Double.toString(calculatorFrame.savedNumber));
+            else{ //앞서 연산자가 나온 경우
+                if(calculatorFrame.number2 == ""){ //숫자2가 나오지 않은 경우 (예: 1+=) > 자기 복제
+                    calculatorFrame.number2 = calculatorFrame.savedNumber;
+                    calculatorFrame.preNumberLabel.setText("");
+                    calculatorFrame.preNumberLabel.setText(calculatorFrame.number1 + calculatorFrame.operator + calculatorFrame.savedNumber + "=");
+
+                    //계산
+                    calculateNumbers(calculatorFrame.operator);
+                    calculatorFrame.numberInputLabel.setText("");
+                    calculatorFrame.numberInputLabel.setText(calculatorFrame.number1);
+                    calculatorFrame.number2 = "";
+                }
+
+                else{ // 숫자1, 연산자, 숫자2 그리고 현재 등호가 나온 경우 > 정상 계산 후 초기화
+                    //히스토리 창 출력
+                    calculatorFrame.preNumberLabel.setText("");
+                    calculatorFrame.preNumberLabel.setText(calculatorFrame.number1 + calculatorFrame.operator + calculatorFrame.number2 + "=");
+                    //수식 계산
+                    calculateNumbers(calculatorFrame.operator);
+                    //입력 창 출력
+                    calculatorFrame.numberInputLabel.setText("");
+                    calculatorFrame.numberInputLabel.setText(calculatorFrame.number1);
+
+                    saveNumber1ToSavedNumber(calculatorFrame.number1);
+                }
             }
-            // 숫자 1과 연산자 그리고 숫자2 까지 모두 들어가 있는경우 > 연산이 가능하다.
-            else if((calculatorFrame.number != null) && !(calculatorFrame.operator.equals(""))){
-                calculatorFrame.preNumberLabel.setText("");
-                calculatorFrame.preNumberLabel.setText(Double.toString(calculatorFrame.savedNumber) + calculatorFrame.operator + Double.toString(calculatorFrame.number) + "=");
+        }
+    }
+    public void printExpression(String operator){
+        calculatorFrame.preNumberLabel.setText("");
+        calculatorFrame.preNumberLabel.setText(calculatorFrame.number1 + operator);
+    }
 
-                calculateNumbers(calculatorFrame.operator, calculatorFrame.number);
-                calculatorFrame.numberInputLabel.setText("");
-                calculatorFrame.numberInputLabel.setText(Double.toString(calculatorFrame.savedNumber));
+    public void calculateNumbers(String operator){ //연산 함수
+        BigDecimal bigDecimalNumber1 = new BigDecimal(calculatorFrame.number1);
+        BigDecimal bigDecimalNumber2 = new BigDecimal(calculatorFrame.number2);
 
-                // 연산 수행 완료 후 number 값과 savedNumber값, 연산자 값 초기화
-                calculatorFrame.savedNumber = 0.0;
-                calculatorFrame.number = null;
-                calculatorFrame.operator ="";
-            }
-
+        switch (operator){
+            case "+":
+                calculatorFrame.number1 = (bigDecimalNumber1.add(bigDecimalNumber2)).toString() ;
+                break;
+            case "-":
+                calculatorFrame.number1 = (bigDecimalNumber1.subtract(bigDecimalNumber2)).toString() ;
+                break;
+            case "x":
+                calculatorFrame.number1 = (bigDecimalNumber1.multiply(bigDecimalNumber2)).toString() ;
+                break;
+            case "÷":
+                calculatorFrame.number1 = (bigDecimalNumber1.divide(bigDecimalNumber2)).toString() ;
+                break;
         }
     }
 
-    //4. C버튼 눌렀을 때 이벤트 처리 > 모두 초기화
+    public void saveNumber1ToSavedNumber(String number1){
+        //모든 버튼 이벤트가 끝날때마다 현재 calculatorFrame.number1를 저장하기
+        calculatorFrame.savedNumber = number1;
+    }
+
+    /*//4. C버튼 눌렀을 때 이벤트 처리 > 모두 초기화
     public class ClearButtonEventListenerClass implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             calculatorFrame.operator = "";
@@ -131,25 +165,9 @@ public class ButtonEvent{
             calculatorFrame.preNumberLabel.setText("");
 
         }
-    }
+    }*/
 
-    public void calculateNumbers(String operator, Double number){ //연산 함수
-        switch (operator){
-            case "+":
-                calculatorFrame.savedNumber += number;
-                break;
-            case "-":
-                calculatorFrame.savedNumber -= number;
-                break;
-            case "x":
-                calculatorFrame.savedNumber *= number;
-                break;
-            case "÷":
-                calculatorFrame.savedNumber /= number;
-                break;
 
-        }
-    }
 
 
 

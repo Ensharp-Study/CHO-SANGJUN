@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 
 public class ButtonEvent{
 
@@ -153,6 +154,17 @@ public class ButtonEvent{
         if(calculatorFrame.numberInputLabel.getText() == "0"){
             clearInputNumber();
         }
+
+        //정수형 숫자의 경우 천 단위마다 쉼표 찍기
+        if(! (number.contains("."))){ //정수인 경우
+            //앞서 출력된 모든 쉼표 제거
+            number = number.replace(",","");
+            DecimalFormat decimalFormat = new DecimalFormat("###,###");
+            BigDecimal bigDecimalNumber = new BigDecimal(number);
+            String formattedNumber = decimalFormat.format(bigDecimalNumber);
+            number = formattedNumber;
+        }
+
         calculatorFrame.numberInputLabel.setText(number); //누른 버튼의 숫자 출력
     }
     public void clearInputNumber(){

@@ -1,5 +1,4 @@
-import Controller.CalculatorStart;
-import View.CalculatorFrame;
+import controller.CalculatorStart;
 
 public class Main {
     public static void main(String[] args) {

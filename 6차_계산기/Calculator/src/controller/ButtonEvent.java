@@ -1,6 +1,6 @@
-package Controller;
+package controller;
 
-import View.CalculatorFrame;
+import view.CalculatorFrame;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

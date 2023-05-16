@@ -1,8 +1,7 @@
-package Controller;
+package controller;
 
-import View.CalculatorFrame;
+import view.CalculatorFrame;
 
-import javax.swing.*;
 import java.awt.event.KeyAdapter;
 
 public class KeyEvent {

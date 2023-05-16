@@ -1,6 +1,6 @@
-package Controller;
+package controller;
 
-import View.CalculatorFrame;
+import view.CalculatorFrame;
 
     public class CalculatorStart {
         public void startCalculator() {

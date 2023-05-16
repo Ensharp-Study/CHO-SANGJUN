@@ -133,6 +133,10 @@ public class CalculatorFrame extends JFrame {
             else if(i == 1){
                 calculatebuttons[i].addActionListener((new ButtonEvent(this)).new ClearButtonEventListenerClass());
             }
+            //5. 소수점 버튼인 경우
+            else if (i == 18){
+                calculatebuttons[i].addActionListener((new ButtonEvent(this)).new DecimalPointButtonEventListenerClass());
+            }
 
             //버튼패널 위에 버튼 올리기
             buttonPanel.add(calculatebuttons[i]);

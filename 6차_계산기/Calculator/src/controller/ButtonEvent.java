@@ -124,6 +124,23 @@ public class ButtonEvent{
             }
         }
     }
+
+    //4. C버튼 눌렀을 때 이벤트 처리 > 모두 초기화
+    public class ClearButtonEventListenerClass implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            //모든 변수 초기화
+            calculatorFrame.savedNumber= "";
+            calculatorFrame.number1 = "0";
+            calculatorFrame.number2 = "";
+            calculatorFrame.operator = ""; //입력 받은 연산자
+            calculatorFrame.isEqualExist = false;
+
+            //출력 창 초기화
+            calculatorFrame.preNumberLabel.setText("");
+            calculatorFrame.numberInputLabel.setText("");
+        }
+    }
+
     public void printExpression(String operator){
         calculatorFrame.preNumberLabel.setText("");
         calculatorFrame.preNumberLabel.setText(calculatorFrame.number1 + operator);
@@ -154,18 +171,6 @@ public class ButtonEvent{
         calculatorFrame.savedNumber = number1;
     }
 
-    /*//4. C버튼 눌렀을 때 이벤트 처리 > 모두 초기화
-    public class ClearButtonEventListenerClass implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            calculatorFrame.operator = "";
-            calculatorFrame.number = null;
-            calculatorFrame.savedNumber = 0.0;
-
-            calculatorFrame.numberInputLabel.setText("0");
-            calculatorFrame.preNumberLabel.setText("");
-
-        }
-    }*/
 
 
 

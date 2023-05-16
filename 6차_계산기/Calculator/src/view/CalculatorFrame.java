@@ -40,7 +40,7 @@ public class CalculatorFrame extends JFrame {
     ButtonEvent.NumberButtonEventListenerClass numberButtonEventListenerClass;
     ButtonEvent.OperatorButtonEventListenerClass operatorButtonEventListenerClass;
     ButtonEvent.EqualButtonEventListenerClass equalButtonEventListenerClass;
-    //ButtonEvent.ClearButtonEventListenerClass clearButtonEventListenerClass;
+    ButtonEvent.ClearButtonEventListenerClass clearButtonEventListenerClass;
 
     //키 입력에 대한 ActionListener 클래스 인스턴스 생성
     java.awt.event.KeyEvent keyEvent;
@@ -64,7 +64,7 @@ public class CalculatorFrame extends JFrame {
         this.numberButtonEventListenerClass = buttonEvent.new NumberButtonEventListenerClass();
         this.operatorButtonEventListenerClass = buttonEvent.new OperatorButtonEventListenerClass();
         this.equalButtonEventListenerClass = buttonEvent.new EqualButtonEventListenerClass();
-        //this.clearButtonEventListenerClass = buttonEvent.new ClearButtonEventListenerClass();
+        this.clearButtonEventListenerClass = buttonEvent.new ClearButtonEventListenerClass();
         setVisible(true);
     }
 
@@ -129,10 +129,10 @@ public class CalculatorFrame extends JFrame {
             else if(i == 19){
                 calculatebuttons[i].addActionListener((new ButtonEvent(this)).new EqualButtonEventListenerClass());
             }
-            /*//4. CLEAR 버튼인 경우
+            //4. CLEAR 버튼인 경우
             else if(i == 1){
                 calculatebuttons[i].addActionListener((new ButtonEvent(this)).new ClearButtonEventListenerClass());
-            }*/
+            }
 
             //버튼패널 위에 버튼 올리기
             buttonPanel.add(calculatebuttons[i]);

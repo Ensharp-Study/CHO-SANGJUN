@@ -18,7 +18,7 @@ public class CalculatorFrame extends JFrame {
     public Panel LogPanel = new Panel(new FlowLayout());
 
     //inputPanel의 Components
-    public JLabel preNumberLabel = new JLabel(" ");
+    public JLabel preNumberLabel = new JLabel("");
     public JLabel numberInputLabel = new JLabel("0");
 
     //buttonPanel의 Components

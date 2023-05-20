@@ -204,6 +204,9 @@ public class ButtonEvent{
     public String removeUnnecessaryZero(String number) { //string 값으로 저장된 숫자 중에 맨앞이나 맨뒤에 불필요한 0을 삭제해주기 위한 함수
         // string > Big Decimal > string 으로 바꿔준다
 
+        //문자열에 저장된 , 제거
+        number = number.replaceAll(",","");
+
         //문자열이 빈 문자열이 아닐 경우에만 수행
         if(number != "") {
             BigDecimal bigDecimalNumber = new BigDecimal(number);

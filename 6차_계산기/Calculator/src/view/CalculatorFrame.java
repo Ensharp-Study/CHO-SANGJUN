@@ -7,9 +7,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-import java.lang.reflect.Array;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.ArrayList;
 
 public class CalculatorFrame extends JFrame {
@@ -30,8 +27,8 @@ public class CalculatorFrame extends JFrame {
 
     //계산시 사용하는 변수들 선언
     public String savedNumber= "";
-    public String number1 = "0";
-    public String number2 = "";
+    public String firstNumber = "0";
+    public String secondNumber = "";
     public String operator = ""; //입력 받은 연산자
     public Boolean isEqualExist = false;
 

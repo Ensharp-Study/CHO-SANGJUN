@@ -21,33 +21,41 @@ public class ButtonEvent{
 
             if(calculatorFrame.isEqualExist){ // 이전에 equal이 입력 되었을 경우 > 새로운 연산이 시작되므로 모든 값 초기화 해준다
                 calculatorFrame.savedNumber= "";
-                calculatorFrame.number1 = "0";
-                calculatorFrame.number2 = "";
+                calculatorFrame.firstNumber = "0";
+                calculatorFrame.secondNumber = "";
                 calculatorFrame.operator = ""; //입력 받은 연산자
                 calculatorFrame.isEqualExist = false;
                 calculatorFrame.preNumberLabel.setText("");
             }
 
             if(calculatorFrame.operator == "") { //연산자가 없을 때 숫자1 입력 받기
+                //숫자 제한개수 초과시 입력 안되게 막기 (쉼표 제거 후 숫자 개수 세기)
+                if( (removeCommasInNumber(calculatorFrame.firstNumber)).length() >12)
+                    return;
+
                 //숫자 입력 전 숫자1이 0이면 지워주기
-                if(calculatorFrame.number1 == "0"){
-                    calculatorFrame.number1 ="";
+                if(calculatorFrame.firstNumber == "0"){
+                    calculatorFrame.firstNumber = "";
                     clearInputNumber();
                 }
                 printNumber(calculatorFrame.numberInputLabel.getText() + numberButton.getText());
-                calculatorFrame.number1 = calculatorFrame.numberInputLabel.getText();
+                calculatorFrame.firstNumber = calculatorFrame.numberInputLabel.getText();
 
             }
             else{ // 연산자가 있을 때 숫자2 입력받기
+                //숫자 제한개수 초과시 입력 안되게 막기 (쉼표 제거 후 숫자 개수 세기)
+                if( (removeCommasInNumber(calculatorFrame.secondNumber)).length() >12)
+                    return;
+
                 //숫자 입력 전 숫자2가 0이거나 입력 받은 값이 없다면 지워주기
-                if((calculatorFrame.number2 == "0") || (calculatorFrame.number2 == "")) {
-                    calculatorFrame.number2 = "";
+                if((calculatorFrame.secondNumber == "0") || (calculatorFrame.secondNumber == "")) {
+                    calculatorFrame.secondNumber = "";
                     clearInputNumber();
                 }
                 printNumber(calculatorFrame.numberInputLabel.getText() + numberButton.getText());
-                calculatorFrame.number2 = calculatorFrame.numberInputLabel.getText();
+                calculatorFrame.secondNumber = calculatorFrame.numberInputLabel.getText();
             }
-            saveNumber1ToSavedNumber(calculatorFrame.number1);
+            saveNumber1ToSavedNumber(calculatorFrame.firstNumber);
         }
     }
 
@@ -58,8 +66,8 @@ public class ButtonEvent{
             String operator = operatorButton.getText();
 
             //연산자가 들어오면 앞서 입력된 문자열형의 숫자 정리해주기 (예:0123 > 123)
-            calculatorFrame.number1 = removeUnnecessaryZero(calculatorFrame.number1);
-            calculatorFrame.number2 = removeUnnecessaryZero(calculatorFrame.number2);
+            calculatorFrame.firstNumber = removeUnnecessaryZero(calculatorFrame.firstNumber);
+            calculatorFrame.secondNumber = removeUnnecessaryZero(calculatorFrame.secondNumber);
 
             //앞서 연산자가 없는 경우 연산자 추가
             if(calculatorFrame.operator == "") {
@@ -67,19 +75,19 @@ public class ButtonEvent{
                 printExpression(calculatorFrame.operator);
             }
             else{ // 앞서 연산자가 있는경우 또 연산자가 나왔을때
-                if(calculatorFrame.number2 == ""){ //숫자2가 안나왔을때 > 즉, 숫자1 나오고 연산자가 두번 이상 연속으로 나왔을 경우
+                if(calculatorFrame.secondNumber == ""){ //숫자2가 안나왔을때 > 즉, 숫자1 나오고 연산자가 두번 이상 연속으로 나왔을 경우
                     //연산자 교체
                     calculatorFrame.operator = operator;
                     printExpression(calculatorFrame.operator);
                 }
                 else{ //앞서 숫자1, 연산자, 숫자2 가 나왔고 현재 연산자 버튼을 눌렀을 경우 > 앞의 수식의 계산을 진행
                     calculateNumbers(calculatorFrame.operator); // 기존의 연산자로 계산을 진행
-                    calculatorFrame.number2 = ""; //숫자2 초기화
+                    calculatorFrame.secondNumber = ""; //숫자2 초기화
                     calculatorFrame.operator = operator; //계산이 끝난 후 새로 입력받은 연산자를 입력
                     printExpression(calculatorFrame.operator);
                 }
             }
-            saveNumber1ToSavedNumber(calculatorFrame.number1);
+            saveNumber1ToSavedNumber(calculatorFrame.firstNumber);
         }
     }
 
@@ -89,37 +97,38 @@ public class ButtonEvent{
             //equal값 들어왔는지 확인하는 변수
             calculatorFrame.isEqualExist = true;
             //Equal값이 들어오면 앞서 입력된 문자열형의 숫자 정리해주기 (예:0123 > 123)
-            calculatorFrame.number1 = removeUnnecessaryZero(calculatorFrame.number1);
-            calculatorFrame.number2 = removeUnnecessaryZero(calculatorFrame.number2);
+            calculatorFrame.firstNumber = removeUnnecessaryZero(calculatorFrame.firstNumber);
+            calculatorFrame.secondNumber = removeUnnecessaryZero(calculatorFrame.secondNumber);
 
             if(calculatorFrame.operator == ""){ //앞서 연산자가 나오지 않은 경우 > 숫자2도 없다.
                 printExpression("=");
                 //로그에 추가하기
             }
             else{ //앞서 연산자가 나온 경우
-                if(calculatorFrame.number2 == ""){ //숫자2가 나오지 않은 경우 (예: 1+=) > 자기 복제
-                    calculatorFrame.number2 = calculatorFrame.savedNumber;
+
+                if(calculatorFrame.secondNumber == ""){ //숫자2가 나오지 않은 경우 (예: 1+=) > 자기 복제
+                    calculatorFrame.secondNumber = calculatorFrame.savedNumber;
                     calculatorFrame.preNumberLabel.setText("");
-                    calculatorFrame.preNumberLabel.setText(calculatorFrame.number1 + calculatorFrame.operator + calculatorFrame.savedNumber + "=");
+                    calculatorFrame.preNumberLabel.setText(calculatorFrame.firstNumber + calculatorFrame.operator + calculatorFrame.savedNumber + "=");
 
                     //계산
                     calculateNumbers(calculatorFrame.operator);
                     calculatorFrame.numberInputLabel.setText("");
-                    calculatorFrame.numberInputLabel.setText(calculatorFrame.number1);
-                    calculatorFrame.number2 = "";
+                    calculatorFrame.numberInputLabel.setText(calculatorFrame.firstNumber);
+                    calculatorFrame.secondNumber = "";
                 }
 
                 else{ // 숫자1, 연산자, 숫자2 그리고 현재 등호가 나온 경우 > 정상 계산 후 초기화
                     //히스토리 창 출력
                     calculatorFrame.preNumberLabel.setText("");
-                    calculatorFrame.preNumberLabel.setText(calculatorFrame.number1 + calculatorFrame.operator + calculatorFrame.number2 + "=");
+                    calculatorFrame.preNumberLabel.setText(calculatorFrame.firstNumber + calculatorFrame.operator + calculatorFrame.secondNumber + "=");
                     //수식 계산
                     calculateNumbers(calculatorFrame.operator);
                     //입력 창 출력
                     calculatorFrame.numberInputLabel.setText("");
-                    calculatorFrame.numberInputLabel.setText(calculatorFrame.number1);
+                    calculatorFrame.numberInputLabel.setText(calculatorFrame.firstNumber);
 
-                    saveNumber1ToSavedNumber(calculatorFrame.number1);
+                    saveNumber1ToSavedNumber(calculatorFrame.firstNumber);
                 }
             }
         }
@@ -130,8 +139,8 @@ public class ButtonEvent{
         public void actionPerformed(ActionEvent e) {
             //모든 변수 초기화
             calculatorFrame.savedNumber= "";
-            calculatorFrame.number1 = "0";
-            calculatorFrame.number2 = "";
+            calculatorFrame.firstNumber = "0";
+            calculatorFrame.secondNumber = "";
             calculatorFrame.operator = ""; //입력 받은 연산자
             calculatorFrame.isEqualExist = false;
 
@@ -140,6 +149,7 @@ public class ButtonEvent{
             calculatorFrame.numberInputLabel.setText("");
         }
     }
+
     //5. 소수점 버튼 눌렀을 경우 이벤트 처리
     public class DecimalPointButtonEventListenerClass implements ActionListener{
         public void actionPerformed(ActionEvent e) {
@@ -164,20 +174,20 @@ public class ButtonEvent{
                 // operator가 "" 인 경우 > 숫자 누르고 = 누른 후 backspace 눌렀을 경우 (연산자가 없고 =이 들와왔을 경우) 는 아무일도 일어나지 않는다.
             }
             else { //등호가 없는 경우
-                if ((calculatorFrame.operator == "") && (calculatorFrame.number1 != "0")) { //숫자1 입력 도중
+                if ((calculatorFrame.operator == "") && (calculatorFrame.firstNumber != "0")) { //숫자1 입력 도중
                     inputNumbers = calculatorFrame.numberInputLabel.getText();
                     removedNumber = inputNumbers.substring(0, inputNumbers.length() - 1); //맨 뒤 숫자 제거
-                    calculatorFrame.number1 = removedNumber; //제거된 숫자 저장
-                    calculatorFrame.numberInputLabel.setText(calculatorFrame.number1); //화면 출력
+                    calculatorFrame.firstNumber = removedNumber; //제거된 숫자 저장
+                    calculatorFrame.numberInputLabel.setText(calculatorFrame.firstNumber); //화면 출력
                 }
-                else if ((calculatorFrame.operator != "") && (calculatorFrame.number2 != "")){ //숫자2 입력도중
+                else if ((calculatorFrame.operator != "") && (calculatorFrame.secondNumber != "")){ //숫자2 입력도중
                     inputNumbers = calculatorFrame.numberInputLabel.getText();
                     removedNumber = inputNumbers.substring(0, inputNumbers.length() - 1); //맨 뒤 숫자 제거
-                    calculatorFrame.number2 = removedNumber; //제거된 숫자 저장
-                    calculatorFrame.numberInputLabel.setText(calculatorFrame.number2); //화면 출력
+                    calculatorFrame.secondNumber = removedNumber; //제거된 숫자 저장
+                    calculatorFrame.numberInputLabel.setText(calculatorFrame.secondNumber); //화면 출력
                 }
             }
-            saveNumber1ToSavedNumber(calculatorFrame.number1);
+            saveNumber1ToSavedNumber(calculatorFrame.firstNumber);
         }
     }
 
@@ -205,7 +215,7 @@ public class ButtonEvent{
         // string > Big Decimal > string 으로 바꿔준다
 
         //문자열에 저장된 , 제거
-        number = number.replaceAll(",","");
+        number = removeCommasInNumber(number);
 
         //문자열이 빈 문자열이 아닐 경우에만 수행
         if(number != "") {
@@ -215,29 +225,34 @@ public class ButtonEvent{
         //빈 문자열일 경우 그대로 반환
         return number;
     }
+    public String removeCommasInNumber(String number){
+        //문자열에 저장된 , 제거
+        number = number.replaceAll(",","");
+        return number;
+    }
 
     public void printExpression(String operator){
         calculatorFrame.preNumberLabel.setText("");
-        System.out.println(" == " + calculatorFrame.number1);
-        calculatorFrame.preNumberLabel.setText(calculatorFrame.number1 + operator);
+        System.out.println(" == " + calculatorFrame.firstNumber);
+        calculatorFrame.preNumberLabel.setText(calculatorFrame.firstNumber + operator);
     }
 
     public void calculateNumbers(String operator){ //연산 함수
-        BigDecimal bigDecimalNumber1 = new BigDecimal(calculatorFrame.number1);
-        BigDecimal bigDecimalNumber2 = new BigDecimal(calculatorFrame.number2);
+        BigDecimal bigDecimalNumber1 = new BigDecimal(calculatorFrame.firstNumber);
+        BigDecimal bigDecimalNumber2 = new BigDecimal(calculatorFrame.secondNumber);
 
         switch (operator){
             case "+":
-                calculatorFrame.number1 = (bigDecimalNumber1.add(bigDecimalNumber2)).toString() ;
+                calculatorFrame.firstNumber = (bigDecimalNumber1.add(bigDecimalNumber2)).toString() ;
                 break;
             case "-":
-                calculatorFrame.number1 = (bigDecimalNumber1.subtract(bigDecimalNumber2)).toString() ;
+                calculatorFrame.firstNumber = (bigDecimalNumber1.subtract(bigDecimalNumber2)).toString() ;
                 break;
             case "x":
-                calculatorFrame.number1 = (bigDecimalNumber1.multiply(bigDecimalNumber2)).toString() ;
+                calculatorFrame.firstNumber = (bigDecimalNumber1.multiply(bigDecimalNumber2)).toString() ;
                 break;
             case "÷":
-                calculatorFrame.number1 = (bigDecimalNumber1.divide(bigDecimalNumber2)).toString() ;
+                calculatorFrame.firstNumber = (bigDecimalNumber1.divide(bigDecimalNumber2)).toString() ;
                 break;
         }
     }
@@ -245,5 +260,10 @@ public class ButtonEvent{
     public void saveNumber1ToSavedNumber(String number1){
         //모든 버튼 이벤트가 끝날때마다 현재 calculatorFrame.number1를 저장하기
         calculatorFrame.savedNumber = number1;
+    }
+
+    //출력되는 숫자에 천단위로 , 추가하는 함수
+    public void addCommasOnLabel(String number){
+
     }
 }

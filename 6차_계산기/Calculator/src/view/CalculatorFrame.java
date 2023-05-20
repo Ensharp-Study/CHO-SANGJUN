@@ -86,9 +86,9 @@ public class CalculatorFrame extends JFrame {
 
         //패널에 올라갈 JLabel 크기 및 폰트 설정
         preNumberLabel.setHorizontalAlignment(JLabel.RIGHT);
-        preNumberLabel.setFont(new Font("나눔고딕", Font.PLAIN, 20));
+        //preNumberLabel.setFont(new Font("나눔고딕", Font.PLAIN, 20));
         numberInputLabel.setHorizontalAlignment(JLabel.RIGHT);
-        numberInputLabel.setFont(new Font("나눔고딕", Font.BOLD, 24));
+        //numberInputLabel.setFont(new Font("나눔고딕", Font.BOLD, 24));
         //Frame을 키움에 따라 입력받은 숫자 JLabel의 사이즈도 함께 증가
         numberInputLabel.addComponentListener(new ComponentAdapter() {
             @Override
@@ -137,6 +137,19 @@ public class CalculatorFrame extends JFrame {
             else if (i == 18){
                 calculatebuttons[i].addActionListener((new ButtonEvent(this)).new DecimalPointButtonEventListenerClass());
             }
+            //6.BackSpace 버튼인 경우
+            else if (i == 2){
+                calculatebuttons[i].addActionListener((new ButtonEvent(this)).new BackSpaceButtonEventListenerClass());
+            }
+            //7.ClearEntry 버튼인 경우
+            else if (i == 0){
+
+            }
+            //8.PlusAndMinus 버튼인 경우
+            else if (i == 16){
+
+            }
+
 
             //버튼패널 위에 버튼 올리기
             buttonPanel.add(calculatebuttons[i]);

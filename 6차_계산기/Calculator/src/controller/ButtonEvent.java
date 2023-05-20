@@ -150,6 +150,37 @@ public class ButtonEvent{
         }
     }
 
+    //6. BackSpace버튼 인 경우
+    public class BackSpaceButtonEventListenerClass implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            String inputNumbers; //화면에 출력된 숫자
+            String removedNumber; //backSpace 적용된 숫자
+
+            if(calculatorFrame.isEqualExist){ //등호가 들어왔을 경우
+                //등호와 연산자가 있다는 의미는 정상적인 수식계산이 진행 되었다는 의미 > 이 경우 backspace를 누르면 history 창이 지워진다.
+                if (calculatorFrame.operator != ""){
+                    calculatorFrame.preNumberLabel.setText("");
+                }
+                // operator가 "" 인 경우 > 숫자 누르고 = 누른 후 backspace 눌렀을 경우 (연산자가 없고 =이 들와왔을 경우) 는 아무일도 일어나지 않는다.
+            }
+            else { //등호가 없는 경우
+                if ((calculatorFrame.operator == "") && (calculatorFrame.number1 != "0")) { //숫자1 입력 도중
+                    inputNumbers = calculatorFrame.numberInputLabel.getText();
+                    removedNumber = inputNumbers.substring(0, inputNumbers.length() - 1); //맨 뒤 숫자 제거
+                    calculatorFrame.number1 = removedNumber; //제거된 숫자 저장
+                    calculatorFrame.numberInputLabel.setText(calculatorFrame.number1); //화면 출력
+                }
+                else if ((calculatorFrame.operator != "") && (calculatorFrame.number2 != "")){ //숫자2 입력도중
+                    inputNumbers = calculatorFrame.numberInputLabel.getText();
+                    removedNumber = inputNumbers.substring(0, inputNumbers.length() - 1); //맨 뒤 숫자 제거
+                    calculatorFrame.number2 = removedNumber; //제거된 숫자 저장
+                    calculatorFrame.numberInputLabel.setText(calculatorFrame.number2); //화면 출력
+                }
+            }
+            saveNumber1ToSavedNumber(calculatorFrame.number1);
+        }
+    }
+
     public void printNumber(String number){
         if(calculatorFrame.numberInputLabel.getText() == "0"){
             clearInputNumber();
@@ -212,10 +243,4 @@ public class ButtonEvent{
         //모든 버튼 이벤트가 끝날때마다 현재 calculatorFrame.number1를 저장하기
         calculatorFrame.savedNumber = number1;
     }
-
-
-
-
-
-
 }

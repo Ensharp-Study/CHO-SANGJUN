@@ -65,6 +65,16 @@ public class ButtonEvent{
             JButton operatorButton = (JButton) e.getSource(); //버튼 가져오기
             String operator = operatorButton.getText();
 
+            if(calculatorFrame.isEqualExist){ // 이전에 equal이 입력 되었을 경우 > equal이 입력되고 그 결과 값에 다시 연산을 하는 경우
+                calculatorFrame.savedNumber= "";
+                calculatorFrame.firstNumber = calculatorFrame.numberInputLabel.getText();
+                calculatorFrame.secondNumber = "";
+                calculatorFrame.operator = ""; //입력 받은 연산자
+                calculatorFrame.isEqualExist = false;
+                calculatorFrame.preNumberLabel.setText("");
+            }
+
+
             //연산자가 들어오면 앞서 입력된 문자열형의 숫자 정리해주기 (예:0123 > 123)
             calculatorFrame.firstNumber = removeUnnecessaryZero(calculatorFrame.firstNumber);
             calculatorFrame.secondNumber = removeUnnecessaryZero(calculatorFrame.secondNumber);

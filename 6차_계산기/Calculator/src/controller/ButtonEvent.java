@@ -30,7 +30,7 @@ public class ButtonEvent{
 
             if(calculatorFrame.operator == "") { //연산자가 없을 때 숫자1 입력 받기
                 //숫자 제한개수 초과시 입력 안되게 막기 (쉼표 제거 후 숫자 개수 세기)
-                if( (removeCommasInNumber(calculatorFrame.firstNumber)).length() > 12)
+                if( (removeCommasInNumber(calculatorFrame.firstNumber)).length() > 15)
                     return;
 
                 //숫자 입력 전 숫자1이 0이면 지워주기
@@ -191,21 +191,28 @@ public class ButtonEvent{
             clearInputNumber();
         }
         number = addCommasOnLabel(number);
+        number = number.replace(",", "");
+        if(number.length() >= 17){
+            BigDecimal bigDecimal = new BigDecimal(number);
+            number = bigDecimal.toEngineeringString();
+        }
+        else{
+            number = addCommasOnLabel(number);
+        }
         calculatorFrame.numberInputLabel.setText(number); //누른 버튼의 숫자 출력
     }
 
     //출력되는 숫자에 천단위로 , 추가하는 함수
     public String addCommasOnLabel(String number){
         //정수형 숫자의 경우 천 단위마다 쉼표 찍기
-        if(! (number.contains("."))){ //정수인 경우에만 쉼표 찍기
+        if( !(number.contains(".")) ) { //정수인 경우에만 쉼표 찍기
             //앞서 출력된 모든 쉼표 제거
-            number = number.replace(",","");
+            number = number.replace(",", "");
             BigDecimal bigDecimalNumber = new BigDecimal(number);
             DecimalFormat decimalFormat = new DecimalFormat("###,###");
             String formattedNumber = decimalFormat.format(bigDecimalNumber);
             number = formattedNumber;
         }
-
         return number;
     }
 
@@ -221,7 +228,7 @@ public class ButtonEvent{
         //문자열이 빈 문자열이 아닐 경우에만 수행
         if(number != "") {
             BigDecimal bigDecimalNumber = new BigDecimal(number);
-            return bigDecimalNumber.stripTrailingZeros().toPlainString();
+            return bigDecimalNumber.stripTrailingZeros().toString();
         }
         //빈 문자열일 경우 그대로 반환
         return number;
@@ -234,7 +241,6 @@ public class ButtonEvent{
 
     public void printExpression(String operator){
         calculatorFrame.preNumberLabel.setText("");
-        System.out.println(" == " + calculatorFrame.firstNumber);
         calculatorFrame.preNumberLabel.setText(calculatorFrame.firstNumber + operator);
     }
 
@@ -244,18 +250,27 @@ public class ButtonEvent{
 
         switch (operator){
             case "+":
-                calculatorFrame.firstNumber = (bigDecimalNumber1.add(bigDecimalNumber2)).toString() ;
+                calculatorFrame.firstNumber = (bigDecimalNumber1.add(bigDecimalNumber2)).toEngineeringString();
                 break;
             case "-":
-                calculatorFrame.firstNumber = (bigDecimalNumber1.subtract(bigDecimalNumber2)).toString() ;
+                calculatorFrame.firstNumber = (bigDecimalNumber1.subtract(bigDecimalNumber2)).toEngineeringString();
                 break;
             case "x":
-                calculatorFrame.firstNumber = (bigDecimalNumber1.multiply(bigDecimalNumber2)).toString() ;
+                calculatorFrame.firstNumber = (bigDecimalNumber1.multiply(bigDecimalNumber2)).toEngineeringString();
                 break;
             case "÷":
-                calculatorFrame.firstNumber = (bigDecimalNumber1.divide(bigDecimalNumber2)).toString() ;
+                calculatorFrame.firstNumber = (bigDecimalNumber1.divide(bigDecimalNumber2)).toEngineeringString();
                 break;
         }
+    }
+    public void handleDivisionException(BigDecimal bigDecimalNumber1, BigDecimal bigDecimalNumber2){
+        //분모가 0인 경우 계산이 되지 않음
+        if(calculatorFrame.secondNumber == "0"){
+            calculatorFrame.firstNumber = "0으로 나눌 수 없습니다";
+            return;
+        }
+
+        calculatorFrame.firstNumber = (bigDecimalNumber1.divide(bigDecimalNumber2)).toEngineeringString();
     }
 
     public void saveFirstNumberToSavedNumber(String firstNumber){

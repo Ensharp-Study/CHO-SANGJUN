@@ -12,10 +12,14 @@ import java.util.ArrayList;
 public class CalculatorFrame extends JFrame {
 
     //프레임 위에 올릴 입력창 패널과 버튼패널 그리고 로그 패널 생성
-    public Panel basePanel =new Panel(new GridBagLayout());
-    public Panel inputPanel = new Panel(new GridLayout(2, 1));
+    public Panel basePanel = new Panel();
+    public Panel logButtonPanel = new Panel(new BorderLayout());
+    public Panel inputPanel = new Panel(new GridLayout(2, 1, 0, 0));
     public Panel buttonPanel = new Panel(new GridLayout(5, 4, 0, 0));
-    public Panel LogPanel = new Panel(new FlowLayout());
+    public Panel logPanel = new Panel(new FlowLayout());
+
+    //logButtonPanel의 Components
+    public JButton logButton = new JButton("기록");
 
     //inputPanel의 Components
     public JLabel preNumberLabel = new JLabel("");
@@ -66,26 +70,26 @@ public class CalculatorFrame extends JFrame {
     }
 
     public void composeBasePanel() { //패널 구성 후 base 패널에 최종적으로 올리기
-        basePanel.setPreferredSize(new Dimension(324, 534));
-        //패널 사이즈는 1:2 비율
-        inputPanel.setPreferredSize(new Dimension(324, 178));
-        buttonPanel.setPreferredSize(new Dimension(324, 356));
+        // 패널 레이아웃 설정
+        basePanel.setLayout(new BoxLayout(basePanel,BoxLayout.Y_AXIS));
+
+        //패널 사이즈 지정
+        //base패널 내 3개의 패널 비율 설정
+        Dimension frameSize = new Dimension(this.getWidth(), this.getHeight()); // frame 사이즈 불러오기
+        basePanel.setPreferredSize(new Dimension(frameSize.width, frameSize.height)); //base프레임은 frame 사이즈와 동일하게 설정
+        logButtonPanel.setPreferredSize(new Dimension(frameSize.width, (int)(frameSize.height * (1.0/12))));
+        inputPanel.setPreferredSize(new Dimension(frameSize.width, (int)(frameSize.height * (3.0/12))));
+        buttonPanel.setPreferredSize(new Dimension(frameSize.width, (int)(frameSize.height * (8.0/12))));
+
+        //0. 로그버튼 패널 입력 구성
+        logButtonPanel.add(logButton, BorderLayout.EAST);
+        basePanel.add(logButtonPanel);
 
         //1. 상단부 숫자 입력 패널 구성
-        GridBagConstraints componentGridBagConstraints = new GridBagConstraints();
-        componentGridBagConstraints.gridx = 0;
-        componentGridBagConstraints.gridy = 0;
-        componentGridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
-        componentGridBagConstraints.gridheight = 1;
-        componentGridBagConstraints.weightx = 1.0;
-        componentGridBagConstraints.weighty = 0.1;
-        componentGridBagConstraints.fill = GridBagConstraints.BOTH;
-
-        //패널에 올라갈 JLabel 크기 및 폰트 설정
+        //패널에 올라갈 JLabel 텍스트 정렬 설정
         preNumberLabel.setHorizontalAlignment(JLabel.RIGHT);
-        //preNumberLabel.setFont(new Font("나눔고딕", Font.PLAIN, 20));
         numberInputLabel.setHorizontalAlignment(JLabel.RIGHT);
-        //numberInputLabel.setFont(new Font("나눔고딕", Font.BOLD, 24));
+
         //Frame을 키움에 따라 입력받은 숫자 JLabel의 사이즈도 함께 증가
         numberInputLabel.addComponentListener(new ComponentAdapter() {
             @Override
@@ -94,22 +98,13 @@ public class CalculatorFrame extends JFrame {
                 numberInputLabel.setFont(new Font("나눔고딕", Font.BOLD, fontSize));
             }
         });
+
         // inputPanel 위에 컴포넌트 올리기
         inputPanel.add(preNumberLabel);
         inputPanel.add(numberInputLabel);
-
-        basePanel.add(inputPanel, componentGridBagConstraints);
+        basePanel.add(inputPanel);
 
         //2. 하단부 버튼 패널 구성
-        componentGridBagConstraints = new GridBagConstraints();
-        componentGridBagConstraints.gridx = 0;
-        componentGridBagConstraints.gridy = 1;
-        componentGridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
-        componentGridBagConstraints.gridheight = 2;
-        componentGridBagConstraints.weightx = 1.0;
-        componentGridBagConstraints.weighty = 0.2;
-        componentGridBagConstraints.fill = GridBagConstraints.BOTH;
-
         for (int i = 0; i < 20; i++) {
             calculatebuttons[i] = new JButton(buttonTitle[i]);
 
@@ -124,6 +119,8 @@ public class CalculatorFrame extends JFrame {
             }
             //3. Equal버튼인 경우
             else if(i == 19){
+                //버튼에 색깔 추가
+                calculatebuttons[i].setBackground(new Color(140,231,237)); //색 설정
                 calculatebuttons[i].addActionListener((new ButtonEvent(this)).new EqualButtonEventListenerClass());
             }
             //4. CLEAR 버튼인 경우
@@ -146,12 +143,10 @@ public class CalculatorFrame extends JFrame {
             else if (i == 16){
 
             }
-
-
             //버튼패널 위에 버튼 올리기
             buttonPanel.add(calculatebuttons[i]);
         }
-        basePanel.add(buttonPanel, componentGridBagConstraints);
+        basePanel.add(buttonPanel);
     }
 
     public void composeLogPanel(){

@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.text.DecimalFormat;
 
 public class ButtonEvent{
@@ -275,13 +276,13 @@ public class ButtonEvent{
 
         switch (operator){
             case "+":
-                calculatorFrame.firstNumber = (bigDecimalNumber1.add(bigDecimalNumber2)).toEngineeringString();
+                calculatorFrame.firstNumber = (bigDecimalNumber1.add(bigDecimalNumber2, MathContext.DECIMAL64)).toEngineeringString();
                 break;
             case "-":
-                calculatorFrame.firstNumber = (bigDecimalNumber1.subtract(bigDecimalNumber2)).toEngineeringString();
+                calculatorFrame.firstNumber = (bigDecimalNumber1.subtract(bigDecimalNumber2, MathContext.DECIMAL64)).toEngineeringString();
                 break;
             case "x":
-                calculatorFrame.firstNumber = (bigDecimalNumber1.multiply(bigDecimalNumber2)).toEngineeringString();
+                calculatorFrame.firstNumber = (bigDecimalNumber1.multiply(bigDecimalNumber2, MathContext.DECIMAL64)).toEngineeringString();
                 break;
             case "÷":
                 handleDivisionException(bigDecimalNumber1 ,bigDecimalNumber2);
@@ -295,7 +296,7 @@ public class ButtonEvent{
             return;
         }
         //정상적인 계산인 경우
-        calculatorFrame.firstNumber = (bigDecimalNumber1.divide(bigDecimalNumber2)).toEngineeringString();
+        calculatorFrame.firstNumber = (bigDecimalNumber1.divide(bigDecimalNumber2, MathContext.DECIMAL64)).toEngineeringString();
     }
 
     public void saveFirstNumberToSavedNumber(String firstNumber){

@@ -68,6 +68,7 @@ public class ButtonEvent{
             //연산자가 들어오면 앞서 입력된 문자열형의 숫자 정리해주기 (예:0123 > 123)
             calculatorFrame.firstNumber = removeUnnecessaryZero(calculatorFrame.firstNumber);
             calculatorFrame.secondNumber = removeUnnecessaryZero(calculatorFrame.secondNumber);
+            calculatorFrame.numberInputLabel.setText(removeUnnecessaryZero (calculatorFrame.numberInputLabel.getText())); // 입력한 값이 2.000과 같은 경우 불필요한 소수점 제거해 주기
 
             //앞서 연산자가 없는 경우 연산자 추가
             if(calculatorFrame.operator == "") {

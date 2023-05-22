@@ -38,7 +38,7 @@ public class ButtonEvent{
                     calculatorFrame.firstNumber = "";
                     clearInputNumber();
                 }
-                printNumber(calculatorFrame.numberInputLabel.getText() + numberButton.getText());
+                printNumberAndErrorMessage(calculatorFrame.numberInputLabel.getText() + numberButton.getText());
                 calculatorFrame.firstNumber = calculatorFrame.numberInputLabel.getText();
             }
 
@@ -52,7 +52,7 @@ public class ButtonEvent{
                     calculatorFrame.secondNumber = "";
                     clearInputNumber();
                 }
-                printNumber(calculatorFrame.numberInputLabel.getText() + numberButton.getText());
+                printNumberAndErrorMessage(calculatorFrame.numberInputLabel.getText() + numberButton.getText());
                 calculatorFrame.secondNumber = calculatorFrame.numberInputLabel.getText();
             }
             saveFirstNumberToSavedNumber(calculatorFrame.firstNumber);
@@ -84,7 +84,15 @@ public class ButtonEvent{
                     calculateNumbers(calculatorFrame.operator); // 기존의 연산자로 계산을 진행
                     calculatorFrame.secondNumber = ""; //숫자2 초기화
                     calculatorFrame.operator = operator; //계산이 끝난 후 새로 입력받은 연산자를 입력
-                    printExpression(calculatorFrame.operator);
+
+                    if(calculatorFrame.firstNumber.matches( ".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*")){ //오류 메시지인 경우
+                        printNumberAndErrorMessage(calculatorFrame.firstNumber); // 오류메시지 출력
+                        //전부 초기화
+
+                    }
+                    else {
+                        printExpression(calculatorFrame.operator);
+                    }
                 }
             }
             saveFirstNumberToSavedNumber(calculatorFrame.firstNumber);
@@ -112,7 +120,7 @@ public class ButtonEvent{
 
                     //계산
                     calculateNumbers(calculatorFrame.operator);
-                    printNumber(calculatorFrame.firstNumber);
+                    printNumberAndErrorMessage(calculatorFrame.firstNumber);
                     calculatorFrame.secondNumber = "";
                 }
 
@@ -122,7 +130,7 @@ public class ButtonEvent{
                     //수식 계산
                     calculateNumbers(calculatorFrame.operator);
                     //입력 창 출력
-                    printNumber(calculatorFrame.firstNumber);
+                    printNumberAndErrorMessage(calculatorFrame.firstNumber);
 
                     saveFirstNumberToSavedNumber(calculatorFrame.firstNumber);
                 }
@@ -173,23 +181,29 @@ public class ButtonEvent{
                 if ((calculatorFrame.operator == "") && (calculatorFrame.firstNumber != "0")) { //숫자1 입력 도중
                     inputNumbers = calculatorFrame.numberInputLabel.getText();
                     calculatorFrame.firstNumber = judgeDeletedNumberLength(inputNumbers);
-                    printNumber(calculatorFrame.firstNumber); //화면 출력
+                    printNumberAndErrorMessage(calculatorFrame.firstNumber); //화면 출력
                 }
 
                 else if ((calculatorFrame.operator != "") && (calculatorFrame.secondNumber != "")){ //숫자2 입력도중
                     inputNumbers = calculatorFrame.numberInputLabel.getText();
                     calculatorFrame.secondNumber = judgeDeletedNumberLength(inputNumbers);
-                    printNumber(calculatorFrame.secondNumber); //화면 출력
+                    printNumberAndErrorMessage(calculatorFrame.secondNumber); //화면 출력
                 }
             }
             saveFirstNumberToSavedNumber(calculatorFrame.firstNumber);
         }
     }
 
-    public void printNumber(String number){
+    public void printNumberAndErrorMessage(String number){
         if(calculatorFrame.numberInputLabel.getText() == "0"){
             clearInputNumber();
         }
+
+        if(number.matches( ".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*")){ //오류메시지인 경우
+            calculatorFrame.numberInputLabel.setText(number);
+            return;
+        }
+
         number = addCommasOnLabel(number);
         number = number.replace(",", "");
         if(number.length() >= 17){
@@ -259,17 +273,17 @@ public class ButtonEvent{
                 calculatorFrame.firstNumber = (bigDecimalNumber1.multiply(bigDecimalNumber2)).toEngineeringString();
                 break;
             case "÷":
-                calculatorFrame.firstNumber = (bigDecimalNumber1.divide(bigDecimalNumber2)).toEngineeringString();
+                handleDivisionException(bigDecimalNumber1 ,bigDecimalNumber2);
                 break;
         }
     }
     public void handleDivisionException(BigDecimal bigDecimalNumber1, BigDecimal bigDecimalNumber2){
         //분모가 0인 경우 계산이 되지 않음
-        if(calculatorFrame.secondNumber == "0"){
+        if((calculatorFrame.secondNumber).equals("0")){
             calculatorFrame.firstNumber = "0으로 나눌 수 없습니다";
             return;
         }
-
+        //정상적인 계산인 경우
         calculatorFrame.firstNumber = (bigDecimalNumber1.divide(bigDecimalNumber2)).toEngineeringString();
     }
 
@@ -290,4 +304,5 @@ public class ButtonEvent{
         }
         return removedNumber;
     }
+
 }

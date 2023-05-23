@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class CalculatorFrame extends JFrame {
 
     //프레임 위에 올릴 입력창 패널과 버튼패널 그리고 로그 패널 생성
-    public Panel basePanel = new Panel();
+    public Panel basePanel = new Panel(new BorderLayout());
     public Panel logButtonPanel = new Panel(new FlowLayout(FlowLayout.RIGHT));
     public Panel inputPanel = new Panel(new GridLayout(2, 1, 0, 0));
     public Panel buttonPanel = new Panel(new GridLayout(5, 4, 0, 0));
@@ -52,18 +52,29 @@ public class CalculatorFrame extends JFrame {
         setTitle("계산기");
         setSize(324, 534);
         setMinimumSize(new Dimension(324,534)); //최소 크기 지정
+        setLayout(new BorderLayout());
         this.addComponentListener(new ComponentAdapter() { //프레임 사이즈 변화에 대한 이벤트 리스너 설정
             @Override
             public void componentResized(ComponentEvent e) {
-                resizePanels();
+                if(e.getComponent().getWidth() >= 1068 ){
+                   //입력창 늘렸을때 패널 옆에 붙이기
+                    resizePanelsWithLogPanel();
+                    logPanel.setPreferredSize(new Dimension((e.getComponent().getWidth()) /2, e.getComponent().getHeight()));
+                    logPanel.setBackground(Color.WHITE);
+                    add(logPanel, BorderLayout.EAST);
+                }
+                else{
+                    resizePanelsWithOutLogPanel(); //사이즈 변경에 따라 패널 비율 맞추는 함수
+                }
             }
         });
+
 
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         composeBasePanel(); //패널 구성
-        add(basePanel); //base 패널 Frame 위에 올리기
+        add(basePanel,BorderLayout.WEST); //base 패널 Frame 위에 올리기
         this.addKeyListener((new KeyEvent(this)).new KeyInputListener());
         this.setFocusable(true);
 
@@ -78,9 +89,6 @@ public class CalculatorFrame extends JFrame {
     }
 
     public void composeBasePanel() { //패널 구성 후 base 패널에 최종적으로 올리기
-        // 패널 레이아웃 설정
-        basePanel.setLayout(new BoxLayout(basePanel,BoxLayout.Y_AXIS));
-
         //패널 사이즈 지정
         //base패널 내 3개의 패널 비율 설정
         Dimension frameSize = new Dimension(this.getWidth(), this.getHeight()); // frame 사이즈 불러오기
@@ -92,7 +100,7 @@ public class CalculatorFrame extends JFrame {
         //0. 로그버튼 패널 입력 구성
         logButton.setPreferredSize( new Dimension (20,20) );
         logButtonPanel.add(logButton);
-        basePanel.add(logButtonPanel);
+        basePanel.add(logButtonPanel,BorderLayout.NORTH);
 
         //1. 상단부 숫자 입력 패널 구성
         //패널에 올라갈 JLabel 텍스트 정렬 설정
@@ -111,19 +119,23 @@ public class CalculatorFrame extends JFrame {
         // inputPanel 위에 컴포넌트 올리기
         inputPanel.add(preNumberLabel);
         inputPanel.add(numberInputLabel);
-        basePanel.add(inputPanel);
+        basePanel.add(inputPanel,BorderLayout.CENTER);
 
         //2. 하단부 버튼 패널 구성
         for (int i = 0; i < 20; i++) {
             calculatebuttons[i] = new JButton(buttonTitle[i]);
+            calculatebuttons[i].setOpaque(true); // 투명도 해제
+            calculatebuttons[i].setBorderPainted(false);
 
             //버튼에 ActionListener 할당
             //1. 숫자버튼인 경우 (위에서 미리 객체 생성한거 쓰면 안되는 이유?)
             if((i == 4) || (i == 5) ||(i == 6) ||(i == 8) ||(i == 9) ||(i == 10) ||(i == 12) ||(i == 13) ||(i == 14) ||(i == 17)){
+                //calculatebuttons[i].setBackground(new Color(255,255,255));
                 calculatebuttons[i].addActionListener((new ButtonEvent(this)).new NumberButtonEventListenerClass());
             }
             //2. 연산자버튼인 경우
             else if((i == 3) ||(i == 7) ||(i == 11) ||(i == 15) ){
+                calculatebuttons[i].setBackground(new Color(204,204,204));
                 calculatebuttons[i].addActionListener((new ButtonEvent(this)).new OperatorButtonEventListenerClass());
             }
             //3. Equal버튼인 경우
@@ -134,31 +146,36 @@ public class CalculatorFrame extends JFrame {
             }
             //4. CLEAR 버튼인 경우
             else if(i == 1){
+                calculatebuttons[i].setBackground(new Color(204,204,204));
                 calculatebuttons[i].addActionListener((new ButtonEvent(this)).new ClearButtonEventListenerClass());
             }
             //5. 소수점 버튼인 경우
             else if (i == 18){
+                calculatebuttons[i].setBackground(new Color(204,204,204));
                 calculatebuttons[i].addActionListener((new ButtonEvent(this)).new DecimalPointButtonEventListenerClass());
             }
             //6.BackSpace 버튼인 경우
             else if (i == 2){
+                calculatebuttons[i].setBackground(new Color(204,204,204));
                 calculatebuttons[i].addActionListener((new ButtonEvent(this)).new BackSpaceButtonEventListenerClass());
             }
             //7.ClearEntry 버튼인 경우
             else if (i == 0){
+                calculatebuttons[i].setBackground(new Color(204,204,204));
 
             }
             //8.PlusAndMinus 버튼인 경우
             else if (i == 16){
+                calculatebuttons[i].setBackground(new Color(204,204,204));
                 calculatebuttons[i].addActionListener((new ButtonEvent(this)).new PlusAndMinusButtonEventListenerClass());
             }
             //버튼패널 위에 버튼 올리기
             buttonPanel.add(calculatebuttons[i]);
         }
-        basePanel.add(buttonPanel);
+        basePanel.add(buttonPanel,BorderLayout.SOUTH);
     }
 
-    private void resizePanels() { //프레임 사이즈 변화시 모든 패널 같은 비율에 맞게 사이즈 변경
+    private void resizePanelsWithOutLogPanel() { //프레임 사이즈 변화시 모든 패널 같은 비율에 맞게 사이즈 변경
         int frameHeight = this.getHeight();
         int basePanelHeight = frameHeight;
         int logButtonPanelHeight = (int)(frameHeight * (1.0 / 12));
@@ -169,6 +186,19 @@ public class CalculatorFrame extends JFrame {
         logButtonPanel.setPreferredSize(new Dimension(this.getWidth(), logButtonPanelHeight));
         inputPanel.setPreferredSize(new Dimension(this.getWidth(), inputPanelHeight));
         buttonPanel.setPreferredSize(new Dimension(this.getWidth(), buttonPanelHeight));
+        revalidate();
+    }
+    private void resizePanelsWithLogPanel() { //프레임 사이즈 변화시 모든 패널 같은 비율에 맞게 사이즈 변경
+        int frameHeight = this.getHeight();
+        int basePanelHeight = frameHeight;
+        int logButtonPanelHeight = (int)(frameHeight * (1.0 / 12));
+        int inputPanelHeight = (int)(frameHeight * (3.0 / 12));
+        int buttonPanelHeight = (int)(frameHeight * (8.0 / 12));
+
+        basePanel.setPreferredSize(new Dimension(this.getWidth() /2,basePanelHeight));
+        logButtonPanel.setPreferredSize(new Dimension(this.getWidth()/2, logButtonPanelHeight));
+        inputPanel.setPreferredSize(new Dimension(this.getWidth()/2, inputPanelHeight));
+        buttonPanel.setPreferredSize(new Dimension(this.getWidth()/2, buttonPanelHeight));
         revalidate();
     }
 

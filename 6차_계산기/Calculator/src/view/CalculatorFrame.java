@@ -13,7 +13,7 @@ public class CalculatorFrame extends JFrame {
 
     //프레임 위에 올릴 입력창 패널과 버튼패널 그리고 로그 패널 생성
     public Panel basePanel = new Panel();
-    public Panel logButtonPanel = new Panel(new BorderLayout());
+    public Panel logButtonPanel = new Panel(new FlowLayout(FlowLayout.RIGHT));
     public Panel inputPanel = new Panel(new GridLayout(2, 1, 0, 0));
     public Panel buttonPanel = new Panel(new GridLayout(5, 4, 0, 0));
     public Panel logPanel = new Panel(new FlowLayout());
@@ -52,6 +52,13 @@ public class CalculatorFrame extends JFrame {
         setTitle("계산기");
         setSize(324, 534);
         setMinimumSize(new Dimension(324,534)); //최소 크기 지정
+        this.addComponentListener(new ComponentAdapter() { //프레임 사이즈 변화에 대한 이벤트 리스너 설정
+            @Override
+            public void componentResized(ComponentEvent e) {
+                resizePanels();
+            }
+        });
+
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -66,6 +73,7 @@ public class CalculatorFrame extends JFrame {
         this.operatorButtonEventListenerClass = buttonEvent.new OperatorButtonEventListenerClass();
         this.equalButtonEventListenerClass = buttonEvent.new EqualButtonEventListenerClass();
         this.clearButtonEventListenerClass = buttonEvent.new ClearButtonEventListenerClass();
+
         setVisible(true);
     }
 
@@ -82,7 +90,8 @@ public class CalculatorFrame extends JFrame {
         buttonPanel.setPreferredSize(new Dimension(frameSize.width, (int)(frameSize.height * (8.0/12))));
 
         //0. 로그버튼 패널 입력 구성
-        logButtonPanel.add(logButton, BorderLayout.EAST);
+        logButton.setPreferredSize( new Dimension (20,20) );
+        logButtonPanel.add(logButton);
         basePanel.add(logButtonPanel);
 
         //1. 상단부 숫자 입력 패널 구성
@@ -94,7 +103,7 @@ public class CalculatorFrame extends JFrame {
         numberInputLabel.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
-                int fontSize = e.getComponent().getHeight() * 3 / 4; // 창의 높이를 이용한 폰트 크기 계산
+                int fontSize = e.getComponent().getHeight(); // 창의 높이를 이용한 폰트 크기 계산
                 numberInputLabel.setFont(new Font("나눔고딕", Font.BOLD, fontSize));
             }
         });
@@ -141,12 +150,26 @@ public class CalculatorFrame extends JFrame {
             }
             //8.PlusAndMinus 버튼인 경우
             else if (i == 16){
-
+                calculatebuttons[i].addActionListener((new ButtonEvent(this)).new PlusAndMinusButtonEventListenerClass());
             }
             //버튼패널 위에 버튼 올리기
             buttonPanel.add(calculatebuttons[i]);
         }
         basePanel.add(buttonPanel);
+    }
+
+    private void resizePanels() { //프레임 사이즈 변화시 모든 패널 같은 비율에 맞게 사이즈 변경
+        int frameHeight = this.getHeight();
+        int basePanelHeight = frameHeight;
+        int logButtonPanelHeight = (int)(frameHeight * (1.0 / 12));
+        int inputPanelHeight = (int)(frameHeight * (3.0 / 12));
+        int buttonPanelHeight = (int)(frameHeight * (8.0 / 12));
+
+        basePanel.setPreferredSize(new Dimension(this.getWidth(),basePanelHeight));
+        logButtonPanel.setPreferredSize(new Dimension(this.getWidth(), logButtonPanelHeight));
+        inputPanel.setPreferredSize(new Dimension(this.getWidth(), inputPanelHeight));
+        buttonPanel.setPreferredSize(new Dimension(this.getWidth(), buttonPanelHeight));
+        revalidate();
     }
 
     public void composeLogPanel(){

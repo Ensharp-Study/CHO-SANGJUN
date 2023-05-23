@@ -206,6 +206,23 @@ public class ButtonEvent{
         }
     }
 
+    //7. plusAndMinus버튼 인 경우
+    public class PlusAndMinusButtonEventListenerClass implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            //연산자 없을 경우 > 즉 숫자1 입력 도중
+            if(calculatorFrame.operator == "" ){
+                if(calculatorFrame.numberInputLabel.getText().contains("-")){
+
+                }
+                calculatorFrame.numberInputLabel.setText("-" + calculatorFrame.numberInputLabel.getText());
+                calculatorFrame.firstNumber = calculatorFrame.numberInputLabel.getText();
+            }
+            else{ //숫자2 입력 도중
+
+            }
+        }
+    }
+
     public void printNumberAndErrorMessage(String number){
         if(calculatorFrame.numberInputLabel.getText() == "0"){
             clearInputNumber();

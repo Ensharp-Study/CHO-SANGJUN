@@ -70,7 +70,7 @@ public class MainFrame extends JFrame {
         return searchMainPanel;
     }
 
-    /*
+
     //로컬파일에서 이미지 불러오기
     public JLabel ImageProduceByLocalFile(String path){
         JLabel ImageLabel = new JLabel(); //이미지 출력할 라벨 설정
@@ -85,7 +85,7 @@ public class MainFrame extends JFrame {
         ImageLabel.setHorizontalAlignment(JLabel.CENTER); // 가운데 정렬
 
         return ImageLabel;
-    }*/
+    }
 
 
 

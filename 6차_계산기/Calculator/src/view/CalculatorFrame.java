@@ -5,6 +5,8 @@ import controller.KeyEvent;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.util.ArrayList;
@@ -19,7 +21,7 @@ public class CalculatorFrame extends JFrame {
     public Panel logPanel = new Panel(new FlowLayout());
 
     //logButtonPanel의 Components
-    public JButton logButton = new JButton("기록");
+    public JButton logButton = new JButton();
 
     //inputPanel의 Components
     public JLabel preNumberLabel = new JLabel("");
@@ -56,7 +58,9 @@ public class CalculatorFrame extends JFrame {
         this.addComponentListener(new ComponentAdapter() { //프레임 사이즈 변화에 대한 이벤트 리스너 설정
             @Override
             public void componentResized(ComponentEvent e) {
-                if(e.getComponent().getWidth() >= 1068 ){
+                if(e.getComponent().getWidth() >= 648 ){
+                    //로그창이 위에 떠있을때
+
                    //입력창 늘렸을때 패널 옆에 붙이기
                     resizePanelsWithLogPanel();
                     logPanel.setPreferredSize(new Dimension((e.getComponent().getWidth()) /2, e.getComponent().getHeight()));
@@ -68,7 +72,6 @@ public class CalculatorFrame extends JFrame {
                 }
             }
         });
-
 
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -96,10 +99,26 @@ public class CalculatorFrame extends JFrame {
         logButtonPanel.setPreferredSize(new Dimension(frameSize.width, (int)(frameSize.height * (1.0/12))));
         inputPanel.setPreferredSize(new Dimension(frameSize.width, (int)(frameSize.height * (3.0/12))));
         buttonPanel.setPreferredSize(new Dimension(frameSize.width, (int)(frameSize.height * (8.0/12))));
+        logPanel.setPreferredSize(new Dimension(frameSize.width, (int)(frameSize.height * (8.0/12))));
+
+        logPanel.setBackground(Color.BLACK);
 
         //0. 로그버튼 패널 입력 구성
-        logButton.setPreferredSize( new Dimension (20,20) );
+        logButton = setImageOnButton("utility/image/free-icon-clock-1827463.png");
+        logButton.setPreferredSize( new Dimension (40,40) );
+        //logButton.setOpaque(true); // 투명도 해제
+        //logButton.setBorderPainted(false);
+
+        logButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelTransition();
+            }
+        });
+
         logButtonPanel.add(logButton);
+        logButtonPanel.add(logButton);
+
         basePanel.add(logButtonPanel,BorderLayout.NORTH);
 
         //1. 상단부 숫자 입력 패널 구성
@@ -124,18 +143,20 @@ public class CalculatorFrame extends JFrame {
         //2. 하단부 버튼 패널 구성
         for (int i = 0; i < 20; i++) {
             calculatebuttons[i] = new JButton(buttonTitle[i]);
+            calculatebuttons[i].setContentAreaFilled(false);
+
             calculatebuttons[i].setOpaque(true); // 투명도 해제
             calculatebuttons[i].setBorderPainted(false);
 
             //버튼에 ActionListener 할당
             //1. 숫자버튼인 경우 (위에서 미리 객체 생성한거 쓰면 안되는 이유?)
             if((i == 4) || (i == 5) ||(i == 6) ||(i == 8) ||(i == 9) ||(i == 10) ||(i == 12) ||(i == 13) ||(i == 14) ||(i == 17)){
-                //calculatebuttons[i].setBackground(new Color(255,255,255));
+                calculatebuttons[i].setBackground(new Color(255,255,255));
                 calculatebuttons[i].addActionListener((new ButtonEvent(this)).new NumberButtonEventListenerClass());
             }
             //2. 연산자버튼인 경우
             else if((i == 3) ||(i == 7) ||(i == 11) ||(i == 15) ){
-                calculatebuttons[i].setBackground(new Color(204,204,204));
+                calculatebuttons[i].setBackground(new Color(226,226,226));
                 calculatebuttons[i].addActionListener((new ButtonEvent(this)).new OperatorButtonEventListenerClass());
             }
             //3. Equal버튼인 경우
@@ -146,27 +167,27 @@ public class CalculatorFrame extends JFrame {
             }
             //4. CLEAR 버튼인 경우
             else if(i == 1){
-                calculatebuttons[i].setBackground(new Color(204,204,204));
+                calculatebuttons[i].setBackground(new Color(226,226,226));
                 calculatebuttons[i].addActionListener((new ButtonEvent(this)).new ClearButtonEventListenerClass());
             }
             //5. 소수점 버튼인 경우
             else if (i == 18){
-                calculatebuttons[i].setBackground(new Color(204,204,204));
+                calculatebuttons[i].setBackground(new Color(226,226,226));
                 calculatebuttons[i].addActionListener((new ButtonEvent(this)).new DecimalPointButtonEventListenerClass());
             }
             //6.BackSpace 버튼인 경우
             else if (i == 2){
-                calculatebuttons[i].setBackground(new Color(204,204,204));
+                calculatebuttons[i].setBackground(new Color(226,226,226));
                 calculatebuttons[i].addActionListener((new ButtonEvent(this)).new BackSpaceButtonEventListenerClass());
             }
             //7.ClearEntry 버튼인 경우
             else if (i == 0){
-                calculatebuttons[i].setBackground(new Color(204,204,204));
+                calculatebuttons[i].setBackground(new Color(226,226,226));
 
             }
             //8.PlusAndMinus 버튼인 경우
             else if (i == 16){
-                calculatebuttons[i].setBackground(new Color(204,204,204));
+                calculatebuttons[i].setBackground(new Color(226,226,226));
                 calculatebuttons[i].addActionListener((new ButtonEvent(this)).new PlusAndMinusButtonEventListenerClass());
             }
             //버튼패널 위에 버튼 올리기
@@ -181,11 +202,14 @@ public class CalculatorFrame extends JFrame {
         int logButtonPanelHeight = (int)(frameHeight * (1.0 / 12));
         int inputPanelHeight = (int)(frameHeight * (3.0 / 12));
         int buttonPanelHeight = (int)(frameHeight * (8.0 / 12));
+        int logPanelHeight = (int)(frameHeight * (8.0 / 12));
 
         basePanel.setPreferredSize(new Dimension(this.getWidth(),basePanelHeight));
         logButtonPanel.setPreferredSize(new Dimension(this.getWidth(), logButtonPanelHeight));
         inputPanel.setPreferredSize(new Dimension(this.getWidth(), inputPanelHeight));
         buttonPanel.setPreferredSize(new Dimension(this.getWidth(), buttonPanelHeight));
+        logPanel.setPreferredSize(new Dimension(this.getWidth(),logPanelHeight));
+
         revalidate();
     }
     private void resizePanelsWithLogPanel() { //프레임 사이즈 변화시 모든 패널 같은 비율에 맞게 사이즈 변경
@@ -203,7 +227,6 @@ public class CalculatorFrame extends JFrame {
     }
 
     public void composeLogPanel(){
-
         //로그창에 수식 및 결과값 저장할 리스트 생성
         ArrayList<String> expressions = new ArrayList<>();
         ArrayList<String> result = new ArrayList<>();
@@ -212,6 +235,52 @@ public class CalculatorFrame extends JFrame {
 
         //창크기가 늘어났을때와 버튼 눌렀을때로 구분
         //1. 버튼 누르고 창이 커졌을 경우
+    }
+
+    public JButton setImageOnButton(String imagePath){
+        ImageIcon logIcon = new ImageIcon(imagePath);
+        Image buttonImage = logIcon.getImage();
+
+        Image resizedButtonImage = buttonImage.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        ImageIcon resizedImageIcon = new ImageIcon(resizedButtonImage);
+
+        JButton imageButton = new JButton(resizedImageIcon);
+
+        return imageButton;
+    }
+
+    public void panelTransition(){
+        Boolean isButtonPanelOnBasePanel = false;
+
+        Component[] basePanelComponents = basePanel.getComponents();
+        for(Component component : basePanelComponents){
+            if(component == buttonPanel){
+                isButtonPanelOnBasePanel = true;
+                break;
+            }
+        }
+
+        if(isButtonPanelOnBasePanel){
+            basePanel.remove(buttonPanel);
+            basePanel.add(logPanel,BorderLayout.SOUTH);
+            revalidate();
+        }
+        else{
+            basePanel.remove(logPanel);
+            basePanel.add(buttonPanel,BorderLayout.SOUTH);
+            revalidate();
+        }
+    }
+
+    public void moveLogPanelPosition(){
+        //로그 패널이 떠 있는지 확인
+        Component[] basePanelComponents = basePanel.getComponents();
+        for(Component component : basePanelComponents){
+            if(component == buttonPanel){
+                isButtonPanelOnBasePanel = true;
+                break;
+            }
+        }
     }
 
 

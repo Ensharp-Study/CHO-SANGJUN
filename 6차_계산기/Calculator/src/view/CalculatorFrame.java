@@ -60,11 +60,10 @@ public class CalculatorFrame extends JFrame {
             public void componentResized(ComponentEvent e) {
                 if(e.getComponent().getWidth() >= 648 ){
                     //로그창이 위에 떠있을때
-
+                    moveLogPanelPosition();
                    //입력창 늘렸을때 패널 옆에 붙이기
                     resizePanelsWithLogPanel();
                     logPanel.setPreferredSize(new Dimension((e.getComponent().getWidth()) /2, e.getComponent().getHeight()));
-                    logPanel.setBackground(Color.WHITE);
                     add(logPanel, BorderLayout.EAST);
                 }
                 else{
@@ -273,13 +272,19 @@ public class CalculatorFrame extends JFrame {
     }
 
     public void moveLogPanelPosition(){
+        Boolean isLogPanelOnBasePanel = false;
         //로그 패널이 떠 있는지 확인
         Component[] basePanelComponents = basePanel.getComponents();
         for(Component component : basePanelComponents){
-            if(component == buttonPanel){
-                isButtonPanelOnBasePanel = true;
+            if(component == logPanel){
+                isLogPanelOnBasePanel = true;
                 break;
             }
+        }
+        if(isLogPanelOnBasePanel){
+            basePanel.remove(logPanel);
+            basePanel.add(buttonPanel,BorderLayout.SOUTH);
+            revalidate();
         }
     }
 

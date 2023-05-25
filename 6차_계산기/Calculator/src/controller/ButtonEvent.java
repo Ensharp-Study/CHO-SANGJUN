@@ -57,6 +57,7 @@ public class ButtonEvent {
                 calculatorFrame.secondNumber = calculatorFrame.numberInputLabel.getText();
             }
             saveFirstNumberToSavedNumber(calculatorFrame.firstNumber);
+            calculatorFrame.requestFocus();
         }
     }
 
@@ -104,6 +105,7 @@ public class ButtonEvent {
                 }
             }
             saveFirstNumberToSavedNumber(calculatorFrame.firstNumber);
+            calculatorFrame.requestFocus();
         }
     }
 
@@ -139,6 +141,7 @@ public class ButtonEvent {
                     saveFirstNumberToSavedNumber(calculatorFrame.firstNumber);
                 }
             }
+            calculatorFrame.requestFocus();
         }
     }
 
@@ -155,6 +158,7 @@ public class ButtonEvent {
             //출력 창 초기화
             calculatorFrame.preNumberLabel.setText("");
             printNumberAndErrorMessage("0");
+            calculatorFrame.requestFocus();
         }
     }
 
@@ -165,6 +169,7 @@ public class ButtonEvent {
             if (!(calculatorFrame.numberInputLabel.getText()).contains(".")) {
                 printNumberAndErrorMessage(calculatorFrame.numberInputLabel.getText() + ".");
             }
+            calculatorFrame.requestFocus();
         }
     }
 
@@ -191,6 +196,7 @@ public class ButtonEvent {
                 }
             }
             saveFirstNumberToSavedNumber(calculatorFrame.firstNumber);
+            calculatorFrame.requestFocus();
         }
     }
 
@@ -228,6 +234,7 @@ public class ButtonEvent {
                 calculatorFrame.firstNumber = calculatorFrame.numberInputLabel.getText();//바뀐값 변수에 저장
             }
             saveFirstNumberToSavedNumber(calculatorFrame.firstNumber);
+            calculatorFrame.requestFocus();
         }
     }
 
@@ -261,9 +268,9 @@ public class ButtonEvent {
                 printNumberAndErrorMessage("0");
             }
             saveFirstNumberToSavedNumber(calculatorFrame.firstNumber);
+            calculatorFrame.requestFocus();
         }
     }
-
 
     //pulsAndMinus 버튼 눌렀을때 입력창 출력하는 함수
     public void setMinusOnNumberInputLabel() {

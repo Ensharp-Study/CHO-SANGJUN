@@ -54,6 +54,16 @@ public class CalculatorFrame extends JFrame {
 
 
     public CalculatorFrame() { //생성자
+        //버튼에 대한 리스너 객체 생성하기 (이렇게 생성해서 쓰면 왜 안되는지)
+        this.buttonEvent = new ButtonEvent(this);
+        this.numberButtonEventListenerClass = buttonEvent.new NumberButtonEventListenerClass();
+        this.operatorButtonEventListenerClass = buttonEvent.new OperatorButtonEventListenerClass();
+        this.equalButtonEventListenerClass = buttonEvent.new EqualButtonEventListenerClass();
+        this.clearButtonEventListenerClass = buttonEvent.new ClearButtonEventListenerClass();
+        this.decimalPointButtonEventListenerClass = buttonEvent.new DecimalPointButtonEventListenerClass();
+        this.backSpaceButtonEventListenerClass = buttonEvent.new BackSpaceButtonEventListenerClass();
+        this.plusAndMinusButtonEventListenerClass =buttonEvent.new PlusAndMinusButtonEventListenerClass();
+
         setTitle("계산기");
         setSize(324, 534);
         setMinimumSize(new Dimension(324,534)); //최소 크기 지정
@@ -82,17 +92,6 @@ public class CalculatorFrame extends JFrame {
         add(basePanel,BorderLayout.WEST); //base 패널 Frame 위에 올리기
         this.addKeyListener((new KeyEvent(this)).new KeyInputListener());
         this.setFocusable(true);
-
-        //버튼에 대한 리스너 객체 생성하기 (이렇게 생성해서 쓰면 왜 안되는지)
-        this.buttonEvent = new ButtonEvent(this);
-        this.numberButtonEventListenerClass = buttonEvent.new NumberButtonEventListenerClass();
-        this.operatorButtonEventListenerClass = buttonEvent.new OperatorButtonEventListenerClass();
-        this.equalButtonEventListenerClass = buttonEvent.new EqualButtonEventListenerClass();
-        this.clearButtonEventListenerClass = buttonEvent.new ClearButtonEventListenerClass();
-        this.decimalPointButtonEventListenerClass = buttonEvent.new DecimalPointButtonEventListenerClass();
-        this.backSpaceButtonEventListenerClass = buttonEvent.new BackSpaceButtonEventListenerClass();
-        this.plusAndMinusButtonEventListenerClass =buttonEvent.new PlusAndMinusButtonEventListenerClass();
-
         setVisible(true);
     }
 

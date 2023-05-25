@@ -44,6 +44,9 @@ public class CalculatorFrame extends JFrame {
     ButtonEvent.OperatorButtonEventListenerClass operatorButtonEventListenerClass;
     ButtonEvent.EqualButtonEventListenerClass equalButtonEventListenerClass;
     ButtonEvent.ClearButtonEventListenerClass clearButtonEventListenerClass;
+    ButtonEvent.DecimalPointButtonEventListenerClass decimalPointButtonEventListenerClass;
+    ButtonEvent.BackSpaceButtonEventListenerClass backSpaceButtonEventListenerClass;
+    ButtonEvent.PlusAndMinusButtonEventListenerClass plusAndMinusButtonEventListenerClass;
 
     //키 입력에 대한 ActionListener 클래스 인스턴스 생성
     java.awt.event.KeyEvent keyEvent;
@@ -86,6 +89,9 @@ public class CalculatorFrame extends JFrame {
         this.operatorButtonEventListenerClass = buttonEvent.new OperatorButtonEventListenerClass();
         this.equalButtonEventListenerClass = buttonEvent.new EqualButtonEventListenerClass();
         this.clearButtonEventListenerClass = buttonEvent.new ClearButtonEventListenerClass();
+        this.decimalPointButtonEventListenerClass = buttonEvent.new DecimalPointButtonEventListenerClass();
+        this.backSpaceButtonEventListenerClass = buttonEvent.new BackSpaceButtonEventListenerClass();
+        this.plusAndMinusButtonEventListenerClass =buttonEvent.new PlusAndMinusButtonEventListenerClass();
 
         setVisible(true);
     }
@@ -162,33 +168,33 @@ public class CalculatorFrame extends JFrame {
             //1. 숫자버튼인 경우 (위에서 미리 객체 생성한거 쓰면 안되는 이유?)
             if((i == 4) || (i == 5) ||(i == 6) ||(i == 8) ||(i == 9) ||(i == 10) ||(i == 12) ||(i == 13) ||(i == 14) ||(i == 17)){
                 calculatebuttons[i].setBackground(new Color(255,255,255));
-                calculatebuttons[i].addActionListener((new ButtonEvent(this)).new NumberButtonEventListenerClass());
+                calculatebuttons[i].addActionListener(numberButtonEventListenerClass);
             }
             //2. 연산자버튼인 경우
             else if((i == 3) ||(i == 7) ||(i == 11) ||(i == 15) ){
                 calculatebuttons[i].setBackground(new Color(226,226,226));
-                calculatebuttons[i].addActionListener((new ButtonEvent(this)).new OperatorButtonEventListenerClass());
+                calculatebuttons[i].addActionListener(operatorButtonEventListenerClass);
             }
             //3. Equal버튼인 경우
             else if(i == 19){
                 //버튼에 색깔 추가
                 calculatebuttons[i].setBackground(new Color(140,231,237)); //색 설정
-                calculatebuttons[i].addActionListener((new ButtonEvent(this)).new EqualButtonEventListenerClass());
+                calculatebuttons[i].addActionListener(equalButtonEventListenerClass);
             }
             //4. CLEAR 버튼인 경우
             else if(i == 1){
                 calculatebuttons[i].setBackground(new Color(226,226,226));
-                calculatebuttons[i].addActionListener((new ButtonEvent(this)).new ClearButtonEventListenerClass());
+                calculatebuttons[i].addActionListener(clearButtonEventListenerClass);
             }
             //5. 소수점 버튼인 경우
             else if (i == 18){
                 calculatebuttons[i].setBackground(new Color(226,226,226));
-                calculatebuttons[i].addActionListener((new ButtonEvent(this)).new DecimalPointButtonEventListenerClass());
+                calculatebuttons[i].addActionListener(decimalPointButtonEventListenerClass);
             }
             //6.BackSpace 버튼인 경우
             else if (i == 2){
                 calculatebuttons[i].setBackground(new Color(226,226,226));
-                calculatebuttons[i].addActionListener((new ButtonEvent(this)).new BackSpaceButtonEventListenerClass());
+                calculatebuttons[i].addActionListener(backSpaceButtonEventListenerClass);
             }
             //7.ClearEntry 버튼인 경우
             else if (i == 0){
@@ -198,7 +204,7 @@ public class CalculatorFrame extends JFrame {
             //8.PlusAndMinus 버튼인 경우
             else if (i == 16){
                 calculatebuttons[i].setBackground(new Color(226,226,226));
-                calculatebuttons[i].addActionListener((new ButtonEvent(this)).new PlusAndMinusButtonEventListenerClass());
+                calculatebuttons[i].addActionListener(plusAndMinusButtonEventListenerClass);
             }
             //버튼패널 위에 버튼 올리기
             buttonPanel.add(calculatebuttons[i]);

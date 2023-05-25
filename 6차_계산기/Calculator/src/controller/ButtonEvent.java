@@ -9,20 +9,21 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.text.DecimalFormat;
 
-public class ButtonEvent{
+public class ButtonEvent {
 
     public CalculatorFrame calculatorFrame;
-    public ButtonEvent(CalculatorFrame calculatorFrame){  //생성자에서 Frame 객체의 필드값 수정하기 위해 가져오기
+
+    public ButtonEvent(CalculatorFrame calculatorFrame) {  //생성자에서 Frame 객체의 필드값 수정하기 위해 가져오기
         this.calculatorFrame = calculatorFrame;
     }
 
     //1. 숫자 버튼 클릭 시 처리하는 ActionListener
-    public class NumberButtonEventListenerClass implements ActionListener{
-        public void actionPerformed(ActionEvent e){
-            JButton numberButton = (JButton)e.getSource(); //버튼 가져오기
+    public class NumberButtonEventListenerClass implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            JButton numberButton = (JButton) e.getSource(); //버튼 가져오기
 
-            if(calculatorFrame.isEqualExist){ // 이전에 equal이 입력 되었을 경우 > 새로운 연산이 시작되므로 모든 값 초기화 해준다
-                calculatorFrame.savedNumber= "";
+            if (calculatorFrame.isEqualExist) { // 이전에 equal이 입력 되었을 경우 > 새로운 연산이 시작되므로 모든 값 초기화 해준다
+                calculatorFrame.savedNumber = "";
                 calculatorFrame.firstNumber = "0";
                 calculatorFrame.secondNumber = "";
                 calculatorFrame.operator = ""; //입력 받은 연산자
@@ -30,27 +31,25 @@ public class ButtonEvent{
                 calculatorFrame.preNumberLabel.setText("");
             }
 
-            if(calculatorFrame.operator == "") { //연산자가 없을 때 숫자1 입력 받기
+            if (calculatorFrame.operator == "") { //연산자가 없을 때 숫자1 입력 받기
                 //숫자 제한개수 초과시 입력 안되게 막기 (쉼표 제거 후 숫자 개수 세기)
-                if( (removeCommasInNumber(calculatorFrame.firstNumber)).length() > 15)
+                if ((removeCommasInNumber(calculatorFrame.firstNumber)).length() > 15)
                     return;
 
                 //숫자 입력 전 숫자1이 0이면 지워주기
-                if(calculatorFrame.firstNumber == "0"){
+                if (calculatorFrame.firstNumber == "0") {
                     calculatorFrame.firstNumber = "";
                     clearInputNumber();
                 }
                 printNumberAndErrorMessage(calculatorFrame.numberInputLabel.getText() + numberButton.getText());
                 calculatorFrame.firstNumber = calculatorFrame.numberInputLabel.getText();
-            }
-
-            else{ // 연산자가 있을 때 숫자2 입력받기
+            } else { // 연산자가 있을 때 숫자2 입력받기
                 //숫자 제한개수 초과시 입력 안되게 막기 (쉼표 제거 후 숫자 개수 세기)
-                if( (removeCommasInNumber(calculatorFrame.secondNumber)).length() >12)
+                if ((removeCommasInNumber(calculatorFrame.secondNumber)).length() > 12)
                     return;
 
                 //숫자 입력 전 숫자2가 0이거나 입력 받은 값이 없다면 지워주기
-                if((calculatorFrame.secondNumber == "0") || (calculatorFrame.secondNumber == "")) {
+                if ((calculatorFrame.secondNumber == "0") || (calculatorFrame.secondNumber == "")) {
                     calculatorFrame.secondNumber = "";
                     clearInputNumber();
                 }
@@ -67,8 +66,8 @@ public class ButtonEvent{
             JButton operatorButton = (JButton) e.getSource(); //버튼 가져오기
             String operator = operatorButton.getText();
 
-            if(calculatorFrame.isEqualExist){ // 이전에 equal이 입력 되었을 경우 > equal이 입력되고 그 결과 값에 다시 연산을 하는 경우
-                calculatorFrame.savedNumber= "";
+            if (calculatorFrame.isEqualExist) { // 이전에 equal이 입력 되었을 경우 > equal이 입력되고 그 결과 값에 다시 연산을 하는 경우
+                calculatorFrame.savedNumber = "";
                 calculatorFrame.firstNumber = calculatorFrame.numberInputLabel.getText();
                 calculatorFrame.secondNumber = "";
                 calculatorFrame.operator = ""; //입력 받은 연산자
@@ -79,30 +78,27 @@ public class ButtonEvent{
             //연산자가 들어오면 앞서 입력된 문자열형의 숫자 정리해주기 (예:0123 > 123)
             calculatorFrame.firstNumber = removeUnnecessaryZero(calculatorFrame.firstNumber);
             calculatorFrame.secondNumber = removeUnnecessaryZero(calculatorFrame.secondNumber);
-            printNumberAndErrorMessage(removeUnnecessaryZero (calculatorFrame.numberInputLabel.getText())); // 입력한 값이 2.000과 같은 경우 불필요한 소수점 제거해 주기
+            printNumberAndErrorMessage(removeUnnecessaryZero(calculatorFrame.numberInputLabel.getText())); // 입력한 값이 2.000과 같은 경우 불필요한 소수점 제거해 주기
 
             //앞서 연산자가 없는 경우 연산자 추가
-            if(calculatorFrame.operator == "") {
+            if (calculatorFrame.operator == "") {
                 calculatorFrame.operator = operator;
                 printExpression(calculatorFrame.operator);
-            }
-            else{ // 앞서 연산자가 있는경우 또 연산자가 나왔을때
-                if(calculatorFrame.secondNumber == ""){ //숫자2가 안나왔을때 > 즉, 숫자1 나오고 연산자가 두번 이상 연속으로 나왔을 경우
+            } else { // 앞서 연산자가 있는경우 또 연산자가 나왔을때
+                if (calculatorFrame.secondNumber == "") { //숫자2가 안나왔을때 > 즉, 숫자1 나오고 연산자가 두번 이상 연속으로 나왔을 경우
                     //연산자 교체
                     calculatorFrame.operator = operator;
                     printExpression(calculatorFrame.operator);
-                }
-                else{ //앞서 숫자1, 연산자, 숫자2 가 나왔고 현재 연산자 버튼을 눌렀을 경우 > 앞의 수식의 계산을 진행
+                } else { //앞서 숫자1, 연산자, 숫자2 가 나왔고 현재 연산자 버튼을 눌렀을 경우 > 앞의 수식의 계산을 진행
                     calculateNumbers(calculatorFrame.operator); // 기존의 연산자로 계산을 진행
                     calculatorFrame.secondNumber = ""; //숫자2 초기화
                     calculatorFrame.operator = operator; //계산이 끝난 후 새로 입력받은 연산자를 입력
 
-                    if(calculatorFrame.firstNumber.matches( ".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*")){ //오류 메시지인 경우
+                    if (calculatorFrame.firstNumber.matches(".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*")) { //오류 메시지인 경우
                         printNumberAndErrorMessage(calculatorFrame.firstNumber); // 오류메시지 출력
                         //전부 초기화
 
-                    }
-                    else {
+                    } else {
                         printExpression(calculatorFrame.operator);
                     }
                 }
@@ -120,13 +116,12 @@ public class ButtonEvent{
             calculatorFrame.firstNumber = removeUnnecessaryZero(calculatorFrame.firstNumber);
             calculatorFrame.secondNumber = removeUnnecessaryZero(calculatorFrame.secondNumber);
 
-            if(calculatorFrame.operator == ""){ //앞서 연산자가 나오지 않은 경우 > 숫자2도 없다.
+            if (calculatorFrame.operator == "") { //앞서 연산자가 나오지 않은 경우 > 숫자2도 없다.
                 printExpression("=");
                 //로그에 추가하기
-            }
-            else{ //앞서 연산자가 나온 경우
+            } else { //앞서 연산자가 나온 경우
 
-                if(calculatorFrame.secondNumber == ""){ //숫자2가 나오지 않은 경우 (예: 1+=) > 자기 복제
+                if (calculatorFrame.secondNumber == "") { //숫자2가 나오지 않은 경우 (예: 1+=) > 자기 복제
                     calculatorFrame.secondNumber = calculatorFrame.savedNumber;
                     calculatorFrame.preNumberLabel.setText(calculatorFrame.firstNumber + calculatorFrame.operator + calculatorFrame.savedNumber + "=");
 
@@ -134,9 +129,7 @@ public class ButtonEvent{
                     calculateNumbers(calculatorFrame.operator);
                     printNumberAndErrorMessage(calculatorFrame.firstNumber);
                     calculatorFrame.secondNumber = "";
-                }
-
-                else{ // 숫자1, 연산자, 숫자2 그리고 현재 등호가 나온 경우 > 정상 계산
+                } else { // 숫자1, 연산자, 숫자2 그리고 현재 등호가 나온 경우 > 정상 계산
                     //히스토리 창 출력
                     calculatorFrame.preNumberLabel.setText(calculatorFrame.firstNumber + calculatorFrame.operator + calculatorFrame.secondNumber + "=");
                     //수식 계산
@@ -153,7 +146,7 @@ public class ButtonEvent{
     public class ClearButtonEventListenerClass implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             //모든 변수 초기화
-            calculatorFrame.savedNumber= "";
+            calculatorFrame.savedNumber = "";
             calculatorFrame.firstNumber = "0";
             calculatorFrame.secondNumber = "";
             calculatorFrame.operator = ""; //입력 받은 연산자
@@ -166,36 +159,32 @@ public class ButtonEvent{
     }
 
     //5. 소수점 버튼 눌렀을 경우 이벤트 처리
-    public class DecimalPointButtonEventListenerClass implements ActionListener{
+    public class DecimalPointButtonEventListenerClass implements ActionListener {
         public void actionPerformed(ActionEvent e) {
 
-            if(!(calculatorFrame.numberInputLabel.getText()).contains(".")) {
+            if (!(calculatorFrame.numberInputLabel.getText()).contains(".")) {
                 printNumberAndErrorMessage(calculatorFrame.numberInputLabel.getText() + ".");
             }
         }
     }
 
     //6. BackSpace버튼 인 경우
-    public class BackSpaceButtonEventListenerClass implements ActionListener{
-        public void actionPerformed(ActionEvent e){
+    public class BackSpaceButtonEventListenerClass implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
             String inputNumbers;
 
-            if(calculatorFrame.isEqualExist){ //등호가 들어왔을 경우
+            if (calculatorFrame.isEqualExist) { //등호가 들어왔을 경우
                 //등호와 연산자가 있다는 의미는 정상적인 수식계산이 진행 되었다는 의미 > 이 경우 backspace를 누르면 history 창이 지워진다.
-                if (calculatorFrame.operator != ""){
+                if (calculatorFrame.operator != "") {
                     calculatorFrame.preNumberLabel.setText("");
                 }
                 // operator가 "" 인 경우 > 숫자 누르고 = 누른 후 backspace 눌렀을 경우 (연산자가 없고 =이 들와왔을 경우) 는 아무일도 일어나지 않는다.
-            }
-
-            else { //등호가 없는 경우
+            } else { //등호가 없는 경우
                 if ((calculatorFrame.operator == "") && (calculatorFrame.firstNumber != "0")) { //숫자1 입력 도중
                     inputNumbers = calculatorFrame.numberInputLabel.getText();
                     calculatorFrame.firstNumber = judgeDeletedNumberLength(inputNumbers);
                     printNumberAndErrorMessage(calculatorFrame.firstNumber); //화면 출력
-                }
-
-                else if ((calculatorFrame.operator != "") && (calculatorFrame.secondNumber != "")){ //숫자2 입력도중
+                } else if ((calculatorFrame.operator != "") && (calculatorFrame.secondNumber != "")) { //숫자2 입력도중
                     inputNumbers = calculatorFrame.numberInputLabel.getText();
                     calculatorFrame.secondNumber = judgeDeletedNumberLength(inputNumbers);
                     printNumberAndErrorMessage(calculatorFrame.secondNumber); //화면 출력
@@ -206,30 +195,30 @@ public class ButtonEvent{
     }
 
     //7. plusAndMinus버튼 인 경우
-    public class PlusAndMinusButtonEventListenerClass implements ActionListener{
-        public void actionPerformed(ActionEvent e){
+    public class PlusAndMinusButtonEventListenerClass implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
             //연산자 없을 경우 > 즉 숫자1 입력 도중
 
             //숫자 1 입력 도중
-            if(calculatorFrame.operator.equals("") && !calculatorFrame.isEqualExist){
-                if( !(calculatorFrame.firstNumber.equals("0")) ){ // 0인 경우 - 붙으면 안됨
+            if (calculatorFrame.operator.equals("") && !calculatorFrame.isEqualExist) {
+                if (!(calculatorFrame.firstNumber.equals("0"))) { // 0인 경우 - 붙으면 안됨
                     setMinusOnNumberInputLabel();
                     calculatorFrame.firstNumber = calculatorFrame.numberInputLabel.getText(); //바뀐값 변수에 저장
                 }
             }
-
             //숫자1과 연산자가 들어 왔을 경우
-            else if(!calculatorFrame.operator.equals("") && calculatorFrame.secondNumber.equals("") && !calculatorFrame.isEqualExist){
+            else if (!calculatorFrame.operator.equals("") && calculatorFrame.secondNumber.equals("") && !calculatorFrame.isEqualExist) {
                 setNegateOnPreNumberLabelAfterOperatorInput(); //preNumber라벨 창 출력 관리 함수
                 setMinusOnNumberInputLabel(); // 입력창 출력 관리 함수
                 calculatorFrame.firstNumber = calculatorFrame.numberInputLabel.getText();//바뀐값 변수에 저장
             }
-            else if(!calculatorFrame.operator.equals("") && !calculatorFrame.secondNumber.equals("") && !calculatorFrame.isEqualExist){ //두번째 숫자 입력시
+            //두번째 숫자 입력시
+            else if (!calculatorFrame.operator.equals("") && !calculatorFrame.secondNumber.equals("") && !calculatorFrame.isEqualExist) {
                 setMinusOnNumberInputLabel();
                 calculatorFrame.secondNumber = calculatorFrame.numberInputLabel.getText(); //바뀐값 변수에 저장
             }
             //연산자 다음 바로 등호 들어왔을 경우 > 자기복제 수식 계산 끝난 후
-            else if(!calculatorFrame.operator.equals("") && calculatorFrame.secondNumber.equals("") && calculatorFrame.isEqualExist){
+            else if (!calculatorFrame.operator.equals("") && calculatorFrame.secondNumber.equals("") && calculatorFrame.isEqualExist) {
 
             }
             //숫자1, 연산자, 숫자2, 등호 들어왔을 경우 > 수식계산 끝난 후
@@ -238,62 +227,93 @@ public class ButtonEvent{
                 setMinusOnNumberInputLabel();
                 calculatorFrame.firstNumber = calculatorFrame.numberInputLabel.getText();//바뀐값 변수에 저장
             }
-
-
             saveFirstNumberToSavedNumber(calculatorFrame.firstNumber);
         }
+    }
 
-        //pulsAndMinus 버튼 눌렀을때 입력창 출력하는 함수
-        public void setMinusOnNumberInputLabel(){
-            String inputLabelText = calculatorFrame.numberInputLabel.getText();
-            if(inputLabelText.contains("-")){
-                inputLabelText = inputLabelText.replace("-","");
-                printNumberAndErrorMessage(inputLabelText);
+    //8. CE 버튼인 경우
+    public class ClearEntryButtonEventListenerClass implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            if (calculatorFrame.operator.equals("") && !calculatorFrame.isEqualExist) { //숫자1 입력도중
+                printNumberAndErrorMessage("0");
+                calculatorFrame.firstNumber = "0";
             }
-            else {
-                printNumberAndErrorMessage("-" + calculatorFrame.numberInputLabel.getText());
+            //숫자1과 연산자 까지 들어왔을때
+            else if (!calculatorFrame.operator.equals("") && calculatorFrame.secondNumber.equals("") && !calculatorFrame.isEqualExist) {
+                printNumberAndErrorMessage("0");
+                calculatorFrame.secondNumber ="0";
+            }
+            //두번째 숫자 입력시
+            else if (!calculatorFrame.operator.equals("") && !calculatorFrame.secondNumber.equals("") && !calculatorFrame.isEqualExist) {
+                printNumberAndErrorMessage("0");
+                calculatorFrame.secondNumber = "0";
+            }
+            //등호 입력시, 즉 계산 완료 후
+            else if (calculatorFrame.isEqualExist) {
+                calculatorFrame.savedNumber = "";
+                calculatorFrame.firstNumber = "0";
+                calculatorFrame.secondNumber = "";
+                calculatorFrame.operator = ""; //입력 받은 연산자
+                calculatorFrame.isEqualExist = false;
+
+                //출력 창 초기화
+                calculatorFrame.preNumberLabel.setText("");
+                printNumberAndErrorMessage("0");
+            }
+            saveFirstNumberToSavedNumber(calculatorFrame.firstNumber);
+        }
+    }
+
+
+    //pulsAndMinus 버튼 눌렀을때 입력창 출력하는 함수
+    public void setMinusOnNumberInputLabel() {
+        String inputLabelText = calculatorFrame.numberInputLabel.getText();
+        if (inputLabelText.contains("-")) {
+            inputLabelText = inputLabelText.replace("-", "");
+            printNumberAndErrorMessage(inputLabelText);
+        } else {
+            printNumberAndErrorMessage("-" + calculatorFrame.numberInputLabel.getText());
+        }
+    }
+
+    //pulsAndMinus 버튼 눌렀을때 preNumberLabel에 negate 출력하는 함수
+    public void setNegateOnPreNumberLabelAfterOperatorInput() {
+        String preNumberLabelText = calculatorFrame.preNumberLabel.getText();
+        int numberLastIndex = findNumbersIndexOnPreNumberLabel(preNumberLabelText); //입력한 숫자의 마지막 인덱스 찾기
+        String targetNumber = preNumberLabelText.substring(0, numberLastIndex); //문자열에서 숫자 추출하기
+
+        if (!preNumberLabelText.contains("negate")) { //히스토리창에 negate가 아직 출력되지 않았을 때 > 즉 plusAndMinus버튼이 처음 눌렸을 경우
+            calculatorFrame.preNumberLabel.setText(preNumberLabelText + "negate( " + targetNumber + " )");
+        } else { //plusAndMinus버튼이 두번 이상 눌렸을때
+            //문자열 나누기
+            String expression = preNumberLabelText.substring(0, numberLastIndex + 1);
+            String preNegateText = preNumberLabelText.substring(numberLastIndex + 1);
+
+            //preNumberLabel 출력
+            calculatorFrame.preNumberLabel.setText(expression + " negate( " + preNegateText + " )");
+        }
+    }
+
+    public void setNegateOnPreNumberLabelAfterAllCalculationOver() {
+        String preNumberLabelText = calculatorFrame.preNumberLabel.getText();
+        if (!preNumberLabelText.contains("negate")) { //히스토리창에 negate가 아직 출력되지 않았을 때 > 즉 plusAndMinus버튼이 처음 눌렸을 경우
+            calculatorFrame.preNumberLabel.setText("negate( " + calculatorFrame.numberInputLabel.getText() + " )");
+        } else {
+            calculatorFrame.preNumberLabel.setText("negate( " + preNumberLabelText + " )");
+        }
+    }
+
+    public int findNumbersIndexOnPreNumberLabel(String preNumberLabelText) {
+        String[] operator = {"+", "-", "÷", "x"};
+        int stringNumberLastIndex = -1;
+
+        for (int i = 0; i < 4; i++) {
+            stringNumberLastIndex = preNumberLabelText.indexOf(operator[i]);
+            if (stringNumberLastIndex != -1) {
+                return stringNumberLastIndex;
             }
         }
-
-        //pulsAndMinus 버튼 눌렀을때 preNumberLabel에 negate 출력하는 함수
-        public void setNegateOnPreNumberLabelAfterOperatorInput(){
-            String preNumberLabelText = calculatorFrame.preNumberLabel.getText();
-            int numberLastIndex = findNumbersIndexOnPreNumberLabel(preNumberLabelText); //입력한 숫자의 마지막 인덱스 찾기
-            String targetNumber = preNumberLabelText.substring(0,numberLastIndex); //문자열에서 숫자 추출하기
-
-            if(!preNumberLabelText.contains("negate")){ //히스토리창에 negate가 아직 출력되지 않았을 때 > 즉 plusAndMinus버튼이 처음 눌렸을 경우
-                calculatorFrame.preNumberLabel.setText(preNumberLabelText + "negate( " + targetNumber + " )");
-            }
-            else{ //plusAndMinus버튼이 두번 이상 눌렸을때
-                //문자열 나누기
-                String expression = preNumberLabelText.substring(0, numberLastIndex + 1);
-                String preNegateText = preNumberLabelText.substring(numberLastIndex + 1);
-
-                //preNumberLabel 출력
-                calculatorFrame.preNumberLabel.setText(expression + " negate( " + preNegateText + " )");
-            }
-        }
-        public void setNegateOnPreNumberLabelAfterAllCalculationOver(){
-            String preNumberLabelText = calculatorFrame.preNumberLabel.getText();
-            if(!preNumberLabelText.contains("negate")){ //히스토리창에 negate가 아직 출력되지 않았을 때 > 즉 plusAndMinus버튼이 처음 눌렸을 경우
-                calculatorFrame.preNumberLabel.setText("negate( " + calculatorFrame.numberInputLabel.getText() + " )");
-            }
-            else{
-                calculatorFrame.preNumberLabel.setText("negate( " + preNumberLabelText + " )");
-            }
-        }
-        public int findNumbersIndexOnPreNumberLabel(String preNumberLabelText){
-            String[] operator = {"+","-","÷","x"};
-            int stringNumberLastIndex = -1;
-
-            for(int i=0; i<4; i++){
-                stringNumberLastIndex = preNumberLabelText.indexOf(operator[i]);
-                if(stringNumberLastIndex != -1){
-                    return stringNumberLastIndex;
-                }
-            }
-            return stringNumberLastIndex;
-        }
+        return stringNumberLastIndex;
     }
 
     public void printNumberAndErrorMessage(String number){
@@ -315,7 +335,6 @@ public class ButtonEvent{
         else{
             number = addCommasOnLabel(number);
         }
-
 
         //출력전 사이즈 조절
         Font numberInputLabelFont = new Font("나눔고딕", Font.BOLD, calculatorFrame.numberInputLabel.getHeight()); //초기 폰트 값 저장
@@ -349,6 +368,7 @@ public class ButtonEvent{
     public void clearInputNumber(){
         calculatorFrame.numberInputLabel.setText("");
     }
+
     public String removeUnnecessaryZero(String number) { //string 값으로 저장된 숫자 중에 맨앞이나 맨뒤에 불필요한 0을 삭제해주기 위한 함수
         // string > Big Decimal > string 으로 바꿔준다
 
@@ -363,6 +383,7 @@ public class ButtonEvent{
         //빈 문자열일 경우 그대로 반환
         return number;
     }
+
     public String removeCommasInNumber(String number){
         //문자열에 저장된 , 제거
         number = number.replaceAll(",","");
@@ -393,6 +414,7 @@ public class ButtonEvent{
                 break;
         }
     }
+
     public void handleDivisionException(BigDecimal bigDecimalNumber1, BigDecimal bigDecimalNumber2){
         //분모가 0인 경우 계산이 되지 않음
         if((calculatorFrame.secondNumber).equals("0")){

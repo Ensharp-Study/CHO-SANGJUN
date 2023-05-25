@@ -47,6 +47,7 @@ public class CalculatorFrame extends JFrame {
     ButtonEvent.DecimalPointButtonEventListenerClass decimalPointButtonEventListenerClass;
     ButtonEvent.BackSpaceButtonEventListenerClass backSpaceButtonEventListenerClass;
     ButtonEvent.PlusAndMinusButtonEventListenerClass plusAndMinusButtonEventListenerClass;
+    ButtonEvent.ClearEntryButtonEventListenerClass clearEntryButtonEventListenerClass;
 
     //키 입력에 대한 ActionListener 클래스 인스턴스 생성
     java.awt.event.KeyEvent keyEvent;
@@ -63,6 +64,7 @@ public class CalculatorFrame extends JFrame {
         this.decimalPointButtonEventListenerClass = buttonEvent.new DecimalPointButtonEventListenerClass();
         this.backSpaceButtonEventListenerClass = buttonEvent.new BackSpaceButtonEventListenerClass();
         this.plusAndMinusButtonEventListenerClass =buttonEvent.new PlusAndMinusButtonEventListenerClass();
+        this.clearEntryButtonEventListenerClass = buttonEvent.new ClearEntryButtonEventListenerClass();
 
         setTitle("계산기");
         setSize(324, 534);
@@ -198,7 +200,7 @@ public class CalculatorFrame extends JFrame {
             //7.ClearEntry 버튼인 경우
             else if (i == 0){
                 calculatebuttons[i].setBackground(new Color(226,226,226));
-
+                calculatebuttons[i].addActionListener(clearEntryButtonEventListenerClass);
             }
             //8.PlusAndMinus 버튼인 경우
             else if (i == 16){

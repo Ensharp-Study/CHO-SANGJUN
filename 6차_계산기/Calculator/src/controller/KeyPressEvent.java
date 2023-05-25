@@ -68,6 +68,11 @@ public class KeyPressEvent {
                     break;
                 case KeyEvent.VK_ENTER:
                     calculatorFrame.calculatebuttons[19].doClick();
+                    break;
+                case KeyEvent.VK_F9: //맥북이어서 실행 안됨?
+                    calculatorFrame.calculatebuttons[16].doClick(); //plusAndMinus 버튼
+                    break;
+
             }
         }
     }

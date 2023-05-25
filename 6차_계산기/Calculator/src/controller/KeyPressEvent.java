@@ -66,6 +66,8 @@ public class KeyPressEvent {
                 case KeyEvent.VK_MINUS:
                     calculatorFrame.calculatebuttons[11].doClick();
                     break;
+                case KeyEvent.VK_ENTER:
+                    calculatorFrame.calculatebuttons[19].doClick();
             }
         }
     }

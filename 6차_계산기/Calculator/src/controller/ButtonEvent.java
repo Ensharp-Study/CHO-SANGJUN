@@ -211,6 +211,9 @@ public class ButtonEvent {
                     setMinusOnNumberInputLabel();
                     calculatorFrame.firstNumber = calculatorFrame.numberInputLabel.getText(); //바뀐값 변수에 저장
                 }
+                else{
+                    calculatorFrame.preNumberLabel.setText("negate(" + calculatorFrame.preNumberLabel.getText() + ")");
+                }
             }
             //숫자1과 연산자가 들어 왔을 경우
             else if (!calculatorFrame.operator.equals("") && calculatorFrame.secondNumber.equals("") && !calculatorFrame.isEqualExist) {

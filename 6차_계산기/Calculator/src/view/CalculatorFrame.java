@@ -1,7 +1,7 @@
 package view;
 
 import controller.ButtonEvent;
-import controller.KeyEvent;
+import controller.KeyPressEvent;
 
 import javax.swing.*;
 import java.awt.*;
@@ -50,9 +50,8 @@ public class CalculatorFrame extends JFrame {
     ButtonEvent.ClearEntryButtonEventListenerClass clearEntryButtonEventListenerClass;
 
     //키 입력에 대한 ActionListener 클래스 인스턴스 생성
-    java.awt.event.KeyEvent keyEvent;
-    KeyEvent.KeyInputListener keyInputListener;
-
+    KeyPressEvent keyPressEventEvent;
+    KeyPressEvent.KeyInputListener keyInputListener;
 
     public CalculatorFrame() { //생성자
         //버튼에 대한 리스너 객체 생성하기 (이렇게 생성해서 쓰면 왜 안되는지)
@@ -92,7 +91,7 @@ public class CalculatorFrame extends JFrame {
 
         composeBasePanel(); //패널 구성
         add(basePanel,BorderLayout.WEST); //base 패널 Frame 위에 올리기
-        this.addKeyListener((new KeyEvent(this)).new KeyInputListener());
+        this.addKeyListener((new KeyPressEvent(this)).new KeyInputListener());
         this.setFocusable(true);
         setVisible(true);
     }
@@ -160,8 +159,9 @@ public class CalculatorFrame extends JFrame {
         //2. 하단부 버튼 패널 구성
         for (int i = 0; i < 20; i++) {
             calculatebuttons[i] = new JButton(buttonTitle[i]);
-            calculatebuttons[i].setContentAreaFilled(false);
 
+            //버튼 UI
+            calculatebuttons[i].setContentAreaFilled(false);
             calculatebuttons[i].setOpaque(true); // 투명도 해제
             calculatebuttons[i].setBorderPainted(false);
 

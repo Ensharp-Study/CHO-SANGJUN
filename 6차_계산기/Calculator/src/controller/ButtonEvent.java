@@ -2,6 +2,7 @@ package controller;
 
 import view.CalculatorFrame;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
@@ -78,7 +79,7 @@ public class ButtonEvent{
             //연산자가 들어오면 앞서 입력된 문자열형의 숫자 정리해주기 (예:0123 > 123)
             calculatorFrame.firstNumber = removeUnnecessaryZero(calculatorFrame.firstNumber);
             calculatorFrame.secondNumber = removeUnnecessaryZero(calculatorFrame.secondNumber);
-            calculatorFrame.numberInputLabel.setText(removeUnnecessaryZero (calculatorFrame.numberInputLabel.getText())); // 입력한 값이 2.000과 같은 경우 불필요한 소수점 제거해 주기
+            printNumberAndErrorMessage(removeUnnecessaryZero (calculatorFrame.numberInputLabel.getText())); // 입력한 값이 2.000과 같은 경우 불필요한 소수점 제거해 주기
 
             //앞서 연산자가 없는 경우 연산자 추가
             if(calculatorFrame.operator == "") {
@@ -160,7 +161,7 @@ public class ButtonEvent{
 
             //출력 창 초기화
             calculatorFrame.preNumberLabel.setText("");
-            calculatorFrame.numberInputLabel.setText("0");
+            printNumberAndErrorMessage("0");
         }
     }
 
@@ -169,7 +170,7 @@ public class ButtonEvent{
         public void actionPerformed(ActionEvent e) {
 
             if(!(calculatorFrame.numberInputLabel.getText()).contains(".")) {
-                calculatorFrame.numberInputLabel.setText(calculatorFrame.numberInputLabel.getText() + ".");
+                printNumberAndErrorMessage(calculatorFrame.numberInputLabel.getText() + ".");
             }
         }
     }
@@ -247,10 +248,10 @@ public class ButtonEvent{
             String inputLabelText = calculatorFrame.numberInputLabel.getText();
             if(inputLabelText.contains("-")){
                 inputLabelText = inputLabelText.replace("-","");
-                calculatorFrame.numberInputLabel.setText(inputLabelText);
+                printNumberAndErrorMessage(inputLabelText);
             }
             else {
-                calculatorFrame.numberInputLabel.setText("-" + calculatorFrame.numberInputLabel.getText());
+                printNumberAndErrorMessage("-" + calculatorFrame.numberInputLabel.getText());
             }
         }
 
@@ -314,7 +315,21 @@ public class ButtonEvent{
         else{
             number = addCommasOnLabel(number);
         }
-        calculatorFrame.numberInputLabel.setText(number); //누른 버튼의 숫자 출력
+
+
+        //출력전 사이즈 조절
+        Font numberInputLabelFont = new Font("나눔고딕", Font.BOLD, calculatorFrame.numberInputLabel.getHeight()); //초기 폰트 값 저장
+        FontMetrics numberInputLabelFontMetrics = calculatorFrame.numberInputLabel.getFontMetrics(numberInputLabelFont);
+        int numberWidth = numberInputLabelFontMetrics.stringWidth(number);
+
+        if(calculatorFrame.numberInputLabel.getWidth() < numberWidth){
+            calculatorFrame.numberInputLabel.setFont(new Font("나눔고딕", Font.BOLD, (int)(3.0/ 1.8 *(calculatorFrame.numberInputLabel.getWidth())/ (number.length()))));
+        }
+        else{
+            calculatorFrame.numberInputLabel.setFont(new Font("나눔고딕", Font.BOLD, calculatorFrame.numberInputLabel.getHeight()));
+        }
+
+        calculatorFrame.numberInputLabel.setText(number); //결과 출력
     }
 
     //출력되는 숫자에 천단위로 , 추가하는 함수

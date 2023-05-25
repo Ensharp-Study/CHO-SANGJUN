@@ -60,7 +60,7 @@ public class CalculatorFrame extends JFrame {
             public void componentResized(ComponentEvent e) {
                 if(e.getComponent().getWidth() >= 648 ){
                     //로그창이 위에 떠있을때
-                    moveLogPanelPosition();
+                    showLogPanel();
                    //입력창 늘렸을때 패널 옆에 붙이기
                     resizePanelsWithLogPanel();
                     logPanel.setPreferredSize(new Dimension((e.getComponent().getWidth()) /2, e.getComponent().getHeight()));
@@ -129,8 +129,19 @@ public class CalculatorFrame extends JFrame {
         numberInputLabel.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
-                int fontSize = e.getComponent().getHeight(); // 창의 높이를 이용한 폰트 크기 계산
+                int fontSize = numberInputLabel.getHeight();
                 numberInputLabel.setFont(new Font("나눔고딕", Font.BOLD, fontSize));
+
+                Font numberInputLabelFont = new Font("나눔고딕", Font.BOLD, numberInputLabel.getHeight()); //초기 폰트 값 저장
+                FontMetrics numberInputLabelFontMetrics = numberInputLabel.getFontMetrics(numberInputLabelFont);
+                int numberWidth = numberInputLabelFontMetrics.stringWidth(numberInputLabel.getText());
+
+                if(numberInputLabel.getWidth() < numberWidth){
+                    numberInputLabel.setFont(new Font("나눔고딕", Font.BOLD, (int)(3.0/ 1.8 *(numberInputLabel.getWidth())/ (numberInputLabel.getText().length()))));
+                }
+                else{
+                    numberInputLabel.setFont(new Font("나눔고딕", Font.BOLD, numberInputLabel.getHeight()));
+                }
             }
         });
 
@@ -271,7 +282,7 @@ public class CalculatorFrame extends JFrame {
         }
     }
 
-    public void moveLogPanelPosition(){
+    public void showLogPanel(){
         Boolean isLogPanelOnBasePanel = false;
         //로그 패널이 떠 있는지 확인
         Component[] basePanelComponents = basePanel.getComponents();

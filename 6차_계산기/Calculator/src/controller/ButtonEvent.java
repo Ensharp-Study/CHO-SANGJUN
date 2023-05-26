@@ -344,14 +344,14 @@ public class ButtonEvent {
         }
 
         if(number.contains("E")){
-            number = number.replace("E",  "e");
+            number = number.replace("E", "e");
         }
         else {
             number = addCommasOnLabel(number);
             number = number.replace(",", "");
             if (number.length() >= 17) {
                 BigDecimal bigDecimal = new BigDecimal(number);
-                number = bigDecimal.toPlainString();
+                number = bigDecimal.toString();
             } else {
                 number = addCommasOnLabel(number);
             }

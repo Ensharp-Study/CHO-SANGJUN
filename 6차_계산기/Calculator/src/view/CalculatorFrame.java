@@ -18,7 +18,7 @@ public class CalculatorFrame extends JFrame {
     public Panel logButtonPanel = new Panel(new FlowLayout(FlowLayout.RIGHT));
     public Panel inputPanel = new Panel(new GridLayout(2, 1, 0, 0));
     public Panel buttonPanel = new Panel(new GridLayout(5, 4, 0, 0));
-    public Panel logPanel = new Panel(new FlowLayout());
+    public Panel logPanel = new Panel();
 
     //logButtonPanel의 Components
     public JButton logButton = new JButton();
@@ -30,6 +30,11 @@ public class CalculatorFrame extends JFrame {
     //buttonPanel의 Components
     public String[] buttonTitle = {"CE", "C", "←", "÷", "7", "8", "9", "x", "4", "5", "6", "-", "1", "2", "3", "+", "±", "0", ".", "="};
     public JButton[] calculatebuttons = new JButton[20];
+
+    //logPanel의 Components
+    public Panel logBasePanel = new Panel(new BorderLayout());
+    public JLabel GettedPreNumberLabel = new JLabel();
+    public JLabel GettedNumberInputLabel = new JLabel();
 
     //계산시 사용하는 변수들 선언
     public String savedNumber= "";
@@ -73,6 +78,8 @@ public class CalculatorFrame extends JFrame {
             @Override
             public void componentResized(ComponentEvent e) {
                 if(e.getComponent().getWidth() >= 648 ){
+                    //로그버튼 무효화
+                    logButton.setEnabled(false);
                     //로그창이 위에 떠있을때
                     showLogPanel();
                    //입력창 늘렸을때 패널 옆에 붙이기
@@ -81,6 +88,8 @@ public class CalculatorFrame extends JFrame {
                     add(logPanel, BorderLayout.EAST);
                 }
                 else{
+                    //로그버튼 유효화
+                    logButton.setEnabled(true);
                     resizePanelsWithOutLogPanel(); //사이즈 변경에 따라 패널 비율 맞추는 함수
                 }
             }
@@ -105,8 +114,6 @@ public class CalculatorFrame extends JFrame {
         inputPanel.setPreferredSize(new Dimension(frameSize.width, (int)(frameSize.height * (3.0/12))));
         buttonPanel.setPreferredSize(new Dimension(frameSize.width, (int)(frameSize.height * (8.0/12))));
         logPanel.setPreferredSize(new Dimension(frameSize.width, (int)(frameSize.height * (8.0/12))));
-
-        logPanel.setBackground(Color.BLACK);
 
         //0. 로그버튼 패널 입력 구성
         logButton = setImageOnButton("utility/image/free-icon-clock-1827463.png");
@@ -211,6 +218,15 @@ public class CalculatorFrame extends JFrame {
             buttonPanel.add(calculatebuttons[i]);
         }
         basePanel.add(buttonPanel,BorderLayout.SOUTH);
+
+        /*//3. 로그 패널 구성
+        logPanel.setLayout(new BoxLayout(logPanel, BoxLayout.Y_AXIS));
+        GettedPreNumberLabel.setHorizontalAlignment(JLabel.RIGHT);
+        GettedNumberInputLabel.setHorizontalAlignment(JLabel.RIGHT);
+        logBasePanel.add(GettedPreNumberLabel,BorderLayout.NORTH);
+        logBasePanel.add(GettedNumberInputLabel,BorderLayout.SOUTH);
+        logPanel.add(logBasePanel);*/
+        
     }
 
     private void resizePanelsWithOutLogPanel() { //프레임 사이즈 변화시 모든 패널 같은 비율에 맞게 사이즈 변경
@@ -243,16 +259,6 @@ public class CalculatorFrame extends JFrame {
         revalidate();
     }
 
-    public void composeLogPanel(){
-        //로그창에 수식 및 결과값 저장할 리스트 생성
-        ArrayList<String> expressions = new ArrayList<>();
-        ArrayList<String> result = new ArrayList<>();
-        JList expressionList = new JList();
-        JList resultList = new JList();
-
-        //창크기가 늘어났을때와 버튼 눌렀을때로 구분
-        //1. 버튼 누르고 창이 커졌을 경우
-    }
 
     public JButton setImageOnButton(String imagePath){
         ImageIcon logIcon = new ImageIcon(imagePath);

@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
 public class ButtonEvent {
@@ -432,7 +433,7 @@ public class ButtonEvent {
             return;
         }
         //정상적인 계산인 경우
-        calculatorFrame.firstNumber = (bigDecimalNumber1.divide(bigDecimalNumber2, MathContext.DECIMAL64)).toEngineeringString();
+        calculatorFrame.firstNumber = (bigDecimalNumber1.divide(bigDecimalNumber2, 15, RoundingMode.HALF_UP)).toEngineeringString();
     }
 
     public void saveFirstNumberToSavedNumber(String firstNumber){

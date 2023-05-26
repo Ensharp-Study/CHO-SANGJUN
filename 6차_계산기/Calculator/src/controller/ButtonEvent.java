@@ -166,10 +166,17 @@ public class ButtonEvent {
     //5. 소수점 버튼 눌렀을 경우 이벤트 처리
     public class DecimalPointButtonEventListenerClass implements ActionListener {
         public void actionPerformed(ActionEvent e) {
+            if(!calculatorFrame.operator.equals("") && calculatorFrame.secondNumber.equals("")){ //연산자 입력 받고 두번째 숫자 입력 하나도 안받았을 때
+                calculatorFrame.secondNumber ="0";
+                calculatorFrame.numberInputLabel.setText("0");
+            }
 
             if (!(calculatorFrame.numberInputLabel.getText()).contains(".")) {
                 printNumberAndErrorMessage(calculatorFrame.numberInputLabel.getText() + ".");
             }
+
+
+
             calculatorFrame.requestFocus();
         }
     }

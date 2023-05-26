@@ -34,9 +34,7 @@ public class ButtonEvent {
 
             if (calculatorFrame.operator == "") { //연산자가 없을 때 숫자1 입력 받기
                 //숫자 제한개수 초과시 입력 안되게 막기 (쉼표 제거 후 숫자 개수 세기)
-                if ((removeCommasInNumber(calculatorFrame.firstNumber)).length() > 15)
-                    return;
-
+                if(!judgeInputLengthLimit(calculatorFrame.firstNumber)) return;
                 //숫자 입력 전 숫자1이 0이면 지워주기
                 if (calculatorFrame.firstNumber == "0") {
                     calculatorFrame.firstNumber = "";
@@ -44,11 +42,11 @@ public class ButtonEvent {
                 }
                 printNumberAndErrorMessage(calculatorFrame.numberInputLabel.getText() + numberButton.getText());
                 calculatorFrame.firstNumber = calculatorFrame.numberInputLabel.getText();
-            } else { // 연산자가 있을 때 숫자2 입력받기
-                //숫자 제한개수 초과시 입력 안되게 막기 (쉼표 제거 후 숫자 개수 세기)
-                if ((removeCommasInNumber(calculatorFrame.secondNumber)).length() > 12)
-                    return;
+            }
 
+            else { // 연산자가 있을 때 숫자2 입력받기
+                //숫자 제한개수 초과시 입력 안되게 막기 (쉼표 제거 후 숫자 개수 세기)
+                if(!judgeInputLengthLimit(calculatorFrame.secondNumber)) return;
                 //숫자 입력 전 숫자2가 0이거나 입력 받은 값이 없다면 지워주기
                 if ((calculatorFrame.secondNumber == "0") || (calculatorFrame.secondNumber == "")) {
                     calculatorFrame.secondNumber = "";
@@ -57,6 +55,7 @@ public class ButtonEvent {
                 printNumberAndErrorMessage(calculatorFrame.numberInputLabel.getText() + numberButton.getText());
                 calculatorFrame.secondNumber = calculatorFrame.numberInputLabel.getText();
             }
+
             saveFirstNumberToSavedNumber(calculatorFrame.firstNumber);
             calculatorFrame.requestFocus();
         }
@@ -344,14 +343,18 @@ public class ButtonEvent {
             return;
         }
 
-        number = addCommasOnLabel(number);
-        number = number.replace(",", "");
-        if(number.length() >= 17){
-            BigDecimal bigDecimal = new BigDecimal(number);
-            number = bigDecimal.toString();
+        if(number.contains("E")){
+            number = number.replace("E", "e");
         }
-        else{
+        else {
             number = addCommasOnLabel(number);
+            number = number.replace(",", "");
+            if (number.length() >= 17) {
+                BigDecimal bigDecimal = new BigDecimal(number);
+                number = bigDecimal.toString();
+            } else {
+                number = addCommasOnLabel(number);
+            }
         }
 
         //출력전 사이즈 조절
@@ -467,6 +470,26 @@ public class ButtonEvent {
             removedNumber = inputNumbers.substring(0, inputNumbers.length() - 1); //맨 뒤 숫자 제거
         }
         return removedNumber;
+    }
+
+    //숫자 제한개수 초과시 입력 안되게 막기 (쉼표 제거 후 숫자 개수 세기)
+    public Boolean judgeInputLengthLimit(String number){
+        Boolean isInputPossible = true;
+        //소수점인지 판단
+        if(number.contains(".")){
+            //정수부가 0일 경우 > 소수점 제외하고 17자리 입력가능
+            if(String.valueOf(number.charAt(0)) == "0"){
+                if(number.length() > 17) isInputPossible = false;
+            }
+            else{
+                if(number.length() > 16) isInputPossible = false;
+            }
+        }
+        else{
+            if ((removeCommasInNumber(number)).length() > 15) isInputPossible = false;
+        }
+
+        return isInputPossible;
     }
 
 }

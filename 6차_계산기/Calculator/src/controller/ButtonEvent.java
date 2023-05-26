@@ -175,8 +175,6 @@ public class ButtonEvent {
                 printNumberAndErrorMessage(calculatorFrame.numberInputLabel.getText() + ".");
             }
 
-
-
             calculatorFrame.requestFocus();
         }
     }
@@ -335,11 +333,13 @@ public class ButtonEvent {
     }
 
     public void printNumberAndErrorMessage(String number){
+        //입력창에 초기 출력이 0인 경우
         if(calculatorFrame.numberInputLabel.getText() == "0"){
             clearInputNumber();
         }
 
         if(number.matches( ".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*")){ //오류메시지인 경우
+            setFontSize(number);
             calculatorFrame.numberInputLabel.setText(number);
             return;
         }
@@ -348,25 +348,28 @@ public class ButtonEvent {
         number = number.replace(",", "");
         if(number.length() >= 17){
             BigDecimal bigDecimal = new BigDecimal(number);
-            number = bigDecimal.toEngineeringString();
+            number = bigDecimal.toString();
         }
         else{
             number = addCommasOnLabel(number);
         }
 
         //출력전 사이즈 조절
+        setFontSize(number);
+        calculatorFrame.numberInputLabel.setText(number); //결과 출력
+    }
+    public void setFontSize(String numberOrText){
+        //출력전 사이즈 조절
         Font numberInputLabelFont = new Font("나눔고딕", Font.BOLD, calculatorFrame.numberInputLabel.getHeight()); //초기 폰트 값 저장
         FontMetrics numberInputLabelFontMetrics = calculatorFrame.numberInputLabel.getFontMetrics(numberInputLabelFont);
-        int numberWidth = numberInputLabelFontMetrics.stringWidth(number);
+        int numberWidth = numberInputLabelFontMetrics.stringWidth(numberOrText);
 
         if(calculatorFrame.numberInputLabel.getWidth() < numberWidth){
-            calculatorFrame.numberInputLabel.setFont(new Font("나눔고딕", Font.BOLD, (int)(3.0/ 1.8 *(calculatorFrame.numberInputLabel.getWidth())/ (number.length()))));
+            calculatorFrame.numberInputLabel.setFont(new Font("나눔고딕", Font.BOLD, (int)(3.0/ 1.8 *(calculatorFrame.numberInputLabel.getWidth())/ (numberOrText.length()))));
         }
         else{
             calculatorFrame.numberInputLabel.setFont(new Font("나눔고딕", Font.BOLD, calculatorFrame.numberInputLabel.getHeight()));
         }
-
-        calculatorFrame.numberInputLabel.setText(number); //결과 출력
     }
 
     //출력되는 숫자에 천단위로 , 추가하는 함수
@@ -419,13 +422,13 @@ public class ButtonEvent {
 
         switch (operator){
             case "+":
-                calculatorFrame.firstNumber = (bigDecimalNumber1.add(bigDecimalNumber2, MathContext.DECIMAL64)).toEngineeringString();
+                calculatorFrame.firstNumber = (bigDecimalNumber1.add(bigDecimalNumber2, MathContext.DECIMAL64)).toString();
                 break;
             case "-":
-                calculatorFrame.firstNumber = (bigDecimalNumber1.subtract(bigDecimalNumber2, MathContext.DECIMAL64)).toEngineeringString();
+                calculatorFrame.firstNumber = (bigDecimalNumber1.subtract(bigDecimalNumber2, MathContext.DECIMAL64)).toString();
                 break;
             case "x":
-                calculatorFrame.firstNumber = (bigDecimalNumber1.multiply(bigDecimalNumber2, MathContext.DECIMAL64)).toEngineeringString();
+                calculatorFrame.firstNumber = (bigDecimalNumber1.multiply(bigDecimalNumber2, MathContext.DECIMAL64)).toString();
                 break;
             case "÷":
                 handleDivisionException(bigDecimalNumber1 ,bigDecimalNumber2);
@@ -445,7 +448,7 @@ public class ButtonEvent {
             return;
         }
         //정상적인 계산인 경우
-        calculatorFrame.firstNumber = (bigDecimalNumber1.divide(bigDecimalNumber2, 15, RoundingMode.HALF_UP)).toEngineeringString();
+        calculatorFrame.firstNumber = (bigDecimalNumber1.divide(bigDecimalNumber2, 15, RoundingMode.HALF_UP)).toString();
     }
 
     public void saveFirstNumberToSavedNumber(String firstNumber){

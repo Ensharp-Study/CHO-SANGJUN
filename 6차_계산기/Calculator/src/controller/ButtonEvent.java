@@ -428,8 +428,13 @@ public class ButtonEvent {
 
     public void handleDivisionException(BigDecimal bigDecimalNumber1, BigDecimal bigDecimalNumber2){
         //분모가 0인 경우 계산이 되지 않음
-        if((calculatorFrame.secondNumber).equals("0")){
-            calculatorFrame.firstNumber = "0으로 나눌 수 없습니다";
+        if(bigDecimalNumber2.compareTo(BigDecimal.ZERO) == 0){
+            if(bigDecimalNumber1.compareTo(BigDecimal.ZERO) == 0){
+                calculatorFrame.firstNumber = "정의되지 않은 결과입니다";
+            }
+            else{
+                calculatorFrame.firstNumber = "0으로 나눌 수 없습니다";
+            }
             return;
         }
         //정상적인 계산인 경우

@@ -13,36 +13,35 @@ import java.util.ArrayList;
 
 public class CalculatorFrame extends JFrame {
 
-    //생성자에서 할당하기
     //프레임 위에 올릴 입력창 패널과 버튼패널 그리고 로그 패널 생성
-    public Panel basePanel = new Panel(new BorderLayout());
-    public Panel logButtonPanel = new Panel(new FlowLayout(FlowLayout.RIGHT));
-    public Panel inputPanel = new Panel(new GridLayout(2, 1, 0, 0));
-    public Panel buttonPanel = new Panel(new GridLayout(5, 4, 0, 0));
-    public Panel logPanel = new Panel();
+    public Panel basePanel;
+    public Panel logButtonPanel;
+    public Panel inputPanel;
+    public Panel buttonPanel;
+    public Panel logPanel;
 
     //logButtonPanel의 Components
-    public JButton logButton = new JButton();
+    public JButton logButton;
 
     //inputPanel의 Components
-    public JLabel preNumberLabel = new JLabel("");
-    public JLabel numberInputLabel = new JLabel("0");
+    public JLabel preNumberLabel;
+    public JLabel numberInputLabel;
 
     //buttonPanel의 Components
     public String[] buttonTitle = {"CE", "C", "←", "÷", "7", "8", "9", "x", "4", "5", "6", "-", "1", "2", "3", "+", "±", "0", ".", "="};
-    public JButton[] calculatebuttons = new JButton[20];
+    public JButton[] calculatebuttons;
 
     //logPanel의 Components
-    public Panel logBasePanel = new Panel(new BorderLayout());
-    public JLabel GettedPreNumberLabel = new JLabel();
-    public JLabel GettedNumberInputLabel = new JLabel();
+    public Panel logBasePanel;
+    public JLabel GettedPreNumberLabel;
+    public JLabel GettedNumberInputLabel;
 
     //계산시 사용하는 변수들 선언
-    public String savedNumber= "";
-    public String firstNumber = "0";
-    public String secondNumber = "";
-    public String operator = ""; //입력 받은 연산자
-    public Boolean isEqualExist = false;
+    public String savedNumber;
+    public String firstNumber;
+    public String secondNumber;
+    public String operator;
+    public Boolean isEqualExist;
 
     //버튼 클릭에 대한 ActionListener 클래스 인스턴스 생성
     ButtonEvent buttonEvent;
@@ -70,6 +69,35 @@ public class CalculatorFrame extends JFrame {
         this.backSpaceButtonEventListenerClass = buttonEvent.new BackSpaceButtonEventListenerClass();
         this.plusAndMinusButtonEventListenerClass =buttonEvent.new PlusAndMinusButtonEventListenerClass();
         this.clearEntryButtonEventListenerClass = buttonEvent.new ClearEntryButtonEventListenerClass();
+
+        this.basePanel = new Panel(new BorderLayout());
+        this.logButtonPanel = new Panel(new FlowLayout(FlowLayout.RIGHT));
+        this.inputPanel = new Panel(new GridLayout(2, 1, 0, 0));
+        this.buttonPanel = new Panel(new GridLayout(5, 4, 0, 0));
+        this.logPanel = new Panel();
+
+        //logButtonPanel의 Components
+        this.logButton = new JButton();
+
+        //inputPanel의 Components
+        this.numberInputLabel = new JLabel("0");
+        this.preNumberLabel = new JLabel("");
+
+        //buttonPanel의 Components
+        this.calculatebuttons = new JButton[20];
+
+        //logPanel의 Components
+        this.logBasePanel = new Panel(new BorderLayout());
+        this.GettedPreNumberLabel = new JLabel();
+        this.GettedNumberInputLabel = new JLabel();
+
+        //계산시 사용하는 변수들 선언
+        this.savedNumber= "";
+        this.firstNumber = "0";
+        this.secondNumber = "";
+        this.operator = "";
+        this.isEqualExist = false;
+
 
         setTitle("계산기");
         setSize(324, 534);
@@ -226,13 +254,15 @@ public class CalculatorFrame extends JFrame {
         }
         basePanel.add(buttonPanel,BorderLayout.SOUTH);
 
-        /*//3. 로그 패널 구성
+        //3. 로그 패널 구성
         logPanel.setLayout(new BoxLayout(logPanel, BoxLayout.Y_AXIS));
         GettedPreNumberLabel.setHorizontalAlignment(JLabel.RIGHT);
         GettedNumberInputLabel.setHorizontalAlignment(JLabel.RIGHT);
         logBasePanel.add(GettedPreNumberLabel,BorderLayout.NORTH);
         logBasePanel.add(GettedNumberInputLabel,BorderLayout.SOUTH);
-        logPanel.add(logBasePanel);*/
+        logPanel.add(logBasePanel);
+
+
         
     }
 

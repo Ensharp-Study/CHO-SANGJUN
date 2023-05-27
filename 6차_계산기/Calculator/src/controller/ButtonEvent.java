@@ -120,8 +120,8 @@ public class ButtonEvent {
 
             if (calculatorFrame.operator == "") { //앞서 연산자가 나오지 않은 경우 > 숫자2도 없다.
                 printExpression(calculatorFrame.firstNumber + "=");
-                //로그에 추가하기
-            } else { //앞서 연산자가 나온 경우
+            }
+            else { //앞서 연산자가 나온 경우
 
                 if (calculatorFrame.secondNumber == "") { //숫자2가 나오지 않은 경우 (예: 1+=) > 자기 복제
                     calculatorFrame.secondNumber = calculatorFrame.savedNumber;
@@ -141,6 +141,7 @@ public class ButtonEvent {
                     saveFirstNumberToSavedNumber(calculatorFrame.firstNumber);
                 }
             }
+            addLogOnLogPanel();
             calculatorFrame.requestFocus();
         }
     }
@@ -530,4 +531,9 @@ public class ButtonEvent {
         return isInputPossible;
     }
 
+    public void addLogOnLogPanel(){
+        calculatorFrame.composeLogPanel(); // 로그 패널 위에 logBase패널 올리기
+        calculatorFrame.gettedPreNumberLabel.setText(calculatorFrame.preNumberLabel.getText());
+        calculatorFrame.gettedNumberInputLabel.setText(calculatorFrame.numberInputLabel.getText());
+    }
 }

@@ -9,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-import java.util.ArrayList;
 
 public class CalculatorFrame extends JFrame {
 
@@ -33,8 +32,8 @@ public class CalculatorFrame extends JFrame {
 
     //logPanel의 Components
     public Panel logBasePanel;
-    public JLabel GettedPreNumberLabel;
-    public JLabel GettedNumberInputLabel;
+    public JLabel gettedPreNumberLabel;
+    public JLabel gettedNumberInputLabel;
 
     //계산시 사용하는 변수들 선언
     public String savedNumber;
@@ -74,7 +73,7 @@ public class CalculatorFrame extends JFrame {
         this.logButtonPanel = new Panel(new FlowLayout(FlowLayout.RIGHT));
         this.inputPanel = new Panel(new GridLayout(2, 1, 0, 0));
         this.buttonPanel = new Panel(new GridLayout(5, 4, 0, 0));
-        this.logPanel = new Panel();
+        this.logPanel = new Panel(new GridLayout(10, 1, 0, 0));
 
         //logButtonPanel의 Components
         this.logButton = new JButton();
@@ -85,11 +84,6 @@ public class CalculatorFrame extends JFrame {
 
         //buttonPanel의 Components
         this.calculatebuttons = new JButton[20];
-
-        //logPanel의 Components
-        this.logBasePanel = new Panel(new BorderLayout());
-        this.GettedPreNumberLabel = new JLabel();
-        this.GettedNumberInputLabel = new JLabel();
 
         //계산시 사용하는 변수들 선언
         this.savedNumber= "";
@@ -127,7 +121,7 @@ public class CalculatorFrame extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        composeBasePanel(); //패널 구성
+        composeBasePanel(); //base패널 구성
         add(basePanel,BorderLayout.WEST); //base 패널 Frame 위에 올리기
         this.addKeyListener((new KeyPressEvent(this)).new KeyInputListener());
         this.setFocusable(true);
@@ -147,9 +141,6 @@ public class CalculatorFrame extends JFrame {
         //0. 로그버튼 패널 입력 구성
         logButton = setImageOnButton("utility/image/free-icon-clock-1827463.png");
         logButton.setPreferredSize( new Dimension (40,40) );
-        //logButton.setOpaque(true); // 투명도 해제
-        //logButton.setBorderPainted(false);
-
         logButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -253,17 +244,6 @@ public class CalculatorFrame extends JFrame {
             buttonPanel.add(calculatebuttons[i]);
         }
         basePanel.add(buttonPanel,BorderLayout.SOUTH);
-
-        //3. 로그 패널 구성
-        logPanel.setLayout(new BoxLayout(logPanel, BoxLayout.Y_AXIS));
-        GettedPreNumberLabel.setHorizontalAlignment(JLabel.RIGHT);
-        GettedNumberInputLabel.setHorizontalAlignment(JLabel.RIGHT);
-        logBasePanel.add(GettedPreNumberLabel,BorderLayout.NORTH);
-        logBasePanel.add(GettedNumberInputLabel,BorderLayout.SOUTH);
-        logPanel.add(logBasePanel);
-
-
-        
     }
 
     private void resizePanelsWithOutLogPanel() { //프레임 사이즈 변화시 모든 패널 같은 비율에 맞게 사이즈 변경
@@ -347,6 +327,18 @@ public class CalculatorFrame extends JFrame {
             basePanel.add(buttonPanel,BorderLayout.SOUTH);
             revalidate();
         }
+    }
+
+    public void composeLogPanel(){
+        logBasePanel = new Panel(new BorderLayout());
+        gettedPreNumberLabel = new JLabel();
+        gettedNumberInputLabel = new JLabel();
+
+        gettedPreNumberLabel.setHorizontalAlignment(JLabel.RIGHT);
+        gettedNumberInputLabel.setHorizontalAlignment(JLabel.RIGHT);
+        logBasePanel.add(gettedPreNumberLabel,BorderLayout.NORTH);
+        logBasePanel.add(gettedNumberInputLabel,BorderLayout.SOUTH);
+        logPanel.add(logBasePanel);
     }
 
 

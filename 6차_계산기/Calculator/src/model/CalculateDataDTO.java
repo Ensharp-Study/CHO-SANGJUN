@@ -4,7 +4,7 @@ public class CalculateDataDTO {
     private String savedNumber= "";
     private String firstNumber = "0";
     private String secondNumber = "";
-    private String operator = ""; //입력 받은 연산자
+    private String operator = "";
     private Boolean isEqualExist = false;
 
     public String getSavedNumber(){

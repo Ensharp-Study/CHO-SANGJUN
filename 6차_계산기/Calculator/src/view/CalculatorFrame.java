@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 public class CalculatorFrame extends JFrame {
 
+    //생성자에서 할당하기
     //프레임 위에 올릴 입력창 패널과 버튼패널 그리고 로그 패널 생성
     public Panel basePanel = new Panel(new BorderLayout());
     public Panel logButtonPanel = new Panel(new FlowLayout(FlowLayout.RIGHT));
@@ -150,7 +151,13 @@ public class CalculatorFrame extends JFrame {
                 int numberWidth = numberInputLabelFontMetrics.stringWidth(numberInputLabel.getText());
 
                 if(numberInputLabel.getWidth() < numberWidth){
-                    numberInputLabel.setFont(new Font("나눔고딕", Font.BOLD, (int)(3.0/ 1.8 *(numberInputLabel.getWidth())/ (numberInputLabel.getText().length()))));
+                    while(numberInputLabel.getWidth() * 3.8 / 4 < numberWidth) {
+                        fontSize =fontSize - 1;
+                        numberInputLabelFont = new Font("나눔고딕", Font.BOLD, fontSize); //초기 폰트 값 저장
+                        numberInputLabelFontMetrics = numberInputLabel.getFontMetrics(numberInputLabelFont);
+                        numberWidth = numberInputLabelFontMetrics.stringWidth(numberInputLabel.getText());
+                        numberInputLabel.setFont(new Font("나눔고딕", Font.BOLD, fontSize));
+                    }
                 }
                 else{
                     numberInputLabel.setFont(new Font("나눔고딕", Font.BOLD, numberInputLabel.getHeight()));
@@ -163,7 +170,7 @@ public class CalculatorFrame extends JFrame {
         inputPanel.add(numberInputLabel);
         basePanel.add(inputPanel,BorderLayout.CENTER);
 
-        //2. 하단부 버튼 패널 구성
+        //2. 하단부 버튼 패널 구성 //매직넘버 처리하기
         for (int i = 0; i < 20; i++) {
             calculatebuttons[i] = new JButton(buttonTitle[i]);
 

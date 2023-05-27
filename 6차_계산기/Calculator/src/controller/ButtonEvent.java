@@ -363,12 +363,19 @@ public class ButtonEvent {
     }
     public void setFontSize(String numberOrText){
         //출력전 사이즈 조절
-        Font numberInputLabelFont = new Font("나눔고딕", Font.BOLD, calculatorFrame.numberInputLabel.getHeight()); //초기 폰트 값 저장
+        int fontSize = calculatorFrame.numberInputLabel.getHeight();
+        Font numberInputLabelFont = new Font("나눔고딕", Font.BOLD, fontSize); //초기 폰트 값 저장
         FontMetrics numberInputLabelFontMetrics = calculatorFrame.numberInputLabel.getFontMetrics(numberInputLabelFont);
         int numberWidth = numberInputLabelFontMetrics.stringWidth(numberOrText);
 
         if(calculatorFrame.numberInputLabel.getWidth() < numberWidth){
-            calculatorFrame.numberInputLabel.setFont(new Font("나눔고딕", Font.BOLD, (int)(3.0/ 1.8 *(calculatorFrame.numberInputLabel.getWidth())/ (numberOrText.length()))));
+            while(calculatorFrame.numberInputLabel.getWidth() * 3.8 /4 < numberWidth) {
+                fontSize = fontSize - 1;
+                numberInputLabelFont = new Font("나눔고딕", Font.BOLD, fontSize); //초기 폰트 값 저장
+                numberInputLabelFontMetrics = calculatorFrame.numberInputLabel.getFontMetrics(numberInputLabelFont);
+                numberWidth = numberInputLabelFontMetrics.stringWidth(numberOrText);
+                calculatorFrame.numberInputLabel.setFont(new Font("나눔고딕", Font.BOLD, fontSize));
+            }
         }
         else{
             calculatorFrame.numberInputLabel.setFont(new Font("나눔고딕", Font.BOLD, calculatorFrame.numberInputLabel.getHeight()));

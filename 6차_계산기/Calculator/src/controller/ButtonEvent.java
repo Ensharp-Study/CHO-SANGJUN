@@ -437,38 +437,59 @@ public class ButtonEvent {
     }
 
     public void calculateNumbers(String operator){ //연산 함수
+        BigDecimal overFlowStandard = new BigDecimal(Double.MAX_VALUE);
+        BigDecimal underFlowStandard = new BigDecimal(Double.MIN_VALUE);
+
         BigDecimal bigDecimalNumber1 = new BigDecimal(calculatorFrame.firstNumber);
         BigDecimal bigDecimalNumber2 = new BigDecimal(calculatorFrame.secondNumber);
 
+        BigDecimal bigDecimalresult;
+        String result = "";
+
         switch (operator){
             case "+":
-                calculatorFrame.firstNumber = (bigDecimalNumber1.add(bigDecimalNumber2, MathContext.DECIMAL64)).toString();
+                result = (bigDecimalNumber1.add(bigDecimalNumber2, MathContext.DECIMAL64)).toString();
                 break;
             case "-":
-                calculatorFrame.firstNumber = (bigDecimalNumber1.subtract(bigDecimalNumber2, MathContext.DECIMAL64)).toString();
+                result = (bigDecimalNumber1.subtract(bigDecimalNumber2, MathContext.DECIMAL64)).toString();
                 break;
             case "x":
-                calculatorFrame.firstNumber = (bigDecimalNumber1.multiply(bigDecimalNumber2, MathContext.DECIMAL64)).toString();
+                result = (bigDecimalNumber1.multiply(bigDecimalNumber2, MathContext.DECIMAL64)).toString();
                 break;
             case "÷":
-                handleDivisionException(bigDecimalNumber1 ,bigDecimalNumber2);
+                result = handleDivisionException(bigDecimalNumber1 ,bigDecimalNumber2);
                 break;
         }
+        //지수표현식
+        bigDecimalresult = new BigDecimal(result);
+        if(bigDecimalresult.compareTo(overFlowStandard) > 0){
+            printExpression(""); // history 창 삭제
+            result = "오버플로우";
+        }
+        else if(bigDecimalresult.compareTo(underFlowStandard) < 0){
+            printExpression(""); // history 창 삭제
+            result = "언더플로우";
+        }
+        calculatorFrame.firstNumber = result;
     }
 
-    public void handleDivisionException(BigDecimal bigDecimalNumber1, BigDecimal bigDecimalNumber2){
+    public String handleDivisionException(BigDecimal bigDecimalNumber1, BigDecimal bigDecimalNumber2){
+        String result;
+
         //분모가 0인 경우 계산이 되지 않음
         if(bigDecimalNumber2.compareTo(BigDecimal.ZERO) == 0){
             if(bigDecimalNumber1.compareTo(BigDecimal.ZERO) == 0){
-                calculatorFrame.firstNumber = "정의되지 않은 결과입니다";
+                result = "정의되지 않은 결과입니다";
             }
             else{
-                calculatorFrame.firstNumber = "0으로 나눌 수 없습니다";
+                result = "0으로 나눌 수 없습니다";
             }
-            return;
         }
         //정상적인 계산인 경우
-        calculatorFrame.firstNumber = (bigDecimalNumber1.divide(bigDecimalNumber2, 15, RoundingMode.HALF_UP)).toString();
+        else {
+            result = (bigDecimalNumber1.divide(bigDecimalNumber2, 15, RoundingMode.HALF_UP)).toString();
+        }
+        return result;
     }
 
     public void saveFirstNumberToSavedNumber(String firstNumber){

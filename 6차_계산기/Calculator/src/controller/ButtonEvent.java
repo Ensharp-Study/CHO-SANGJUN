@@ -409,8 +409,15 @@ public class ButtonEvent {
 
         //문자열이 빈 문자열이 아닐 경우에만 수행
         if(number != "") {
+            BigDecimal oneMillion = new BigDecimal("1000000");
             BigDecimal bigDecimalNumber = new BigDecimal(number);
-            return bigDecimalNumber.stripTrailingZeros().toString();
+
+            //숫자가 100만 이상 또는 -100만 이하 일때만 지수표현식으로 표기
+            //-제거 후 판단(절대값 구하기)
+            String absoluteValue = number.replaceAll("-","");
+            bigDecimalNumber = new BigDecimal(absoluteValue);
+            if(bigDecimalNumber.compareTo(oneMillion) >= 0) return bigDecimalNumber.stripTrailingZeros().toString(); //지수표현식으로 출력
+            else return bigDecimalNumber.stripTrailingZeros().toPlainString(); //지수표현식 적용X
         }
         //빈 문자열일 경우 그대로 반환
         return number;

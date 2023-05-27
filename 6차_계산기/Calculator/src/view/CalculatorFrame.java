@@ -145,6 +145,7 @@ public class CalculatorFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 panelTransition();
+                requestFocus();
             }
         });
 

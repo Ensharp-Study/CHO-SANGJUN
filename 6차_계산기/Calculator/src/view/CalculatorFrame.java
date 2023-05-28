@@ -34,7 +34,7 @@ public class CalculatorFrame extends JFrame {
 
     //logPanel의 Components
     public JScrollPane logScrollPane; //로그 패널을 올릴 스크롤 팬
-    public JButton logTextLabel;
+    public JButton logTextButton;
 
     //계산시 사용하는 변수들 선언
     public String savedNumber;
@@ -42,6 +42,9 @@ public class CalculatorFrame extends JFrame {
     public String secondNumber;
     public String operator;
     public Boolean isEqualExist;
+
+    //로그 데이터 정보 불러왔을 때 로직 처리 확인할 변수 선언
+    public Boolean isLogExpression;
 
     //로그 데이터 정보 저장할 변수들 선언
     public List<String> logList;
@@ -62,6 +65,9 @@ public class CalculatorFrame extends JFrame {
     KeyPressEvent keyPressEventEvent;
     KeyPressEvent.KeyInputListener keyInputListener;
 
+    //로그 눌렀을때 해당 기록 불러오는 버튼 이벤트
+    ButtonEvent.LogHistoryButtonEventListenerClass logHistoryButtonEventListenerClass;
+
     public CalculatorFrame() { //생성자
         //버튼에 대한 리스너 객체 생성하기 (이렇게 생성해서 쓰면 왜 안되는지)
         this.buttonEvent = new ButtonEvent(this);
@@ -73,6 +79,8 @@ public class CalculatorFrame extends JFrame {
         this.backSpaceButtonEventListenerClass = buttonEvent.new BackSpaceButtonEventListenerClass();
         this.plusAndMinusButtonEventListenerClass =buttonEvent.new PlusAndMinusButtonEventListenerClass();
         this.clearEntryButtonEventListenerClass = buttonEvent.new ClearEntryButtonEventListenerClass();
+
+        this.logHistoryButtonEventListenerClass = buttonEvent.new LogHistoryButtonEventListenerClass();
 
         this.basePanel = new JPanel(new BorderLayout());
         this.logButtonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
@@ -98,6 +106,9 @@ public class CalculatorFrame extends JFrame {
         this.secondNumber = "";
         this.operator = "";
         this.isEqualExist = false;
+
+        //로그 기록 불러왔을 때 계산 수행하기 위한 변수
+        isLogExpression = false;
 
         //로그 기록 저장 리스트
         this.logList = new ArrayList<>();
@@ -365,9 +376,10 @@ public class CalculatorFrame extends JFrame {
             logTotalText = logList.get(i);
             logTextArray = logTotalText.split("/");
 
-            logTextLabel = new JButton("<html>" +logTextArray[0] +"<br><font size=\"5\"><b>" + logTextArray[1] + "</b></font></html>");
-            logTextLabel.setHorizontalAlignment(JLabel.LEFT);
-            logPanel.add(logTextLabel);
+            logTextButton = new JButton("<html><div style=\"text-align: right;\">" +logTextArray[0] +"<br><font size=\"5\"><b>" + logTextArray[1] + "</b></font></div></html>");
+            logTextButton.setHorizontalAlignment(JLabel.RIGHT);
+            logTextButton.addActionListener(logHistoryButtonEventListenerClass);
+            logPanel.add(logTextButton);
         }
         logPanel.revalidate();
         logPanel.repaint();

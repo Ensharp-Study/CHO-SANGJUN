@@ -23,6 +23,8 @@ public class ButtonEvent {
         public void actionPerformed(ActionEvent e) {
             JButton numberButton = (JButton) e.getSource(); //버튼 가져오기
 
+
+
             if (calculatorFrame.isEqualExist) { // 이전에 equal이 입력 되었을 경우 > 새로운 연산이 시작되므로 모든 값 초기화 해준다
                 calculatorFrame.savedNumber = "";
                 calculatorFrame.firstNumber = "0";
@@ -280,6 +282,25 @@ public class ButtonEvent {
             calculatorFrame.requestFocus();
         }
     }
+
+    public class LogHistoryButtonEventListenerClass implements ActionListener{
+        public void actionPerformed(ActionEvent e) {
+            calculatorFrame.isLogExpression = true;
+            JButton logHistory = (JButton) e.getSource();
+
+            //버튼 택스트의 html 태그 제거 및 필요한 텍스트 추출하기
+            String logHistoryData = logHistory.getText().replaceAll("<html><div style=\"text-align: right;\">","");
+            logHistoryData = logHistoryData.replaceAll("<br><font size=\"5\"><b>","");
+            logHistoryData = logHistoryData.replaceAll("</b></font></div></html>","");
+            String[] logHistoryDataList = logHistoryData.split("=");
+
+            //출력하기
+            printExpression(logHistoryDataList[0] + "=");
+            printNumberAndErrorMessage(logHistoryDataList[1]);
+
+        }
+    }
+
 
     //pulsAndMinus 버튼 눌렀을때 입력창 출력하는 함수
     public void setMinusOnNumberInputLabel() {

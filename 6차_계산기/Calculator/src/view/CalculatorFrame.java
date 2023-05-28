@@ -360,7 +360,7 @@ public class CalculatorFrame extends JFrame {
         //로그 개수에 맞게 그리드 셀 할당
         logPanel.setLayout(new GridLayout(logList.size() + 3, 1, 0, 0));
 
-        for(int i = 0; i< logList.size(); i++){
+        for(int i = logList.size() - 1; i>=0; i--){ //로그 역순으로 출력
 
             logTotalText = logList.get(i);
             logTextArray = logTotalText.split("/");

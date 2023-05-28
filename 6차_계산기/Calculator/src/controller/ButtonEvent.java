@@ -94,6 +94,7 @@ public class ButtonEvent {
                     calculateNumbers(calculatorFrame.operator); // 기존의 연산자로 계산을 진행
                     calculatorFrame.secondNumber = ""; //숫자2 초기화
                     calculatorFrame.operator = operator; //계산이 끝난 후 새로 입력받은 연산자를 입력
+                    printNumberAndErrorMessage(calculatorFrame.firstNumber);
 
                     if (calculatorFrame.firstNumber.matches(".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*")) { //오류 메시지인 경우
                         printNumberAndErrorMessage(calculatorFrame.firstNumber); // 오류메시지 출력

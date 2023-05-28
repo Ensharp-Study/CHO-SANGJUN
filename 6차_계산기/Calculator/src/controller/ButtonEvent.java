@@ -141,7 +141,6 @@ public class ButtonEvent {
                     saveFirstNumberToSavedNumber(calculatorFrame.firstNumber);
                 }
             }
-            addLogOnLogPanel();
             calculatorFrame.requestFocus();
         }
     }
@@ -438,6 +437,9 @@ public class ButtonEvent {
     }
 
     public void calculateNumbers(String operator){ //연산 함수
+        String logText = "";
+        String result = "";
+
         BigDecimal overFlowStandard = new BigDecimal(Double.MAX_VALUE);
         BigDecimal underFlowStandard = new BigDecimal(Double.MIN_VALUE);
 
@@ -445,7 +447,7 @@ public class ButtonEvent {
         BigDecimal bigDecimalNumber2 = new BigDecimal(calculatorFrame.secondNumber);
 
         BigDecimal bigDecimalresult;
-        String result = "";
+
 
         switch (operator){
             case "+":
@@ -466,12 +468,20 @@ public class ButtonEvent {
         if(bigDecimalresult.compareTo(overFlowStandard) > 0){
             printExpression(""); // history 창 삭제
             result = "오버플로우";
+            calculatorFrame.firstNumber = result;
+            return;
         }
         else if(bigDecimalresult.compareTo(underFlowStandard) < 0){
             printExpression(""); // history 창 삭제
             result = "언더플로우";
+            calculatorFrame.firstNumber = result;
+            return;
         }
+
+        logText = calculatorFrame.firstNumber + calculatorFrame.operator + calculatorFrame.secondNumber + "=/" + result;
+        addLogOnLogPanel(logText);
         calculatorFrame.firstNumber = result;
+
     }
 
     public String handleDivisionException(BigDecimal bigDecimalNumber1, BigDecimal bigDecimalNumber2){
@@ -531,13 +541,13 @@ public class ButtonEvent {
         return isInputPossible;
     }
 
-    public void addLogOnLogPanel(){
+    public void addLogOnLogPanel(String logText){
         //로그 기록 리스트에 저장
         //로그 기록이 20가 넘어가면 맨 처음 로그 삭제
         if(calculatorFrame.logList.size() >= 20){
             calculatorFrame.logList.remove(0);
         }
-        calculatorFrame.logList.add(calculatorFrame.preNumberLabel.getText() +"/" + calculatorFrame.numberInputLabel.getText()); //구분하기 위해 / 추가
+        calculatorFrame.logList.add(logText);
         calculatorFrame.composeLogBasePanel(); // 로그 패널 위에 logBase패널 올리기
     }
 }

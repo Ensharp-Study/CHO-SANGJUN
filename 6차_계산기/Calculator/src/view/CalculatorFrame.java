@@ -31,6 +31,7 @@ public class CalculatorFrame extends JFrame {
     public JButton[] calculatebuttons;
 
     //logPanel의 Components
+    public JScrollPane logScrollPane; //로그 패널을 올릴 스크롤 팬
     public Panel logBasePanel;
     public JLabel gettedPreNumberLabel;
     public JLabel gettedNumberInputLabel;
@@ -73,7 +74,8 @@ public class CalculatorFrame extends JFrame {
         this.logButtonPanel = new Panel(new FlowLayout(FlowLayout.RIGHT));
         this.inputPanel = new Panel(new GridLayout(2, 1, 0, 0));
         this.buttonPanel = new Panel(new GridLayout(5, 4, 0, 0));
-        this.logPanel = new Panel(new GridLayout(10, 1, 0, 0));
+        this.logPanel = new Panel(new GridLayout(20, 1, 0, 0));
+        this.logScrollPane = new JScrollPane(logPanel);
 
         //logButtonPanel의 Components
         this.logButton = new JButton();
@@ -107,8 +109,8 @@ public class CalculatorFrame extends JFrame {
                     showLogPanel();
                    //입력창 늘렸을때 패널 옆에 붙이기
                     resizePanelsWithLogPanel();
-                    logPanel.setPreferredSize(new Dimension((e.getComponent().getWidth()) /2, e.getComponent().getHeight()));
-                    add(logPanel, BorderLayout.EAST);
+                    logScrollPane.setPreferredSize(new Dimension((e.getComponent().getWidth()) /2, e.getComponent().getHeight()));
+                    add(logScrollPane, BorderLayout.EAST);
                 }
                 else{
                     //로그버튼 유효화
@@ -136,6 +138,7 @@ public class CalculatorFrame extends JFrame {
         logButtonPanel.setPreferredSize(new Dimension(frameSize.width, (int)(frameSize.height * (1.0/12))));
         inputPanel.setPreferredSize(new Dimension(frameSize.width, (int)(frameSize.height * (3.0/12))));
         buttonPanel.setPreferredSize(new Dimension(frameSize.width, (int)(frameSize.height * (8.0/12))));
+        logScrollPane.setPreferredSize(new Dimension(frameSize.width,(int)(frameSize.height * (8.0/12))));
         logPanel.setPreferredSize(new Dimension(frameSize.width, (int)(frameSize.height * (8.0/12))));
 
         //0. 로그버튼 패널 입력 구성
@@ -253,12 +256,14 @@ public class CalculatorFrame extends JFrame {
         int logButtonPanelHeight = (int)(frameHeight * (1.0 / 12));
         int inputPanelHeight = (int)(frameHeight * (3.0 / 12));
         int buttonPanelHeight = (int)(frameHeight * (8.0 / 12));
+        int logScrollPaneHeight = (int) (frameHeight * (8.0 / 12));
         int logPanelHeight = (int)(frameHeight * (8.0 / 12));
 
         basePanel.setPreferredSize(new Dimension(this.getWidth(),basePanelHeight));
         logButtonPanel.setPreferredSize(new Dimension(this.getWidth(), logButtonPanelHeight));
         inputPanel.setPreferredSize(new Dimension(this.getWidth(), inputPanelHeight));
         buttonPanel.setPreferredSize(new Dimension(this.getWidth(), buttonPanelHeight));
+        logScrollPane.setPreferredSize(new Dimension(this.getWidth(),logScrollPaneHeight));
         logPanel.setPreferredSize(new Dimension(this.getWidth(),logPanelHeight));
 
         revalidate();
@@ -303,11 +308,11 @@ public class CalculatorFrame extends JFrame {
 
         if(isButtonPanelOnBasePanel){
             basePanel.remove(buttonPanel);
-            basePanel.add(logPanel,BorderLayout.SOUTH);
+            basePanel.add(logScrollPane,BorderLayout.SOUTH);
             revalidate();
         }
         else{
-            basePanel.remove(logPanel);
+            basePanel.remove(logScrollPane);
             basePanel.add(buttonPanel,BorderLayout.SOUTH);
             revalidate();
         }
@@ -318,13 +323,13 @@ public class CalculatorFrame extends JFrame {
         //로그 패널이 떠 있는지 확인
         Component[] basePanelComponents = basePanel.getComponents();
         for(Component component : basePanelComponents){
-            if(component == logPanel){
+            if(component == logScrollPane){
                 isLogPanelOnBasePanel = true;
                 break;
             }
         }
         if(isLogPanelOnBasePanel){
-            basePanel.remove(logPanel);
+            basePanel.remove(logScrollPane);
             basePanel.add(buttonPanel,BorderLayout.SOUTH);
             revalidate();
         }

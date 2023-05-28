@@ -534,13 +534,10 @@ public class ButtonEvent {
     public void addLogOnLogPanel(){
         //로그 기록 리스트에 저장
         //로그 기록이 20가 넘어가면 맨 처음 로그 삭제
-        if(calculatorFrame.preNumberLogList.size() >= 20){
-            calculatorFrame.preNumberLogList.remove(0);
-            calculatorFrame.NumberInputLogList.remove(0);
+        if(calculatorFrame.logList.size() >= 20){
+            calculatorFrame.logList.remove(0);
         }
-        calculatorFrame.preNumberLogList.add(calculatorFrame.preNumberLabel.getText());
-        calculatorFrame.NumberInputLogList.add(calculatorFrame.numberInputLabel.getText());
-
+        calculatorFrame.logList.add(calculatorFrame.preNumberLabel.getText() +"/" + calculatorFrame.numberInputLabel.getText()); //구분하기 위해 / 추가
         calculatorFrame.composeLogBasePanel(); // 로그 패널 위에 logBase패널 올리기
     }
 }

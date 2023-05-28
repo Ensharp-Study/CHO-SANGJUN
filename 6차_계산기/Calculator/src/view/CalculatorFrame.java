@@ -15,11 +15,11 @@ import java.util.List;
 public class CalculatorFrame extends JFrame {
 
     //프레임 위에 올릴 입력창 패널과 버튼패널 그리고 로그 패널 생성
-    public Panel basePanel;
-    public Panel logButtonPanel;
-    public Panel inputPanel;
-    public Panel buttonPanel;
-    public Panel logPanel;
+    public JPanel basePanel;
+    public JPanel logButtonPanel;
+    public JPanel inputPanel;
+    public JPanel buttonPanel;
+    public JPanel logPanel;
 
     //logButtonPanel의 Components
     public JButton logButton;
@@ -34,9 +34,7 @@ public class CalculatorFrame extends JFrame {
 
     //logPanel의 Components
     public JScrollPane logScrollPane; //로그 패널을 올릴 스크롤 팬
-    public Panel logBasePanel;
-    public JLabel gettedPreNumberLabel;
-    public JLabel gettedNumberInputLabel;
+    public JButton logTextLabel;
 
     //계산시 사용하는 변수들 선언
     public String savedNumber;
@@ -46,8 +44,7 @@ public class CalculatorFrame extends JFrame {
     public Boolean isEqualExist;
 
     //로그 데이터 정보 저장할 변수들 선언
-    public List<String> preNumberLogList;
-    public List<String> NumberInputLogList;
+    public List<String> logList;
 
 
     //버튼 클릭에 대한 ActionListener 클래스 인스턴스 생성
@@ -77,12 +74,13 @@ public class CalculatorFrame extends JFrame {
         this.plusAndMinusButtonEventListenerClass =buttonEvent.new PlusAndMinusButtonEventListenerClass();
         this.clearEntryButtonEventListenerClass = buttonEvent.new ClearEntryButtonEventListenerClass();
 
-        this.basePanel = new Panel(new BorderLayout());
-        this.logButtonPanel = new Panel(new FlowLayout(FlowLayout.RIGHT));
-        this.inputPanel = new Panel(new GridLayout(2, 1, 0, 0));
-        this.buttonPanel = new Panel(new GridLayout(5, 4, 0, 0));
-        this.logPanel = new Panel();
-        this.logScrollPane = new JScrollPane(logPanel);
+        this.basePanel = new JPanel(new BorderLayout());
+        this.logButtonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        this.inputPanel = new JPanel(new GridLayout(2, 1, 0, 0));
+        this.buttonPanel = new JPanel(new GridLayout(5, 4, 0, 0));
+        this.logPanel = new JPanel(new GridLayout(0, 1));
+        this.logScrollPane = new JScrollPane();
+        this.logScrollPane.setViewportView(logPanel);
 
         //logButtonPanel의 Components
         this.logButton = new JButton();
@@ -102,8 +100,7 @@ public class CalculatorFrame extends JFrame {
         this.isEqualExist = false;
 
         //로그 기록 저장 리스트
-        this.preNumberLogList = new ArrayList<>();
-        this.NumberInputLogList = new ArrayList<>();
+        this.logList = new ArrayList<>();
 
         setTitle("계산기");
         setSize(324, 534);
@@ -117,7 +114,7 @@ public class CalculatorFrame extends JFrame {
                     logButton.setEnabled(false);
                     //로그창이 위에 떠있을때
                     showLogPanel();
-                   //입력창 늘렸을때 패널 옆에 붙이기
+                    //입력창 늘렸을때 패널 옆에 붙이기
                     resizePanelsWithLogPanel();
                     logScrollPane.setPreferredSize(new Dimension((e.getComponent().getWidth()) /2, e.getComponent().getHeight()));
                     add(logScrollPane, BorderLayout.EAST);
@@ -149,7 +146,7 @@ public class CalculatorFrame extends JFrame {
         inputPanel.setPreferredSize(new Dimension(frameSize.width, (int)(frameSize.height * (3.0/12))));
         buttonPanel.setPreferredSize(new Dimension(frameSize.width, (int)(frameSize.height * (8.0/12))));
         logScrollPane.setPreferredSize(new Dimension(frameSize.width,(int)(frameSize.height * (8.0/12))));
-        logPanel.setPreferredSize(new Dimension(frameSize.width, (int)(frameSize.height * (8.0/12))));
+        //logPanel.setPreferredSize(new Dimension(frameSize.width, (int)(frameSize.height * (8.0/12))));
 
         //0. 로그버튼 패널 입력 구성
         logButton = setImageOnButton("utility/image/free-icon-clock-1827463.png");
@@ -185,7 +182,7 @@ public class CalculatorFrame extends JFrame {
 
                 if(numberInputLabel.getWidth() < numberWidth){
                     while(numberInputLabel.getWidth() * 3.8 / 4 < numberWidth) {
-                        fontSize =fontSize - 1;
+                        fontSize = fontSize - 1;
                         numberInputLabelFont = new Font("나눔고딕", Font.BOLD, fontSize); //초기 폰트 값 저장
                         numberInputLabelFontMetrics = numberInputLabel.getFontMetrics(numberInputLabelFont);
                         numberWidth = numberInputLabelFontMetrics.stringWidth(numberInputLabel.getText());
@@ -279,7 +276,7 @@ public class CalculatorFrame extends JFrame {
         inputPanel.setPreferredSize(new Dimension(this.getWidth(), inputPanelHeight));
         buttonPanel.setPreferredSize(new Dimension(this.getWidth(), buttonPanelHeight));
         logScrollPane.setPreferredSize(new Dimension(this.getWidth(),logScrollPaneHeight));
-        logPanel.setPreferredSize(new Dimension(this.getWidth(),logPanelHeight));
+        //logPanel.setPreferredSize(new Dimension(this.getWidth(),logPanelHeight));
 
         revalidate();
     }
@@ -331,6 +328,7 @@ public class CalculatorFrame extends JFrame {
             basePanel.add(buttonPanel,BorderLayout.SOUTH);
             revalidate();
         }
+        repaint();
     }
 
     public void showLogPanel(){
@@ -348,31 +346,32 @@ public class CalculatorFrame extends JFrame {
             basePanel.add(buttonPanel,BorderLayout.SOUTH);
             revalidate();
         }
+        repaint();
     }
 
     public void composeLogBasePanel(){
+        String logTotalText;
+        String[] logTextArray;
+        Box box1 = Box.createVerticalBox();
+
+        //기존 출력 초기화
+        logPanel.removeAll();
+
         //로그 개수에 맞게 그리드 셀 할당
-        logPanel.setLayout(new GridLayout(preNumberLogList.size()+4,1,0,0));
+        logPanel.setLayout(new GridLayout(logList.size() + 3, 1, 0, 0));
 
-        for(int i= 0 ; i<preNumberLogList.size(); i++){
-            
-            logBasePanel = new Panel(new BorderLayout());
-            logBasePanel.setPreferredSize(new Dimension(100,100));
-            gettedPreNumberLabel = new JLabel();
-            gettedNumberInputLabel = new JLabel();
-            gettedPreNumberLabel.setHorizontalAlignment(JLabel.LEFT);
-            gettedNumberInputLabel.setHorizontalAlignment(JLabel.LEFT);
+        for(int i = 0; i< logList.size(); i++){
 
-            gettedPreNumberLabel.setText(preNumberLogList.get(i));
-            gettedNumberInputLabel.setText(NumberInputLogList.get(i));
+            logTotalText = logList.get(i);
+            logTextArray = logTotalText.split("/");
 
-            logBasePanel.add(gettedPreNumberLabel,BorderLayout.NORTH);
-            logBasePanel.add(gettedNumberInputLabel,BorderLayout.SOUTH);
-
-            logPanel.add(logBasePanel);
+            logTextLabel = new JButton("<html>" +logTextArray[0] +"<br><font size=\"5\"><b>" + logTextArray[1] + "</b></font></html>");
+            logTextLabel.setHorizontalAlignment(JLabel.LEFT);
+            logPanel.add(logTextLabel);
         }
+        logPanel.revalidate();
+        logPanel.repaint();
     }
 }
-
 
 

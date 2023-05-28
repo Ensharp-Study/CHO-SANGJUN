@@ -532,7 +532,7 @@ public class ButtonEvent {
     }
 
     public void addLogOnLogPanel(){
-        calculatorFrame.composeLogPanel(); // 로그 패널 위에 logBase패널 올리기
+        calculatorFrame.composeLogBasePanel(); // 로그 패널 위에 logBase패널 올리기
         calculatorFrame.gettedPreNumberLabel.setText(calculatorFrame.preNumberLabel.getText());
         calculatorFrame.gettedNumberInputLabel.setText(calculatorFrame.numberInputLabel.getText());
     }

@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.util.*;
+import java.util.List;
 
 public class CalculatorFrame extends JFrame {
 
@@ -43,6 +45,11 @@ public class CalculatorFrame extends JFrame {
     public String operator;
     public Boolean isEqualExist;
 
+    //로그 데이터 정보 저장할 변수들 선언
+    public List<String> preNumberLogList;
+    public List<String> NumberInputLogList;
+
+
     //버튼 클릭에 대한 ActionListener 클래스 인스턴스 생성
     ButtonEvent buttonEvent;
     ButtonEvent.NumberButtonEventListenerClass numberButtonEventListenerClass;
@@ -74,7 +81,7 @@ public class CalculatorFrame extends JFrame {
         this.logButtonPanel = new Panel(new FlowLayout(FlowLayout.RIGHT));
         this.inputPanel = new Panel(new GridLayout(2, 1, 0, 0));
         this.buttonPanel = new Panel(new GridLayout(5, 4, 0, 0));
-        this.logPanel = new Panel(new GridLayout(20, 1, 0, 0));
+        this.logPanel = new Panel();
         this.logScrollPane = new JScrollPane(logPanel);
 
         //logButtonPanel의 Components
@@ -94,6 +101,9 @@ public class CalculatorFrame extends JFrame {
         this.operator = "";
         this.isEqualExist = false;
 
+        //로그 기록 저장 리스트
+        this.preNumberLogList = new ArrayList<>();
+        this.NumberInputLogList = new ArrayList<>();
 
         setTitle("계산기");
         setSize(324, 534);
@@ -248,6 +258,11 @@ public class CalculatorFrame extends JFrame {
             buttonPanel.add(calculatebuttons[i]);
         }
         basePanel.add(buttonPanel,BorderLayout.SOUTH);
+
+        //로그패널 구성
+        logScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); //가로 스크롤바 무효화
+        logScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED); //세로 스크롤바 항상 보이기
+
     }
 
     private void resizePanelsWithOutLogPanel() { //프레임 사이즈 변화시 모든 패널 같은 비율에 맞게 사이즈 변경
@@ -335,19 +350,28 @@ public class CalculatorFrame extends JFrame {
         }
     }
 
-    public void composeLogPanel(){
-        logBasePanel = new Panel(new BorderLayout());
-        gettedPreNumberLabel = new JLabel();
-        gettedNumberInputLabel = new JLabel();
+    public void composeLogBasePanel(){
+        //로그 개수에 맞게 그리드 셀 할당
+        logPanel.setLayout(new GridLayout(preNumberLogList.size()+4,1,0,0));
 
-        gettedPreNumberLabel.setHorizontalAlignment(JLabel.RIGHT);
-        gettedNumberInputLabel.setHorizontalAlignment(JLabel.RIGHT);
-        logBasePanel.add(gettedPreNumberLabel,BorderLayout.NORTH);
-        logBasePanel.add(gettedNumberInputLabel,BorderLayout.SOUTH);
-        logPanel.add(logBasePanel);
+        for(int i= 0 ; i<preNumberLogList.size(); i++){
+            
+            logBasePanel = new Panel(new BorderLayout());
+            logBasePanel.setPreferredSize(new Dimension(100,100));
+            gettedPreNumberLabel = new JLabel();
+            gettedNumberInputLabel = new JLabel();
+            gettedPreNumberLabel.setHorizontalAlignment(JLabel.LEFT);
+            gettedNumberInputLabel.setHorizontalAlignment(JLabel.LEFT);
+
+            gettedPreNumberLabel.setText(preNumberLogList.get(i));
+            gettedNumberInputLabel.setText(NumberInputLogList.get(i));
+
+            logBasePanel.add(gettedPreNumberLabel,BorderLayout.NORTH);
+            logBasePanel.add(gettedNumberInputLabel,BorderLayout.SOUTH);
+
+            logPanel.add(logBasePanel);
+        }
     }
-
-
 }
 
 

@@ -171,13 +171,23 @@ public class ButtonEvent {
     //5. 소수점 버튼 눌렀을 경우 이벤트 처리
     public class DecimalPointButtonEventListenerClass implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            if(calculatorFrame.firstNumber.equals("0")){
-
+            if(calculatorFrame.firstNumber.equals("0") && calculatorFrame.operator.equals("")){ //첫번째 숫자 입력시 초기값이 0이면
+                calculatorFrame.firstNumber = "0.";
             }
 
             if(!calculatorFrame.operator.equals("") && calculatorFrame.secondNumber.equals("")){ //연산자 입력 받고 두번째 숫자 입력 하나도 안받았을 때
-                calculatorFrame.secondNumber ="0";
-                calculatorFrame.numberInputLabel.setText("0");
+                calculatorFrame.secondNumber = "0.";
+                printNumberAndErrorMessage("0.");
+            }
+
+            if(calculatorFrame.isEqualExist){ //등호 입력 이후 연산 처리시 소수점이 제일 먼저 들어올 때
+                calculatorFrame.firstNumber = "0.";
+                calculatorFrame.secondNumber = "";
+                calculatorFrame.operator = ""; //입력 받은 연산자
+                calculatorFrame.isEqualExist = false;
+                printExpression("");
+                printNumberAndErrorMessage("0.");
+
             }
 
             if (!(calculatorFrame.numberInputLabel.getText()).contains(".")) {

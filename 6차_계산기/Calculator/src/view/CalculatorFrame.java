@@ -108,7 +108,7 @@ public class CalculatorFrame extends JFrame {
         this.isEqualExist = false;
 
         //로그 기록 불러왔을 때 계산 수행하기 위한 변수
-        isLogExpression = false;
+        this.isLogExpression = false;
 
         //로그 기록 저장 리스트
         this.logList = new ArrayList<>();
@@ -157,7 +157,6 @@ public class CalculatorFrame extends JFrame {
         inputPanel.setPreferredSize(new Dimension(frameSize.width, (int)(frameSize.height * (3.0/12))));
         buttonPanel.setPreferredSize(new Dimension(frameSize.width, (int)(frameSize.height * (8.0/12))));
         logScrollPane.setPreferredSize(new Dimension(frameSize.width,(int)(frameSize.height * (8.0/12))));
-        //logPanel.setPreferredSize(new Dimension(frameSize.width, (int)(frameSize.height * (8.0/12))));
 
         //0. 로그버튼 패널 입력 구성
         logButton = setImageOnButton("utility/image/free-icon-clock-1827463.png");
@@ -287,7 +286,6 @@ public class CalculatorFrame extends JFrame {
         inputPanel.setPreferredSize(new Dimension(this.getWidth(), inputPanelHeight));
         buttonPanel.setPreferredSize(new Dimension(this.getWidth(), buttonPanelHeight));
         logScrollPane.setPreferredSize(new Dimension(this.getWidth(),logScrollPaneHeight));
-        //logPanel.setPreferredSize(new Dimension(this.getWidth(),logPanelHeight));
 
         revalidate();
     }
@@ -363,7 +361,6 @@ public class CalculatorFrame extends JFrame {
     public void composeLogBasePanel(){
         String logTotalText;
         String[] logTextArray;
-        Box box1 = Box.createVerticalBox();
 
         //기존 출력 초기화
         logPanel.removeAll();

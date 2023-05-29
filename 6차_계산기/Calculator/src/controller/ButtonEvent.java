@@ -160,6 +160,11 @@ public class ButtonEvent {
             calculatorFrame.operator = ""; //입력 받은 연산자
             calculatorFrame.isEqualExist = false;
 
+            //버튼 모두 활성화
+            for(int i=0; i<20; i++) {
+                calculatorFrame.calculatebuttons[i].setEnabled(true);
+            }
+
             //출력 창 초기화
             calculatorFrame.preNumberLabel.setText("");
             printNumberAndErrorMessage("0");
@@ -484,8 +489,7 @@ public class ButtonEvent {
         String logText = "";
         String result = "";
 
-        BigDecimal overFlowStandard = new BigDecimal(Double.MAX_VALUE);
-        BigDecimal underFlowStandard = new BigDecimal(Double.MIN_VALUE);
+        BigDecimal overFlowStandard = new BigDecimal("1.0E+10000");
 
         BigDecimal bigDecimalNumber1 = new BigDecimal(calculatorFrame.firstNumber);
         BigDecimal bigDecimalNumber2 = new BigDecimal(calculatorFrame.secondNumber);
@@ -508,20 +512,23 @@ public class ButtonEvent {
                 break;
         }
         //지수표현식
-        bigDecimalresult = new BigDecimal(result);
-        if(bigDecimalresult.compareTo(overFlowStandard) > 0){
-            printExpression(""); // history 창 삭제
-            result = "오버플로우";
-            calculatorFrame.firstNumber = result;
-            return;
-        }
-        else if(bigDecimalresult.compareTo(underFlowStandard) < 0){
-            printExpression(""); // history 창 삭제
-            result = "언더플로우";
-            calculatorFrame.firstNumber = result;
-            return;
-        }
+        if(result.contains("E")) {
+            int indexOfE = result.indexOf("E");
+            String exponent = result.substring(indexOfE + 2);
+            if (exponent.length() >= 5) {
+                printExpression(""); // history 창 삭제
+                result = "오버플로우";
+                calculatorFrame.firstNumber = result;
 
+                //오버플로우 이후 버튼 비활성화
+                for(int i=0; i<20; i++) {
+                    if(i != 1) { //C버튼 제외하고 비활성화
+                        calculatorFrame.calculatebuttons[i].setEnabled(false);
+                    }
+                }
+                return;
+            }
+        }
         logText = calculatorFrame.firstNumber + calculatorFrame.operator + calculatorFrame.secondNumber + "=/" + result;
         addLogOnLogPanel(logText);
         calculatorFrame.firstNumber = result;

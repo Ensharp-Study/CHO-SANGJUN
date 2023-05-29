@@ -23,7 +23,9 @@ public class ButtonEvent {
         public void actionPerformed(ActionEvent e) {
             JButton numberButton = (JButton) e.getSource(); //버튼 가져오기
 
+            if(calculatorFrame.isLogExpression){ // 로그에서 데이터 받아와서 숫자 입력 했을때
 
+            }
 
             if (calculatorFrame.isEqualExist) { // 이전에 equal이 입력 되었을 경우 > 새로운 연산이 시작되므로 모든 값 초기화 해준다
                 calculatorFrame.savedNumber = "";
@@ -123,6 +125,7 @@ public class ButtonEvent {
 
             if (calculatorFrame.operator == "") { //앞서 연산자가 나오지 않은 경우 > 숫자2도 없다.
                 printExpression(calculatorFrame.firstNumber + "=");
+                addLogOnLogPanel(calculatorFrame.firstNumber + "=/" + calculatorFrame.firstNumber);
             }
             else { //앞서 연산자가 나온 경우
 
@@ -168,6 +171,10 @@ public class ButtonEvent {
     //5. 소수점 버튼 눌렀을 경우 이벤트 처리
     public class DecimalPointButtonEventListenerClass implements ActionListener {
         public void actionPerformed(ActionEvent e) {
+            if(calculatorFrame.firstNumber.equals("0")){
+
+            }
+
             if(!calculatorFrame.operator.equals("") && calculatorFrame.secondNumber.equals("")){ //연산자 입력 받고 두번째 숫자 입력 하나도 안받았을 때
                 calculatorFrame.secondNumber ="0";
                 calculatorFrame.numberInputLabel.setText("0");

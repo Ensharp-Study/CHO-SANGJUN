@@ -371,6 +371,8 @@ public class ButtonEvent {
     }
 
     public void printNumberAndErrorMessage(String number){
+        String withoutPeriodAndMinus;
+
         //입력창에 초기 출력이 0인 경우
         if(calculatorFrame.numberInputLabel.getText() == "0"){
             clearInputNumber();
@@ -388,10 +390,14 @@ public class ButtonEvent {
         else {
             number = addCommasOnLabel(number);
             number = number.replace(",", "");
-            if (number.length() >= 17) {
+            withoutPeriodAndMinus = number.replaceAll("-","");
+            withoutPeriodAndMinus = number.replaceAll(".","");
+
+            if (withoutPeriodAndMinus.length() >= 17) {
                 BigDecimal bigDecimal = new BigDecimal(number);
                 number = bigDecimal.toString();
-            } else {
+            }
+            else {
                 number = addCommasOnLabel(number);
             }
         }
@@ -442,20 +448,21 @@ public class ButtonEvent {
 
     public String removeUnnecessaryZero(String number) { //string 값으로 저장된 숫자 중에 맨앞이나 맨뒤에 불필요한 0을 삭제해주기 위한 함수
         // string > Big Decimal > string 으로 바꿔준다
+        String withoutPeriodAndMinus;
+        BigDecimal bigDecimalNumber;
 
         //문자열에 저장된 , 제거
         number = removeCommasInNumber(number);
+        bigDecimalNumber = new BigDecimal(number);
 
         //문자열이 빈 문자열이 아닐 경우에만 수행
         if(number != "") {
-            BigDecimal oneMillion = new BigDecimal("1000000");
-            BigDecimal bigDecimalNumber = new BigDecimal(number);
+            //숫자가 16자리 넘어갈때만 지수표현식으로 표기
+            withoutPeriodAndMinus = number.replaceAll("-","");
+            withoutPeriodAndMinus = number.replaceAll(".","");
+            System.out.println("withoutPeriodAndMinus = " + withoutPeriodAndMinus);
 
-            //숫자가 100만 이상 또는 -100만 이하 일때만 지수표현식으로 표기
-            //-제거 후 판단(절대값 구하기)
-            String absoluteValue = number.replaceAll("-","");
-            bigDecimalNumber = new BigDecimal(absoluteValue);
-            if(bigDecimalNumber.compareTo(oneMillion) >= 0) return bigDecimalNumber.stripTrailingZeros().toString(); //지수표현식으로 출력
+            if(withoutPeriodAndMinus.length() >= 17) return bigDecimalNumber.stripTrailingZeros().toString(); //지수표현식으로 출력
             else return bigDecimalNumber.stripTrailingZeros().toPlainString(); //지수표현식 적용X
         }
         //빈 문자열일 경우 그대로 반환

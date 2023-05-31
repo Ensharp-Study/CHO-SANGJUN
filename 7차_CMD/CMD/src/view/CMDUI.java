@@ -6,6 +6,6 @@ public class CMDUI {
     }
 
     public void printCommandLine(String path){ //커맨드라인 출력하는 함수
-        System.out.println(path + ">");
+        System.out.print(path + ">");
     }
 }

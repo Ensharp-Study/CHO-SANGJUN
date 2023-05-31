@@ -1,15 +1,9 @@
 package utility;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.nio.file.Paths;
 
 public class DesktopInformation {
-
-    public DesktopInformation(){
-
-    }
 
     public String[] getInitialOutputOfCMD(){ //cmd실행시 초기 출력값 받아오는 함수
         String[] printedSentence = new String[2]; //출력물 저장할 변수
@@ -35,6 +29,11 @@ public class DesktopInformation {
             e.printStackTrace();
         }
         return printedSentence; //결과값 문자열 배열 반환
+    }
+
+    public String getDirectoryPath(String directory){
+        String userHome = System.getProperty(directory);
+        return userHome;
     }
 
 

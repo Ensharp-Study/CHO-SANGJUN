@@ -25,4 +25,8 @@ public class CMDUI {
     public void printHelpNotice(){
         System.out.print(Constants.HELP_NOTICE);
     }
+
+    public void printCommandResult(String result){
+        System.out.println(result);
+    }
 }

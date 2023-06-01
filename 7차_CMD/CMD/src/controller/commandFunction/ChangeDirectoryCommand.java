@@ -30,6 +30,9 @@ public class ChangeDirectoryCommand {
             cmdui.printCommandResult(currentPath);
             return currentPath;
         }
+        else if(pathRemovedHeadAndTailWhiteSpace.equals(".")){
+            return currentPath;
+        }
         else if (pathRemovedHeadAndTailWhiteSpace.equals("..") || pathRemovedHeadAndTailWhiteSpace.equals("..\\") || pathRemovedHeadAndTailWhiteSpace.equals("../")){ //이전 경로인 경우
             currentPath = getParentPath(currentPath);
             return currentPath;
@@ -83,7 +86,8 @@ public class ChangeDirectoryCommand {
 
         //3. 올바르지 않은 명령어 입력시
         else{ // cd뒤에 문자가 붙어서 나오는 경우
-
+            String stringsArray[] = pathRemovedHeadAndTailWhiteSpace.split(" "); //입력받은 값 중 띄어쓰기 나오기 전 문자열만 추출하기
+            cmdui.printErrorMessage("\'"+ "cd" +stringsArray[0] + "\'"+ Constants.NOT_FIND_COMMAND);
         }
         return currentPath;
     }

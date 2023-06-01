@@ -20,8 +20,8 @@ public class ChangeDirectoryCommand {
         this.cmdui = CMDUI.getInstance();
     }
 
-    public String differentiateChangeDirectoryFunction(String OptimizedString,String currentPath){
-
+    public String differentiateChangeDirectoryFunction(String inputSentence, String currentPath){
+        String OptimizedString = exceptionHandling.optimizeStringForJudge(inputSentence); //검사하기 알맞게 문자열 최적화
         String pathRemainedHeadAndTailWhiteSpace = exceptionHandling.optimizeStringRemoveCommand(OptimizedString,2, !Constants.IS_REMOVE_WHITE_SPACE); //앞뒤 공백 미제거
         String pathRemovedHeadAndTailWhiteSpace = exceptionHandling.optimizeStringRemoveCommand(OptimizedString,2, Constants.IS_REMOVE_WHITE_SPACE); //앞뒤 공백 제거
 
@@ -86,8 +86,12 @@ public class ChangeDirectoryCommand {
 
         //3. 올바르지 않은 명령어 입력시
         else{ // cd뒤에 문자가 붙어서 나오는 경우
-            String stringsArray[] = pathRemovedHeadAndTailWhiteSpace.split(" "); //입력받은 값 중 띄어쓰기 나오기 전 문자열만 추출하기
-            cmdui.printErrorMessage("\'"+ "cd" +stringsArray[0] + "\'"+ Constants.NOT_FIND_COMMAND);
+            //입력받은 c와 d가 대문자인지 소문자인지 알아내기 위해 맨처음 입력받은 문자열에서 cd부분 가져오기
+            String cdInput = inputSentence.trim().substring(0,2);
+
+            //입력받은 값 중 띄어쓰기 나오기 전 문자열만 추출하기
+            String stringsArray[] = pathRemovedHeadAndTailWhiteSpace.split(" ");
+            cmdui.printErrorMessage("\'"+ cdInput + stringsArray[0] + "\'"+ Constants.NOT_FIND_COMMAND);
         }
         return currentPath;
     }

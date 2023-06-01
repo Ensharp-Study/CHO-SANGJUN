@@ -65,15 +65,13 @@ public class CMDStart {
     }
 
     public String classifyCommandFunction(String inputSentence, String currentPath) { // 어떤 명령어가 들어왔는지 확인하는 함수
-        String OptimizedString;
-
-        OptimizedString = exceptionHandling.optimizeStringForJudge(inputSentence); //검사하기 알맞게 문자열 최적화
+        String OptimizedString = exceptionHandling.optimizeStringForJudge(inputSentence); //검사하기 알맞게 문자열 최적화
 
         if (OptimizedString.startsWith("cd")) { //cd 명령어
-            currentPath = changeDirectoryCommand.differentiateChangeDirectoryFunction(OptimizedString, currentPath);
+            currentPath = changeDirectoryCommand.differentiateChangeDirectoryFunction(inputSentence, currentPath);
         }
         else if (OptimizedString.startsWith("dir")) { //dir 명령어
-            directoryCommand.differentiateChangeDirectoryFunction(OptimizedString, currentPath);
+            directoryCommand.differentiateChangeDirectoryFunction(inputSentence, currentPath);
         }
         else if (OptimizedString.startsWith("cls")) {//cls 명령어
             commonLanguageSpecificationCommand.clearAll();

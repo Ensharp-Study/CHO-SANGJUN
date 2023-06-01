@@ -20,7 +20,8 @@ public class DirectoryCommand {
         this.exceptionHandling = exceptionHandling;
     }
 
-    public void differentiateChangeDirectoryFunction(String OptimizedString,String currentPath){
+    public void differentiateChangeDirectoryFunction(String inputSentence, String currentPath){
+        String OptimizedString = exceptionHandling.optimizeStringForJudge(inputSentence); //검사하기 알맞게 문자열 최적화
         String path = exceptionHandling.optimizeStringRemoveCommand(OptimizedString,3, Constants.IS_REMOVE_WHITE_SPACE); //입력받은 문자열 명령어 제거 및 앞뒤공백 제거
 
         if(OptimizedString.startsWith("c:")){ //dir경로에 파일 경로를 처음부터 입력한 경우

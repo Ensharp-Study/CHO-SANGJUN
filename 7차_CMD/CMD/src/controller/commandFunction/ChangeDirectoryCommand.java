@@ -26,7 +26,7 @@ public class ChangeDirectoryCommand {
         if(pathRemovedWhiteSpace.equals("")){ // cd만 입력한 경우 > 현재경로 출력
             cmdui.printCommandResult(currentPath);
         }
-        else if (pathRemovedWhiteSpace.startsWith("..") || pathRemovedWhiteSpace.startsWith("..\\")){ //이전 경로인 경우
+        else if (pathRemovedWhiteSpace.equals("..") || pathRemovedWhiteSpace.equals("..\\") || pathRemovedWhiteSpace.equals("../")){ //이전 경로인 경우
             currentPath = getParentPath(currentPath);
         }
         else if (pathRemovedWhiteSpace.equals("\\")){ // 최상위 폴더로 이동하는 경우

@@ -6,6 +6,8 @@ import utility.ExceptionHandling;
 import view.CMDUI;
 
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class ChangeDirectoryCommand {
     public DesktopInformation desktopInformation;
@@ -30,7 +32,7 @@ public class ChangeDirectoryCommand {
             currentPath = getParentPath(currentPath);
         }
         else if (pathRemovedWhiteSpace.equals("\\")){ // 최상위 폴더로 이동하는 경우
-
+            currentPath = getRootPath(currentPath);
         }
 
 
@@ -40,12 +42,21 @@ public class ChangeDirectoryCommand {
     public String getParentPath(String currentPath) {
         String parentPath;
 
-        File currentDirectory = new File(currentPath);
-        File parentDirectory = currentDirectory.getParentFile();
+        Path currentDirectoryPath = Paths.get(currentPath);
+        Path parentDirectoryPath = currentDirectoryPath.getParent();
 
-        if (parentDirectory == null) return currentPath; // 현재 경로가 root인 경우
-
-        parentPath = parentDirectory.getAbsolutePath();
+        if (parentDirectoryPath == null) return currentPath; // 현재 경로가 root인 경우
+        parentPath = parentDirectoryPath.toString();
         return parentPath;
+    }
+
+    public String getRootPath(String currentPath){
+        String rootPath;
+
+        Path currentDirectoryPath = Paths.get(currentPath);
+        Path rootDirectoryPath = currentDirectoryPath.getRoot();
+
+        rootPath = rootDirectoryPath.toString();
+        return rootPath;
     }
 }

@@ -4,6 +4,8 @@ public class Constants {
     //dir 관련 constants
     public static final String NO_VOLUME_NAME = "C 드라이브의 볼륨에는 이름이 없습니다.";
     public static final String CLEAR_SCREEN ="\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+
+    //안내문 관련 상수
     public static final String HELP_NOTICE = "특정 명령어에 대한 자세한 내용이 필요하면 HELP 명령어 이름을 입력하십시오.\n" +
             "ASSOC    파일 확장명 연결을 보여주거나 수정합니다.\n" +
             "ATTRIB   파일 속성을 표시하거나 바꿉니다.\n" +
@@ -102,6 +104,34 @@ public class Constants {
             "WMIC           대화형 명령 셸 내의 WMI 정보를 표시합니다.\n" +
             "\n" +
             "도구에 대한 자세한 내용은 온라인 도움말의 명령줄 참조를 참조하십시오.";
+    public static final String CHANGE_DIRECTORY_NOTICE = "현재 디렉터리 이름을 보여주거나 바꿉니다.\n" +
+            "\n" +
+            "CHDIR [/D] [드라이브:][경로]\n" +
+            "CHDIR [..]\n" +
+            "CD [/D] [드라이브:][경로]\n" +
+            "CD [..]\n" +
+            "\n" +
+            "  ..   상위 디렉터리로 바꿉니다.\n" +
+            "\n" +
+            "특정 드라이브의 디렉터리를 표시하려면 'CD 드라이브:'를 입력하십시오.\n" +
+            "현재 드라이브와 디렉터리를 표시하려면 매개 변수 없이 'CD'를 입력하십시오.\n" +
+            "\n" +
+            "디렉터리 이외에 현재 드라이브도 바꾸려면 /D 스위치를 사용하십시오.\n" +
+            "\n" +
+            "명령 확장을 사용하면 CHDIR은 아래와 같이 바뀝니다.\n" +
+            "\n" +
+            "현재 디렉터리 문자열이 디스크 이름에 있는 것 같이 사용되도록\n" +
+            "변환됩니다. 그러므로 CD C:\\TEMP는 실제로, 이 디렉터리가 디스크에\n" +
+            "있으면 현재 디렉터리가 C:\\Temp로 설정됩니다.\n" +
+            "\n" +
+            "CHDIR 명령은 스페이스를 분리 기호로 취급하지 않으므로 CD는\n" +
+            "인용 부호로 이름을 에워싸지 않아도 이름에 스페이스를 가지고 있는\n" +
+            "하위 디렉터리로 갈 수 있습니다.\n" +
+            "예를 들면 다음 두 가지 경우는 모두 같습니다:\n" +
+            "\n" +
+            "    cd \\winnt\\profiles\\username\\programs\\start menu\n" +
+            "\n" +
+            "    cd \"\\winnt\\profiles\\username\\programs\\start menu\"";
 
     public static final Boolean IS_REMOVE_WHITE_SPACE = true;
     public static final Boolean IS_Valid_Path = true;

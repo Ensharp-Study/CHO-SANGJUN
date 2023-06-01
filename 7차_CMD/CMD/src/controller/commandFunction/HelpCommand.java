@@ -1,5 +1,6 @@
 package controller.commandFunction;
 
+import utility.Constants;
 import view.CMDUI;
 
 public class HelpCommand {
@@ -9,7 +10,7 @@ public class HelpCommand {
     }
 
     public void printHelpPhrase(){
-        cmdui.printHelpNotice();
+        cmdui.printNotice(Constants.HELP_NOTICE);
     }
 
 }

@@ -41,7 +41,9 @@ public class ChangeDirectoryCommand {
             currentPath = getRootPath(currentPath);
             return currentPath;
         }
-
+        else if(pathRemovedHeadAndTailWhiteSpace.replaceAll(" ","").contains("/?")) { // "cd/?" 명령어는 공백에 상관없이 그리고 뒤에 어떤 문자가 같이와도 실행된다.
+            cmdui.printNotice(Constants.CHANGE_DIRECTORY_NOTICE);
+        }
         //2. 절대 경로를 입력 받는 경우
         if(pathRemainedHeadAndTailWhiteSpace.charAt(0) == ' '){
             //cd와 뒤의 문자열이 띄어쓰기 되어있으면 앞뒤 띄어쓰기 제거하기 위해 pathRemovedHeadAndTailWhiteSpace 사용
@@ -72,8 +74,8 @@ public class ChangeDirectoryCommand {
                     currentPath=getPath(currentPath + "\\" + pathRemovedHeadAndTailWhiteSpace);
                 }
                 else{
-                    String stringsArray[] = pathRemovedHeadAndTailWhiteSpace.split(" "); //입력받은 값 중 띄어쓰기 나오기 전 문자열만 추출하기
-                    cmdui.printErrorMessage("\'"+ stringsArray[0] + "\'"+ Constants.NOT_FIND_COMMAND);
+                    //지정된 경로를 찾을 수 없습니다.
+                    cmdui.printErrorMessage(Constants.CANNOT_FIND_PATH);
                 }
             }
 

@@ -22,8 +22,8 @@ public class CMDUI {
         System.out.print("\n"+ path + ">");
     }
 
-    public void printHelpNotice(){
-        System.out.print(Constants.HELP_NOTICE);
+    public void printNotice(String notice){
+        System.out.print(notice);
     }
 
     public void printCommandResult(String result){

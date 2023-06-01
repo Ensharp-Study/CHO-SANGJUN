@@ -31,7 +31,7 @@ public class ChangeDirectoryCommand {
         else if (pathRemovedWhiteSpace.equals("..") || pathRemovedWhiteSpace.equals("..\\") || pathRemovedWhiteSpace.equals("../")){ //이전 경로인 경우
             currentPath = getParentPath(currentPath);
         }
-        else if (pathRemovedWhiteSpace.equals("\\")){ // 최상위 폴더로 이동하는 경우
+        else if (pathRemovedWhiteSpace.equals("\\") || pathRemovedWhiteSpace.equals("/")){ // 최상위 폴더로 이동하는 경우
             currentPath = getRootPath(currentPath);
         }
 

@@ -1,7 +1,7 @@
 package utility;
 
 import java.io.*;
-import java.nio.file.Paths;
+import java.nio.file.*;
 
 public class DesktopInformation {
 
@@ -31,10 +31,35 @@ public class DesktopInformation {
         return printedSentence; //결과값 문자열 배열 반환
     }
 
+    //getProperty 이용하여 디렉토리 경로 불러오기
     public String getDirectoryPath(String directory){
-        String userHome = System.getProperty(directory);
-        return userHome;
+        String directoryPath = System.getProperty(directory);
+        return directoryPath;
     }
 
+    public String getDriveVolumeName(String drivePath) {
+        String volumeName = "";
+        try {
+            Path path = FileSystems.getDefault().getPath(drivePath);
+            FileStore fileStore = Files.getFileStore(path);
+            volumeName = fileStore.name();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return volumeName;
+    }
+
+    public String getDriveVolumeSerialNumber(String drivePath){
+        String volumeSerialNumber = "";
+        try {
+            Path path = Paths.get(drivePath);
+            FileStore fileStore = Files.getFileStore(path);
+            volumeSerialNumber = fileStore.getAttribute("volume:vsn").toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return volumeSerialNumber;
+    }
 
 }

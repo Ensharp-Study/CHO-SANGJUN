@@ -1,12 +1,9 @@
 package utility;
 
 public class Constants {
-    public static final String CD_REGULAR_EXPRESSION = "^cd";
-    public static final String DIR_REGULAR_EXPRESSION = "^dir";
-    public static final String CLS_REGULAR_EXPRESSION = "^cls";
-    public static final String HELP_REGULAR_EXPRESSION = "^help";
-    public static final String COPY_REGULAR_EXPRESSION = "^copy";
-    public static final String MOVE_REGULAR_EXPRESSION = "^move";
+    //dir 관련 constants
+    public static final String NO_VOLUME_NAME = "C 드라이브의 볼륨에는 이름이 없습니다.";
+    public static final String CLEAR_SCREEN ="\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
     public static final String HELP_NOTICE = "특정 명령어에 대한 자세한 내용이 필요하면 HELP 명령어 이름을 입력하십시오.\n" +
             "ASSOC    파일 확장명 연결을 보여주거나 수정합니다.\n" +
             "ATTRIB   파일 속성을 표시하거나 바꿉니다.\n" +
@@ -105,5 +102,8 @@ public class Constants {
             "WMIC           대화형 명령 셸 내의 WMI 정보를 표시합니다.\n" +
             "\n" +
             "도구에 대한 자세한 내용은 온라인 도움말의 명령줄 참조를 참조하십시오.";
+
+    public static final Boolean IS_REMOVE_WHITE_SPACE = true;
+
 
 }

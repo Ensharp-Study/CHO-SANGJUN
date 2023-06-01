@@ -1,5 +1,8 @@
 package controller;
 
+import controller.commandFunction.ChangeDirectoryCommand;
+import controller.commandFunction.CommonLanguageSpecificationCommand;
+import controller.commandFunction.DirectoryCommand;
 import controller.commandFunction.HelpCommand;
 import utility.Constants;
 import utility.DesktopInformation;
@@ -15,7 +18,10 @@ public class CMDStart {
     public ExceptionHandling exceptionHandling;
 
     //명령어 처리 클래스
+    public ChangeDirectoryCommand changeDirectoryCommand;
+    public DirectoryCommand directoryCommand;
     public HelpCommand helpCommand;
+    public CommonLanguageSpecificationCommand commonLanguageSpecificationCommand;
 
     public CMDStart(){
         this.cmdUI = CMDUI.getInstance();
@@ -23,20 +29,25 @@ public class CMDStart {
         this.exceptionHandling = new ExceptionHandling();
 
         //명령어 처리 클래스
+        this.changeDirectoryCommand = new ChangeDirectoryCommand(desktopInformation,exceptionHandling);
+        this.directoryCommand = new DirectoryCommand(desktopInformation,exceptionHandling);
         this.helpCommand = new HelpCommand();
+        this.commonLanguageSpecificationCommand =new CommonLanguageSpecificationCommand();
     }
 
     public void startCMD(){
-        String directoryPath = "user.home"; // 초기 출력 경로
+        String searchWord = "user.home"; // 초기 출력 경로
+        String currentPath;
         String inputSentence;
 
         setCMDbasicUI(); //기본 출력창 출력하기
-        while (true) {
-            cmdUI.printCommandLine(desktopInformation.getDirectoryPath(directoryPath)); // 커맨드 라인 출력
-            inputSentence = receiveInputCommandLine(); //명령어 입력 받기
-            classifyCommandFunction(inputSentence); //명령어 구분하기
+        currentPath = desktopInformation.getDirectoryPath(searchWord);
+        cmdUI.printCommandLine(currentPath); // 맨처음 커맨드 라인 출력
 
-            break;
+        while (true) {
+            inputSentence = receiveInputCommandLine(); //명령어 입력 받기
+            currentPath = classifyCommandFunction(inputSentence, currentPath); //명령어 구분하고 해당 명령어 클래스로 들어가기
+            cmdUI.printCommandLine(currentPath); //다음입력 받기
         }
     }
 
@@ -49,29 +60,37 @@ public class CMDStart {
 
     public String receiveInputCommandLine(){
         Scanner scan = new Scanner(System.in);
-        String inputSentence = scan.next(); //명령어 입력받기
+        String inputSentence = scan.nextLine(); //명령어 입력받기
         return inputSentence;
     }
 
-    public void classifyCommandFunction(String inputSentence) { // 어떤 명령어가 들어왔는지 확인하는 함수
-        String patternOptimizedString;
+    public String classifyCommandFunction(String inputSentence, String currentPath) { // 어떤 명령어가 들어왔는지 확인하는 함수
+        String OptimizedString;
 
-        patternOptimizedString = exceptionHandling.optimizeStringForJudge(inputSentence); //검사하기 알맞게 문자열 최적화
+        OptimizedString = exceptionHandling.optimizeStringForJudge(inputSentence); //검사하기 알맞게 문자열 최적화
 
-        if (Pattern.matches(Constants.CD_REGULAR_EXPRESSION, patternOptimizedString)) { //cd 명령어
-
-        } else if (Pattern.matches(Constants.DIR_REGULAR_EXPRESSION, patternOptimizedString)) { //dir 명령어
-
-        } else if (Pattern.matches(Constants.CLS_REGULAR_EXPRESSION, patternOptimizedString)) {//cls 명령어
-
-        } else if (Pattern.matches(Constants.HELP_REGULAR_EXPRESSION, patternOptimizedString)) { //help 명령어
+        if (OptimizedString.startsWith("cd")) { //cd 명령어
+            currentPath = changeDirectoryCommand.differentiateChangeDirectoryFunction(OptimizedString, currentPath);
+        }
+        else if (OptimizedString.startsWith("dir")) { //dir 명령어
+            directoryCommand.differentiateChangeDirectoryFunction(OptimizedString, currentPath);
+        }
+        else if (OptimizedString.startsWith("cls")) {//cls 명령어
+            commonLanguageSpecificationCommand.clearAll();
+        }
+        else if (OptimizedString.startsWith("help")) { //help 명령어
             helpCommand.printHelpPhrase();
-        } else if (Pattern.matches(Constants.COPY_REGULAR_EXPRESSION, patternOptimizedString)) { //copy 명령어
+        }
+        else if (OptimizedString.startsWith("copy")) { //copy 명령어
 
-        } else if (Pattern.matches(Constants.MOVE_REGULAR_EXPRESSION, patternOptimizedString)) { //move 명령어
+        }
+        else if (OptimizedString.startsWith("move")) { //move 명령어
 
-        } else { //해당하는 명령어가 없을 때
+        }
+        else { //해당하는 명령어가 없을 때
             // 배치파일이 아닙니다 오류 문 출력
         }
+
+        return currentPath;
     }
 }

@@ -29,4 +29,8 @@ public class CMDUI {
     public void printCommandResult(String result){
         System.out.println(result);
     }
+
+    public void printErrorMessage(String errorMessage){
+        System.out.println(errorMessage);
+    }
 }

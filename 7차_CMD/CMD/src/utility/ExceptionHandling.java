@@ -16,8 +16,18 @@ public class ExceptionHandling {
         return inputCommandLine;
     }
 
-    public void changeDirectoryExceptionHanding(){
+    //공백이 포함된 경로인 경우 이 경로가 올바른지 판단
+    public Boolean judgeWhiteSpaceContainedPathValidation(String inputPath){
+        inputPath = inputPath.replaceAll("\\s{2,}"," "); //공백이 2개이상 연속으로 나올때 공백하나로 바꾸기
+        String[] directoryArray = inputPath.split(" ");
 
+        for (String directory : directoryArray) {
+            // 경로에 디렉토리가 한묶음씩 슬래시와 함께 묶여있으면 인식 (예  /users  /junch)
+            if( !(directory.startsWith("\\")) && !(directory.startsWith("/")) ){
+                return !(Constants.IS_Valid_Path);
+            }
+        }
+        return Constants.IS_Valid_Path;
     }
 
 

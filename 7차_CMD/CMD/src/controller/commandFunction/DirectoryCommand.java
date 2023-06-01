@@ -21,7 +21,7 @@ public class DirectoryCommand {
     }
 
     public void differentiateChangeDirectoryFunction(String OptimizedString,String currentPath){
-        String path = exceptionHandling.optimizeStringRemoveCommand(OptimizedString,3,Constants.IS_REMOVE_WHITE_SPACE); //입력받은 문자열 명령어 제거 및 앞뒤공백 제거
+        String path = exceptionHandling.optimizeStringRemoveCommand(OptimizedString,3, Constants.IS_REMOVE_WHITE_SPACE); //입력받은 문자열 명령어 제거 및 앞뒤공백 제거
 
         if(OptimizedString.startsWith("c:")){ //dir경로에 파일 경로를 처음부터 입력한 경우
             findDirectoryWithPathFromRoot(path);
@@ -51,7 +51,6 @@ public class DirectoryCommand {
         int count = 0;
 
         File directory = new File(directoryPath);
-
 
         if (directory.exists() && directory.isDirectory()) {
             File[] files = directory.listFiles();

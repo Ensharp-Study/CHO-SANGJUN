@@ -104,6 +104,8 @@ public class Constants {
             "도구에 대한 자세한 내용은 온라인 도움말의 명령줄 참조를 참조하십시오.";
 
     public static final Boolean IS_REMOVE_WHITE_SPACE = true;
-
+    public static final Boolean IS_Valid_Path = true;
+    //에러 메시지
+    public static final String CANNOT_FIND_PATH = "지정된 경로를 찾을 수 없습니다.";
 
 }

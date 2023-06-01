@@ -68,6 +68,10 @@ public class ChangeDirectoryCommand {
                 if ( checkPathExists(currentPath + "\\" + pathRemovedHeadAndTailWhiteSpace)){
                     currentPath=getPath(currentPath + "\\" + pathRemovedHeadAndTailWhiteSpace);
                 }
+                else{
+                    String stringsArray[] = pathRemovedHeadAndTailWhiteSpace.split(" "); //입력받은 값 중 띄어쓰기 나오기 전 문자열만 추출하기
+                    cmdui.printErrorMessage("\'"+ stringsArray[0] + "\'"+ Constants.NOT_FIND_COMMAND);
+                }
             }
 
             //이외 이상한 값 입력 받았을 시
@@ -77,11 +81,10 @@ public class ChangeDirectoryCommand {
             }
         }
 
+        //3. 올바르지 않은 명령어 입력시
         else{ // cd뒤에 문자가 붙어서 나오는 경우
-            //'cdfdfd'은(는) 내부 또는 외부 명령, 실행할 수 있는 프로그램, 또는
-            //배치 파일이 아닙니다.
-        }
 
+        }
         return currentPath;
     }
 

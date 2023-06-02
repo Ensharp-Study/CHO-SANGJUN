@@ -75,7 +75,7 @@ public class DirectoryCommand {
                         directoryOrFileName = file.getName();
                         directoryOrFileModifiedDate = new Date(file.lastModified());
                         formattedDate = directoryTimeFormat.format(directoryOrFileModifiedDate);
-                        directoryOrFileType = file.isDirectory() ? "<DIR>" : "";
+                        directoryOrFileType = file.isDirectory() ? "<DIR>" : "     ";
 
                         System.out.println(formattedDate + "   " + directoryOrFileType + "   " + directoryOrFileName);
                     }

@@ -43,7 +43,9 @@ public class ChangeDirectoryCommand {
         }
         else if(pathRemovedHeadAndTailWhiteSpace.replaceAll(" ","").contains("/?")) { // "cd/?" 명령어는 공백에 상관없이 그리고 뒤에 어떤 문자가 같이와도 실행된다.
             cmdui.printNotice(Constants.CHANGE_DIRECTORY_NOTICE);
+            return currentPath;
         }
+
         //2. 절대 경로를 입력 받는 경우
         if(pathRemainedHeadAndTailWhiteSpace.charAt(0) == ' '){
             //cd와 뒤의 문자열이 띄어쓰기 되어있으면 앞뒤 띄어쓰기 제거하기 위해 pathRemovedHeadAndTailWhiteSpace 사용

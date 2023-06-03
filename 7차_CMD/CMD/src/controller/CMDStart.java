@@ -47,20 +47,20 @@ public class CMDStart {
         }
     }
 
-    public void setCMDbasicUI(){ //CMD 실행시 기본으로 출력되는 UI설정
+    private void setCMDbasicUI(){ //CMD 실행시 기본으로 출력되는 UI설정
         String[] InitialOutputOfCMD = new String[2]; //CMD실행시 출력되는 2줄 저장하는 배열
 
         InitialOutputOfCMD = desktopInformation.getInitialOutputOfCMD(); //cmd 버전정보 불러오기
         CMDUI.printInitialOutputOfCMD(InitialOutputOfCMD); //cmd 버전정보 출력하기
     }
 
-    public String receiveInputCommandLine(){
+    private String receiveInputCommandLine(){
         Scanner scan = new Scanner(System.in);
         String inputSentence = scan.nextLine(); //명령어 입력받기
         return inputSentence;
     }
 
-    public String classifyCommandFunction(String inputSentence, String currentPath) { // 어떤 명령어가 들어왔는지 확인하는 함수
+    private String classifyCommandFunction(String inputSentence, String currentPath) { // 어떤 명령어가 들어왔는지 확인하는 함수
         String OptimizedString = exceptionHandling.optimizeStringForJudge(inputSentence); //검사하기 알맞게 문자열 최적화
 
         if (OptimizedString.startsWith("cd")) { //cd 명령어
@@ -84,7 +84,6 @@ public class CMDStart {
         else { //해당하는 명령어가 없을 때
             // 배치파일이 아닙니다 오류 문 출력
         }
-
         return currentPath;
     }
 }

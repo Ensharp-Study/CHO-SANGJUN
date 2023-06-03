@@ -18,95 +18,92 @@ public class ChangeDirectoryCommand {
         this.exceptionHandling = exceptionHandling;
     }
 
-    public String differentiateChangeDirectoryFunction(String inputSentence, String currentPath){
+    public String differentiateChangeDirectoryFunction(String inputSentence, String currentPath) {
         String OptimizedString = exceptionHandling.optimizeStringForJudge(inputSentence); //검사하기 알맞게 문자열 최적화
-        String pathRemainedHeadAndTailWhiteSpace = exceptionHandling.optimizeStringRemoveCommand(OptimizedString,2, !Constants.IS_REMOVE_WHITE_SPACE); //앞뒤 공백 미제거
-        String pathRemovedHeadAndTailWhiteSpace = exceptionHandling.optimizeStringRemoveCommand(OptimizedString,2, Constants.IS_REMOVE_WHITE_SPACE); //앞뒤 공백 제거
+        String pathRemainedHeadAndTailWhiteSpace = exceptionHandling.optimizeStringRemoveCommand(OptimizedString, 2, !Constants.IS_REMOVE_WHITE_SPACE); //앞뒤 공백 미제거
+        String pathRemovedHeadAndTailWhiteSpace = exceptionHandling.optimizeStringRemoveCommand(OptimizedString, 2, Constants.IS_REMOVE_WHITE_SPACE); //앞뒤 공백 제거
 
 
         //1. 마침표로 이동하는 경우
-        if(pathRemovedHeadAndTailWhiteSpace.equals("")){ // cd만 입력한 경우 > 현재경로 출력
+        if (pathRemovedHeadAndTailWhiteSpace.equals("")) { // cd만 입력한 경우 > 현재경로 출력
             CMDUI.printCommandResult(currentPath);
             return currentPath;
-        }
-        else if(pathRemovedHeadAndTailWhiteSpace.equals(".")){
+        } else if (pathRemovedHeadAndTailWhiteSpace.equals(".")) {
             return currentPath;
-        }
-        else if (pathRemovedHeadAndTailWhiteSpace.equals("..") || pathRemovedHeadAndTailWhiteSpace.equals("..\\") || pathRemovedHeadAndTailWhiteSpace.equals("../")){ //이전 경로인 경우
+        } else if (pathRemovedHeadAndTailWhiteSpace.equals("..") || pathRemovedHeadAndTailWhiteSpace.equals("..\\") || pathRemovedHeadAndTailWhiteSpace.equals("../")) { //이전 경로인 경우
             currentPath = getParentPath(currentPath);
             return currentPath;
-        }
-        else if (pathRemovedHeadAndTailWhiteSpace.equals("\\") || pathRemovedHeadAndTailWhiteSpace.equals("/")){ // 최상위 폴더로 이동하는 경우
+        } else if (pathRemovedHeadAndTailWhiteSpace.equals("\\") || pathRemovedHeadAndTailWhiteSpace.equals("/")) { // 최상위 폴더로 이동하는 경우
             currentPath = getRootPath(currentPath);
             return currentPath;
-        }
-        else if(pathRemovedHeadAndTailWhiteSpace.replaceAll(" ","").contains("/?")) { // "cd/?" 명령어는 공백에 상관없이 그리고 뒤에 어떤 문자가 같이와도 실행된다.
+        } else if (pathRemovedHeadAndTailWhiteSpace.replaceAll(" ", "").contains("/?")) { // "cd/?" 명령어는 공백에 상관없이 그리고 뒤에 어떤 문자가 같이와도 실행된다.
             CMDUI.printNotice(Constants.CHANGE_DIRECTORY_NOTICE);
             return currentPath;
         }
 
         //2.상대 경로를 입력 받는 경우
-        if(pathRemovedHeadAndTailWhiteSpace.startsWith(".")){
-            if(checkPathExists(currentPath +"/"+pathRemovedHeadAndTailWhiteSpace)) //상대경로 이므로 현재 디렉토리에 입력한 경로 붙이기
+        if (pathRemovedHeadAndTailWhiteSpace.startsWith(".")) {
+            if (checkPathExists(currentPath + "/" + pathRemovedHeadAndTailWhiteSpace)) //상대경로 이므로 현재 디렉토리에 입력한 경로 붙이기
             {
-                currentPath = getPath(currentPath +"/"+pathRemovedHeadAndTailWhiteSpace);
+                currentPath = getPath(currentPath + "/" + pathRemovedHeadAndTailWhiteSpace);
                 return currentPath;
             }
-            //경로가 올바르지 않다.
+            //지정된 경로를 찾을 수 없습니다.
+            CMDUI.printErrorMessage(Constants.CANNOT_FIND_PATH);
+
         }
 
         //3. 절대 경로를 입력 받는 경우
-        if(pathRemainedHeadAndTailWhiteSpace.charAt(0) == ' '){
+        if (pathRemainedHeadAndTailWhiteSpace.charAt(0) == ' ') {
             //cd와 뒤의 문자열이 띄어쓰기 되어있으면 앞뒤 띄어쓰기 제거하기 위해 pathRemovedHeadAndTailWhiteSpace 사용
-            if(pathRemovedHeadAndTailWhiteSpace.startsWith("c:")){ //root부터 전체 경로를 입력 했을 경우
-                if(checkPathExists(pathRemovedHeadAndTailWhiteSpace)) { // 파일경로가 있을때
+            if (pathRemovedHeadAndTailWhiteSpace.startsWith("c:")) { //root부터 전체 경로를 입력 했을 경우
+                if (checkPathExists(pathRemovedHeadAndTailWhiteSpace)) { // 파일경로가 있을때
                     currentPath = pathRemovedHeadAndTailWhiteSpace;
+                    return currentPath;
                 }
-                else {
-                    //지정된 경로를 찾을 수 없습니다.
-                    CMDUI.printErrorMessage(Constants.CANNOT_FIND_PATH);
-                }
+                //지정된 경로를 찾을 수 없습니다.
+                CMDUI.printErrorMessage(Constants.CANNOT_FIND_PATH);
+                return currentPath;
             }
 
             // "\Users\junch" 와 같이 절대경로 중 일부만 입력 시
-            else if(pathRemovedHeadAndTailWhiteSpace.startsWith("\\") || pathRemovedHeadAndTailWhiteSpace.startsWith("/")){
-                if( checkPathExists(pathRemovedHeadAndTailWhiteSpace)){
-                    currentPath=getPath(pathRemovedHeadAndTailWhiteSpace);
+            else if (pathRemovedHeadAndTailWhiteSpace.startsWith("\\") || pathRemovedHeadAndTailWhiteSpace.startsWith("/")) {
+                if (checkPathExists(pathRemovedHeadAndTailWhiteSpace)) {
+                    currentPath = getPath(pathRemovedHeadAndTailWhiteSpace);
+                    return currentPath;
                 }
-                else {
-                    //지정된 경로를 찾을 수 없습니다.
-                    CMDUI.printErrorMessage(Constants.CANNOT_FIND_PATH);
-                }
+                //지정된 경로를 찾을 수 없습니다.
+                CMDUI.printErrorMessage(Constants.CANNOT_FIND_PATH);
+                return currentPath;
             }
 
             //디렉토리명만 입력 받았을 시
-            else if(!pathRemovedHeadAndTailWhiteSpace.contains("\\") && !pathRemovedHeadAndTailWhiteSpace.contains("/")){
-                if ( checkPathExists(currentPath + "\\" + pathRemovedHeadAndTailWhiteSpace)){
-                    currentPath=getPath(currentPath + "\\" + pathRemovedHeadAndTailWhiteSpace);
+            else if (!pathRemovedHeadAndTailWhiteSpace.contains("\\") && !pathRemovedHeadAndTailWhiteSpace.contains("/")) {
+                if (checkPathExists(currentPath + "\\" + pathRemovedHeadAndTailWhiteSpace)) {
+                    currentPath = getPath(currentPath + "\\" + pathRemovedHeadAndTailWhiteSpace);
+                    return currentPath;
                 }
-                else{
-                    //지정된 경로를 찾을 수 없습니다.
-                    CMDUI.printErrorMessage(Constants.CANNOT_FIND_PATH);
-                }
+                //지정된 경로를 찾을 수 없습니다.
+                CMDUI.printErrorMessage(Constants.CANNOT_FIND_PATH);
+                return currentPath;
             }
 
             //이외 이상한 값 입력 받았을 시
-            else{
-                //지정된 경로를 찾을 수 없습니다.
-                CMDUI.printErrorMessage(Constants.CANNOT_FIND_PATH);
-            }
+            //지정된 경로를 찾을 수 없습니다.
+            CMDUI.printErrorMessage(Constants.CANNOT_FIND_PATH);
+            return currentPath;
         }
 
         //4. 올바르지 않은 명령어 입력시
-        else{ // cd뒤에 문자가 붙어서 나오는 경우
+        else {
+            // cd뒤에 문자가 붙어서 나오는 경우
             //입력받은 c와 d가 대문자인지 소문자인지 알아내기 위해 맨처음 입력받은 문자열에서 cd부분 가져오기
-            String cdInput = inputSentence.trim().substring(0,2);
-
+            String cdInput = inputSentence.trim().substring(0, 2);
             //입력받은 값 중 띄어쓰기 나오기 전 문자열만 추출하기
             String stringsArray[] = pathRemovedHeadAndTailWhiteSpace.split(" ");
-            CMDUI.printErrorMessage("\'"+ cdInput + stringsArray[0] + "\'"+ Constants.NOT_FIND_COMMAND);
+            CMDUI.printErrorMessage("\'" + cdInput + stringsArray[0] + "\'" + Constants.NOT_FIND_COMMAND);
+            return currentPath;
         }
-        return currentPath;
     }
 
     public String getPath(String inputPath){
@@ -142,15 +139,15 @@ public class ChangeDirectoryCommand {
         boolean pathValidation;
         boolean isCorrectInput;
 
-        if (inputPath.contains(" ")) { //경로에 공백이 함께 있는 경우 예외처리
+        /*if (inputPath.contains(" ")) { //경로에 공백이 함께 있는 경우 예외처리
             isCorrectInput = exceptionHandling.judgeWhiteSpaceContainedPathValidation(inputPath); //경로에 공백이 같이 들어왔을 경우 예외처리
             if (!isCorrectInput) {//올바르지 않은 경로 일때
                 pathValidation = !Constants.IS_Valid_Path; //경로 오류
                 return pathValidation;
             }
-        }
+        }*/
         //공백이 있는 경우 제거
-        inputPath = inputPath.replaceAll(" ","");
+        /*inputPath = inputPath.replaceAll(" ","");*/
 
         Path inputDirectoryPath = Paths.get(inputPath).toAbsolutePath();
         pathValidation = Files.exists(inputDirectoryPath);

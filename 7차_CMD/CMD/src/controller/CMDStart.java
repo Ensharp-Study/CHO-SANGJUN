@@ -21,12 +21,12 @@ public class CMDStart {
     public ClearScreenCommand commonLanguageSpecificationCommand;
 
     public CMDStart(){
-        this.desktopInformation = new DesktopInformation();
+        this.desktopInformation = DesktopInformation.getInstance();
         this.exceptionHandling = new ExceptionHandling();
 
         //명령어 처리 클래스
-        this.changeDirectoryCommand = new ChangeDirectoryCommand(desktopInformation,exceptionHandling);
-        this.directoryCommand = new DirectoryCommand(desktopInformation,exceptionHandling);
+        this.changeDirectoryCommand = new ChangeDirectoryCommand(exceptionHandling);
+        this.directoryCommand = new DirectoryCommand(exceptionHandling);
         this.helpCommand = new HelpCommand();
         this.commonLanguageSpecificationCommand =new ClearScreenCommand();
     }

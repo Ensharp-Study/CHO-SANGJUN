@@ -17,8 +17,8 @@ public class DirectoryCommand {
     public ExceptionHandling exceptionHandling;
 
 
-    public DirectoryCommand(DesktopInformation desktopInformation, ExceptionHandling exceptionHandling){
-        this.desktopInformation = desktopInformation;
+    public DirectoryCommand(ExceptionHandling exceptionHandling){
+        this.desktopInformation = DesktopInformation.getInstance();
         this.exceptionHandling = exceptionHandling;
     }
 

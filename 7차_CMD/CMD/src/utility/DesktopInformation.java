@@ -4,6 +4,16 @@ import java.io.*;
 import java.nio.file.*;
 
 public class DesktopInformation {
+    //싱글 톤 처리
+    private static DesktopInformation instance;
+    private DesktopInformation() {
+    }
+    public static DesktopInformation getInstance() {
+        if (instance == null) {
+            instance = new DesktopInformation();
+        }
+        return instance;
+    }
 
     public String[] getInitialOutputOfCMD(){ //cmd실행시 초기 출력값 받아오는 함수
         String[] printedSentence = new String[2]; //출력물 저장할 변수
@@ -62,6 +72,53 @@ public class DesktopInformation {
         return volumeSerialNumber;
     }
 
+    public String getPath(String inputPath){
+        inputPath = inputPath.replaceAll(" ",""); //공백제거
+
+        Path inputDirectoryPath = Paths.get(inputPath).normalize().toAbsolutePath();
+        inputPath = inputDirectoryPath.toString();
+        return inputPath;
+    }
+    public String getParentPath(String currentPath) {
+        String parentPath;
+
+        Path currentDirectoryPath = Paths.get(currentPath);
+        Path parentDirectoryPath = currentDirectoryPath.getParent();
+
+        if (parentDirectoryPath == null) return currentPath; // 현재 경로가 root인 경우
+        parentPath = parentDirectoryPath.toString();
+        return parentPath;
+    }
+
+    public String getRootPath(String currentPath){
+        String rootPath;
+
+        Path currentDirectoryPath = Paths.get(currentPath);
+        Path rootDirectoryPath = currentDirectoryPath.getRoot();
+
+        rootPath = rootDirectoryPath.toString();
+        return rootPath;
+    }
+
+    public boolean checkPathExists(String inputPath) {
+        boolean pathValidation;
+        boolean isCorrectInput;
+
+        /*if (inputPath.contains(" ")) { //경로에 공백이 함께 있는 경우 예외처리
+            isCorrectInput = exceptionHandling.judgeWhiteSpaceContainedPathValidation(inputPath); //경로에 공백이 같이 들어왔을 경우 예외처리
+            if (!isCorrectInput) {//올바르지 않은 경로 일때
+                pathValidation = !Constants.IS_Valid_Path; //경로 오류
+                return pathValidation;
+            }
+        }*/
+        //공백이 있는 경우 제거
+        /*inputPath = inputPath.replaceAll(" ","");*/
+
+        Path inputDirectoryPath = Paths.get(inputPath).toAbsolutePath();
+        pathValidation = Files.exists(inputDirectoryPath);
+
+        return pathValidation;
+    }
 
 
 }

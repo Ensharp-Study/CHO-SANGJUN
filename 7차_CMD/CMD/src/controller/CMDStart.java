@@ -1,30 +1,26 @@
 package controller;
 
-import controller.commandFunction.ChangeDirectoryCommand;
-import controller.commandFunction.CommonLanguageSpecificationCommand;
-import controller.commandFunction.DirectoryCommand;
-import controller.commandFunction.HelpCommand;
-import utility.Constants;
+import controller.command.ChangeDirectoryCommand;
+import controller.command.ClearScreenCommand;
+import controller.command.DirectoryCommand;
+import controller.command.HelpCommand;
 import utility.DesktopInformation;
 import utility.ExceptionHandling;
 import view.CMDUI;
 
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
 public class CMDStart {
     public DesktopInformation desktopInformation;
-    public CMDUI cmdUI;
     public ExceptionHandling exceptionHandling;
 
     //명령어 처리 클래스
     public ChangeDirectoryCommand changeDirectoryCommand;
     public DirectoryCommand directoryCommand;
     public HelpCommand helpCommand;
-    public CommonLanguageSpecificationCommand commonLanguageSpecificationCommand;
+    public ClearScreenCommand commonLanguageSpecificationCommand;
 
     public CMDStart(){
-        this.cmdUI = CMDUI.getInstance();
         this.desktopInformation = new DesktopInformation();
         this.exceptionHandling = new ExceptionHandling();
 
@@ -32,7 +28,7 @@ public class CMDStart {
         this.changeDirectoryCommand = new ChangeDirectoryCommand(desktopInformation,exceptionHandling);
         this.directoryCommand = new DirectoryCommand(desktopInformation,exceptionHandling);
         this.helpCommand = new HelpCommand();
-        this.commonLanguageSpecificationCommand =new CommonLanguageSpecificationCommand();
+        this.commonLanguageSpecificationCommand =new ClearScreenCommand();
     }
 
     public void startCMD(){
@@ -42,12 +38,12 @@ public class CMDStart {
 
         setCMDbasicUI(); //기본 출력창 출력하기
         currentPath = desktopInformation.getDirectoryPath(searchWord);
-        cmdUI.printCommandLine(currentPath); // 맨처음 커맨드 라인 출력
+        CMDUI.printCommandLine(currentPath); // 맨처음 커맨드 라인 출력
 
         while (true) {
             inputSentence = receiveInputCommandLine(); //명령어 입력 받기
             currentPath = classifyCommandFunction(inputSentence, currentPath); //명령어 구분하고 해당 명령어 클래스로 들어가기
-            cmdUI.printCommandLine(currentPath); //다음입력 받기
+            CMDUI.printCommandLine(currentPath); //다음입력 받기
         }
     }
 
@@ -55,7 +51,7 @@ public class CMDStart {
         String[] InitialOutputOfCMD = new String[2]; //CMD실행시 출력되는 2줄 저장하는 배열
 
         InitialOutputOfCMD = desktopInformation.getInitialOutputOfCMD(); //cmd 버전정보 불러오기
-        cmdUI.printInitialOutputOfCMD(InitialOutputOfCMD); //cmd 버전정보 출력하기
+        CMDUI.printInitialOutputOfCMD(InitialOutputOfCMD); //cmd 버전정보 출력하기
     }
 
     public String receiveInputCommandLine(){

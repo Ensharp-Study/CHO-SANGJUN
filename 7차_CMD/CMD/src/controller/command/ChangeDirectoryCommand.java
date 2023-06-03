@@ -1,4 +1,4 @@
-package controller.commandFunction;
+package controller.command;
 
 import utility.Constants;
 import utility.DesktopInformation;
@@ -12,12 +12,10 @@ import java.nio.file.Paths;
 public class ChangeDirectoryCommand {
     public DesktopInformation desktopInformation;
     public ExceptionHandling exceptionHandling;
-    public CMDUI cmdui;
 
     public ChangeDirectoryCommand(DesktopInformation desktopInformation, ExceptionHandling exceptionHandling){
         this.desktopInformation = desktopInformation;
         this.exceptionHandling = exceptionHandling;
-        this.cmdui = CMDUI.getInstance();
     }
 
     public String differentiateChangeDirectoryFunction(String inputSentence, String currentPath){
@@ -27,7 +25,7 @@ public class ChangeDirectoryCommand {
 
         //1. 마침표로 이동하는 경우
         if(pathRemovedHeadAndTailWhiteSpace.equals("")){ // cd만 입력한 경우 > 현재경로 출력
-            cmdui.printCommandResult(currentPath);
+            CMDUI.printCommandResult(currentPath);
             return currentPath;
         }
         else if(pathRemovedHeadAndTailWhiteSpace.equals(".")){
@@ -42,7 +40,7 @@ public class ChangeDirectoryCommand {
             return currentPath;
         }
         else if(pathRemovedHeadAndTailWhiteSpace.replaceAll(" ","").contains("/?")) { // "cd/?" 명령어는 공백에 상관없이 그리고 뒤에 어떤 문자가 같이와도 실행된다.
-            cmdui.printNotice(Constants.CHANGE_DIRECTORY_NOTICE);
+            CMDUI.printNotice(Constants.CHANGE_DIRECTORY_NOTICE);
             return currentPath;
         }
 
@@ -55,7 +53,7 @@ public class ChangeDirectoryCommand {
                 }
                 else {
                     //지정된 경로를 찾을 수 없습니다.
-                    cmdui.printErrorMessage(Constants.CANNOT_FIND_PATH);
+                    CMDUI.printErrorMessage(Constants.CANNOT_FIND_PATH);
                 }
             }
 
@@ -66,7 +64,7 @@ public class ChangeDirectoryCommand {
                 }
                 else {
                     //지정된 경로를 찾을 수 없습니다.
-                    cmdui.printErrorMessage(Constants.CANNOT_FIND_PATH);
+                    CMDUI.printErrorMessage(Constants.CANNOT_FIND_PATH);
                 }
             }
 
@@ -77,14 +75,14 @@ public class ChangeDirectoryCommand {
                 }
                 else{
                     //지정된 경로를 찾을 수 없습니다.
-                    cmdui.printErrorMessage(Constants.CANNOT_FIND_PATH);
+                    CMDUI.printErrorMessage(Constants.CANNOT_FIND_PATH);
                 }
             }
 
             //이외 이상한 값 입력 받았을 시
             else{
                 //지정된 경로를 찾을 수 없습니다.
-                cmdui.printErrorMessage(Constants.CANNOT_FIND_PATH);
+                CMDUI.printErrorMessage(Constants.CANNOT_FIND_PATH);
             }
         }
 
@@ -95,7 +93,7 @@ public class ChangeDirectoryCommand {
 
             //입력받은 값 중 띄어쓰기 나오기 전 문자열만 추출하기
             String stringsArray[] = pathRemovedHeadAndTailWhiteSpace.split(" ");
-            cmdui.printErrorMessage("\'"+ cdInput + stringsArray[0] + "\'"+ Constants.NOT_FIND_COMMAND);
+            CMDUI.printErrorMessage("\'"+ cdInput + stringsArray[0] + "\'"+ Constants.NOT_FIND_COMMAND);
         }
         return currentPath;
     }

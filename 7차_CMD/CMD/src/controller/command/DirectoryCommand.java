@@ -1,5 +1,6 @@
-package controller.commandFunction;
+package controller.command;
 
+import model.DriveVolumeDTO;
 import utility.Constants;
 import utility.DesktopInformation;
 import utility.ExceptionHandling;
@@ -14,12 +15,11 @@ import java.text.SimpleDateFormat;
 public class DirectoryCommand {
     public DesktopInformation desktopInformation;
     public ExceptionHandling exceptionHandling;
-    public CMDUI cmdui;
+
 
     public DirectoryCommand(DesktopInformation desktopInformation, ExceptionHandling exceptionHandling){
         this.desktopInformation = desktopInformation;
         this.exceptionHandling = exceptionHandling;
-        this.cmdui = CMDUI.getInstance();
     }
 
     public void differentiateChangeDirectoryFunction(String inputSentence, String currentPath){
@@ -44,16 +44,13 @@ public class DirectoryCommand {
         else if(pathRemovedHeadAndTailWhiteSpace.replaceAll(" ","").contains("/?")) { // "cd/?" 명령어는 공백에 상관없이 그리고 뒤에 어떤 문자가 같이와도 실행된다.
             return;
         }
-
-
     }
 
-    public void getVolumeInformation(){
-        String volumeName;
-        String volumeSerialNumber;
-
-        volumeName = desktopInformation.getDriveVolumeName("C:\\"); // 볼륨 이름 불러오기
-        volumeSerialNumber =desktopInformation.getDriveVolumeSerialNumber("C:\\"); // 드라이브 시리얼 넘버 불러오기
+    public DriveVolumeDTO getVolumeInformation(){
+        DriveVolumeDTO driveVolumeDTO = new DriveVolumeDTO();
+        driveVolumeDTO.setVolumeName(desktopInformation.getDriveVolumeName("C:\\")); // 볼륨 이름 불러오기
+        driveVolumeDTO.setvolumeSerialNumber(desktopInformation.getDriveVolumeSerialNumber("C:\\")); // 드라이브 시리얼 넘버 불러오기
+        return driveVolumeDTO;
     }
 
     public void findDirectoryWithPathFromRoot(String path){ //root부터 해당 파일까지 전체경로 입력받은경우
@@ -64,12 +61,17 @@ public class DirectoryCommand {
         String directoryOrFileType; // 파일인지 디렉토리인지 형식
         SimpleDateFormat directoryTimeFormat = new SimpleDateFormat("yyyy-MM-dd a hh:mm"); //포맷 양식
 
-        File directory = new File(directoryPath);
+        //드라이브 정보 출력
+        DriveVolumeDTO driveVolumeDTO = getVolumeInformation();
+        CMDUI.printVolumeInformation(driveVolumeDTO);
 
+        //경로 정보 출력
+        File directory = new File(directoryPath);
         if (directory.exists() && directory.isDirectory()) {
             File[] files = directory.listFiles();
-
             if (files != null) {
+                //현재폴더
+                //상위폴더
                 for (File file : files) {
                     if(!file.isHidden() && !FileUtils.isSymlink(file)) { // 히든파일 및 링크파일 출력하지 않기
                         directoryOrFileName = file.getName();
@@ -80,6 +82,7 @@ public class DirectoryCommand {
                         System.out.println(formattedDate + "   " + directoryOrFileType + "   " + directoryOrFileName);
                     }
                 }
+                //바이트 출력
             }
         }
     }

@@ -1,8 +1,6 @@
 package utility;
 
 public class Constants {
-    //dir 관련 constants
-    public static final String NO_VOLUME_NAME = "C 드라이브의 볼륨에는 이름이 없습니다.";
     public static final String CLEAR_SCREEN ="\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 
     //안내문 관련 상수
@@ -139,4 +137,7 @@ public class Constants {
     public static final String CANNOT_FIND_PATH = "지정된 경로를 찾을 수 없습니다.";
     public static final String NOT_FIND_COMMAND = "은(는) 내부 또는 외부 명령, 실행할 수 있는 프로그램, 또는 배치 파일이 아닙니다.";
 
+    //드라이브 볼륨 관련 출력 양식
+    public static final String NO_VOLUME_NAME_NOTICE = " C 드라이브의 볼륨에는 이름이 없습니다.";
+    public static final String VOLUME_NAME_VERSION_NOTICE = " 볼륨 일련 번호: ";
 }

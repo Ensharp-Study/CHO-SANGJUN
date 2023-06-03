@@ -23,6 +23,7 @@ public class ChangeDirectoryCommand {
         String pathRemainedHeadAndTailWhiteSpace = exceptionHandling.optimizeStringRemoveCommand(OptimizedString,2, !Constants.IS_REMOVE_WHITE_SPACE); //앞뒤 공백 미제거
         String pathRemovedHeadAndTailWhiteSpace = exceptionHandling.optimizeStringRemoveCommand(OptimizedString,2, Constants.IS_REMOVE_WHITE_SPACE); //앞뒤 공백 제거
 
+
         //1. 마침표로 이동하는 경우
         if(pathRemovedHeadAndTailWhiteSpace.equals("")){ // cd만 입력한 경우 > 현재경로 출력
             CMDUI.printCommandResult(currentPath);
@@ -44,7 +45,17 @@ public class ChangeDirectoryCommand {
             return currentPath;
         }
 
-        //2. 절대 경로를 입력 받는 경우
+        //2.상대 경로를 입력 받는 경우
+        if(pathRemovedHeadAndTailWhiteSpace.startsWith(".")){
+            if(checkPathExists(currentPath +"/"+pathRemovedHeadAndTailWhiteSpace)) //상대경로 이므로 현재 디렉토리에 입력한 경로 붙이기
+            {
+                currentPath = getPath(currentPath +"/"+pathRemovedHeadAndTailWhiteSpace);
+                return currentPath;
+            }
+            //경로가 올바르지 않다.
+        }
+
+        //3. 절대 경로를 입력 받는 경우
         if(pathRemainedHeadAndTailWhiteSpace.charAt(0) == ' '){
             //cd와 뒤의 문자열이 띄어쓰기 되어있으면 앞뒤 띄어쓰기 제거하기 위해 pathRemovedHeadAndTailWhiteSpace 사용
             if(pathRemovedHeadAndTailWhiteSpace.startsWith("c:")){ //root부터 전체 경로를 입력 했을 경우
@@ -86,7 +97,7 @@ public class ChangeDirectoryCommand {
             }
         }
 
-        //3. 올바르지 않은 명령어 입력시
+        //4. 올바르지 않은 명령어 입력시
         else{ // cd뒤에 문자가 붙어서 나오는 경우
             //입력받은 c와 d가 대문자인지 소문자인지 알아내기 위해 맨처음 입력받은 문자열에서 cd부분 가져오기
             String cdInput = inputSentence.trim().substring(0,2);
@@ -101,7 +112,7 @@ public class ChangeDirectoryCommand {
     public String getPath(String inputPath){
         inputPath = inputPath.replaceAll(" ",""); //공백제거
 
-        Path inputDirectoryPath = Paths.get(inputPath).toAbsolutePath();
+        Path inputDirectoryPath = Paths.get(inputPath).normalize().toAbsolutePath();
         inputPath = inputDirectoryPath.toString();
         return inputPath;
     }

@@ -53,7 +53,7 @@ public class CopyCommand extends CopyAndMove{
         return;
     }
 
-    public void copyFile(PathDTO copyPathDTO) {
+    private void copyFile(PathDTO copyPathDTO) {
         Path sourcePath = Paths.get(copyPathDTO.getFirstFilePath());
         Path targetPath = Paths.get(copyPathDTO.getSecondFilePath());
 

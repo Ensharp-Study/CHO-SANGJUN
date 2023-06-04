@@ -161,7 +161,11 @@ public class CopyCommand {
         Path targetPath = Paths.get(secondFilePath);
 
         //파일이 서로 같은 경우 > 같은 파일로 복사할 수 없습니다. 0개의 파일이 복사 되었습니다.
-
+        if(sourcePath.equals(targetPath)){
+            CMDUI.printErrorMessage(Constants.CANNOT_COPY_ON_SAME_FILE);
+            CMDUI.printErrorMessage(Constants.COPY_FAIL_MESSAGE);
+            return;
+        }
         //정상적으로 파일 복사
         try { //try catch 문 사용 해야만 함?
             //파일이 존재 하면 덮어씌우기 처리
@@ -207,6 +211,7 @@ public class CopyCommand {
 
             //소문자로 바꾸기
             answer = answer.toLowerCase();
+            answer.trim();
             if (answer.equals("yes")) {
                 return true;
             }

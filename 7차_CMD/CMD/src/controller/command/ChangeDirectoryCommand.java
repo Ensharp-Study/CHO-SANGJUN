@@ -1,6 +1,6 @@
 package controller.command;
 
-import controller.commandHelper.CdAndDIR
+import controller.commandHelper.CdAndDIR;
 import model.PathDTO;
 import utility.Constants;
 import utility.DesktopInformation;

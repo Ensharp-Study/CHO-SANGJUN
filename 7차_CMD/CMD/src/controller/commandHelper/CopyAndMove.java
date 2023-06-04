@@ -1,12 +1,17 @@
 package controller.commandHelper;
 
 import model.PathDTO;
+import utility.Constants;
 import utility.DesktopInformation;
 import utility.ExceptionHandling;
+import view.CMDUI;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class CopyAndMove {
     protected DesktopInformation desktopInformation;
@@ -71,50 +76,79 @@ public class CopyAndMove {
         return validPathList;
     }
 
-    protected PathDTO distinguishCopyCase(List<String> vaildPaths, String currentPath){
-        PathDTO copyPathDTO = new PathDTO();
+    protected PathDTO distinguishCopyAndMoveCase(List<String> vaildPaths, String currentPath){
+        PathDTO PathDTO = new PathDTO();
 
-        //리스트 원소가 1개인 경우 > 해당 경로의 파일을 현재 디렉토리에 붙여넣기(예 :copy c:\\users\\사용자명\\desktop\\abc.txt)
+        //리스트 원소가 1개인 경우 > 해당 경로의 파일을 현재 디렉토리에 붙여넣기 혹은 이동하기(예 :copy c:\\users\\사용자명\\desktop\\abc.txt)
         if(vaildPaths.size() == 1){
             //1. 파일명인 경우
             if(!vaildPaths.get(0).contains("\\") && !vaildPaths.get(0).contains("/")){
-                copyPathDTO.setFirstFilePath(currentPath + "\\" + vaildPaths.get(0));
-                copyPathDTO.setSecondFilePath(currentPath + "\\" + Paths.get(copyPathDTO.getFirstFilePath()).getFileName().toString()); //두번째 경로에 파일경로 추가
-                return copyPathDTO;
+                PathDTO.setFirstFilePath(currentPath + "\\" + vaildPaths.get(0));
+                PathDTO.setSecondFilePath(currentPath + "\\" + Paths.get(PathDTO.getFirstFilePath()).getFileName().toString()); //두번째 경로에 파일경로 추가
+                return PathDTO;
             }
             //2. 파일경로인 경우
-            copyPathDTO.setFirstFilePath(vaildPaths.get(0));
-            copyPathDTO.setSecondFilePath(currentPath + "\\" + Paths.get(copyPathDTO.getFirstFilePath()).getFileName().toString()); //두번째 경로에 파일경로 추가
-            return copyPathDTO;
+            PathDTO.setFirstFilePath(vaildPaths.get(0));
+            PathDTO.setSecondFilePath(currentPath + "\\" + Paths.get(PathDTO.getFirstFilePath()).getFileName().toString()); //두번째 경로에 파일경로 추가
+            return PathDTO;
         }
         //리스트 원소가 2개인 경우
         else if(vaildPaths.size() == 2){
             // 원소 두개가 각각 경로로 표현된 파일인지, 그냥 파일명인지로 총 4가지로 구분
-            // 1. 둘다 파일명만 있는 경우 > 현재경로에 있는 파일을 현재경로로 붙여넣기
+            // 1. 둘다 파일명만 있는 경우 > 현재경로에 있는 파일을 현재경로로 붙여넣기 혹은 이동하기
             if(!vaildPaths.get(0).contains("\\") && !vaildPaths.get(0).contains("/") && !vaildPaths.get(1).contains("\\") && !vaildPaths.get(1).contains("/")){
-                copyPathDTO.setFirstFilePath(currentPath + "\\" + vaildPaths.get(0));
-                copyPathDTO.setSecondFilePath(currentPath + "\\" + vaildPaths.get(1));
-                return copyPathDTO;
+                PathDTO.setFirstFilePath(currentPath + "\\" + vaildPaths.get(0));
+                PathDTO.setSecondFilePath(currentPath + "\\" + vaildPaths.get(1));
+                return PathDTO;
             }
-            // 2. 둘다 파일 경로인 경우  > 앞의 경로에 있는 파일을 뒤의 경로에 있는 파일에 붙여넣기
+            // 2. 둘다 파일 경로인 경우  > 앞의 경로에 있는 파일을 뒤의 경로에 있는 파일에 붙여넣기 혹은 이동하기
             else if((vaildPaths.get(0).contains("\\") || vaildPaths.get(0).contains("/")) && (vaildPaths.get(1).contains("\\") || vaildPaths.get(1).contains("/"))){
-                copyPathDTO.setFirstFilePath(vaildPaths.get(0));
-                copyPathDTO.setSecondFilePath(vaildPaths.get(1));
-                return copyPathDTO;
+                PathDTO.setFirstFilePath(vaildPaths.get(0));
+                PathDTO.setSecondFilePath(vaildPaths.get(1));
+                return PathDTO;
             }
             // 3. 앞의 원소는 파일 경로이고 뒤의 원소는 파일명인 경우
             else if((vaildPaths.get(0).contains("\\") || vaildPaths.get(0).contains("/")) && (!vaildPaths.get(1).contains("\\") && !vaildPaths.get(1).contains("/"))){
-                copyPathDTO.setFirstFilePath(vaildPaths.get(0));
-                copyPathDTO.setSecondFilePath(currentPath + "\\" + vaildPaths.get(1));
-                return copyPathDTO;
+                PathDTO.setFirstFilePath(vaildPaths.get(0));
+                PathDTO.setSecondFilePath(currentPath + "\\" + vaildPaths.get(1));
+                return PathDTO;
             }
             // 4. 앞의 원소는 파일명이고 뒤의 원소는 파일 경로인 경우
             else if((!vaildPaths.get(0).contains("\\") && !vaildPaths.get(0).contains("/")) && (vaildPaths.get(1).contains("\\") || vaildPaths.get(1).contains("/"))){
-                copyPathDTO.setFirstFilePath(currentPath + "\\" + vaildPaths.get(0));
-                copyPathDTO.setSecondFilePath(vaildPaths.get(1));
-                return copyPathDTO;
+                PathDTO.setFirstFilePath(currentPath + "\\" + vaildPaths.get(0));
+                PathDTO.setSecondFilePath(vaildPaths.get(1));
+                return PathDTO;
             }
         }
-        return copyPathDTO;
+        return PathDTO;
+    }
+
+    protected boolean handleFileOverWrite(Path sourcePath, Path targePath) {
+        Boolean isCorrectAnswer = false;
+        String fileName;
+
+        //질문 출력을 위해 파일 이름 받기
+        if (Files.isRegularFile(targePath)) {
+            fileName = targePath.getFileName().toString();
+        } else { //경로 하나만 입력 받았을 시 > 그 경로에서 파일 이름 가져오기
+            fileName = sourcePath.getFileName().toString();
+        }
+
+        while (!isCorrectAnswer) {
+            CMDUI.printQuestion(fileName + Constants.ASK_FILE_OVER_WRITE);
+            //응답 입력 받기
+            Scanner scan = new Scanner(System.in);
+            String answer = scan.nextLine();
+
+            //소문자로 바꾸기
+            answer = answer.toLowerCase();
+            answer.trim();
+            if (answer.equals("yes")) {
+                return true;
+            } else if (answer.equals("no")) {
+                return false;
+            }
+        }
+        return true;
     }
 }

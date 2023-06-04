@@ -17,6 +17,7 @@ public class CMDStart {
     public HelpCommand helpCommand;
     public ClearScreenCommand commonLanguageSpecificationCommand;
     public CopyCommand copyCommand;
+    public MoveCommand moveCommand;
 
     public CMDStart(){
         this.desktopInformation = DesktopInformation.getInstance();
@@ -28,6 +29,7 @@ public class CMDStart {
         this.helpCommand = new HelpCommand();
         this.commonLanguageSpecificationCommand =new ClearScreenCommand();
         this.copyCommand =new CopyCommand(exceptionHandling);
+        this.moveCommand = new MoveCommand(exceptionHandling);
     }
 
     public void startCMD(){
@@ -78,7 +80,7 @@ public class CMDStart {
             copyCommand.differentiateCopyFunction(inputSentence,currentPath);
         }
         else if (OptimizedString.startsWith("move")) { //move 명령어
-
+            moveCommand.differentiateMoveFunction(inputSentence,currentPath);
         }
         else { //해당하는 명령어가 없을 때
             // 배치파일이 아닙니다 오류 문 출력

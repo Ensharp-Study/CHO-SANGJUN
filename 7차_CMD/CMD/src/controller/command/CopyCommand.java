@@ -23,7 +23,7 @@ public class CopyCommand extends CopyAndMove{
         this.desktopInformation = DesktopInformation.getInstance();
         this.exceptionHandling = exceptionHandling;
     }
-    public String differentiateCopyFunction(String inputSentence, String currentPath){
+    public void differentiateCopyFunction(String inputSentence, String currentPath){
         String OptimizedString = exceptionHandling.optimizeStringForJudge(inputSentence); //검사하기 알맞게 문자열 최적화
         String pathRemainedHeadAndTailWhiteSpace = exceptionHandling.optimizeStringRemoveCommand(OptimizedString, 4, !Constants.IS_REMOVE_WHITE_SPACE); //앞뒤 공백 미제거
         String pathRemovedHeadAndTailWhiteSpace = exceptionHandling.optimizeStringRemoveCommand(OptimizedString, 4, Constants.IS_REMOVE_WHITE_SPACE); //앞뒤 공백 제거
@@ -34,10 +34,10 @@ public class CopyCommand extends CopyAndMove{
             vaildPaths = checkAndFindValidationPathAndFileInInputCommand(pathRemovedHeadAndTailWhiteSpace,currentPath);
             if(vaildPaths.size() == 0){ //입력받은 경로나 파일이 올바르지 않은 경우
                 CMDUI.printErrorMessage(Constants.CANNOT_FIND_FILE);
-                return currentPath;
+                return;
             }
             //올바른 경우 파일 복사하기
-            copyPathDTO = distinguishCopyCase(vaildPaths, currentPath);
+            copyPathDTO = distinguishCopyAndMoveCase(vaildPaths, currentPath);
             copyFile(copyPathDTO);
         }
 
@@ -47,10 +47,10 @@ public class CopyCommand extends CopyAndMove{
             //입력받은 값 중 띄어쓰기 나오기 전 문자열만 추출하기
             String stringsArray[] = pathRemovedHeadAndTailWhiteSpace.split(" ");
             CMDUI.printErrorMessage("\'" + cdInput + stringsArray[0] + "\'" + Constants.NOT_FIND_COMMAND);
-            return currentPath;
+            return;
         }
 
-        return currentPath;
+        return;
     }
 
     public void copyFile(PathDTO copyPathDTO) {
@@ -85,37 +85,5 @@ public class CopyCommand extends CopyAndMove{
         } catch (IOException e) {
             CMDUI.printErrorMessage(Constants.CANNOT_FIND_FILE); //파일 경로가 올바르지 않은 경우
         }
-    }
-
-
-    private boolean handleFileOverWrite(Path sourcePath, Path targePath){
-        Boolean isCorrectAnswer = false;
-        String fileName;
-
-        //질문 출력을 위해 파일 이름 받기
-        if(Files.isRegularFile(targePath)){
-            fileName = targePath.getFileName().toString();
-        }
-        else{ //경로 하나만 입력 받았을 시 > 그 경로에서 파일 이름 가져오기
-            fileName = sourcePath.getFileName().toString();
-        }
-
-        while(!isCorrectAnswer) {
-            CMDUI.printQuestion(fileName + Constants.ASK_FILE_OVER_WRITE);
-            //응답 입력 받기
-            Scanner scan = new Scanner(System.in);
-            String answer = scan.nextLine();
-
-            //소문자로 바꾸기
-            answer = answer.toLowerCase();
-            answer.trim();
-            if (answer.equals("yes")) {
-                return true;
-            }
-            else if (answer.equals("no")) {
-                return false;
-            }
-        }
-        return true;
     }
 }

@@ -147,6 +147,10 @@ public class Constants {
     public static final String COPY_SUCCESS_MESSAGE = "        1개 파일이 복사되었습니다.";
     public static final String COPY_FAIL_MESSAGE = "        0개 파일이 복사되었습니다.";
     public static final String CANNOT_COPY_ON_SAME_FILE = "같은 파일로 복사할 수 없습니다.";
+
+    //이동 성공 실패 메시지
+    public static final String MOVE_SUCCESS_MESSAGE = "        1개 파일을 이동했습니다.";
+    public static final String MOVE_FAIL_MESSAGE = "        0개 파일을 이동했습니다.";
     //요청문
     public static final String ASK_FILE_OVER_WRITE = "을(를) 덮어쓰시겠습니까? (Yes/No/All):";
 }

@@ -143,6 +143,10 @@ public class Constants {
     public static final String NO_VOLUME_NAME_NOTICE = " C 드라이브의 볼륨에는 이름이 없습니다.";
     public static final String VOLUME_NAME_VERSION_NOTICE = " 볼륨 일련 번호: ";
 
-    //성공 메시지
+    //복사 성공 실패 메시지
     public static final String COPY_SUCCESS_MESSAGE = "        1개 파일이 복사되었습니다.";
+    public static final String COPY_FAIL_MESSAGE = "        0개 파일이 복사되었습니다.";
+
+    //요청문
+    public static final String ASK_FILE_OVER_WRITE = "을(를) 덮어쓰시겠습니까? (Yes/No/All):";
 }

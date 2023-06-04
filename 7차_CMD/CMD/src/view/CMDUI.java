@@ -27,4 +27,7 @@ public class CMDUI {
         System.out.println(Constants.NO_VOLUME_NAME_NOTICE);
         System.out.println(Constants.VOLUME_NAME_VERSION_NOTICE + driveVolumeDTO.getvolumeSerialNumber());
     }
+    public static void printQuestion(String question) {
+        System.out.print(question);
+    }
 }

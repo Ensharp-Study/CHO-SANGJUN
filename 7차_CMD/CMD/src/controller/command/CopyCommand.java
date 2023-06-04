@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Scanner;
+import java.nio.file.Files;
 
 public class CopyCommand {
     public DesktopInformation desktopInformation;
@@ -69,25 +71,35 @@ public class CopyCommand {
                 validPathList.remove(count + 1);
                 count = 0;
             }
+            else if(!desktopInformation.checkPathExists(potentiallyValidPath) && (count >= 1)){ //2번째 경로 이상인 경우
+                if(desktopInformation.checkPathExists(desktopInformation.getParentPath(potentiallyValidPath))){ //부모 경로가 있는 경우
+                    validPathList.set(count,potentiallyValidPath);
+                    validPathList.remove(count + 1);
+                    count = 0;
+                }
+            }
             else count++;
         }
         //3. 상대경로인 경우(즉 , c:\으로 시작하지 않는 경우 상대경로 이므로 현재 경로랑 합쳐주기)
         for(int i=0; i<validPathList.size(); i++){
-            if(!validPathList.get(i).startsWith("c:\\") && (validPathList.get(i).contains("\\") || validPathList.get(i).contains("/"))){ //파일이 아닌 경로인 경우만 확인
+            if(!validPathList.get(i).startsWith("c:\\")){ //상대경로인 경우 확인하기
                 validPathList.set(i, currentPath + "\\" +validPathList.get(i));
             }
         }
 
-        //4. 리스트에 저장된 모든 디렉토리의 경로가 올바른지 확인하기
-        for(int i=0; i<validPathList.size(); i++){
-            if(validPathList.get(i).contains("\\") || validPathList.get(i).contains("/")) { //파일이 아닌 경로인 경우만 확인
-                if (!desktopInformation.checkPathExists(validPathList.get(i))) {
-                    //하나라도 올바르지 않은 경우 모든 원소 지우기
-                    validPathList.clear();
-                    return validPathList;
-                }
-            }
+        //4.리스트가 1개, 2개가 아닌 경우 처리 올바르지 않은 입력
+        if(validPathList.size() < 1 || validPathList.size() > 2){
+            //하나라도 올바르지 않은 경우 모든 원소 지우기
+            validPathList.clear();
+            return validPathList;
         }
+
+        //5. 리스트에 저장된 0번째 디렉토리의 경로가 올바른지 확인하기
+        if (!desktopInformation.checkPathExists(validPathList.get(0))) {
+            validPathList.clear();
+            return validPathList;
+        }
+
         return validPathList;
     }
 
@@ -97,7 +109,18 @@ public class CopyCommand {
 
         //리스트 원소가 1개인 경우 > 해당 경로의 파일을 현재 디렉토리에 붙여넣기(예 :copy c:\\users\\사용자명\\desktop\\abc.txt)
         if(vaildPaths.size() == 1){
-
+            //1. 파일명인 경우
+            if(!vaildPaths.get(0).contains("\\") && !vaildPaths.get(0).contains("/")){
+                firstFilePath = currentPath + "\\" + vaildPaths.get(0);
+                secondFilePath = currentPath + "\\" + Paths.get(firstFilePath).getFileName().toString(); //두번째 경로에 파일경로 추가
+                copyFile(firstFilePath, secondFilePath);
+                return;
+            }
+            //2. 파일경로인 경우
+            firstFilePath = vaildPaths.get(0);
+            secondFilePath = currentPath + "\\" + Paths.get(firstFilePath).getFileName().toString(); //두번째 경로에 파일경로 추가
+            copyFile(firstFilePath, secondFilePath);
+            return;
         }
         //리스트 원소가 2개인 경우
         else if(vaildPaths.size() == 2){
@@ -133,23 +156,64 @@ public class CopyCommand {
         }
     }
 
-    public void copyFile(String firstFilePath, String secondFilePath){
+    public void copyFile(String firstFilePath, String secondFilePath) {
         Path sourcePath = Paths.get(firstFilePath);
         Path targetPath = Paths.get(secondFilePath);
 
         //파일이 서로 같은 경우 > 같은 파일로 복사할 수 없습니다. 0개의 파일이 복사 되었습니다.
 
-        if (Files.exists(sourcePath) && Files.isDirectory(targetPath.getParent())) {
-            try { //try catch 문 사용 해야만 함?
-                //파일이 존재 하면 덮어씌우기 처리
-                if (Files.exists(targetPath)) {
+        //정상적으로 파일 복사
+        try { //try catch 문 사용 해야만 함?
+            //파일이 존재 하면 덮어씌우기 처리
+            if (Files.exists(targetPath) && Files.isRegularFile(targetPath)) {
+                if (handleFileOverWrite(sourcePath,targetPath)) {
                     Files.delete(targetPath);
+                    Files.copy(sourcePath, targetPath);
+                    CMDUI.printCommandResult(Constants.COPY_SUCCESS_MESSAGE);
+                } else {
+                    CMDUI.printCommandResult(Constants.COPY_FAIL_MESSAGE);
                 }
+                return;
+            }
+            else {
                 Files.copy(sourcePath, targetPath);
                 CMDUI.printCommandResult(Constants.COPY_SUCCESS_MESSAGE);
-            } catch (IOException e) {
-                System.out.println("실패");
+                return;
+            }
+
+        } catch (IOException e) {
+            CMDUI.printErrorMessage(Constants.CANNOT_FIND_FILE); //파일 경로가 올바르지 않은 경우
+        }
+    }
+
+
+    private boolean handleFileOverWrite(Path sourcePath, Path targePath){
+        Boolean isCorrectAnswer = false;
+        String fileName;
+
+        //질문 출력을 위해 파일 이름 받기
+        if(Files.isRegularFile(targePath)){
+            fileName = targePath.getFileName().toString();
+        }
+        else{ //경로 하나만 입력 받았을 시 > 그 경로에서 파일 이름 가져오기
+            fileName = sourcePath.getFileName().toString();
+        }
+
+        while(!isCorrectAnswer) {
+            CMDUI.printQuestion(fileName + Constants.ASK_FILE_OVER_WRITE);
+            //응답 입력 받기
+            Scanner scan = new Scanner(System.in);
+            String answer = scan.nextLine();
+
+            //소문자로 바꾸기
+            answer = answer.toLowerCase();
+            if (answer.equals("yes")) {
+                return true;
+            }
+            else if (answer.equals("no")) {
+                return false;
             }
         }
+        return true;
     }
 }

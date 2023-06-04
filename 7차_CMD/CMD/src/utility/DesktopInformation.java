@@ -114,8 +114,12 @@ public class DesktopInformation {
         //공백이 있는 경우 제거
         /*inputPath = inputPath.replaceAll(" ","");*/
 
-        Path inputDirectoryPath = Paths.get(inputPath).toAbsolutePath();
-        pathValidation = Files.exists(inputDirectoryPath);
+        try {
+            Path inputDirectoryPath = Paths.get(inputPath).toAbsolutePath();
+            pathValidation = Files.exists(inputDirectoryPath);
+        } catch (Exception e) { //경로 중에 공백이 포함되어 있는데 디렉토리명의 공백이 아닌 경우 > 즉 터지는 경우 방지
+            pathValidation = false;
+        }
 
         return pathValidation;
     }

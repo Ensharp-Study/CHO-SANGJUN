@@ -1,9 +1,6 @@
 package controller;
 
-import controller.command.ChangeDirectoryCommand;
-import controller.command.ClearScreenCommand;
-import controller.command.DirectoryCommand;
-import controller.command.HelpCommand;
+import controller.command.*;
 import utility.DesktopInformation;
 import utility.ExceptionHandling;
 import view.CMDUI;
@@ -19,6 +16,7 @@ public class CMDStart {
     public DirectoryCommand directoryCommand;
     public HelpCommand helpCommand;
     public ClearScreenCommand commonLanguageSpecificationCommand;
+    public CopyCommand copyCommand;
 
     public CMDStart(){
         this.desktopInformation = DesktopInformation.getInstance();
@@ -29,6 +27,7 @@ public class CMDStart {
         this.directoryCommand = new DirectoryCommand(exceptionHandling);
         this.helpCommand = new HelpCommand();
         this.commonLanguageSpecificationCommand =new ClearScreenCommand();
+        this.copyCommand =new CopyCommand(exceptionHandling);
     }
 
     public void startCMD(){
@@ -76,7 +75,7 @@ public class CMDStart {
             helpCommand.printHelpPhrase();
         }
         else if (OptimizedString.startsWith("copy")) { //copy 명령어
-
+            copyCommand.differentiateCopyFunction(inputSentence,currentPath);
         }
         else if (OptimizedString.startsWith("move")) { //move 명령어
 

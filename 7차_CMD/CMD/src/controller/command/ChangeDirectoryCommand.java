@@ -5,10 +5,6 @@ import utility.DesktopInformation;
 import utility.ExceptionHandling;
 import view.CMDUI;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 public class ChangeDirectoryCommand {
     public DesktopInformation desktopInformation;
     public ExceptionHandling exceptionHandling;

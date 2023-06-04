@@ -73,12 +73,11 @@ public class DesktopInformation {
     }
 
     public String getPath(String inputPath){
-       /* inputPath = inputPath.replaceAll(" ",""); //공백제거*/
-
         Path inputDirectoryPath = Paths.get(inputPath).normalize().toAbsolutePath();
         inputPath = inputDirectoryPath.toString();
         return inputPath;
     }
+
     public String getParentPath(String currentPath) {
         String parentPath;
 
@@ -102,17 +101,6 @@ public class DesktopInformation {
 
     public boolean checkPathExists(String inputPath) {
         boolean pathValidation;
-        boolean isCorrectInput;
-
-        /*if (inputPath.contains(" ")) { //경로에 공백이 함께 있는 경우 예외처리
-            isCorrectInput = exceptionHandling.judgeWhiteSpaceContainedPathValidation(inputPath); //경로에 공백이 같이 들어왔을 경우 예외처리
-            if (!isCorrectInput) {//올바르지 않은 경로 일때
-                pathValidation = !Constants.IS_Valid_Path; //경로 오류
-                return pathValidation;
-            }
-        }*/
-        //공백이 있는 경우 제거
-        /*inputPath = inputPath.replaceAll(" ","");*/
 
         try {
             Path inputDirectoryPath = Paths.get(inputPath).toAbsolutePath();

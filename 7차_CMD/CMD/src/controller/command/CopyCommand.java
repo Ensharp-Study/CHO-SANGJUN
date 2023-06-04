@@ -7,6 +7,10 @@ import view.CMDUI;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class CopyCommand {
     public DesktopInformation desktopInformation;
@@ -22,11 +26,14 @@ public class CopyCommand {
         List<String> vaildPaths = new ArrayList<String>();
 
         if(pathRemainedHeadAndTailWhiteSpace.charAt(0) == ' '){
-            vaildPaths = checkValidationOfInputCommand(pathRemovedHeadAndTailWhiteSpace,currentPath);
-            if(vaildPaths.size() == 0) System.out.println("no");
-            for(int i = 0; i< vaildPaths.size(); i++){
-                System.out.println(vaildPaths.get(i));
+            vaildPaths = checkAndFindValidationPathAndFileInInputCommand(pathRemovedHeadAndTailWhiteSpace,currentPath);
+            if(vaildPaths.size() == 0){ //입력받은 경로나 파일이 올바르지 않은 경우
+                CMDUI.printErrorMessage(Constants.CANNOT_FIND_FILE);
+                return currentPath;
             }
+            //올바른 경우 파일 복사하기
+            distinguishCopyCase(vaildPaths, currentPath);
+
         }
 
         else{ //copy명령어 뒤에 공백이 아닌 경우 > 올바르지 않은 명령어 처리
@@ -41,7 +48,7 @@ public class CopyCommand {
         return currentPath;
     }
 
-    public List<String> checkValidationOfInputCommand(String pathRemovedHeadAndTailWhiteSpace, String currentPath){ //입력받은 명령어 문장 유효성 check하기
+    public List<String> checkAndFindValidationPathAndFileInInputCommand(String pathRemovedHeadAndTailWhiteSpace, String currentPath){ //입력받은 명령어 문장 유효성 check하기
         String[] splittedInputCommand;
         List<String> validPathList = new ArrayList<String>();
         String potentiallyValidPath;
@@ -81,5 +88,44 @@ public class CopyCommand {
             }
         }
         return validPathList;
+    }
+
+    public void distinguishCopyCase(List<String> vaildPaths, String currentPath){
+        String firstFilePath;
+        String secondFilePath;
+
+        //리스트 원소가 1개인 경우 > 해당 경로의 파일을 현재 디렉토리에 붙여넣기(예 :copy c:\\users\\사용자명\\desktop\\abc.txt)
+        if(vaildPaths.size() == 1){
+
+        }
+        //리스트 원소가 2개인 경우
+        else if(vaildPaths.size() == 2){
+            // 원소 두개가 각각 경로로 표현된 파일인지, 그냥 파일명인지로 총 4가지로 구분
+            // 1. 둘다 파일명만 있는 경우 > 현재경로에 있는 파일을 현재경로로 붙여넣기
+            if(!vaildPaths.get(0).contains("\\") && !vaildPaths.get(0).contains("/") && !vaildPaths.get(1).contains("\\") && !vaildPaths.get(1).contains("/")){
+                firstFilePath = currentPath + "\\" + vaildPaths.get(0);
+                secondFilePath = currentPath + "\\" + vaildPaths.get(1);
+                copyFile(firstFilePath, secondFilePath);
+            }
+            // 2. 둘다 파일 경로인 경우  > 앞의 경로에 있는 파일을 뒤의 경로에 있는 파일에 붙여넣기
+
+            // 3. 앞의 원소는 파일 경로이고 뒤의 원소는 파일명인 경우
+
+            // 4. 앞의 원소는 파일명이고 뒤의 원소는 파일 경로인 경우
+        }
+    }
+    public void copyFile(String firstFilePath, String secondFilePath){
+        Path sourcePath = Paths.get(firstFilePath);
+        Path targetPath = Paths.get(secondFilePath);
+
+        //파일이 서로 같은 경우 > 같은 파일로 복사할 수 없습니다. 0개의 파일이 복사 되었습니다.
+
+        try { //try catch 문 사용 해야만 함?
+            Files.copy(sourcePath, targetPath);
+            System.out.println("파일 복사 완료");
+        } catch (IOException e) {
+            System.out.println("파일 복사 실패: " + e.getMessage());
+        }
+
     }
 }

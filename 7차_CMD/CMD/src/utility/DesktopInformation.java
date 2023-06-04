@@ -73,7 +73,7 @@ public class DesktopInformation {
     }
 
     public String getPath(String inputPath){
-        inputPath = inputPath.replaceAll(" ",""); //공백제거
+       /* inputPath = inputPath.replaceAll(" ",""); //공백제거*/
 
         Path inputDirectoryPath = Paths.get(inputPath).normalize().toAbsolutePath();
         inputPath = inputDirectoryPath.toString();

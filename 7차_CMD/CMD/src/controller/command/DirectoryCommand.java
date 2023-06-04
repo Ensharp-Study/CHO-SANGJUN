@@ -53,7 +53,7 @@ public class DirectoryCommand {
         return driveVolumeDTO;
     }
 
-    public void findDirectoryWithPathFromRoot(String path){ //root부터 해당 파일까지 전체경로 입력받은경우
+    public void findDirectoryWithPathFromRoot(String path){
         String directoryPath = path; // 디렉토리 경로
         String directoryOrFileName; //파일 혹은 디렉토리 이름
         Date directoryOrFileModifiedDate; //파일 속성에서 불러온 수정일자
@@ -61,9 +61,11 @@ public class DirectoryCommand {
         String directoryOrFileType; // 파일인지 디렉토리인지 형식
         SimpleDateFormat directoryTimeFormat = new SimpleDateFormat("yyyy-MM-dd a hh:mm"); //포맷 양식
 
-        //드라이브 정보 출력
+        //1. 드라이브 정보 출력
         DriveVolumeDTO driveVolumeDTO = getVolumeInformation();
         CMDUI.printVolumeInformation(driveVolumeDTO);
+
+        //2. 현재 디렉토리 출력
 
         //경로 정보 출력
         File directory = new File(directoryPath);

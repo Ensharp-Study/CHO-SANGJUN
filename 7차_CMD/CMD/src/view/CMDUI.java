@@ -25,7 +25,7 @@ public class CMDUI {
     public static void printVolumeInformation(DriveVolumeDTO driveVolumeDTO) {
         //볼륨 이름이 없다는 가정 하에 출력
         System.out.println(Constants.NO_VOLUME_NAME_NOTICE);
-        System.out.println(Constants.VOLUME_NAME_VERSION_NOTICE + driveVolumeDTO.getvolumeSerialNumber());
+        System.out.println(Constants.VOLUME_NAME_VERSION_NOTICE + driveVolumeDTO.getvolumeSerialNumber() + "\n");
     }
     public static void printQuestion(String question) {
         System.out.print(question);

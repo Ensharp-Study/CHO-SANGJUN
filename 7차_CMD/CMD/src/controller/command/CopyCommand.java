@@ -55,6 +55,7 @@ public class CopyCommand {
         int count = 0;
 
         //1. 공백을 기준으로 문자열 나누기
+        pathRemovedHeadAndTailWhiteSpace = pathRemovedHeadAndTailWhiteSpace.replaceAll("\\s{2,}"," "); //공백이 2개이상 연속으로 나올때 공백하나로 바꾸기
         splittedInputCommand = pathRemovedHeadAndTailWhiteSpace.split(" ");
         for(int i=0; i<splittedInputCommand.length; i++){
             validPathList.add(splittedInputCommand[i]);
@@ -106,26 +107,49 @@ public class CopyCommand {
                 firstFilePath = currentPath + "\\" + vaildPaths.get(0);
                 secondFilePath = currentPath + "\\" + vaildPaths.get(1);
                 copyFile(firstFilePath, secondFilePath);
+                return;
             }
             // 2. 둘다 파일 경로인 경우  > 앞의 경로에 있는 파일을 뒤의 경로에 있는 파일에 붙여넣기
-
+            else if((vaildPaths.get(0).contains("\\") || vaildPaths.get(0).contains("/")) && (vaildPaths.get(1).contains("\\") || vaildPaths.get(1).contains("/"))){
+                firstFilePath = vaildPaths.get(0);
+                secondFilePath = vaildPaths.get(1);
+                copyFile(firstFilePath, secondFilePath);
+                return;
+            }
             // 3. 앞의 원소는 파일 경로이고 뒤의 원소는 파일명인 경우
-
+            else if((vaildPaths.get(0).contains("\\") || vaildPaths.get(0).contains("/")) && (!vaildPaths.get(1).contains("\\") && !vaildPaths.get(1).contains("/"))){
+                firstFilePath = vaildPaths.get(0);
+                secondFilePath = currentPath + "\\" + vaildPaths.get(1);
+                copyFile(firstFilePath, secondFilePath);
+                return;
+            }
             // 4. 앞의 원소는 파일명이고 뒤의 원소는 파일 경로인 경우
+            else if((!vaildPaths.get(0).contains("\\") && !vaildPaths.get(0).contains("/")) && (vaildPaths.get(1).contains("\\") || vaildPaths.get(1).contains("/"))){
+                firstFilePath = currentPath + "\\" + vaildPaths.get(0);
+                secondFilePath = vaildPaths.get(1);
+                copyFile(firstFilePath, secondFilePath);
+                return;
+            }
         }
     }
+
     public void copyFile(String firstFilePath, String secondFilePath){
         Path sourcePath = Paths.get(firstFilePath);
         Path targetPath = Paths.get(secondFilePath);
 
         //파일이 서로 같은 경우 > 같은 파일로 복사할 수 없습니다. 0개의 파일이 복사 되었습니다.
 
-        try { //try catch 문 사용 해야만 함?
-            Files.copy(sourcePath, targetPath);
-            System.out.println("파일 복사 완료");
-        } catch (IOException e) {
-            System.out.println("파일 복사 실패: " + e.getMessage());
+        if (Files.exists(sourcePath) && Files.isDirectory(targetPath.getParent())) {
+            try { //try catch 문 사용 해야만 함?
+                //파일이 존재 하면 덮어씌우기 처리
+                if (Files.exists(targetPath)) {
+                    Files.delete(targetPath);
+                }
+                Files.copy(sourcePath, targetPath);
+                CMDUI.printCommandResult(Constants.COPY_SUCCESS_MESSAGE);
+            } catch (IOException e) {
+                System.out.println("실패");
+            }
         }
-
     }
 }

@@ -65,7 +65,7 @@ public class DirectoryCommand extends CdAndDIR {
         CMDUI.printVolumeInformation(driveVolumeDTO);
 
         //2. 디렉토리 경로 출력
-        CMDUI.printDirectory(path);
+        CMDUI.printDirectory(directoryPath);
 
         //3. 경로 정보 출력
         File directory = new File(directoryPath);
@@ -73,15 +73,16 @@ public class DirectoryCommand extends CdAndDIR {
             File[] files = directory.listFiles();
             if (files != null) {
                 //현재 디렉토리
-                getCurrentDirectoryInformation(directory);
+                getDirectoryInformation(directory,directoryPath,".");
                 //부모 디렉토리
-                getParentDirectoryInformation(directory);
+                getDirectoryInformation(directory,directoryPath,"..");
+
                 for (File file : files) {
                     if (!file.isHidden() && !FileUtils.isSymlink(file)) { // 히든파일 및 링크파일 출력하지 않기
                         if (file.isFile()) {
                             getFileInformation(file);
                         } else if (file.isDirectory()) {
-                            getDirectoryInformation(file);
+                            getDirectoryInformation(file,directoryPath,"");
                         }
                     }
                 }
@@ -107,33 +108,21 @@ public class DirectoryCommand extends CdAndDIR {
         CMDUI.printDirDirectoryInformation(formattedDate, directoryOrFileType, directoryOrFileName);
     }
 
-    private void getDirectoryInformation(File file) { //디렉토리인 경우
-        SimpleDateFormat directoryTimeFormat = new SimpleDateFormat("yyyy-MM-dd a hh:mm"); //포맷 양식
-        String directoryOrFileName = file.getName();
-        Date directoryOrFileModifiedDate = new Date(file.lastModified());
-        String formattedDate = directoryTimeFormat.format(directoryOrFileModifiedDate);
-        String directoryOrFileType = file.isDirectory() ? "<DIR>" : "     ";
+    private void getDirectoryInformation(File file, String currentDirectory, String directoryOrFileName) { //디렉토리인 경우
+        SimpleDateFormat directoryTimeFormat;
+        Date directoryOrFileModifiedDate;
+        String formattedDate;
+        String directoryOrFileType;
 
-        CMDUI.printDirDirectoryInformation(formattedDate, directoryOrFileType, directoryOrFileName);
-    }
+        File currentFileDirectory = new File(currentDirectory);
+        directoryTimeFormat = new SimpleDateFormat("yyyy-MM-dd a hh:mm"); //포맷 양식
+        directoryOrFileModifiedDate = new Date(file.lastModified());
+        formattedDate = directoryTimeFormat.format(directoryOrFileModifiedDate);
+        directoryOrFileType = file.isDirectory() ? "<DIR>" : "     ";
 
-    private void getCurrentDirectoryInformation(File file){
-        SimpleDateFormat directoryTimeFormat = new SimpleDateFormat("yyyy-MM-dd a hh:mm"); //포맷 양식
-        String directoryOrFileName = ".";
-        Date directoryOrFileModifiedDate = new Date(file.lastModified());
-        String formattedDate = directoryTimeFormat.format(directoryOrFileModifiedDate);
-        String directoryOrFileType = file.isDirectory() ? "<DIR>" : "     ";
-
-        CMDUI.printDirDirectoryInformation(formattedDate, directoryOrFileType, directoryOrFileName);
-    }
-
-
-    private void getParentDirectoryInformation(File file){
-        SimpleDateFormat directoryTimeFormat = new SimpleDateFormat("yyyy-MM-dd a hh:mm"); //포맷 양식
-        String directoryOrFileName = "..";
-        Date directoryOrFileModifiedDate = new Date(file.getParentFile().lastModified());
-        String formattedDate = directoryTimeFormat.format(directoryOrFileModifiedDate);
-        String directoryOrFileType = file.getParentFile().isDirectory() ? "<DIR>" : "     ";
-        CMDUI.printDirDirectoryInformation(formattedDate, directoryOrFileType, directoryOrFileName);
+       if(directoryOrFileName.equals("")){
+           directoryOrFileName = file.getName();
+       }
+       CMDUI.printDirDirectoryInformation(formattedDate, directoryOrFileType, directoryOrFileName);
     }
 }

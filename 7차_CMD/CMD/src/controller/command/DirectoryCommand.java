@@ -59,6 +59,8 @@ public class DirectoryCommand extends CdAndDIR {
         String formattedDate; //포맷팅된 디렉토리 수정일자
         String directoryOrFileType; // 파일인지 디렉토리인지 형식
         SimpleDateFormat directoryTimeFormat = new SimpleDateFormat("yyyy-MM-dd a hh:mm"); //포맷 양식
+        int fileCount = 0;
+        int directoryCount = 0;
 
         //1. 드라이브 정보 출력
         DriveVolumeDTO driveVolumeDTO = getVolumeInformation();
@@ -81,12 +83,14 @@ public class DirectoryCommand extends CdAndDIR {
                     if (!file.isHidden() && !FileUtils.isSymlink(file)) { // 히든파일 및 링크파일 출력하지 않기
                         if (file.isFile()) {
                             getFileInformation(file);
-                        } else if (file.isDirectory()) {
+                            fileCount++;
+                        }
+                        else if (file.isDirectory()) {
                             getDirectoryInformation(file,directoryPath,"");
+                            directoryCount++;
                         }
                     }
                 }
-                //바이트 출력
             }
         }
     }

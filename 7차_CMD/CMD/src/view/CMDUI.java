@@ -35,8 +35,6 @@ public class CMDUI {
     }
     public static void printDirDirectoryInformation(String formattedDate,String directoryOrFileType,String directoryOrFileName){
         System.out.println(formattedDate + "   " + directoryOrFileType + "   " + directoryOrFileName);
-
     }
-
 
 }

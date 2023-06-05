@@ -1,6 +1,7 @@
 package controller;
 
 import controller.command.*;
+import utility.Constants;
 import utility.DesktopInformation;
 import utility.ExceptionHandling;
 import view.CMDUI;
@@ -84,6 +85,10 @@ public class CMDStart {
         }
         else { //해당하는 명령어가 없을 때
             // 배치파일이 아닙니다 오류 문 출력
+            //입력받은 값 중 띄어쓰기 나오기 전 문자열만 추출하기
+            String stringsArray[] = OptimizedString.split(" ");
+            CMDUI.printErrorMessage("\'"+ stringsArray[0] +"\'" + Constants.NOT_FIND_COMMAND);
+
         }
         return currentPath;
     }

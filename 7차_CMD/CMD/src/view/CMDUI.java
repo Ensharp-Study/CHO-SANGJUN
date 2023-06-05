@@ -30,4 +30,13 @@ public class CMDUI {
     public static void printQuestion(String question) {
         System.out.print(question);
     }
+    public static void printDirectory(String directory){
+        System.out.println(" " + directory +" 디렉터리"+ "\n");
+    }
+    public static void printDirDirectoryInformation(String formattedDate,String directoryOrFileType,String directoryOrFileName){
+        System.out.println(formattedDate + "   " + directoryOrFileType + "   " + directoryOrFileName);
+
+    }
+
+
 }

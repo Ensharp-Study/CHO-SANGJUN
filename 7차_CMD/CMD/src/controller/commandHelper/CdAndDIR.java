@@ -13,14 +13,13 @@ public class CdAndDIR {
         this.desktopInformation = DesktopInformation.getInstance();
         this.exceptionHandling = exceptionHandling;
     }
-    protected PathDTO getPath(String inputSentence, String currentPath){
-        PathDTO currentPathDTO = new PathDTO();
+    protected PathDTO getTotalPath(String inputSentence, String currentPath, int removeStringLength){
         String OptimizedString = exceptionHandling.optimizeStringForJudge(inputSentence); //검사하기 알맞게 문자열 최적화
-        String pathRemainedHeadAndTailWhiteSpace = exceptionHandling.optimizeStringRemoveCommand(OptimizedString, 2, !Constants.IS_REMOVE_WHITE_SPACE); //앞뒤 공백 미제거
-        String pathRemovedHeadAndTailWhiteSpace = exceptionHandling.optimizeStringRemoveCommand(OptimizedString, 2, Constants.IS_REMOVE_WHITE_SPACE); //앞뒤 공백 제거
+        String pathRemainedHeadAndTailWhiteSpace = exceptionHandling.optimizeStringRemoveCommand(OptimizedString, removeStringLength, !Constants.IS_REMOVE_WHITE_SPACE); //앞뒤 공백 미제거
+        String pathRemovedHeadAndTailWhiteSpace = exceptionHandling.optimizeStringRemoveCommand(OptimizedString, removeStringLength, Constants.IS_REMOVE_WHITE_SPACE); //앞뒤 공백 제거
 
         //1. 마침표로 이동하는 경우
-        if (pathRemovedHeadAndTailWhiteSpace.equals("")) { // cd만 입력한 경우 > 현재경로 출력
+        if (pathRemovedHeadAndTailWhiteSpace.equals("")) { //현재경로
             CMDUI.printCommandResult(currentPath);
             return setvaildPath(currentPath);
         } else if (pathRemovedHeadAndTailWhiteSpace.equals(".")) {
@@ -45,7 +44,7 @@ public class CdAndDIR {
 
         //3. 절대 경로를 입력 받는 경우
         if (pathRemainedHeadAndTailWhiteSpace.charAt(0) == ' ') {
-            //cd와 뒤의 문자열이 띄어쓰기 되어있으면 앞뒤 띄어쓰기 제거하기 위해 pathRemovedHeadAndTailWhiteSpace 사용
+            //명령어와 뒤의 문자열이 띄어쓰기 되어있으면 앞뒤 띄어쓰기 제거하기 위해 pathRemovedHeadAndTailWhiteSpace 사용
             if (pathRemovedHeadAndTailWhiteSpace.startsWith("c:")) { //root부터 전체 경로를 입력 했을 경우
                 if (desktopInformation.checkPathExists(pathRemovedHeadAndTailWhiteSpace)) { // 파일경로가 있을때
                     return setvaildPath(pathRemovedHeadAndTailWhiteSpace);

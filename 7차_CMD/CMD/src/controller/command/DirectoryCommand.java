@@ -72,9 +72,10 @@ public class DirectoryCommand extends CdAndDIR {
         if (directory.exists() && directory.isDirectory()) {
             File[] files = directory.listFiles();
             if (files != null) {
-                //현재폴더
-
-                //상위폴더
+                //현재 디렉토리
+                getCurrentDirectoryInformation(directory);
+                //부모 디렉토리
+                getParentDirectoryInformation(directory);
                 for (File file : files) {
                     if (!file.isHidden() && !FileUtils.isSymlink(file)) { // 히든파일 및 링크파일 출력하지 않기
                         if (file.isFile()) {
@@ -113,6 +114,26 @@ public class DirectoryCommand extends CdAndDIR {
         String formattedDate = directoryTimeFormat.format(directoryOrFileModifiedDate);
         String directoryOrFileType = file.isDirectory() ? "<DIR>" : "     ";
 
+        CMDUI.printDirDirectoryInformation(formattedDate, directoryOrFileType, directoryOrFileName);
+    }
+
+    private void getCurrentDirectoryInformation(File file){
+        SimpleDateFormat directoryTimeFormat = new SimpleDateFormat("yyyy-MM-dd a hh:mm"); //포맷 양식
+        String directoryOrFileName = ".";
+        Date directoryOrFileModifiedDate = new Date(file.lastModified());
+        String formattedDate = directoryTimeFormat.format(directoryOrFileModifiedDate);
+        String directoryOrFileType = file.isDirectory() ? "<DIR>" : "     ";
+
+        CMDUI.printDirDirectoryInformation(formattedDate, directoryOrFileType, directoryOrFileName);
+    }
+
+
+    private void getParentDirectoryInformation(File file){
+        SimpleDateFormat directoryTimeFormat = new SimpleDateFormat("yyyy-MM-dd a hh:mm"); //포맷 양식
+        String directoryOrFileName = "..";
+        Date directoryOrFileModifiedDate = new Date(file.getParentFile().lastModified());
+        String formattedDate = directoryTimeFormat.format(directoryOrFileModifiedDate);
+        String directoryOrFileType = file.getParentFile().isDirectory() ? "<DIR>" : "     ";
         CMDUI.printDirDirectoryInformation(formattedDate, directoryOrFileType, directoryOrFileName);
     }
 }

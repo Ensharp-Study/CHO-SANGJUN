@@ -35,7 +35,7 @@ public class PathDTO {
         this.currentPath =currentPath;
     }
     public void setIsRightPath(Boolean isRightPath){
-        this.isRightPath =isRightPath;
+        this.isRightPath = isRightPath;
     }
 
 }

@@ -79,7 +79,7 @@ public class DirectoryCommand extends CdAndDIR {
                 //부모 디렉토리
                 getDirectoryInformation(directory,directoryPath,"..");
 
-                for (File file : files) {
+                for (File file : files) { //foreach 사용
                     if (!file.isHidden() && !FileUtils.isSymlink(file)) { // 히든파일 및 링크파일 출력하지 않기
                         if (file.isFile()) {
                             getFileInformation(file);

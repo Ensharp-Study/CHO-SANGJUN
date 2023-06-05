@@ -92,6 +92,7 @@ public class CopyAndMove {
             PathDTO.setSecondFilePath(currentPath + "\\" + Paths.get(PathDTO.getFirstFilePath()).getFileName().toString()); //두번째 경로에 파일경로 추가
             return PathDTO;
         }
+
         //리스트 원소가 2개인 경우
         else if(vaildPaths.size() == 2){
             // 원소 두개가 각각 경로로 표현된 파일인지, 그냥 파일명인지로 총 4가지로 구분

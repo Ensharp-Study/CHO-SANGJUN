@@ -34,6 +34,7 @@ public class ChangeDirectoryCommand extends CdAndDIR{
             CMDUI.printNotice(Constants.CHANGE_DIRECTORY_NOTICE);
             return currentPath;
         }
+
         //2. cd뒤에 문자가 붙어서 나오는 경우
         if(!pathRemainedHeadAndTailWhiteSpace.startsWith(".") && !pathRemainedHeadAndTailWhiteSpace.startsWith("/") && !pathRemainedHeadAndTailWhiteSpace.startsWith("\\")) {
             //입력받은 c와 d가 대문자인지 소문자인지 알아내기 위해 맨처음 입력받은 문자열에서 cd부분 가져오기

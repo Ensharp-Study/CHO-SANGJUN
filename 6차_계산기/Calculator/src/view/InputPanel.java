@@ -1,2 +1,4 @@
-package view;public class InputPanel {
+package view;
+
+public class InputPanel {
 }

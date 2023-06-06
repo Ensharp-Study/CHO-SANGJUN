@@ -1,2 +1,4 @@
-package view;public class ButtonPanel {
+package view;
+
+public class ButtonPanel {
 }

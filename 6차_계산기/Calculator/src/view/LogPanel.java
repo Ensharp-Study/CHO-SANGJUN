@@ -1,2 +1,5 @@
-package view;public class LogPanel {
+package view;
+
+public class LogPanel {
+
 }

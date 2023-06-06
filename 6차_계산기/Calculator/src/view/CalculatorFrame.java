@@ -220,7 +220,7 @@ public class CalculatorFrame extends JFrame {
             calculatebuttons[i].setBorderPainted(false);
 
             //버튼에 ActionListener 할당
-            //1. 숫자버튼인 경우 (위에서 미리 객체 생성한거 쓰면 안되는 이유?)
+            //1. 숫자버튼인 경우
             if((i == 4) || (i == 5) ||(i == 6) ||(i == 8) ||(i == 9) ||(i == 10) ||(i == 12) ||(i == 13) ||(i == 14) ||(i == 17)){
                 calculatebuttons[i].setBackground(new Color(255,255,255));
                 calculatebuttons[i].addActionListener(numberButtonEventListenerClass);

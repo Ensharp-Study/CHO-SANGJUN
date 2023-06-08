@@ -8,9 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LoginPanelOpenButtonEvent implements ActionListener{
-
-    public LoginPanelOpenButtonEvent(){
-    }
     public void actionPerformed(ActionEvent e) {
         //비활성화
         JButton loginPanelOpenButton = (JButton)e.getSource();

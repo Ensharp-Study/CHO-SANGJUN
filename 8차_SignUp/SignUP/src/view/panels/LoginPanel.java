@@ -49,6 +49,7 @@ public class LoginPanel extends JPanel {
     private void addComponentOnLoginPanel(){
         loginPanelComponentDTO = componentCreator.createLoginPanelComponent();
         add(loginPanelComponentDTO.getLoginButton());
+        add(loginPanelComponentDTO.getSignUpOpenButton());
         add(loginPanelComponentDTO.getUserIDInputField());
         add(loginPanelComponentDTO.getUserPasswordInputField());
     }

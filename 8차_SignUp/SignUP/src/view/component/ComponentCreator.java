@@ -25,6 +25,7 @@ public class ComponentCreator {
     private JButton loginPanelOpenButton;
     //LoginPanel component
     private JButton loginButton;
+    private JButton signUpOpenButton;
     private JTextField userIDInputField;
     private JPasswordField userPasswordInputField;
 
@@ -46,18 +47,32 @@ public class ComponentCreator {
     //LoginPanel Component 생성
     public LoginPanelComponentDTO createLoginPanelComponent(){
         loginPanelComponentDTO = new LoginPanelComponentDTO();
-
+        //컨포넌트 생성
         loginButton = new JButton();
+        signUpOpenButton = new JButton();
         userIDInputField = new JTextField();
         userPasswordInputField = new JPasswordField();
 
+        //컨포넌트 속성 추가(크기,위치,투명도)
+        loginButton.setBounds(51,232,300,50);
+        signUpOpenButton.setBounds(110,310,180,20);
+        userIDInputField.setBounds(100,102,250,40);
+        userPasswordInputField.setBounds(100,170,250,40);
+
+        loginButton.setBorderPainted(false);
+        signUpOpenButton.setBorderPainted(false);
+        userIDInputField.setBorder(null);
+        userPasswordInputField.setBorder(null);
+
         loginPanelComponentDTO.setLoginButton(loginButton);
+        loginPanelComponentDTO.setSignUpOpenButton(signUpOpenButton);
         loginPanelComponentDTO.setUserIDInputField(userIDInputField);
         loginPanelComponentDTO.setUserPasswordInputField(userPasswordInputField);
 
         return loginPanelComponentDTO;
     }
 
+    //버튼에 이미지 올리는 함수
     private JButton putImageOnButton(String imageBasePath, String imageHoverPath , JButton button, int buttonWidth, int buttonHeight){
         //버튼 기본 UI값들 삭제
         button.setBorderPainted(false);

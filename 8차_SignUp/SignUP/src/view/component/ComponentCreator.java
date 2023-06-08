@@ -1,5 +1,6 @@
 package view.component;
 
+import controller.buttonEvent.LoginPanelOpenButtonEvent;
 import model.LoginPanelComponentDTO;
 import utility.Constants;
 
@@ -16,39 +17,44 @@ public class ComponentCreator {
 
     //Panel클래스로 보낼 컨포넌트 DTO
     LoginPanelComponentDTO loginPanelComponentDTO;
+    //버튼 이벤트
+    LoginPanelOpenButtonEvent loginPanelOpenButtonEvent;
 
-    //LoginPanel view.component
+    //MainPanel Component
+    private JButton loginPanelOpenButton;
+    //LoginPanel component
     private JButton loginButton;
     private JTextField userIDInputField;
     private JPasswordField userPasswordInputField;
 
-    //MainPanel Component
-    private JButton loginPanelOpenButton;
 
-    //LoginPanel view.component 생성
+    //MainPanel Component 생성
+    public JButton createMainPanelComponent(){
+        loginPanelOpenButton = new JButton();
+        loginPanelOpenButton.setBounds(420,600,350,135); //버튼 사이즈 지정
+
+        //버튼에 이미지 처리
+        loginPanelOpenButton = putImageOnButton(Constants.loginPanelOpenButtonBaseImagePath, Constants.loginPanelOpenButtonHoverImagePath, loginPanelOpenButton,loginPanelOpenButton.getWidth(),loginPanelOpenButton.getHeight());
+
+        //버튼에 이벤트 처리
+        loginPanelOpenButtonEvent = new LoginPanelOpenButtonEvent();
+        loginPanelOpenButton.addActionListener(loginPanelOpenButtonEvent);
+        return loginPanelOpenButton;
+    }
+
+    //LoginPanel Component 생성
     public LoginPanelComponentDTO createLoginPanelComponent(){
         loginPanelComponentDTO = new LoginPanelComponentDTO();
 
-        loginButton = new JButton("로그인");
+        loginButton = new JButton();
         userIDInputField = new JTextField();
         userPasswordInputField = new JPasswordField();
-
 
         loginPanelComponentDTO.setLoginButton(loginButton);
         loginPanelComponentDTO.setUserIDInputField(userIDInputField);
         loginPanelComponentDTO.setUserPasswordInputField(userPasswordInputField);
 
         return loginPanelComponentDTO;
-    }
-
-    //MainPanel Component 생성
-    public JButton createMainPanelComponent(){
-        JButton loginPanelOpenButton = new JButton();
-        loginPanelOpenButton.setBounds(420,600,350,135); //버튼 사이즈 지정
-
-        //버튼에 이미지 처리
-        loginPanelOpenButton = putImageOnButton(Constants.loginPanelOpenButtonBaseImagePath, Constants.loginPanelOpenButtonHoverImagePath, loginPanelOpenButton,loginPanelOpenButton.getWidth(),loginPanelOpenButton.getHeight());
-        return loginPanelOpenButton;
     }
 
     private JButton putImageOnButton(String imageBasePath, String imageHoverPath , JButton button, int buttonWidth, int buttonHeight){

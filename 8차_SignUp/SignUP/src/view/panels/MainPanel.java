@@ -13,9 +13,6 @@ public class MainPanel extends JPanel{
     //MainPanel에 올라가는 컨포넌트
     private JButton loginPanelOpenButton;
     public MainPanel(){
-        //프레임 배경화면 설정
-        backgroundImage = new ImageIcon(MainPanel.class.getResource(Constants.mainScreenImagePath)).getImage();
-
         //컨포넌트 생성 클래스 불러오기
         this.componentCreator = ComponentCreator.getInstance();
         setMainPanel();
@@ -28,6 +25,9 @@ public class MainPanel extends JPanel{
     }
 
     private void setMainPanel(){
+        //프레임 배경화면 설정
+        backgroundImage = new ImageIcon(MainPanel.class.getResource(Constants.mainPanelBackgroundImagePath)).getImage();
+
         this.setLayout(null);
         this.setBounds(0,0,1200,750);
         //mainPanel위에 컨포넌트 올리기

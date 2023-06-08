@@ -8,18 +8,12 @@ import javax.swing.*;
 import java.awt.*;
 
 public class LoginBasePanel extends JPanel{
-    private ComponentCreator componentCreator;
-   /* private LoginPanelComponentDTO loginPanelComponentDTO;*/
     private Image backgroundImage;
 
-    /*//loginBasePanel에 올라가는 컨포넌트
-    private JButton loginButton;
-    private JTextField userIDInputField;
-    private JPasswordField userPasswordInputField;*/
+    //LoginBasePanel위에 올라가는 컨포넌트
+    LoginPanel loginPanel;
 
     public LoginBasePanel(){
-        //컨포넌트 생성 클래스 불러오기
-        this.componentCreator = ComponentCreator.getInstance();
         setLoginBasePanel();
     }
     //배경사진 추가 메소드
@@ -31,16 +25,13 @@ public class LoginBasePanel extends JPanel{
     private void setLoginBasePanel(){
         //프레임 배경화면 설정
         backgroundImage = new ImageIcon(MainPanel.class.getResource(Constants.loginBasePanelBackgroundImagePath)).getImage();
-
         this.setLayout(null);
         this.setBounds(0,0,450,600);
-
+        addComponentOnLoginBasePanel();
     }
-    /*private void addComponentOnLoginPanel(){
-        loginPanelComponentDTO = componentCreator.createLoginPanelComponent();
-        add(loginPanelComponentDTO.getLoginButton());
-        add(loginPanelComponentDTO.getUserIDInputField());
-        add(loginPanelComponentDTO.getUserPasswordInputField());
-    }*/
 
+    private void addComponentOnLoginBasePanel(){
+        loginPanel = new LoginPanel();
+        add(loginPanel);
+    }
 }

@@ -27,8 +27,4 @@ public class MainFrame extends JFrame {
         mainPanel = new MainPanel();
         this.add(mainPanel);
     }
-
-
-
-
 }

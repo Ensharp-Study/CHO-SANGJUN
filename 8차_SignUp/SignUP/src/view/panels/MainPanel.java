@@ -11,7 +11,7 @@ public class MainPanel extends JPanel{
     private Image backgroundImage;
 
     //MainPanel에 올라가는 컨포넌트
-    private JButton loginPanelOpenButton;
+    public static JButton loginPanelOpenButton;
     public MainPanel(){
         //컨포넌트 생성 클래스 불러오기
         this.componentCreator = ComponentCreator.getInstance();

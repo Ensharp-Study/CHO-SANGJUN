@@ -3,6 +3,7 @@ package view.component;
 import controller.buttonEvent.LoginPanelOpenButtonEvent;
 import model.LoginPanelComponentDTO;
 import utility.Constants;
+import view.frames.MainFrame;
 
 import javax.swing.*;
 import java.awt.*;

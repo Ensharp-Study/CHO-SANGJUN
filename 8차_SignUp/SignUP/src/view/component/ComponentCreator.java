@@ -103,16 +103,36 @@ public class ComponentCreator {
         newUserZipCode = new JTextField();
 
         //컴포넌트 속성 추가
-        newUserName.setBounds(30,120,300,30);
-        /*newUserID.setBounds();
-        newUserPassword.setBounds();
-        newUserPasswordCheck.setBounds();
-        newUserBirthDay.setBounds();
-        newUserEmail.setBounds();
-        newUserPhoneNumber.setBounds();
-        newUserAddress.setBounds();
-        newUserZipCode.setBounds();
-*/
+        newUserName.setBounds(130,120,250,30);
+        newUserID.setBounds(130,190,250,30);
+        newUserPassword.setBounds(130,265,250,30);
+        newUserPasswordCheck.setBounds(130,340,250,30);
+        newUserBirthDay.setBounds(130,415,250,30);
+        newUserEmail.setBounds(600,120,220,30);
+        newUserPhoneNumber.setBounds(600,190,220,30);
+        newUserAddress.setBounds(600,265,220,30);
+        newUserZipCode.setBounds(600,340,220,30);
+        //경계선 제거
+        newUserName.setBorder(null);
+        newUserID.setBorder(null);
+        newUserPassword.setBorder(null);
+        newUserPasswordCheck.setBorder(null);
+        newUserBirthDay.setBorder(null);
+        newUserEmail.setBorder(null);
+        newUserPhoneNumber.setBorder(null);
+        newUserAddress.setBorder(null);
+        newUserZipCode.setBorder(null);
+
+        signUpPanelComponentDTO.setNewUserName(newUserName);
+        signUpPanelComponentDTO.setNewUserID(newUserID);
+        signUpPanelComponentDTO.setNewUserPassword(newUserPassword);
+        signUpPanelComponentDTO.setNewUserPasswordCheck(newUserPasswordCheck);
+        signUpPanelComponentDTO.setNewUserBirthDay(newUserBirthDay);
+        signUpPanelComponentDTO.setNewUserEmail(newUserEmail);
+        signUpPanelComponentDTO.setNewUserPhoneNumber(newUserPhoneNumber);
+        signUpPanelComponentDTO.setNewUserAddress(newUserAddress);
+        signUpPanelComponentDTO.setNewUserZipCode(newUserZipCode);
+
         return signUpPanelComponentDTO;
     }
 

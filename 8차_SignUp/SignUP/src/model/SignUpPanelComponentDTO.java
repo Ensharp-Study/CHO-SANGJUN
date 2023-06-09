@@ -70,5 +70,4 @@ public class SignUpPanelComponentDTO {
     public void setNewUserZipCode(JTextField newUserZipCode){
         this.newUserZipCode = newUserZipCode;
     }
-
 }

@@ -19,7 +19,7 @@ public class SignUpFrame extends JFrame {
         setVisible(true);
     }
     private void setSignUpFrame(){
-        setSize(1000,600);
+        setSize(1200,800);
         setTitle("회원가입");
         setLayout(null);
         setLocationRelativeTo(null);

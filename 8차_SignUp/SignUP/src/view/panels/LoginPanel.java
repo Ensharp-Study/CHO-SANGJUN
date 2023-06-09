@@ -17,7 +17,7 @@ public class LoginPanel extends JPanel {
     public LoginPanel(){
         //컨포넌트 생성 클래스 불러오기
         this.componentCreator = ComponentCreator.getInstance();
-        setLoginBasePanel();
+        setLoginPanel();
     }
 
     //배경사진 추가 및 투명도 메소드
@@ -37,7 +37,7 @@ public class LoginPanel extends JPanel {
         g2d.dispose();
     }
 
-    private void setLoginBasePanel(){
+    private void setLoginPanel(){
         //프레임 배경화면 설정
         backgroundImage = new ImageIcon(MainPanel.class.getResource(Constants.loginPanelBackgroundImagePath)).getImage();
         //배경색 추가

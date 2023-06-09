@@ -22,11 +22,11 @@ public class SignUpBasePanel extends JPanel {
         //프레임 배경화면 설정
         backgroundImage = new ImageIcon(MainPanel.class.getResource(Constants.signUpBasePanelBackgroundImagePath)).getImage();
         this.setLayout(null);
-        this.setBounds(0,0,1000,600);
+        this.setBounds(0,0,1200,800);
         addComponentOnSignUpBasePanel();
     }
     private void addComponentOnSignUpBasePanel(){
         signUpPanel = new SignUpPanel();
-        //add(signUpPanel);
+        add(signUpPanel);
     }
 }

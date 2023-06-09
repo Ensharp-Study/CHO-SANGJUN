@@ -1,6 +1,7 @@
 package view.component;
 
 import controller.buttonEvent.LoginPanelOpenButtonEvent;
+import controller.buttonEvent.SignUpOpenButtonEvent;
 import model.LoginPanelComponentDTO;
 import utility.Constants;
 import view.frames.MainFrame;
@@ -20,6 +21,7 @@ public class ComponentCreator {
     LoginPanelComponentDTO loginPanelComponentDTO;
     //버튼 이벤트
     LoginPanelOpenButtonEvent loginPanelOpenButtonEvent;
+    SignUpOpenButtonEvent signUpOpenButtonEvent;
 
     //MainPanel Component
     private JButton loginPanelOpenButton;
@@ -58,11 +60,14 @@ public class ComponentCreator {
         signUpOpenButton.setBounds(110,310,180,20);
         userIDInputField.setBounds(100,102,250,40);
         userPasswordInputField.setBounds(100,170,250,40);
-
         loginButton.setBorderPainted(false);
         signUpOpenButton.setBorderPainted(false);
         userIDInputField.setBorder(null);
         userPasswordInputField.setBorder(null);
+
+        //컨포넌트 이벤트 추가
+        signUpOpenButtonEvent = new SignUpOpenButtonEvent();
+        signUpOpenButton.addActionListener(signUpOpenButtonEvent);
 
         loginPanelComponentDTO.setLoginButton(loginButton);
         loginPanelComponentDTO.setSignUpOpenButton(signUpOpenButton);

@@ -3,6 +3,7 @@ package view.component;
 import controller.buttonEvent.LoginPanelOpenButtonEvent;
 import controller.buttonEvent.SignUpOpenButtonEvent;
 import model.LoginPanelComponentDTO;
+import model.SignUpPanelComponentDTO;
 import utility.Constants;
 import view.frames.MainFrame;
 
@@ -19,6 +20,7 @@ public class ComponentCreator {
 
     //Panel클래스로 보낼 컨포넌트 DTO
     LoginPanelComponentDTO loginPanelComponentDTO;
+    SignUpPanelComponentDTO signUpPanelComponentDTO;
     //버튼 이벤트
     LoginPanelOpenButtonEvent loginPanelOpenButtonEvent;
     SignUpOpenButtonEvent signUpOpenButtonEvent;
@@ -30,7 +32,16 @@ public class ComponentCreator {
     private JButton signUpOpenButton;
     private JTextField userIDInputField;
     private JPasswordField userPasswordInputField;
-
+    //SignUpPanel Component
+    private JTextField newUserName;
+    private JTextField newUserID;
+    private JPasswordField newUserPassword;
+    private JPasswordField newUserPasswordCheck;
+    private JTextField newUserBirthDay;
+    private JTextField newUserEmail;
+    private JTextField newUserPhoneNumber;
+    private JTextField newUserAddress;
+    private JTextField newUserZipCode;
 
     //MainPanel Component 생성
     public JButton createMainPanelComponent(){
@@ -75,6 +86,34 @@ public class ComponentCreator {
         loginPanelComponentDTO.setUserPasswordInputField(userPasswordInputField);
 
         return loginPanelComponentDTO;
+    }
+
+    //SignUpPanel Component 생성
+    public SignUpPanelComponentDTO createSignUpPanelComponent() {
+        signUpPanelComponentDTO = new SignUpPanelComponentDTO();
+        //컴포넌트 생성
+        newUserName = new JTextField();
+        newUserID = new JTextField();
+        newUserPassword = new JPasswordField();
+        newUserPasswordCheck = new JPasswordField();
+        newUserBirthDay = new JTextField();
+        newUserEmail = new JTextField();
+        newUserPhoneNumber = new JTextField();
+        newUserAddress = new JTextField();
+        newUserZipCode = new JTextField();
+
+        //컴포넌트 속성 추가
+        newUserName.setBounds(30,120,300,30);
+        /*newUserID.setBounds();
+        newUserPassword.setBounds();
+        newUserPasswordCheck.setBounds();
+        newUserBirthDay.setBounds();
+        newUserEmail.setBounds();
+        newUserPhoneNumber.setBounds();
+        newUserAddress.setBounds();
+        newUserZipCode.setBounds();
+*/
+        return signUpPanelComponentDTO;
     }
 
     //버튼에 이미지 올리는 함수

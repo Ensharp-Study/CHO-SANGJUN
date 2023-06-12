@@ -5,7 +5,6 @@ import controller.buttonEvent.SignUpOpenButtonEvent;
 import model.LoginPanelComponentDTO;
 import model.SignUpPanelComponentDTO;
 import utility.Constants;
-import view.frames.MainFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -42,6 +41,8 @@ public class ComponentCreator {
     private JTextField newUserPhoneNumber;
     private JTextField newUserAddress;
     private JTextField newUserZipCode;
+    private JButton addressSearchingButton;
+    private JButton signUpButton;
 
     //MainPanel Component 생성
     public JButton createMainPanelComponent(){
@@ -101,6 +102,8 @@ public class ComponentCreator {
         newUserPhoneNumber = new JTextField();
         newUserAddress = new JTextField();
         newUserZipCode = new JTextField();
+        addressSearchingButton = new JButton();
+        signUpButton = new JButton();
 
         //컴포넌트 속성 추가
         newUserName.setBounds(130,120,250,30);
@@ -112,6 +115,10 @@ public class ComponentCreator {
         newUserPhoneNumber.setBounds(600,190,220,30);
         newUserAddress.setBounds(600,265,220,30);
         newUserZipCode.setBounds(600,340,220,30);
+        addressSearchingButton.setBounds(850,325,70,50);
+        signUpButton.setBounds(750, 500, 350, 140);
+
+
         //경계선 제거
         newUserName.setBorder(null);
         newUserID.setBorder(null);
@@ -123,6 +130,10 @@ public class ComponentCreator {
         newUserAddress.setBorder(null);
         newUserZipCode.setBorder(null);
 
+        //버튼에 속성 처리
+        addressSearchingButton.setBorderPainted(false);
+        signUpButton = putImageOnButton(Constants.signUpButtonBaseImagePath, Constants.signUpButtonHoverImagePath, signUpButton,signUpButton.getWidth(),signUpButton.getHeight());
+
         signUpPanelComponentDTO.setNewUserName(newUserName);
         signUpPanelComponentDTO.setNewUserID(newUserID);
         signUpPanelComponentDTO.setNewUserPassword(newUserPassword);
@@ -132,7 +143,8 @@ public class ComponentCreator {
         signUpPanelComponentDTO.setNewUserPhoneNumber(newUserPhoneNumber);
         signUpPanelComponentDTO.setNewUserAddress(newUserAddress);
         signUpPanelComponentDTO.setNewUserZipCode(newUserZipCode);
-
+        signUpPanelComponentDTO.setAddressSearchingButton(addressSearchingButton);
+        signUpPanelComponentDTO.setSignUpButton(signUpButton);
         return signUpPanelComponentDTO;
     }
 

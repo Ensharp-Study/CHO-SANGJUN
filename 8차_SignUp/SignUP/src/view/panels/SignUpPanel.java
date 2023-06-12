@@ -53,6 +53,8 @@ public class SignUpPanel extends JPanel {
         add(signUpPanelComponentDTO.getNewUserPhoneNumber());
         add(signUpPanelComponentDTO.getNewUserAddress());
         add(signUpPanelComponentDTO.getNewUserZipCode());
+        add(signUpPanelComponentDTO.getAddressSearchingButton());
+        add(signUpPanelComponentDTO.getSignUpButton());
     }
 
 }

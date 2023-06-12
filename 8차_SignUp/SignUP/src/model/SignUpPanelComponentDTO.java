@@ -12,7 +12,8 @@ public class SignUpPanelComponentDTO {
     private JTextField newUserPhoneNumber;
     private JTextField newUserAddress;
     private JTextField newUserZipCode;
-
+    private JButton addressSearchingButton;
+    private JButton signUpButton;
     //getter
     public JTextField getNewUserName(){
         return newUserName;
@@ -40,6 +41,12 @@ public class SignUpPanelComponentDTO {
     }
     public JTextField getNewUserZipCode(){
         return newUserZipCode;
+    }
+    public JButton getAddressSearchingButton(){
+        return addressSearchingButton;
+    }
+    public JButton getSignUpButton(){
+        return signUpButton;
     }
 
     //setter
@@ -69,5 +76,11 @@ public class SignUpPanelComponentDTO {
     }
     public void setNewUserZipCode(JTextField newUserZipCode){
         this.newUserZipCode = newUserZipCode;
+    }
+    public void setAddressSearchingButton(JButton addressSearchingButton){
+        this.addressSearchingButton = addressSearchingButton;
+    }
+    public void setSignUpButton(JButton signUpButton){
+        this.signUpButton = signUpButton;
     }
 }

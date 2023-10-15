@@ -19,8 +19,8 @@ namespace ConsoleApp1.Utility
             List<BookDTO> searchBookList = new List<BookDTO>();
 
             string url = string.Format(Constants.URL, bookName, bookCount);
-            string id = "OX9S3Tu5F_h3qCJCerI3";
-            string secret = "OdL8kKSsRm";
+            string id = "";
+            string secret = "";
 
             //웹서비스 요청
             //네이버 검색 서비스를 사용하기 위해서 요청할 때 Client ID와 Client Secret을 헤더에 추가하여 보내기

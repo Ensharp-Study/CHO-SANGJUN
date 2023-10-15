@@ -58,7 +58,7 @@ enum UserManagementNumber
 
 public class Constants
 {
-    public const string URL = "https://openapi.naver.com/v1/search/book?query={0}&display={1}";
+    public const string URL = "naverOpenAPIURL";
 
 
     public const bool ESC_END_FUNCTION = false; // 뒤로가기

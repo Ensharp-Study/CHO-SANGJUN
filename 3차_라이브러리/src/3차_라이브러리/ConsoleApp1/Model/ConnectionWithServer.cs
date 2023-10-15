@@ -15,7 +15,7 @@ namespace ConsoleApp1.Model
         {
             if(connection == null)
             {
-                connection = new MySqlConnection("Server=localhost;Port=3306;Database=library;Uid=root;Pwd=0000");
+                connection = new MySqlConnection("Server=;Port=;Database=;Uid=;Pwd=");
             }
             return connection;
         }

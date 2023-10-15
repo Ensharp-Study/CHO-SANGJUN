@@ -11,7 +11,7 @@ public class ConnectionWithServer {
     static {
         try {
             /*DriverManager.getConnection(접속할주소,계정,비밀번호)*/
-            conn = DriverManager.getConnection("jdbc:mysql://localhost?serverTimezone=UTC","root","1234");
+            conn = DriverManager.getConnection("","","");
 
             st = conn.createStatement();
         } catch (Exception e) {

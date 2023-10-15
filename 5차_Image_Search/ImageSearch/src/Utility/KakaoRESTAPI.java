@@ -12,8 +12,8 @@ import java.net.URLEncoder;
 
 
 public class KakaoRESTAPI {
-    private final static String API_URL = "https://dapi.kakao.com/v2/search/image"; // 검색 API URL
-    private final static String API_KEY = "e2685cab5b4653d5ac752f1d4b988428"; // REST API 키
+    private final static String API_URL = ""; // 검색 API URL
+    private final static String API_KEY = ""; // REST API 키
 
     public String[] ConnectionHTTP(String searchData) {
 

@@ -15,21 +15,21 @@ namespace _4차_LectureTimeTable.DataBase
             searchedLectureData = new List<int>();
 
             UserDTO userOneData = new UserDTO(); //기존에 저장 된 유저 정보 
-            userOneData.UserId = "20011609";
-            userOneData.UserPassword = "password1";
-            userOneData.UserName = "조상준";
+            userOneData.UserId = "";
+            userOneData.UserPassword = "";
+            userOneData.UserName = "";
             userData.Add(userOneData);
 
             UserDTO userTwoData = new UserDTO();
-            userTwoData.UserId = "22010323";
-            userTwoData.UserPassword = "password234";
-            userTwoData.UserName = "김현아";
+            userTwoData.UserId = "";
+            userTwoData.UserPassword = "";
+            userTwoData.UserName = "";
             userData.Add(userTwoData);
 
             UserDTO userThreeData = new UserDTO();
-            userThreeData.UserId = "19011069";
-            userThreeData.UserPassword = "password123";
-            userThreeData.UserName = "권오성";
+            userThreeData.UserId = "";
+            userThreeData.UserPassword = "";
+            userThreeData.UserName = "";
             userData.Add(userThreeData);
         }
 

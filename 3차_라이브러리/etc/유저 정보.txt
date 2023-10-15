@@ -1,7 +1,0 @@
-User 모드
-아이디 : abcde12345
-비밀번호 : password123
-
-관리자 모드
-아이디 : juncho1201
-비밀번호 : juncho1201
